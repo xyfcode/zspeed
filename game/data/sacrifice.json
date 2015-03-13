@@ -1,0 +1,32 @@
+{
+   "SACRIFICE":{
+        "1":{
+          "Id":"sa_1",
+          "NextId":"sa_2",
+          "Times":"2",
+          "Gold":"50000",
+          "DropId":"1"
+        },
+        "2":{
+          "Id":"sa_2",
+          "NextId":"sa_3",
+          "Times":"3",
+          "Gold":"150000",
+          "DropId":"2"
+        },
+        "3":{
+          "Id":"sa_3",
+          "NextId":"sa_4",
+          "Times":"2",
+          "Gold":"180000",
+          "DropId":"3"
+        },
+        "4":{
+          "Id":"sa_4",
+          "NextId":"sa_5",
+          "Times":"5",
+          "Gold":"250000",
+          "DropId":"4"
+        }
+   }
+}

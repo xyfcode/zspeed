@@ -1,0 +1,19 @@
+{
+    "SERVERCONFIG":
+    {
+        "1":
+        {
+           "ID":1,
+           "NAME" : "桃园结义",
+            "IP" : "203.90.235.184",
+            "PORT" : 10211,
+            "IS_OPEN" :1,
+            "IS_NEW" : 1,
+            "IS_TEST" :0,
+            "MAX_ONLINE":3000,
+            "MAX_REGISTER":120000,
+            "PFT" :2,
+            "DISTRICT_ID" :1
+        }
+    }
+}

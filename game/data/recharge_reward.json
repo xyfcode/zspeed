@@ -1,0 +1,28 @@
+{
+   "RECHARGE_REWARD":{
+        "1":{
+          "Id":"1",
+          "ItemType":"1",
+          "ItemId":"5502",
+          "ItemNum":"1"
+        },
+        "2":{
+          "Id":"2",
+          "ItemType":"3",
+          "ItemId":"t1",
+          "ItemNum":"10"
+        },
+        "3":{
+          "Id":"3",
+          "ItemType":"3",
+          "ItemId":"k1",
+          "ItemNum":"10"
+        },
+        "4":{
+          "Id":"4",
+          "ItemType":"5",
+          "ItemId":"",
+          "ItemNum":"100000"
+        }
+   }
+}
