@@ -38,7 +38,7 @@ DBProvider = function(conf,s,call_back) {
     });
 };
  /*
-  var col1 = db.collection('collectionName'); //非严格模式。callback是防治出错，等待确认成功之后才返回
+  var col1 = db.collection('collectionName'); //非严格模式。callback是防止出错，等待确认成功之后才返回
  */
 DBProvider.prototype.getCollection= function(collectionName, callback) {
     this.db.collection(collectionName, function(error, collection) {
