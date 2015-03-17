@@ -393,7 +393,7 @@ function on_card_strengthen(data,send,s)
         return;
     }
 
-    if(_card_data.level>=role.level+const_value.CARD_EXCEED_ROLE_LIMIT)
+    if(_card_data.level>role.level+const_value.CARD_EXCEED_ROLE_LIMIT)
     {
         var msg = {
             "op" : msg_id.NM_CARD_STRENGTH,
