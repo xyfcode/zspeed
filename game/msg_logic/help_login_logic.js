@@ -53,7 +53,7 @@ function help_user_tick(s)
         global.log("now.getTime() - s.nAliveTime > 90 * 1000");
         global.log("now.getTime():"+now.getTime());
         global.log("s.nAliveTime:"+s.nAliveTime);
-        global.log("s.c_ip:"+ s.c_ip);
+        global.log("ip:"+ s.c_ip+",port:"+ s.c_port);
         help_close_user_socket(s);
         return;
     }
@@ -93,8 +93,12 @@ function help_close_user_socket(s)
     global.log("help_close_user_socket");
     if(s != undefined)
     {
-        s.end();
-        s.destroy();
+        if(s.writable)
+        {
+            global.log("s writable is true!");
+            s.end();
+            s.destroy();
+        }
         clearInterval(s.interval);
         s = null;
     }
