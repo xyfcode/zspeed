@@ -98,7 +98,7 @@ var handler = {
     "292" : new on_extend_bag(), //扩充武将背包
     "291" : new on_extend_friend_bag(), //扩充好友背包
     "283" : new on_card_strengthen(), //武将强化
-    "282" : new on_card_evolve(), //武将进化
+    "282" : new on_card_reborn(), //武将转生
     "281" : new on_formation_edit(), //队伍编辑
     "280" : new on_equip_upload(), //装备装载
     "277" : new on_gain_town_reward(), //领取城池通关奖励
@@ -464,11 +464,11 @@ function on_card_strengthen()
     }
 }
 
-function on_card_evolve()
+function on_card_reborn()
 {
     this.handle = function(data,send,s)
     {
-        card_logic.on_card_evolve(data,send,s);
+        card_logic.on_card_reborn(data,send,s);
     }
 }
 
