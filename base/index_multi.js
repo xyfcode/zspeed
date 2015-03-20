@@ -294,6 +294,37 @@ server.prototype.start_server = function(obj,cb)
                                         try
                                         {
                                             receive_data = JSON.parse(receive_data);
+                                            if(receive_data&&receive_data.hasOwnProperty("op"))
+                                            {
+                                                sock.op=receive_data.op;
+                                                if(info.handler[receive_data.op])
+                                                {
+                                                    d.run(function(){
+                                                        info.handler[receive_data.op].handle(receive_data, sock.send,sock);
+                                                    });
+                                                }
+                                                else
+                                                {
+                                                    global.log("error,receive_data is error!");
+                                                    var err_msg = {
+                                                        "op" : sock.op,
+                                                        "ret" : 42
+                                                    };
+                                                    sock.send(err_msg);
+                                                    sock.emit("c_close");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                global.log("error,receive_data is error2!");
+                                                var err_msg = {
+                                                    "op" : sock.op,
+                                                    "ret" : 42
+                                                };
+                                                sock.send(err_msg);
+                                                sock.emit("c_close");
+                                                return;
+                                            }
                                         }
                                         catch(err)
                                         {
@@ -317,24 +348,6 @@ server.prototype.start_server = function(obj,cb)
                                         sock.send(err_msg);
                                         sock.emit("c_close");
                                         return;
-                                    }
-
-                                    sock.op=receive_data.op;
-                                    if(info.handler[receive_data.op])
-                                    {
-                                        d.run(function(){
-                                            info.handler[receive_data.op].handle(receive_data, sock.send,sock);
-                                        });
-                                    }
-                                    else
-                                    {
-                                        global.log("error,receive_data is error!");
-                                        var err_msg = {
-                                            "op" : sock.op,
-                                            "ret" : 42
-                                        };
-                                        sock.send(err_msg);
-                                        sock.emit("c_close");
                                     }
                                 }
 
@@ -395,6 +408,25 @@ server.prototype.start_server = function(obj,cb)
                                             try
                                             {
                                                 receive_data = JSON.parse(receive_data);
+                                                if(receive_data&&receive_data.hasOwnProperty("op"))
+                                                {
+                                                    if(info.handler[receive_data.op])
+                                                    {
+                                                        info.handler[receive_data.op].handle(receive_data, client.send,client);
+                                                    }
+                                                    else
+                                                    {
+                                                        client.emit("c_close");
+                                                        global.err("can not handle msg1!");
+                                                        return;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    global.err("can not handle msg2!");
+                                                    client.emit("c_close");
+                                                    return;
+                                                }
                                             }
                                             catch(err)
                                             {
@@ -407,16 +439,7 @@ server.prototype.start_server = function(obj,cb)
                                         {
                                             global.log("error,receive_data is error!");
                                             client.emit("c_close");
-                                        }
-
-
-                                        if(info.handler[receive_data.op])
-                                        {
-                                            info.handler[receive_data.op].handle(receive_data, client.send,client);
-                                        }
-                                        else
-                                        {
-                                            global.err("can not handle msg !");
+                                            return;
                                         }
                                     }
 
