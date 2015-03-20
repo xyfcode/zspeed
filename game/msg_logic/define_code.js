@@ -64,7 +64,7 @@ function MsgCode()
     this.LEVEL_TOO_LOW=19;//用户等级不足！
     this.FORMATION_NOT_EXIST=20;//阵型不存在！
     this.EXPLOIT_NOT_ENOUGH=21;//功勋不足！
-    this.LEVEL_EXCEED_LIMIT=22;//等级超过上限！
+    this.LEVEL_EXCEED_ROLE_LIMIT=22;//武将等级不可超过主公10级！
     this.COUNT_EXCEED_LIMIT=23;//数量超过上限！
     this.RACE_NOT_MATE=24;//职业不匹配！
     this.TOWN_NOT_PASSED=25;//城池没有通关！
@@ -99,7 +99,7 @@ function MsgCode()
     this.EQUIP_CANT_COMPOSE=56;//装备不能合成
     this.CARD_ON_GUARD=57;//该武将已经是城守，操作无效！
     this.CARD_STRENGTH_ERROR=58;//城守或上阵武将不能作为强化材料！
-    this.CARD_LEVEL_LOW=59;//武将未达到转生所需的最低等级，不可以转生！
+    this.REBORN_LEVEL_LOW=59;//武将未达到转生所需的最低等级，不可以转生！
     this.EVOLVE_EQUIP_LACK=60;//武将装备齐全后方可转生！
     this.PURCHASE_ERROR=61;//充值发生异常，请联系客服
     this.COMPOSE_MATERIAL_NOT_ENOUGH=62;//合成需要的材料不足！
@@ -107,6 +107,7 @@ function MsgCode()
     this.ACCOUNT_FORMAT_ERROR =64; //账号和密码只能输入6-20个字母、数字、下划线
     this.ACCOUNT_GUEST_ERROR =65; //账号不能以guest开头PWD_TOO_LONG
     this.PWD_FORMAT_ERROR =66; //密码长度介于6到20个字符之间
+    this.LEVEL_EXCEED_LIMIT=67;//武将等级超过上限！
 }
 exports.msg_code = new MsgCode();
 
