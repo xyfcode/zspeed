@@ -122,29 +122,29 @@ function on_buy_explore(data,send,s)
     }
 
     var reward=[];
+    var pay_ok=1;
     if(_event_data.cost_num >0)
     {
-        var pay_ok=0;
         if(_event_data.cost_type==const_value.REWARD_TYPE_RMB)
         {
-             pay_ok=money_logic.help_pay_rmb(role,_event_data.cost_num);
+            pay_ok=money_logic.help_pay_rmb(role,_event_data.cost_num);
         }
         else
         {
             pay_ok=money_logic.help_pay_money(role,_event_data.cost_num)
         }
+    }
 
-        if(pay_ok)
+    if(pay_ok)
+    {
+        for(var i=0;i<_event_data.reward.length;i++)
         {
-            for(var i=0;i<_event_data.reward.length;i++)
+            var reward_data=_event_data.reward[i];
+            var gain_item=drop_logic.help_put_item_to_role(role,reward_data.id,ratio*reward_data.num,reward_data.type);
+            reward=gain_item.uids;
+            if(gain_item.flag)
             {
-                var reward_data=_event_data.reward[i];
-                var gain_item=drop_logic.help_put_item_to_role(role,reward_data.id,ratio*reward_data.num,reward_data.type);
-                reward=gain_item.uids;
-                if(gain_item.flag)
-                {
-                    role_data_logic.help_notice_role_msg(role,send);
-                }
+                role_data_logic.help_notice_role_msg(role,send);
             }
         }
     }
@@ -163,7 +163,6 @@ function on_buy_explore(data,send,s)
         "op" : msg_id.NM_ENTER_GAME,
         "exp" : role.exp ,
         "level":role.level,
-        "name":role.name,
         "gold":role.gold, //游戏币
         "rmb":role.rmb ,//金币(人民币兑换)
         "score":role.score,
@@ -236,38 +235,36 @@ function on_explore(data,send,s)
         return;
     }
 
-    var _explore_data_list=explore_data.explore_data_list;
+    var _explore_data=explore_data.explore_data_list[role.level];
+    if(_explore_data==undefined)
+    {
+        global.log("_explore_data == undefined,level:"+role.level);
+        return;
+    }
 
     var event_id;
     var result;
-    for(var key in _explore_data_list)
+    var _probability=common_func.help_make_one_random(1,100);
+    if(_probability<=_explore_data.probability)
     {
-        var _explore_data=_explore_data_list[key];
-        if(role.level>=_explore_data.min_level && role.level<= _explore_data.max_level)
+        //触发概率集合
+        var ass_proba=common_func.help_make_one_random(1,10000);
+        for(var i=_explore_data.assemble.length-1;i>=0;i--)
         {
-            var _probability=common_func.help_make_one_random(1,100);
-            if(_probability<=_explore_data.probability)
+            if((i==0)||(ass_proba>_explore_data.assemble[i-1].probability&&ass_proba<=_explore_data.assemble[i].probability))
             {
-                //触发概率集合
-                var ass_proba=common_func.help_make_one_random(1,10000);
-                for(var i=_explore_data.assemble.length-1;i>=0;i--)
-                {
-                    if((i==0)||(ass_proba>_explore_data.assemble[i-1].probability&&ass_proba<=_explore_data.assemble[i].probability))
-                    {
-                        event_id=_explore_data.assemble[i].event_id;
-                        result=help_handle_explore_logic(role,send,event_id);
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                event_id=_explore_data.default_event;
+                event_id=_explore_data.assemble[i].event_id;
                 result=help_handle_explore_logic(role,send,event_id);
+                break;
             }
-            break;
         }
     }
+    else
+    {
+        event_id=_explore_data.default_event;
+        result=help_handle_explore_logic(role,send,event_id);
+    }
+
 
     //如果用户探索次数是满的
     if(role.explore>=const_value.EXPLORE_INIT_LIMIT)
@@ -283,9 +280,9 @@ function on_explore(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_EXPLORE,
-        "eventId" : event_id,
-        "reward" : result.reward,
-        "ratio" : result.ratio,
+        "eventId" : 7021,
+        "reward" : [],
+        "ratio" : 1,
         "ret" : msg_code.SUCC
     };
     send(msg);

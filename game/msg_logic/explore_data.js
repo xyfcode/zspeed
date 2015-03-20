@@ -6,8 +6,6 @@ var log_data_logic=require("./help_log_data_logic");
 var ExploreData=function()
 {
     this.explore_id=0;
-    this.min_level=0;
-    this.max_level=0;
     this.probability=0;
     this.assemble=[];
     this.default_event=0;
@@ -47,8 +45,6 @@ function load_explore_data()
         var explore_data=new ExploreData();
 
         explore_data.explore_id=data["EXPLORE"][i].ExploreId;
-        explore_data.min_level=Number(data["EXPLORE"][i].MinLevel);
-        explore_data.max_level=Number(data["EXPLORE"][i].MaxLevel);
         explore_data.probability=Number(data["EXPLORE"][i].Probability);
         explore_data.default_event=Number(data["EXPLORE"][i].DefaultEvent);
 
