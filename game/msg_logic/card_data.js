@@ -56,10 +56,13 @@ function load_card_data()
             card_data.equip_list=(data["CARD"][i].EquipListReborn).split(',');
         }
 
-        card_data.exp=Number(data["CARD"][i].Exp);
-        card_data.exp_add=Number(data["CARD"][i].ExpGrowth);
         card_data.money=Number(data["CARD"][i].Coin);
         card_data.money_add=Number(data["CARD"][i].CoinGrowth);
+
+        card_data.exp=Number(data["CARD"][i].Exp);
+        card_data.exp_add=Number(data["CARD"][i].ExpGrowth);
+        card_data.exp_param=Number(data["CARD"][i].ExpParameters);
+
         card_data_list[card_data.card_id]=card_data;
     }
 
