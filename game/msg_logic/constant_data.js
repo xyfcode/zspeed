@@ -73,10 +73,6 @@ var ConstValue=function()
     this.REBORN_LEVEL_FIVE=0;
     this.REBORN_LEVEL_SIX=0;
     this.REBORN_LEVEL_SEVEN=0;
-    this.REBORN_LEVEL_EIGHT=0;
-    this.REBORN_LEVEL_NINE=0;
-    this.REBORN_LEVEL_TEN=0;
-    this.REBORN_LEVEL_ELEVEN=0;
     //招募开启等级
     this.RECRUIT_LEVEL=0;
     //强化开启等级
@@ -272,10 +268,6 @@ function load_constant_data()
         const_value.REBORN_LEVEL_FIVE= Number(data["CONST"][i].Reborn5Level);
         const_value.REBORN_LEVEL_SIX= Number(data["CONST"][i].Reborn6Level);
         const_value.REBORN_LEVEL_SEVEN= Number(data["CONST"][i].Reborn7Level);
-        const_value.REBORN_LEVEL_EIGHT= Number(data["CONST"][i].Reborn8Level);
-        const_value.REBORN_LEVEL_NINE= Number(data["CONST"][i].Reborn9Level);
-        const_value.REBORN_LEVEL_TEN= Number(data["CONST"][i].Reborn10Level);
-        const_value.REBORN_LEVEL_ELEVEN= Number(data["CONST"][i].Reborn11Level);
 
 
         const_value.RECRUIT_LEVEL= Number(data["CONST"][i].RecruitLv);
