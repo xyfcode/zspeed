@@ -53,7 +53,7 @@ function MsgID()
     this.NM_EXTEND_BAG=292;//扩充武将装备背包
     this.NM_EXTEND_FRIEND_BAG=291;//扩充好友背包
     this.NM_CARD_STRENGTH=283;//武将强化
-    this.NM_CARD_EVOLVE=282;//武将进化
+    this.NM_CARD_REBORN=282;//武将转生
     this.NM_FORMATION_EDIT=281;//阵型编辑
     this.NM_EQUIP_UPLOAD=280;//装备装载
     this.NM_GAIN_TOWN_REWARD=277;//领取副本奖励

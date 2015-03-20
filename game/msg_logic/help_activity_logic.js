@@ -15,12 +15,12 @@ var activity_data = require("./activity_data");
 var battle_field_data = require("./battle_field_data");
 var formation_data=require("./formation_data");
 var war_data=require("./war_data");
-var card_exp_data = require("./card_exp_data");
 var make_db = require("./make_db");
 var ds = require("./data_struct");
 var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
 
+var card_logic = require("./help_card_logic");
 var arena_logic = require("./help_arena_logic");
 var role_data_logic = require("./help_role_data_logic");
 var common_func = require("./common_func");
@@ -1077,21 +1077,13 @@ function help_battle_fight_result(data,send,s)
             _battle_gate_data.date=(new Date()).getTime();
             role_battle_data.gate.push(_battle_gate_data);
         }
+
         //经验结算
         var card_ls=role_formation_data.card_ls;
         for(var i=0;i<card_ls.length;i++)
         {
-
             var _card_data=role.card_bag[card_ls[i].unique_id];
-            _card_data.exp+=_gate_data.exp;
-            //战斗的获得武将经验少，不会升两级
-            if(_card_data.exp>=card_exp_data.card_exp_data_list[_card_data.level].exp_limit)
-            {
-                _card_data.exp-=card_exp_data.card_exp_data_list[_card_data.level].exp_limit;
-                _card_data.level++;
-                card_ls[i].level=_card_data.level;
-
-            }
+            card_logic.help_card_level_up(role,_card_data,_gate_data.exp);
         }
 
         //积分值结算

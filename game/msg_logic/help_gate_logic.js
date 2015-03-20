@@ -18,6 +18,7 @@ var define_code=require("./define_code");
 var common_func = require("./common_func");
 var friend_data = require("./friend_data");
 
+var card_logic=require("./help_card_logic");
 var town_logic=require("./help_town_logic");
 var arena_logic=require("./help_arena_logic");
 var activity_logic=require("./help_activity_logic");
@@ -669,20 +670,10 @@ function help_gate_fight_result(data,send,s)
             global.log("role_formation_data == undefined");
             return;
         }
-        var card_ls=role_formation_data.card_ls;
-        for(var i=0;i<card_ls.length;i++)
+        for(var i=0;i<role_formation_data.card_ls.length;i++)
         {
-
-            var _card_data=role.card_bag[card_ls[i].unique_id];
-            _card_data.exp+=_gate_data.exp;
-            //战斗的获得武将经验少，不会升两级
-            if(_card_data.exp>=card_exp_data.card_exp_data_list[_card_data.level].exp_limit)
-            {
-                _card_data.exp-=card_exp_data.card_exp_data_list[_card_data.level].exp_limit;
-                _card_data.level++;
-                card_ls[i].level=_card_data.level;
-
-            }
+            var _card_data=role.card_bag[role_formation_data.card_ls[i].unique_id];
+            card_logic.help_card_level_up(role,_card_data,_gate_data.exp);
         }
 
         var old_hurt=role_formation_data.top_hurt;
