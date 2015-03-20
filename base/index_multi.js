@@ -225,7 +225,7 @@ server.prototype.start_server = function(obj,cb)
                                                     }
                                                     else
                                                     {
-                                                        global.err("socket write err :" + sock.writable);
+                                                        global.err("socket write err,writable :" + sock.writable);
                                                         sock.emit("c_close");
                                                     }
 
@@ -252,7 +252,7 @@ server.prototype.start_server = function(obj,cb)
                                             }
                                             else
                                             {
-                                                global.err("socket write err :" + sock.writable);
+                                                global.err("socket write err,writable :" + sock.writable);
                                                 sock.emit("c_close");
                                             }
                                         }
@@ -355,6 +355,10 @@ server.prototype.start_server = function(obj,cb)
                                 if(info.handler["___close___"])
                                 {
                                     sock.on("close",function(e){
+                                        if(!sock.destroyed)
+                                        {
+                                            sock.destroy();
+                                        }
                                         info.handler["___close___"].handle(sock);
                                     });
                                 }
