@@ -12,7 +12,8 @@
           "CoinGrowth":"1",
           "Exp":"1",
           "ExpGrowth":"1",
-          "ExpParameters":"0.25"
+          "ExpParameters":"0.25",
+          "RebornLimit":"0"
         },
         "2":{
           "CardId":"1101",
@@ -26,7 +27,8 @@
           "CoinGrowth":"1",
           "Exp":"50",
           "ExpGrowth":"1",
-          "ExpParameters":"0.35"
+          "ExpParameters":"0.35",
+          "RebornLimit":"0"
         },
         "3":{
           "CardId":"1201",
@@ -40,7 +42,8 @@
           "CoinGrowth":"1",
           "Exp":"50",
           "ExpGrowth":"1",
-          "ExpParameters":"0.34"
+          "ExpParameters":"0.34",
+          "RebornLimit":"0"
         },
         "4":{
           "CardId":"1301",
@@ -54,7 +57,8 @@
           "CoinGrowth":"1",
           "Exp":"50",
           "ExpGrowth":"1",
-          "ExpParameters":"0.34"
+          "ExpParameters":"0.34",
+          "RebornLimit":"0"
         },
         "5":{
           "CardId":"1401",
@@ -68,7 +72,8 @@
           "CoinGrowth":"1",
           "Exp":"50",
           "ExpGrowth":"1",
-          "ExpParameters":"0.34"
+          "ExpParameters":"0.34",
+          "RebornLimit":"0"
         },
         "6":{
           "CardId":"1501",
@@ -82,7 +87,8 @@
           "CoinGrowth":"1",
           "Exp":"50",
           "ExpGrowth":"1",
-          "ExpParameters":"0.34"
+          "ExpParameters":"0.34",
+          "RebornLimit":"0"
         },
         "7":{
           "CardId":"2101",
@@ -96,7 +102,8 @@
           "CoinGrowth":"3",
           "Exp":"100",
           "ExpGrowth":"2",
-          "ExpParameters":"0.5"
+          "ExpParameters":"0.5",
+          "RebornLimit":"0"
         },
         "8":{
           "CardId":"2201",
@@ -110,7 +117,8 @@
           "CoinGrowth":"3",
           "Exp":"100",
           "ExpGrowth":"2",
-          "ExpParameters":"0.49"
+          "ExpParameters":"0.49",
+          "RebornLimit":"0"
         },
         "9":{
           "CardId":"2301",
@@ -124,7 +132,8 @@
           "CoinGrowth":"3",
           "Exp":"100",
           "ExpGrowth":"2",
-          "ExpParameters":"0.49"
+          "ExpParameters":"0.49",
+          "RebornLimit":"0"
         },
         "10":{
           "CardId":"2401",
@@ -138,7 +147,8 @@
           "CoinGrowth":"3",
           "Exp":"100",
           "ExpGrowth":"2",
-          "ExpParameters":"0.49"
+          "ExpParameters":"0.49",
+          "RebornLimit":"0"
         },
         "11":{
           "CardId":"2402",
@@ -152,7 +162,8 @@
           "CoinGrowth":"3",
           "Exp":"100",
           "ExpGrowth":"2",
-          "ExpParameters":"0.51"
+          "ExpParameters":"0.51",
+          "RebornLimit":"0"
         },
         "12":{
           "CardId":"3101",
@@ -166,7 +177,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.56"
+          "ExpParameters":"0.56",
+          "RebornLimit":"2"
         },
         "13":{
           "CardId":"3102",
@@ -180,7 +192,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.72"
+          "ExpParameters":"0.72",
+          "RebornLimit":"2"
         },
         "14":{
           "CardId":"3103",
@@ -194,7 +207,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.61"
+          "ExpParameters":"0.61",
+          "RebornLimit":"2"
         },
         "15":{
           "CardId":"3104",
@@ -208,7 +222,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.66"
+          "ExpParameters":"0.66",
+          "RebornLimit":"2"
         },
         "16":{
           "CardId":"3201",
@@ -222,7 +237,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.65"
+          "ExpParameters":"0.65",
+          "RebornLimit":"2"
         },
         "17":{
           "CardId":"3202",
@@ -236,7 +252,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.51"
+          "ExpParameters":"0.51",
+          "RebornLimit":"2"
         },
         "18":{
           "CardId":"3203",
@@ -250,7 +267,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.59"
+          "ExpParameters":"0.59",
+          "RebornLimit":"2"
         },
         "19":{
           "CardId":"3204",
@@ -264,7 +282,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.64"
+          "ExpParameters":"0.64",
+          "RebornLimit":"2"
         },
         "20":{
           "CardId":"3105",
@@ -278,7 +297,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.53"
+          "ExpParameters":"0.53",
+          "RebornLimit":"2"
         },
         "21":{
           "CardId":"3302",
@@ -292,7 +312,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.54"
+          "ExpParameters":"0.54",
+          "RebornLimit":"2"
         },
         "22":{
           "CardId":"3303",
@@ -306,7 +327,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.53"
+          "ExpParameters":"0.53",
+          "RebornLimit":"2"
         },
         "23":{
           "CardId":"3304",
@@ -320,7 +342,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.65"
+          "ExpParameters":"0.65",
+          "RebornLimit":"2"
         },
         "24":{
           "CardId":"3505",
@@ -334,7 +357,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.64"
+          "ExpParameters":"0.64",
+          "RebornLimit":"2"
         },
         "25":{
           "CardId":"3402",
@@ -348,7 +372,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.65"
+          "ExpParameters":"0.65",
+          "RebornLimit":"2"
         },
         "26":{
           "CardId":"3403",
@@ -362,7 +387,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.54"
+          "ExpParameters":"0.54",
+          "RebornLimit":"2"
         },
         "27":{
           "CardId":"3404",
@@ -376,7 +402,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.75"
+          "ExpParameters":"0.75",
+          "RebornLimit":"2"
         },
         "28":{
           "CardId":"3501",
@@ -390,7 +417,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.52"
+          "ExpParameters":"0.52",
+          "RebornLimit":"2"
         },
         "29":{
           "CardId":"3502",
@@ -404,7 +432,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.75"
+          "ExpParameters":"0.75",
+          "RebornLimit":"2"
         },
         "30":{
           "CardId":"3503",
@@ -418,7 +447,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.66"
+          "ExpParameters":"0.66",
+          "RebornLimit":"2"
         },
         "31":{
           "CardId":"3504",
@@ -432,7 +462,8 @@
           "CoinGrowth":"5",
           "Exp":"200",
           "ExpGrowth":"4",
-          "ExpParameters":"0.6"
+          "ExpParameters":"0.6",
+          "RebornLimit":"2"
         },
         "32":{
           "CardId":"4101",
@@ -446,7 +477,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.01"
+          "ExpParameters":"1.01",
+          "RebornLimit":"4"
         },
         "33":{
           "CardId":"4102",
@@ -460,7 +492,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.81"
+          "ExpParameters":"0.81",
+          "RebornLimit":"4"
         },
         "34":{
           "CardId":"4103",
@@ -474,7 +507,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.94"
+          "ExpParameters":"0.94",
+          "RebornLimit":"4"
         },
         "35":{
           "CardId":"4104",
@@ -488,7 +522,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.05"
+          "ExpParameters":"1.05",
+          "RebornLimit":"4"
         },
         "36":{
           "CardId":"4105",
@@ -497,12 +532,13 @@
           "LevelLimit":"30",
           "Race":"1",
           "LeaderSkill":"41051",
-          "EquipListReborn":"s1e11,s1e121,s1e71,s2e12,s2e122,s2e72,s3e13,s3e123,s3e73,s4e14,s4e124,ss5e15,s5e125,s5e75",
+          "EquipListReborn":"s1e11,s1e121,s1e71,s2e12,s2e122,s2e72,s3e13,s3e123,s3e73,s4e14,s4e124,s5e15,s5e125,s5e75",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.82"
+          "ExpParameters":"0.82",
+          "RebornLimit":"4"
         },
         "37":{
           "CardId":"4106",
@@ -511,12 +547,13 @@
           "LevelLimit":"30",
           "Race":"1",
           "LeaderSkill":"41061",
-          "EquipListReborn":"s1e11,s1e121,s1e71,s2e12,s2e122,s2e72,s3e13,s3e123,s3e73,s4e14,s4e124,ss5e15,s5e125,s5e75",
+          "EquipListReborn":"s1e11,s1e121,s1e71,s2e12,s2e122,s2e72,s3e13,s3e123,s3e73,s4e14,s4e124,s5e15,s5e125,s5e75",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.84"
+          "ExpParameters":"0.84",
+          "RebornLimit":"4"
         },
         "38":{
           "CardId":"4107",
@@ -525,12 +562,13 @@
           "LevelLimit":"30",
           "Race":"1",
           "LeaderSkill":"41071",
-          "EquipListReborn":"s1e11,s1e121,s1e71,s2e12,s2e122,s2e72,s3e13,s3e123,s3e73,s4e14,s4e124,ss5e15,s5e125,s5e75",
+          "EquipListReborn":"s1e11,s1e121,s1e71,s2e12,s2e122,s2e72,s3e13,s3e123,s3e73,s4e14,s4e124,s5e15,s5e125,s5e75",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.16"
+          "ExpParameters":"1.16",
+          "RebornLimit":"4"
         },
         "39":{
           "CardId":"4201",
@@ -539,12 +577,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"42011",
-          "EquipListReborn":"s1e21,s1e111,s1e91,s2e22,s2e112,s2e92,s3e23,s3e113,s3e93,s4e24,s4e114,ss5e25,s5e115,s5e95",
+          "EquipListReborn":"s1e21,s1e111,s1e91,s2e22,s2e112,s2e92,s3e23,s3e113,s3e93,s4e24,s4e114,s5e25,s5e115,s5e95",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1"
+          "ExpParameters":"1",
+          "RebornLimit":"4"
         },
         "40":{
           "CardId":"4202",
@@ -553,12 +592,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"42021",
-          "EquipListReborn":"s1e21,s1e111,s1e101,s2e22,s2e112,s2e102,s3e23,s3e113,s3e103,s4e24,s4e115e25,s5e115,s5e105",
+          "EquipListReborn":"s1e21,s1e111,s1e101,s2e22,s2e112,s2e102,s3e23,s3e113,s3e103,s4e24,s4e114,s5e25,s5e115,s5e105",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.79"
+          "ExpParameters":"0.79",
+          "RebornLimit":"4"
         },
         "41":{
           "CardId":"4203",
@@ -567,12 +607,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"42031",
-          "EquipListReborn":"s1e21,s1e111,s1e81,s2e22,s2e112,s2e82,s3e23,s3e113,s3e83,s4e24,s4e114,ss5e25,s5e115,s5e85",
+          "EquipListReborn":"s1e21,s1e111,s1e81,s2e22,s2e112,s2e82,s3e23,s3e113,s3e83,s4e24,s4e114,s5e25,s5e115,s5e85",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.87"
+          "ExpParameters":"0.87",
+          "RebornLimit":"4"
         },
         "42":{
           "CardId":"4204",
@@ -581,12 +622,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"42041",
-          "EquipListReborn":"s1e21,s1e111,s1e101,s2e22,s2e112,s2e102,s3e23,s3e113,s3e103,s4e24,s4e115e25,s5e115,s5e105",
+          "EquipListReborn":"s1e21,s1e111,s1e101,s2e22,s2e112,s2e102,s3e23,s3e113,s3e103,s4e24,s4e114,s5e25,s5e115,s5e105",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.87"
+          "ExpParameters":"0.87",
+          "RebornLimit":"4"
         },
         "43":{
           "CardId":"4205",
@@ -600,7 +642,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.84"
+          "ExpParameters":"0.84",
+          "RebornLimit":"4"
         },
         "44":{
           "CardId":"4206",
@@ -614,7 +657,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1"
+          "ExpParameters":"1",
+          "RebornLimit":"4"
         },
         "45":{
           "CardId":"4207",
@@ -623,12 +667,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"42071",
-          "EquipListReborn":"s1e21,s1e101,s1e121,s2e22,s2e102,s2e122,s3e23,s3e103,s3e123,s4e24,s4e105e25,s5e105,s5e125",
+          "EquipListReborn":"s1e21,s1e101,s1e121,s2e22,s2e102,s2e122,s3e23,s3e103,s3e123,s4e24,s4e104,s4e124,s5e25,s5e105,s5e125",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.06"
+          "ExpParameters":"1.06",
+          "RebornLimit":"4"
         },
         "46":{
           "CardId":"4301",
@@ -637,12 +682,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"43011",
-          "EquipListReborn":"s1e31,s1e111,s1e91,s2e32,s2e112,s2e92,s3e33,s3e113,s3e93,s4e34,s4e114,ss5e35,s5e115,s5e95",
+          "EquipListReborn":"s1e31,s1e111,s1e91,s2e32,s2e112,s2e92,s3e33,s3e113,s3e93,s4e34,s4e114,s4e94,s5e35,s5e115,s5e95",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.91"
+          "ExpParameters":"0.91",
+          "RebornLimit":"4"
         },
         "47":{
           "CardId":"4302",
@@ -651,12 +697,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"43021",
-          "EquipListReborn":"s1e31,s1e61,s1e121,s2e32,s2e62,s2e122,s3e33,s3e63,s3e123,s4e34,s4e64,s4s5e35,s5e65,s5e125",
+          "EquipListReborn":"s1e31,s1e61,s1e121,s2e32,s2e62,s2e122,s3e33,s3e63,s3e123,s4e34,s4e64,s4e124,s5e35,s5e65,s5e125",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.95"
+          "ExpParameters":"0.95",
+          "RebornLimit":"4"
         },
         "48":{
           "CardId":"4303",
@@ -665,12 +712,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"43031",
-          "EquipListReborn":"s1e31,s1e71,s1e121,s2e32,s2e72,s2e122,s3e33,s3e73,s3e123,s4e34,s4e74,s4s5e35,s5e75,s5e125",
+          "EquipListReborn":"s1e31,s1e71,s1e121,s2e32,s2e72,s2e122,s3e33,s3e73,s3e123,s4e34,s4e74,s4e124,s5e35,s5e75,s5e125",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.99"
+          "ExpParameters":"0.99",
+          "RebornLimit":"4"
         },
         "49":{
           "CardId":"4304",
@@ -679,12 +727,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"43041",
-          "EquipListReborn":"s1e31,s1e61,s1e101,s2e32,s2e62,s2e102,s3e33,s3e63,s3e103,s4e34,s4e64,s4s5e35,s5e65,s5e105",
+          "EquipListReborn":"s1e31,s1e61,s1e101,s2e32,s2e62,s2e102,s3e33,s3e63,s3e103,s4e34,s4e64,s4e104,s5e35,s5e65,s5e105",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1"
+          "ExpParameters":"1",
+          "RebornLimit":"4"
         },
         "50":{
           "CardId":"4305",
@@ -693,12 +742,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"43051",
-          "EquipListReborn":"s1e31,s1e111,s1e121,s2e32,s2e112,s2e122,s3e33,s3e113,s3e123,s4e34,s4e115e35,s5e115,s5e125",
+          "EquipListReborn":"s1e31,s1e111,s1e121,s2e32,s2e112,s2e122,s3e33,s3e113,s3e123,s4e34,s4e114,s4e124,s5e35,s5e115,s5e125",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.1"
+          "ExpParameters":"1.1",
+          "RebornLimit":"4"
         },
         "51":{
           "CardId":"4306",
@@ -707,12 +757,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"43061",
-          "EquipListReborn":"s1e31,s1e111,s1e81,s2e32,s2e112,s2e82,s3e33,s3e113,s3e83,s4e34,s4e114,ss5e35,s5e115,s5e85",
+          "EquipListReborn":"s1e31,s1e111,s1e81,s2e32,s2e112,s2e82,s3e33,s3e113,s3e83,s4e34,s4e114,s4e84,s5e35,s5e115,s5e85",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.1"
+          "ExpParameters":"1.1",
+          "RebornLimit":"4"
         },
         "52":{
           "CardId":"4307",
@@ -721,12 +772,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"43071",
-          "EquipListReborn":"s1e31,s1e111,s1e81,s2e32,s2e112,s2e82,s3e33,s3e113,s3e83,s4e34,s4e114,ss5e35,s5e115,s5e85",
+          "EquipListReborn":"s1e31,s1e111,s1e81,s2e32,s2e112,s2e82,s3e33,s3e113,s3e83,s4e34,s4e114,s4e84,s5e35,s5e115,s5e85",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.06"
+          "ExpParameters":"1.06",
+          "RebornLimit":"4"
         },
         "53":{
           "CardId":"4401",
@@ -735,12 +787,13 @@
           "LevelLimit":"30",
           "Race":"4",
           "LeaderSkill":"44011",
-          "EquipListReborn":"s1e41,s1e61,s1e101,s2e42,s2e62,s2e102,s3e43,s3e63,s3e103,s4e44,s4e64,s4s5e45,s5e65,s5e105",
+          "EquipListReborn":"s1e41,s1e61,s1e101,s2e42,s2e62,s2e102,s3e43,s3e63,s3e103,s4e44,s4e64,s4e104,s5e45,s5e65,s5e105",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1"
+          "ExpParameters":"1",
+          "RebornLimit":"4"
         },
         "54":{
           "CardId":"4402",
@@ -749,12 +802,13 @@
           "LevelLimit":"30",
           "Race":"4",
           "LeaderSkill":"44021",
-          "EquipListReborn":"s1e41,s1e61,s1e121,s2e42,s2e62,s2e122,s3e43,s3e63,s3e123,s4e44,s4e64,s4s5e45,s5e65,s5e125",
+          "EquipListReborn":"s1e41,s1e61,s1e121,s2e42,s2e62,s2e122,s3e43,s3e63,s3e123,s4e44,s4e64,s4e124,s5e45,s5e65,s5e125",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.78"
+          "ExpParameters":"0.78",
+          "RebornLimit":"4"
         },
         "55":{
           "CardId":"4403",
@@ -763,12 +817,13 @@
           "LevelLimit":"30",
           "Race":"4",
           "LeaderSkill":"44031",
-          "EquipListReborn":"s1e41,s1e111,s1e91,s2e42,s2e112,s2e92,s3e43,s3e113,s3e93,s4e44,s4e114,ss5e45,s5e115,s5e95",
+          "EquipListReborn":"s1e41,s1e111,s1e91,s2e42,s2e112,s2e92,s3e43,s3e113,s3e93,s4e44,s4e114,s5e45,s5e115,s5e95",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.03"
+          "ExpParameters":"1.03",
+          "RebornLimit":"4"
         },
         "56":{
           "CardId":"4404",
@@ -777,12 +832,13 @@
           "LevelLimit":"30",
           "Race":"4",
           "LeaderSkill":"44041",
-          "EquipListReborn":"s1e41,s1e61,s1e121,s2e42,s2e62,s2e122,s3e43,s3e63,s3e123,s4e44,s4e64,s4s5e45,s5e65,s5e125",
+          "EquipListReborn":"s1e41,s1e61,s1e121,s2e42,s2e62,s2e122,s3e43,s3e63,s3e123,s4e44,s4e64,s4e124,s5e45,s5e65,s5e125",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.85"
+          "ExpParameters":"0.85",
+          "RebornLimit":"4"
         },
         "57":{
           "CardId":"4405",
@@ -796,7 +852,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.81"
+          "ExpParameters":"0.81",
+          "RebornLimit":"4"
         },
         "58":{
           "CardId":"4406",
@@ -810,7 +867,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.78"
+          "ExpParameters":"0.78",
+          "RebornLimit":"4"
         },
         "59":{
           "CardId":"4407",
@@ -819,12 +877,13 @@
           "LevelLimit":"30",
           "Race":"4",
           "LeaderSkill":"44071",
-          "EquipListReborn":"s1e41,s1e111,s1e101,s2e42,s2e112,s2e102,s3e43,s3e113,s3e103,s4e44,s4e115e45,s5e115,s5e105",
+          "EquipListReborn":"s1e41,s1e111,s1e101,s2e42,s2e112,s2e102,s3e43,s3e113,s3e103,s4e44,s4e104,s5e45,s5e115,s5e105",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.92"
+          "ExpParameters":"0.92",
+          "RebornLimit":"4"
         },
         "60":{
           "CardId":"4501",
@@ -838,7 +897,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.23"
+          "ExpParameters":"1.23",
+          "RebornLimit":"4"
         },
         "61":{
           "CardId":"4502",
@@ -852,7 +912,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.77"
+          "ExpParameters":"0.77",
+          "RebornLimit":"4"
         },
         "62":{
           "CardId":"4503",
@@ -861,12 +922,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"45031",
-          "EquipListReborn":"s1e51,s1e61,s1e121,s2e52,s2e62,s2e122,s3e53,s3e63,s3e123,s4e54,s4e64,s4s5e55,s5e65,s5e125",
+          "EquipListReborn":"s1e51,s1e61,s1e121,s2e52,s2e62,s2e122,s3e53,s3e63,s3e123,s4e54,s4e64,s4e124,s5e55,s5e65,s5e125",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.99"
+          "ExpParameters":"0.99",
+          "RebornLimit":"4"
         },
         "63":{
           "CardId":"4504",
@@ -875,12 +937,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"45041",
-          "EquipListReborn":"s1e51,s1e111,s1e81,s2e52,s2e112,s2e82,s3e53,s3e113,s3e83,s4e54,s4e114,ss5e55,s5e115,s5e85",
+          "EquipListReborn":"s1e51,s1e111,s1e81,s2e52,s2e112,s2e82,s3e53,s3e113,s3e83,s4e54,s4e114,s5e55,s5e115,s5e85",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.99"
+          "ExpParameters":"0.99",
+          "RebornLimit":"4"
         },
         "64":{
           "CardId":"4505",
@@ -889,12 +952,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"45051",
-          "EquipListReborn":"s1e51,s1e61,s1e121,s2e52,s2e62,s2e122,s3e53,s3e63,s3e123,s4e54,s4e64,s4s5e55,s5e65,s5e125",
+          "EquipListReborn":"s1e51,s1e61,s1e121,s2e52,s2e62,s2e122,s3e53,s3e63,s3e123,s4e54,s4e64,s4e124,s5e55,s5e65,s5e125",
           "Coin":"800",
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.13"
+          "ExpParameters":"1.13",
+          "RebornLimit":"4"
         },
         "65":{
           "CardId":"4506",
@@ -908,7 +972,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"0.99"
+          "ExpParameters":"0.99",
+          "RebornLimit":"4"
         },
         "66":{
           "CardId":"4507",
@@ -922,7 +987,8 @@
           "CoinGrowth":"8",
           "Exp":"400",
           "ExpGrowth":"8",
-          "ExpParameters":"1.18"
+          "ExpParameters":"1.18",
+          "RebornLimit":"4"
         },
         "67":{
           "CardId":"5313",
@@ -936,7 +1002,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.39"
+          "ExpParameters":"1.39",
+          "RebornLimit":"7"
         },
         "68":{
           "CardId":"5102",
@@ -950,7 +1017,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.83"
+          "ExpParameters":"1.83",
+          "RebornLimit":"7"
         },
         "69":{
           "CardId":"5103",
@@ -959,12 +1027,13 @@
           "LevelLimit":"30",
           "Race":"1",
           "LeaderSkill":"51031",
-          "EquipListReborn":"s1e11,s1e111,s1e71,s2e12,s2e112,s2e72,s3e13,s3e113,s3e73,s4e14,s4e114,s4e74,s5e15,s5e115,s5e75,s6e16,s6e116,s6e76,s7e17,s7e11s7e17,s7e117,s7e77",
+          "EquipListReborn":"s1e11,s1e111,s1e71,s2e12,s2e112,s2e72,s3e13,s3e113,s3e73,s4e14,s4e114,s4e74,s5e15,s5e115,s5e75,s6e16,s6e116,s6e76,s7e17,s7e117,s7e77,s7e17,s7e117,s7e77",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.13"
+          "ExpParameters":"1.13",
+          "RebornLimit":"7"
         },
         "70":{
           "CardId":"5104",
@@ -978,7 +1047,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.62"
+          "ExpParameters":"1.62",
+          "RebornLimit":"7"
         },
         "71":{
           "CardId":"5105",
@@ -992,7 +1062,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.54"
+          "ExpParameters":"1.54",
+          "RebornLimit":"7"
         },
         "72":{
           "CardId":"5106",
@@ -1001,12 +1072,13 @@
           "LevelLimit":"30",
           "Race":"1",
           "LeaderSkill":"51061",
-          "EquipListReborn":"s1e11,s1e111,s1e71,s2e12,s2e112,s2e72,s3e13,s3e113,s3e73,s4e14,s4e114,s4e74,s5e15,s5e115,s5e75,s6e16,s6e116,s6e76,s7e17,s7e11s7e17,s7e117,s7e77",
+          "EquipListReborn":"s1e11,s1e111,s1e71,s2e12,s2e112,s2e72,s3e13,s3e113,s3e73,s4e14,s4e114,s4e74,s5e15,s5e115,s5e75,s6e16,s6e116,s6e76,s7e17,s7e117,s7e77,s7e17,s7e117,s7e77",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.29"
+          "ExpParameters":"1.29",
+          "RebornLimit":"7"
         },
         "73":{
           "CardId":"5107",
@@ -1015,12 +1087,13 @@
           "LevelLimit":"30",
           "Race":"1",
           "LeaderSkill":"51071",
-          "EquipListReborn":"s1e11,s1e111,s1e71,s2e12,s2e112,s2e72,s3e13,s3e113,s3e73,s4e14,s4e114,s4e74,s5e15,s5e115,s5e75,s6e16,s6e116,s6e76,s7e17,s7e11s7e17,s7e117,s7e77",
+          "EquipListReborn":"s1e11,s1e111,s1e71,s2e12,s2e112,s2e72,s3e13,s3e113,s3e73,s4e14,s4e114,s4e74,s5e15,s5e115,s5e75,s6e16,s6e116,s6e76,s7e17,s7e117,s7e77,s7e17,s7e117,s7e77",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.41"
+          "ExpParameters":"1.41",
+          "RebornLimit":"7"
         },
         "74":{
           "CardId":"5201",
@@ -1029,12 +1102,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"52011",
-          "EquipListReborn":"s1e21,s1e91,s1e121,s2e22,s2e92,s2e122,s3e23,s3e93,s3e123,s4e24,s4e94,s4e124,s5e25,s5e95,s5e125,s6e26,s6e96,s6e126,s7e27,s7e97s7e27,s7e97,s7e127",
+          "EquipListReborn":"s1e21,s1e91,s1e121,s2e22,s2e92,s2e122,s3e23,s3e93,s3e123,s4e24,s4e94,s4e124,s5e25,s5e95,s5e125,s6e26,s6e96,s6e126,s7e27,s7e97,s7e127,s7e27,s7e97,s7e127",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.39"
+          "ExpParameters":"1.39",
+          "RebornLimit":"7"
         },
         "75":{
           "CardId":"5202",
@@ -1043,12 +1117,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"52021",
-          "EquipListReborn":"s1e21,s1e111,s1e91,s2e22,s2e112,s2e92,s3e23,s3e113,s3e93,s4e24,s4e114,s4e94,s5e25,s5e115,s5e95,s6e26,s6e116,s6e96,s7e27,s7e11s7e27,s7e117,s7e97",
+          "EquipListReborn":"s1e21,s1e111,s1e91,s2e22,s2e112,s2e92,s3e23,s3e113,s3e93,s4e24,s4e114,s4e94,s5e25,s5e115,s5e95,s6e26,s6e116,s6e96,s7e27,s7e117,s7e97,s7e27,s7e117,s7e97",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.1"
+          "ExpParameters":"1.1",
+          "RebornLimit":"7"
         },
         "76":{
           "CardId":"5203",
@@ -1057,12 +1132,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"52031",
-          "EquipListReborn":"s1e21,s1e91,s1e121,s2e22,s2e92,s2e122,s3e23,s3e93,s3e123,s4e24,s4e94,s4e124,s5e25,s5e95,s5e125,s6e26,s6e96,s6e126,s7e27,s7e97s7e27,s7e97,s7e127",
+          "EquipListReborn":"s1e21,s1e91,s1e121,s2e22,s2e92,s2e122,s3e23,s3e93,s3e123,s4e24,s4e94,s4e124,s5e25,s5e95,s5e125,s6e26,s6e96,s7e27,s7e97,s7e127,s7e27,s7e97,s7e127",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.61"
+          "ExpParameters":"1.61",
+          "RebornLimit":"7"
         },
         "77":{
           "CardId":"5204",
@@ -1071,12 +1147,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"52041",
-          "EquipListReborn":"s1e21,s1e61,s1e121,s2e22,s2e62,s2e122,s3e23,s3e63,s3e123,s4e24,s4e64,s4e124,s5e25,s5e65,s5e125,s6e26,s6e66,s6e126,s7e27,s7e67s7e27,s7e67,s7e127",
+          "EquipListReborn":"s1e21,s1e61,s1e121,s2e22,s2e62,s2e122,s3e23,s3e63,s3e123,s4e24,s4e64,s4e124,s5e25,s5e65,s5e125,s6e26,s6e66,s6e126,s7e27,s7e67,s7e127,s7e27,s7e67,s7e127",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.07"
+          "ExpParameters":"1.07",
+          "RebornLimit":"7"
         },
         "78":{
           "CardId":"5205",
@@ -1090,7 +1167,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.93"
+          "ExpParameters":"1.93",
+          "RebornLimit":"7"
         },
         "79":{
           "CardId":"5206",
@@ -1099,12 +1177,13 @@
           "LevelLimit":"30",
           "Race":"2",
           "LeaderSkill":"52061",
-          "EquipListReborn":"s1e21,s1e111,s1e81,s2e22,s2e112,s2e82,s3e23,s3e113,s3e83,s4e24,s4e114,s4e84,s5e25,s5e115,s5e85,s6e26,s6e116,s6e86,s7e27,s7e11s7e27,s7e117,s7e87",
+          "EquipListReborn":"s1e21,s1e111,s1e81,s2e22,s2e112,s2e82,s3e23,s3e113,s3e83,s4e24,s4e114,s4e84,s5e25,s5e115,s5e85,s6e26,s6e116,s6e86,s7e27,s7e117,s7e87,s7e27,s7e117,s7e87",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.53"
+          "ExpParameters":"1.53",
+          "RebornLimit":"7"
         },
         "80":{
           "CardId":"5301",
@@ -1113,12 +1192,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"53011",
-          "EquipListReborn":"s1e31,s1e121,s1e101,s2e32,s2e122,s2e102,s3e33,s3e123,s3e103,s4e34,s4e124,s4e104,s5e35,s5e125,s5e105,s6e36,s6e126,s6e106,s7e377e37,s7e127,s7e107",
+          "EquipListReborn":"s1e31,s1e121,s1e101,s2e32,s2e122,s2e102,s3e33,s3e123,s3e103,s4e34,s4e124,s4e104,s5e35,s5e125,s5e105,s6e36,s6e126,s6e106,s7e37,s7e127,s7e107,s7e37,s7e127,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.07"
+          "ExpParameters":"1.07",
+          "RebornLimit":"7"
         },
         "81":{
           "CardId":"5302",
@@ -1127,12 +1207,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"53021",
-          "EquipListReborn":"s1e31,s1e111,s1e81,s2e32,s2e112,s2e82,s3e33,s3e113,s3e83,s4e34,s4e114,s4e84,s5e35,s5e115,s5e85,s6e36,s6e116,s6e86,s7e37,s7e11s7e37,s7e117,s7e87",
+          "EquipListReborn":"s1e31,s1e111,s1e81,s2e32,s2e112,s2e82,s3e33,s3e113,s3e83,s4e34,s4e114,s4e84,s5e35,s5e115,s5e85,s6e36,s6e116,s6e86,s7e37,s7e117,s7e87,s7e37,s7e117,s7e87",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.13"
+          "ExpParameters":"1.13",
+          "RebornLimit":"7"
         },
         "82":{
           "CardId":"5303",
@@ -1141,12 +1222,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"53031",
-          "EquipListReborn":"s1e31,s1e121,s1e81,s2e32,s2e122,s2e82,s3e33,s3e123,s3e83,s4e34,s4e124,s4e84,s5e35,s5e125,s5e85,s6e36,s6e126,s6e86,s7e37,s7e12s7e37,s7e127,s7e87",
+          "EquipListReborn":"s1e31,s1e121,s1e81,s2e32,s2e122,s2e82,s3e33,s3e123,s3e83,s4e34,s4e124,s4e84,s5e35,s5e125,s5e85,s6e36,s6e126,s6e86,s7e37,s7e127,s7e87,s7e37,s7e127,s7e87",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.27"
+          "ExpParameters":"1.27",
+          "RebornLimit":"7"
         },
         "83":{
           "CardId":"5304",
@@ -1155,12 +1237,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"53041",
-          "EquipListReborn":"s1e31,s1e101,s1e121,s2e32,s2e102,s2e122,s3e33,s3e103,s3e123,s4e34,s4e104,s4e124,s5e35,s5e105,s5e125,s6e36,s6e106,s6e126,s7e377e37,s7e107,s7e127",
+          "EquipListReborn":"s1e31,s1e101,s1e121,s2e32,s2e102,s2e122,s3e33,s3e103,s3e123,s4e34,s4e104,s4e124,s5e35,s5e105,s5e125,s6e36,s6e106,s6e126,s7e37,s7e107,s7e127,s7e37,s7e107,s7e127",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.61"
+          "ExpParameters":"1.61",
+          "RebornLimit":"7"
         },
         "84":{
           "CardId":"5305",
@@ -1169,12 +1252,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"53051",
-          "EquipListReborn":"s1e31,s1e121,s1e81,s2e32,s2e122,s2e82,s3e33,s3e123,s3e83,s4e34,s4e124,s4e84,s5e35,s5e125,s5e85,s6e36,s6e126,s6e86,s7e37,s7e12s7e37,s7e127,s7e87",
+          "EquipListReborn":"s1e31,s1e121,s1e81,s2e32,s2e122,s2e82,s3e33,s3e123,s3e83,s4e34,s4e124,s4e84,s5e35,s5e125,s5e85,s6e36,s6e126,s6e86,s7e37,s7e127,s7e87,s7e37,s7e127,s7e87",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.71"
+          "ExpParameters":"1.71",
+          "RebornLimit":"7"
         },
         "85":{
           "CardId":"5306",
@@ -1183,12 +1267,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"53061",
-          "EquipListReborn":"s1e31,s1e101,s1e101,s2e32,s2e102,s2e102,s3e33,s3e103,s3e103,s4e34,s4e104,s4e104,s5e35,s5e105,s5e105,s6e36,s6e106,s6e106,s7e377e37,s7e107,s7e107",
+          "EquipListReborn":"s1e31,s1e101,s1e101,s2e32,s2e102,s2e102,s3e33,s3e103,s3e103,s4e34,s4e104,s4e104,s5e35,s5e105,s5e105,s6e36,s6e106,s6e106,s7e37,s7e107,s7e107,s7e37,s7e107,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.1"
+          "ExpParameters":"1.1",
+          "RebornLimit":"7"
         },
         "86":{
           "CardId":"5307",
@@ -1202,7 +1287,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.27"
+          "ExpParameters":"1.27",
+          "RebornLimit":"7"
         },
         "87":{
           "CardId":"5308",
@@ -1216,7 +1302,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.33"
+          "ExpParameters":"1.33",
+          "RebornLimit":"7"
         },
         "88":{
           "CardId":"5309",
@@ -1230,7 +1317,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.42"
+          "ExpParameters":"1.42",
+          "RebornLimit":"7"
         },
         "89":{
           "CardId":"5310",
@@ -1239,12 +1327,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"53101",
-          "EquipListReborn":"s1e31,s1e121,s1e101,s2e32,s2e122,s2e102,s3e33,s3e123,s3e103,s4e34,s4e124,s4e104,s5e35,s5e125,s5e105,s6e36,s6e126,s6e106,s7e377e37,s7e127,s7e107",
+          "EquipListReborn":"s1e31,s1e121,s1e101,s2e32,s2e122,s2e102,s3e33,s3e123,s3e103,s4e34,s4e124,s4e104,s5e35,s5e125,s5e105,s6e36,s6e126,s6e106,s7e37,s7e127,s7e107,s7e37,s7e127,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.42"
+          "ExpParameters":"1.42",
+          "RebornLimit":"7"
         },
         "90":{
           "CardId":"5311",
@@ -1253,12 +1342,13 @@
           "LevelLimit":"30",
           "Race":"3",
           "LeaderSkill":"53111",
-          "EquipListReborn":"s1e41,s1e101,s1e81,s2e42,s2e102,s2e82,s3e43,s3e103,s3e83,s4e44,s4e104,s4e84,s5e45,s5e105,s5e85,s6e46,s6e106,s6e86,s7e47,s7e10s7e47,s7e107,s7e87",
+          "EquipListReborn":"s1e41,s1e101,s1e81,s2e42,s2e102,s2e82,s3e43,s3e103,s3e83,s4e44,s4e104,s4e84,s5e45,s5e105,s5e85,s6e46,s6e106,s6e86,s7e47,s7e107,s7e87,s7e47,s7e107,s7e87",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.26"
+          "ExpParameters":"1.26",
+          "RebornLimit":"7"
         },
         "91":{
           "CardId":"5402",
@@ -1272,7 +1362,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.23"
+          "ExpParameters":"1.23",
+          "RebornLimit":"7"
         },
         "92":{
           "CardId":"5312",
@@ -1286,7 +1377,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.37"
+          "ExpParameters":"1.37",
+          "RebornLimit":"7"
         },
         "93":{
           "CardId":"5404",
@@ -1300,7 +1392,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.39"
+          "ExpParameters":"1.39",
+          "RebornLimit":"7"
         },
         "94":{
           "CardId":"5405",
@@ -1309,12 +1402,13 @@
           "LevelLimit":"30",
           "Race":"4",
           "LeaderSkill":"54051",
-          "EquipListReborn":"s1e41,s1e121,s1e101,s2e42,s2e122,s2e102,s3e43,s3e123,s3e103,s4e44,s4e124,s4e104,s5e45,s5e125,s5e105,s6e46,s6e126,s6e106,s7e477e47,s7e127,s7e107",
+          "EquipListReborn":"s1e41,s1e121,s1e101,s2e42,s2e122,s2e102,s3e43,s3e123,s3e103,s4e44,s4e124,s4e104,s5e45,s5e125,s5e105,s6e46,s6e126,s6e106,s7e47,s7e127,s7e107,s7e47,s7e127,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.47"
+          "ExpParameters":"1.47",
+          "RebornLimit":"7"
         },
         "95":{
           "CardId":"5406",
@@ -1328,7 +1422,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.61"
+          "ExpParameters":"1.61",
+          "RebornLimit":"7"
         },
         "96":{
           "CardId":"5501",
@@ -1342,7 +1437,8 @@
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.12"
+          "ExpParameters":"1.12",
+          "RebornLimit":"7"
         },
         "97":{
           "CardId":"5502",
@@ -1351,12 +1447,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55021",
-          "EquipListReborn":"s1e51,s1e101,s1e81,s2e52,s2e102,s2e82,s3e53,s3e103,s3e83,s4e54,s4e104,s4e84,s5e55,s5e105,s5e85,s6e56,s6e106,s6e86,s7e57,s7e10s7e57,s7e107,s7e87",
+          "EquipListReborn":"s1e51,s1e101,s1e81,s2e52,s2e102,s2e82,s3e53,s3e103,s3e83,s4e54,s4e104,s4e84,s5e55,s5e105,s5e85,s6e56,s6e106,s6e86,s7e57,s7e107,s7e87,s7e57,s7e107,s7e87",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.27"
+          "ExpParameters":"1.27",
+          "RebornLimit":"7"
         },
         "98":{
           "CardId":"5503",
@@ -1365,12 +1462,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55031",
-          "EquipListReborn":"s1e51,s1e111,s1e101,s2e52,s2e112,s2e102,s3e53,s3e113,s3e103,s4e54,s4e114,s4e104,s5e55,s5e115,s5e105,s6e56,s6e116,s6e106,s7e577e57,s7e117,s7e107",
+          "EquipListReborn":"s1e51,s1e111,s1e101,s2e52,s2e112,s2e102,s3e53,s3e113,s3e103,s4e54,s4e114,s4e104,s5e55,s5e115,s5e105,s6e56,s6e116,s6e106,s7e57,s7e117,s7e107,s7e57,s7e117,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"2.18"
+          "ExpParameters":"2.18",
+          "RebornLimit":"7"
         },
         "99":{
           "CardId":"5504",
@@ -1379,12 +1477,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55041",
-          "EquipListReborn":"s1e51,s1e111,s1e101,s2e52,s2e112,s2e102,s3e53,s3e113,s3e103,s4e54,s4e114,s4e104,s5e55,s5e115,s5e105,s6e56,s6e116,s6e106,s7e577e57,s7e117,s7e107",
+          "EquipListReborn":"s1e51,s1e111,s1e101,s2e52,s2e112,s2e102,s3e53,s3e113,s3e103,s4e54,s4e114,s4e104,s5e55,s5e115,s5e105,s6e56,s6e116,s6e106,s7e57,s7e117,s7e107,s7e57,s7e117,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.39"
+          "ExpParameters":"1.39",
+          "RebornLimit":"7"
         },
         "100":{
           "CardId":"5505",
@@ -1393,12 +1492,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55051",
-          "EquipListReborn":"s1e51,s1e111,s1e71,s2e52,s2e112,s2e72,s3e53,s3e113,s3e73,s4e54,s4e114,s4e74,s5e55,s5e115,s5e75,s6e56,s6e116,s6e76,s7e57,s7e11s7e57,s7e117,s7e77",
+          "EquipListReborn":"s1e51,s1e111,s1e71,s2e52,s2e112,s2e72,s3e53,s3e113,s3e73,s4e54,s4e114,s4e74,s5e55,s5e115,s5e75,s6e56,s6e116,s6e76,s7e57,s7e117,s7e77,s7e57,s7e117,s7e77",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"2.02"
+          "ExpParameters":"2.02",
+          "RebornLimit":"7"
         },
         "101":{
           "CardId":"5506",
@@ -1407,12 +1507,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55061",
-          "EquipListReborn":"s1e51,s1e101,s1e81,s2e52,s2e102,s2e82,s3e53,s3e103,s3e83,s4e54,s4e104,s4e84,s5e55,s5e105,s5e85,s6e56,s6e106,s6e86,s7e57,s7e10s7e57,s7e107,s7e87",
+          "EquipListReborn":"s1e51,s1e101,s1e81,s2e52,s2e102,s2e82,s3e53,s3e103,s3e83,s4e54,s4e104,s4e84,s5e55,s5e105,s5e85,s6e56,s6e106,s6e86,s7e57,s7e107,s7e87,s7e57,s7e107,s7e87",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.82"
+          "ExpParameters":"1.82",
+          "RebornLimit":"7"
         },
         "102":{
           "CardId":"5507",
@@ -1421,12 +1522,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55071",
-          "EquipListReborn":"s1e51,s1e91,s1e101,s2e52,s2e92,s2e102,s3e53,s3e93,s3e103,s4e54,s4e94,s4e104,s5e55,s5e95,s5e105,s6e56,s6e96,s6e106,s7e57,s7e97s7e57,s7e97,s7e107",
+          "EquipListReborn":"s1e51,s1e91,s1e101,s2e52,s2e92,s2e102,s3e53,s3e93,s3e103,s4e54,s4e94,s4e104,s5e55,s5e95,s5e105,s6e56,s6e96,s6e106,s7e57,s7e97,s7e107,s7e57,s7e97,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.12"
+          "ExpParameters":"1.12",
+          "RebornLimit":"7"
         },
         "103":{
           "CardId":"5508",
@@ -1435,12 +1537,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55081",
-          "EquipListReborn":"s1e51,s1e81,s1e101,s2e52,s2e82,s2e102,s3e53,s3e83,s3e103,s4e54,s4e84,s4e104,s5e55,s5e85,s5e105,s6e56,s6e86,s6e106,s7e57,s7e87s7e57,s7e87,s7e107",
+          "EquipListReborn":"s1e51,s1e81,s1e101,s2e52,s2e82,s2e102,s3e53,s3e83,s3e103,s4e54,s4e84,s4e104,s5e55,s5e85,s5e105,s6e56,s6e86,s6e106,s7e57,s7e87,s7e107,s7e57,s7e87,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.09"
+          "ExpParameters":"1.09",
+          "RebornLimit":"7"
         },
         "104":{
           "CardId":"5509",
@@ -1449,12 +1552,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55091",
-          "EquipListReborn":"s1e51,s1e111,s1e101,s2e52,s2e112,s2e102,s3e53,s3e113,s3e103,s4e54,s4e114,s4e104,s5e55,s5e115,s5e105,s6e56,s6e116,s6e106,s7e577e57,s7e117,s7e107",
+          "EquipListReborn":"s1e51,s1e111,s1e101,s2e52,s2e112,s2e102,s3e53,s3e113,s3e103,s4e54,s4e114,s4e104,s5e55,s5e115,s5e105,s6e56,s6e116,s6e106,s7e57,s7e117,s7e107,s7e57,s7e117,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.7"
+          "ExpParameters":"1.7",
+          "RebornLimit":"7"
         },
         "105":{
           "CardId":"5510",
@@ -1463,12 +1567,13 @@
           "LevelLimit":"30",
           "Race":"5",
           "LeaderSkill":"55101",
-          "EquipListReborn":"s1e51,s1e121,s1e101,s2e52,s2e122,s2e102,s3e53,s3e123,s3e103,s4e54,s4e124,s4e104,s5e55,s5e125,s5e105,s6e56,s6e126,s6e106,s7e577e57,s7e127,s7e107",
+          "EquipListReborn":"s1e51,s1e121,s1e101,s2e52,s2e122,s2e102,s3e53,s3e123,s3e103,s4e54,s4e124,s4e104,s5e55,s5e125,s5e105,s6e56,s6e126,s6e106,s7e57,s7e127,s7e107,s7e57,s7e127,s7e107",
           "Coin":"1000",
           "CoinGrowth":"10",
           "Exp":"800",
           "ExpGrowth":"16",
-          "ExpParameters":"1.6"
+          "ExpParameters":"1.6",
+          "RebornLimit":"7"
         },
         "106":{
           "CardId":"2",
@@ -1478,11 +1583,12 @@
           "Race":"1",
           "LeaderSkill":"21",
           "EquipListReborn":"s1e11,s1e61,s1e71",
-          "Coin":"",
-          "CoinGrowth":"",
+          "Coin":"50",
+          "CoinGrowth":"1",
           "Exp":"400",
           "ExpGrowth":"4",
-          "ExpParameters":"0.25"
+          "ExpParameters":"0.25",
+          "RebornLimit":"0"
         },
         "107":{
           "CardId":"3",
@@ -1492,11 +1598,12 @@
           "Race":"3",
           "LeaderSkill":"31",
           "EquipListReborn":"s1e31,s1e61,s1e71",
-          "Coin":"",
-          "CoinGrowth":"",
+          "Coin":"100",
+          "CoinGrowth":"1",
           "Exp":"800",
           "ExpGrowth":"4",
-          "ExpParameters":"0.4"
+          "ExpParameters":"0.4",
+          "RebornLimit":"0"
         }
    }
 }

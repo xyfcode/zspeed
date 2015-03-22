@@ -32,7 +32,7 @@
           "ExchangeCost":"40",
           "CardEvolveCost":"2000",
           "CardExceedRoleLimit":"10",
-          "Reborn1Level":"10",
+          "Reborn1Level":"5",
           "Reborn2Level":"20",
           "Reborn3Level":"30",
           "Reborn4Level":"45",

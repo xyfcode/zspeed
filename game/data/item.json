@@ -46,186 +46,6 @@
           "Price":"1"
         },
         "4":{
-          "Id":"t4",
-          "Type":"1",
-          "Star":"4",
-          "DropId":"11001",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "5":{
-          "Id":"t5",
-          "Type":"1",
-          "Star":"4",
-          "DropId":"11002",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "6":{
-          "Id":"t6",
-          "Type":"1",
-          "Star":"4",
-          "DropId":"11003",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "7":{
-          "Id":"t7",
-          "Type":"1",
-          "Star":"4",
-          "DropId":"11004",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "8":{
-          "Id":"t8",
-          "Type":"1",
-          "Star":"3",
-          "DropId":"11005",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "9":{
-          "Id":"t9",
-          "Type":"1",
-          "Star":"3",
-          "DropId":"11006",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "10":{
-          "Id":"t10",
-          "Type":"1",
-          "Star":"3",
-          "DropId":"11007",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "11":{
-          "Id":"t11",
-          "Type":"1",
-          "Star":"3",
-          "DropId":"11008",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "12":{
-          "Id":"t12",
-          "Type":"1",
-          "Star":"1",
-          "DropId":"11009",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "13":{
-          "Id":"t13",
-          "Type":"1",
-          "Star":"1",
-          "DropId":"11010",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "14":{
-          "Id":"t14",
-          "Type":"1",
-          "Star":"1",
-          "DropId":"11011",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "15":{
-          "Id":"t15",
-          "Type":"1",
-          "Star":"1",
-          "DropId":"11012",
-          "BoxId":"",
-          "KeyId":"",
-          "PowerNum":"",
-          "EquipId":"",
-          "Num":"",
-          "Unit":"",
-          "UnitNum":"",
-          "SPrice":"",
-          "Price":"1"
-        },
-        "16":{
           "Id":"t101",
           "Type":"1",
           "Star":"5",
@@ -240,7 +60,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "17":{
+        "5":{
           "Id":"t102",
           "Type":"1",
           "Star":"4",
@@ -255,7 +75,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "18":{
+        "6":{
           "Id":"t103",
           "Type":"1",
           "Star":"3",
@@ -270,7 +90,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "19":{
+        "7":{
           "Id":"t104",
           "Type":"1",
           "Star":"2",
@@ -285,7 +105,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "20":{
+        "8":{
           "Id":"t105",
           "Type":"1",
           "Star":"1",
@@ -300,7 +120,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "21":{
+        "9":{
           "Id":"t106",
           "Type":"1",
           "Star":"1",
@@ -315,7 +135,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "22":{
+        "10":{
           "Id":"t107",
           "Type":"1",
           "Star":"1",
@@ -330,7 +150,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "23":{
+        "11":{
           "Id":"t108",
           "Type":"1",
           "Star":"1",
@@ -345,7 +165,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "24":{
+        "12":{
           "Id":"t109",
           "Type":"1",
           "Star":"1",
@@ -360,7 +180,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "25":{
+        "13":{
           "Id":"k1",
           "Type":"2",
           "Star":"5",
@@ -375,7 +195,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "26":{
+        "14":{
           "Id":"k2",
           "Type":"2",
           "Star":"3",
@@ -390,7 +210,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "27":{
+        "15":{
           "Id":"k3",
           "Type":"2",
           "Star":"1",
@@ -405,7 +225,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "28":{
+        "16":{
           "Id":"m1",
           "Type":"3",
           "Star":"5",
@@ -420,7 +240,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "29":{
+        "17":{
           "Id":"m2",
           "Type":"3",
           "Star":"3",
@@ -435,7 +255,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "30":{
+        "18":{
           "Id":"m3",
           "Type":"3",
           "Star":"1",
@@ -450,7 +270,7 @@
           "SPrice":"",
           "Price":"1"
         },
-        "31":{
+        "19":{
           "Id":"s1e11",
           "Type":"4",
           "Star":"1",
@@ -463,9 +283,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "32":{
+        "20":{
           "Id":"s2e12",
           "Type":"4",
           "Star":"2",
@@ -478,9 +298,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "33":{
+        "21":{
           "Id":"s3e13",
           "Type":"4",
           "Star":"3",
@@ -491,11 +311,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p13",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "34":{
+        "22":{
           "Id":"s4e14",
           "Type":"4",
           "Star":"4",
@@ -506,11 +326,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p14",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "35":{
+        "23":{
           "Id":"s5e15",
           "Type":"4",
           "Star":"5",
@@ -521,11 +341,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e11,s2e12",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "36":{
+        "24":{
           "Id":"s6e16",
           "Type":"4",
           "Star":"5",
@@ -536,11 +356,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e13,s4e14",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "37":{
+        "25":{
           "Id":"s7e17",
           "Type":"4",
           "Star":"5",
@@ -551,11 +371,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e11,s2e12,s3e13,s4e14",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "38":{
+        "26":{
           "Id":"s1e21",
           "Type":"4",
           "Star":"1",
@@ -568,9 +388,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "39":{
+        "27":{
           "Id":"s2e22",
           "Type":"4",
           "Star":"2",
@@ -583,9 +403,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "40":{
+        "28":{
           "Id":"s3e23",
           "Type":"4",
           "Star":"3",
@@ -596,11 +416,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p23",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "41":{
+        "29":{
           "Id":"s4e24",
           "Type":"4",
           "Star":"4",
@@ -611,11 +431,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p24",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "42":{
+        "30":{
           "Id":"s5e25",
           "Type":"4",
           "Star":"5",
@@ -626,11 +446,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e21,s2e22",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "43":{
+        "31":{
           "Id":"s6e26",
           "Type":"4",
           "Star":"5",
@@ -641,11 +461,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e23,s4e24",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "44":{
+        "32":{
           "Id":"s7e27",
           "Type":"4",
           "Star":"5",
@@ -656,11 +476,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e21,s2e22,s3e23,s4e24",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "45":{
+        "33":{
           "Id":"s1e31",
           "Type":"4",
           "Star":"1",
@@ -673,9 +493,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "46":{
+        "34":{
           "Id":"s2e32",
           "Type":"4",
           "Star":"2",
@@ -688,9 +508,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "47":{
+        "35":{
           "Id":"s3e33",
           "Type":"4",
           "Star":"3",
@@ -701,11 +521,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p33",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "48":{
+        "36":{
           "Id":"s4e34",
           "Type":"4",
           "Star":"4",
@@ -716,11 +536,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p34",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "49":{
+        "37":{
           "Id":"s5e35",
           "Type":"4",
           "Star":"5",
@@ -731,11 +551,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e31,s2e32",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "50":{
+        "38":{
           "Id":"s6e36",
           "Type":"4",
           "Star":"5",
@@ -746,11 +566,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e33,s4e34",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "51":{
+        "39":{
           "Id":"s7e37",
           "Type":"4",
           "Star":"5",
@@ -761,11 +581,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e31,s2e32,s3e33,s4e34",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "52":{
+        "40":{
           "Id":"s1e41",
           "Type":"4",
           "Star":"1",
@@ -778,9 +598,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "53":{
+        "41":{
           "Id":"s2e42",
           "Type":"4",
           "Star":"2",
@@ -793,9 +613,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "54":{
+        "42":{
           "Id":"s3e43",
           "Type":"4",
           "Star":"3",
@@ -806,11 +626,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p43",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "55":{
+        "43":{
           "Id":"s4e44",
           "Type":"4",
           "Star":"4",
@@ -821,11 +641,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p44",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "56":{
+        "44":{
           "Id":"s5e45",
           "Type":"4",
           "Star":"5",
@@ -836,11 +656,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e41,s2e42",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "57":{
+        "45":{
           "Id":"s6e46",
           "Type":"4",
           "Star":"5",
@@ -851,11 +671,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e43,s4e44",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "58":{
+        "46":{
           "Id":"s7e47",
           "Type":"4",
           "Star":"5",
@@ -866,11 +686,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e41,s2e42,s3e43,s4e44",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "59":{
+        "47":{
           "Id":"s1e51",
           "Type":"4",
           "Star":"1",
@@ -883,9 +703,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "60":{
+        "48":{
           "Id":"s2e52",
           "Type":"4",
           "Star":"2",
@@ -898,9 +718,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "61":{
+        "49":{
           "Id":"s3e53",
           "Type":"4",
           "Star":"3",
@@ -911,11 +731,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p53",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "62":{
+        "50":{
           "Id":"s4e54",
           "Type":"4",
           "Star":"4",
@@ -926,11 +746,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p54",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "63":{
+        "51":{
           "Id":"s5e55",
           "Type":"4",
           "Star":"5",
@@ -941,11 +761,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e51,s2e52",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "64":{
+        "52":{
           "Id":"s6e56",
           "Type":"4",
           "Star":"5",
@@ -956,11 +776,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e53,s4e54",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "65":{
+        "53":{
           "Id":"s7e57",
           "Type":"4",
           "Star":"5",
@@ -971,11 +791,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e51,s2e52,s3e53,s4e54",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "66":{
+        "54":{
           "Id":"s1e61",
           "Type":"4",
           "Star":"1",
@@ -988,9 +808,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "67":{
+        "55":{
           "Id":"s2e62",
           "Type":"4",
           "Star":"2",
@@ -1003,9 +823,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "68":{
+        "56":{
           "Id":"s3e63",
           "Type":"4",
           "Star":"3",
@@ -1016,11 +836,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p63",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "69":{
+        "57":{
           "Id":"s4e64",
           "Type":"4",
           "Star":"4",
@@ -1031,11 +851,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p64",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "70":{
+        "58":{
           "Id":"s5e65",
           "Type":"4",
           "Star":"5",
@@ -1046,11 +866,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e61,s2e62",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "71":{
+        "59":{
           "Id":"s6e66",
           "Type":"4",
           "Star":"5",
@@ -1061,11 +881,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e63,s4e64",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "72":{
+        "60":{
           "Id":"s7e67",
           "Type":"4",
           "Star":"5",
@@ -1076,11 +896,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e61,s2e62,s3e63,s4e64",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "73":{
+        "61":{
           "Id":"s1e71",
           "Type":"4",
           "Star":"1",
@@ -1093,9 +913,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "74":{
+        "62":{
           "Id":"s2e72",
           "Type":"4",
           "Star":"2",
@@ -1108,9 +928,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "75":{
+        "63":{
           "Id":"s3e73",
           "Type":"4",
           "Star":"3",
@@ -1121,11 +941,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p73",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "76":{
+        "64":{
           "Id":"s4e74",
           "Type":"4",
           "Star":"4",
@@ -1136,11 +956,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p74",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "77":{
+        "65":{
           "Id":"s5e75",
           "Type":"4",
           "Star":"5",
@@ -1151,11 +971,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e71,s2e72",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "78":{
+        "66":{
           "Id":"s6e76",
           "Type":"4",
           "Star":"5",
@@ -1166,11 +986,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e73,s4e74",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "79":{
+        "67":{
           "Id":"s7e77",
           "Type":"4",
           "Star":"5",
@@ -1181,11 +1001,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e71,s2e72,s3e73,s4e74",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "80":{
+        "68":{
           "Id":"s1e81",
           "Type":"4",
           "Star":"1",
@@ -1198,9 +1018,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "81":{
+        "69":{
           "Id":"s2e82",
           "Type":"4",
           "Star":"2",
@@ -1213,9 +1033,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "82":{
+        "70":{
           "Id":"s3e83",
           "Type":"4",
           "Star":"3",
@@ -1226,11 +1046,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p83",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "83":{
+        "71":{
           "Id":"s4e84",
           "Type":"4",
           "Star":"4",
@@ -1241,11 +1061,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p84",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "84":{
+        "72":{
           "Id":"s5e85",
           "Type":"4",
           "Star":"5",
@@ -1256,11 +1076,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e81,s2e82",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "85":{
+        "73":{
           "Id":"s6e86",
           "Type":"4",
           "Star":"5",
@@ -1271,11 +1091,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e83,s4e84",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "86":{
+        "74":{
           "Id":"s7e87",
           "Type":"4",
           "Star":"5",
@@ -1286,11 +1106,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e81,s2e82,s3e83,s4e84",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "87":{
+        "75":{
           "Id":"s1e91",
           "Type":"4",
           "Star":"1",
@@ -1303,9 +1123,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "88":{
+        "76":{
           "Id":"s2e92",
           "Type":"4",
           "Star":"2",
@@ -1318,9 +1138,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "89":{
+        "77":{
           "Id":"s3e93",
           "Type":"4",
           "Star":"3",
@@ -1331,11 +1151,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p93",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "90":{
+        "78":{
           "Id":"s4e94",
           "Type":"4",
           "Star":"4",
@@ -1346,11 +1166,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p94",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "91":{
+        "79":{
           "Id":"s5e95",
           "Type":"4",
           "Star":"5",
@@ -1361,11 +1181,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e91,s2e92",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "92":{
+        "80":{
           "Id":"s6e96",
           "Type":"4",
           "Star":"5",
@@ -1376,11 +1196,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e93,s4e94",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "93":{
+        "81":{
           "Id":"s7e97",
           "Type":"4",
           "Star":"5",
@@ -1391,11 +1211,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e91,s2e92,s3e93,s4e94",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "94":{
+        "82":{
           "Id":"s1e101",
           "Type":"4",
           "Star":"1",
@@ -1408,9 +1228,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "95":{
+        "83":{
           "Id":"s2e102",
           "Type":"4",
           "Star":"2",
@@ -1423,9 +1243,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "96":{
+        "84":{
           "Id":"s3e103",
           "Type":"4",
           "Star":"3",
@@ -1436,11 +1256,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p104",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "97":{
+        "85":{
           "Id":"s4e104",
           "Type":"4",
           "Star":"4",
@@ -1451,11 +1271,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p104",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "98":{
+        "86":{
           "Id":"s5e105",
           "Type":"4",
           "Star":"5",
@@ -1466,11 +1286,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e101,s2e102",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "99":{
+        "87":{
           "Id":"s6e106",
           "Type":"4",
           "Star":"5",
@@ -1481,11 +1301,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e103,s4e104",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "100":{
+        "88":{
           "Id":"s7e107",
           "Type":"4",
           "Star":"5",
@@ -1496,11 +1316,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e101,s2e102,s3e103,s4e104",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "101":{
+        "89":{
           "Id":"s1e111",
           "Type":"4",
           "Star":"1",
@@ -1513,9 +1333,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "102":{
+        "90":{
           "Id":"s2e112",
           "Type":"4",
           "Star":"2",
@@ -1528,9 +1348,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "103":{
+        "91":{
           "Id":"s3e113",
           "Type":"4",
           "Star":"3",
@@ -1541,11 +1361,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p113",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "104":{
+        "92":{
           "Id":"s4e114",
           "Type":"4",
           "Star":"4",
@@ -1556,11 +1376,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p114",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "105":{
+        "93":{
           "Id":"s5e115",
           "Type":"4",
           "Star":"5",
@@ -1571,11 +1391,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e111,s2e112",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "106":{
+        "94":{
           "Id":"s6e116",
           "Type":"4",
           "Star":"5",
@@ -1586,11 +1406,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e113,s4e114",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "107":{
+        "95":{
           "Id":"s7e117",
           "Type":"4",
           "Star":"5",
@@ -1601,11 +1421,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e111,s2e112,s3e113,s4e114",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "108":{
+        "96":{
           "Id":"s1e121",
           "Type":"4",
           "Star":"1",
@@ -1618,9 +1438,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"5"
         },
-        "109":{
+        "97":{
           "Id":"s2e122",
           "Type":"4",
           "Star":"2",
@@ -1633,9 +1453,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"10"
         },
-        "110":{
+        "98":{
           "Id":"s3e123",
           "Type":"4",
           "Star":"3",
@@ -1646,11 +1466,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3p123",
-          "UnitNum":"3",
-          "SPrice":"5000",
-          "Price":"1500"
+          "UnitNum":"5",
+          "SPrice":"2000",
+          "Price":"20"
         },
-        "111":{
+        "99":{
           "Id":"s4e124",
           "Type":"4",
           "Star":"4",
@@ -1661,11 +1481,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s4p124",
-          "UnitNum":"5",
-          "SPrice":"10000",
-          "Price":"1500"
+          "UnitNum":"10",
+          "SPrice":"2000",
+          "Price":"30"
         },
-        "112":{
+        "100":{
           "Id":"s5e125",
           "Type":"4",
           "Star":"5",
@@ -1676,11 +1496,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e121,s2e122",
-          "UnitNum":"5,5",
-          "SPrice":"30000",
-          "Price":"1500"
+          "UnitNum":"6,5",
+          "SPrice":"2000",
+          "Price":"60"
         },
-        "113":{
+        "101":{
           "Id":"s6e126",
           "Type":"4",
           "Star":"5",
@@ -1691,11 +1511,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s3e123,s4e124",
-          "UnitNum":"5,5",
-          "SPrice":"50000",
-          "Price":"1500"
+          "UnitNum":"3,5",
+          "SPrice":"2000",
+          "Price":"80"
         },
-        "114":{
+        "102":{
           "Id":"s7e127",
           "Type":"4",
           "Star":"5",
@@ -1706,11 +1526,11 @@
           "EquipId":"",
           "Num":"",
           "Unit":"s1e121,s2e122,s3e123,s4e124",
-          "UnitNum":"5,5,5,5",
-          "SPrice":"100000",
-          "Price":"1500"
+          "UnitNum":"8,5,5,5",
+          "SPrice":"2000",
+          "Price":"100"
         },
-        "115":{
+        "103":{
           "Id":"s1p61",
           "Type":"5",
           "Star":"1",
@@ -1723,9 +1543,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "116":{
+        "104":{
           "Id":"s2p62",
           "Type":"5",
           "Star":"2",
@@ -1734,13 +1554,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e62",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "117":{
+        "105":{
           "Id":"s3p63",
           "Type":"5",
           "Star":"3",
@@ -1749,13 +1569,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e63",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "118":{
+        "106":{
           "Id":"s4p64",
           "Type":"5",
           "Star":"4",
@@ -1764,13 +1584,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e64",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "119":{
+        "107":{
           "Id":"s5p65",
           "Type":"5",
           "Star":"5",
@@ -1783,9 +1603,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "120":{
+        "108":{
           "Id":"s6p66",
           "Type":"5",
           "Star":"5",
@@ -1798,9 +1618,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "121":{
+        "109":{
           "Id":"s7p67",
           "Type":"5",
           "Star":"5",
@@ -1809,13 +1629,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e67",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "122":{
+        "110":{
           "Id":"s1p71",
           "Type":"5",
           "Star":"1",
@@ -1828,9 +1648,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "123":{
+        "111":{
           "Id":"s2p72",
           "Type":"5",
           "Star":"2",
@@ -1839,13 +1659,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e72",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "124":{
+        "112":{
           "Id":"s3p73",
           "Type":"5",
           "Star":"3",
@@ -1854,13 +1674,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e73",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "125":{
+        "113":{
           "Id":"s4p74",
           "Type":"5",
           "Star":"4",
@@ -1869,13 +1689,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e74",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "126":{
+        "114":{
           "Id":"s5p75",
           "Type":"5",
           "Star":"5",
@@ -1888,9 +1708,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "127":{
+        "115":{
           "Id":"s6p76",
           "Type":"5",
           "Star":"5",
@@ -1903,9 +1723,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "128":{
+        "116":{
           "Id":"s7p77",
           "Type":"5",
           "Star":"5",
@@ -1914,13 +1734,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e77",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "129":{
+        "117":{
           "Id":"s1p11",
           "Type":"5",
           "Star":"1",
@@ -1933,9 +1753,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "130":{
+        "118":{
           "Id":"s2p12",
           "Type":"5",
           "Star":"2",
@@ -1944,13 +1764,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e12",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "131":{
+        "119":{
           "Id":"s3p13",
           "Type":"5",
           "Star":"3",
@@ -1959,13 +1779,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e13",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "132":{
+        "120":{
           "Id":"s4p14",
           "Type":"5",
           "Star":"4",
@@ -1974,13 +1794,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e14",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "133":{
+        "121":{
           "Id":"s5p15",
           "Type":"5",
           "Star":"5",
@@ -1993,9 +1813,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "134":{
+        "122":{
           "Id":"s6p16",
           "Type":"5",
           "Star":"5",
@@ -2008,9 +1828,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "135":{
+        "123":{
           "Id":"s7p17",
           "Type":"5",
           "Star":"5",
@@ -2019,13 +1839,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e17",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "136":{
+        "124":{
           "Id":"s1p21",
           "Type":"5",
           "Star":"1",
@@ -2038,9 +1858,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "137":{
+        "125":{
           "Id":"s2p22",
           "Type":"5",
           "Star":"2",
@@ -2049,13 +1869,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e22",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "138":{
+        "126":{
           "Id":"s3p23",
           "Type":"5",
           "Star":"3",
@@ -2064,13 +1884,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e23",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "139":{
+        "127":{
           "Id":"s4p24",
           "Type":"5",
           "Star":"4",
@@ -2079,13 +1899,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e24",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "140":{
+        "128":{
           "Id":"s5p25",
           "Type":"5",
           "Star":"5",
@@ -2098,9 +1918,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "141":{
+        "129":{
           "Id":"s6p26",
           "Type":"5",
           "Star":"5",
@@ -2113,9 +1933,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "142":{
+        "130":{
           "Id":"s7p27",
           "Type":"5",
           "Star":"5",
@@ -2124,13 +1944,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e27",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "143":{
+        "131":{
           "Id":"s1p31",
           "Type":"5",
           "Star":"1",
@@ -2143,9 +1963,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "144":{
+        "132":{
           "Id":"s2p32",
           "Type":"5",
           "Star":"2",
@@ -2154,13 +1974,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e32",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "145":{
+        "133":{
           "Id":"s3p33",
           "Type":"5",
           "Star":"3",
@@ -2169,13 +1989,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e33",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "146":{
+        "134":{
           "Id":"s4p34",
           "Type":"5",
           "Star":"4",
@@ -2184,13 +2004,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e34",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "147":{
+        "135":{
           "Id":"s5p35",
           "Type":"5",
           "Star":"5",
@@ -2203,9 +2023,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "148":{
+        "136":{
           "Id":"s6p36",
           "Type":"5",
           "Star":"5",
@@ -2218,9 +2038,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "149":{
+        "137":{
           "Id":"s7p37",
           "Type":"5",
           "Star":"5",
@@ -2229,13 +2049,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e37",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "150":{
+        "138":{
           "Id":"s1p41",
           "Type":"5",
           "Star":"1",
@@ -2248,9 +2068,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "151":{
+        "139":{
           "Id":"s2p42",
           "Type":"5",
           "Star":"2",
@@ -2259,13 +2079,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e42",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "152":{
+        "140":{
           "Id":"s3p43",
           "Type":"5",
           "Star":"3",
@@ -2274,13 +2094,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e43",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "153":{
+        "141":{
           "Id":"s4p44",
           "Type":"5",
           "Star":"4",
@@ -2289,13 +2109,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e44",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "154":{
+        "142":{
           "Id":"s5p45",
           "Type":"5",
           "Star":"5",
@@ -2308,9 +2128,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "155":{
+        "143":{
           "Id":"s6p46",
           "Type":"5",
           "Star":"5",
@@ -2323,9 +2143,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "156":{
+        "144":{
           "Id":"s7p47",
           "Type":"5",
           "Star":"5",
@@ -2334,13 +2154,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e47",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "157":{
+        "145":{
           "Id":"s1p51",
           "Type":"5",
           "Star":"1",
@@ -2353,9 +2173,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "158":{
+        "146":{
           "Id":"s2p52",
           "Type":"5",
           "Star":"2",
@@ -2364,13 +2184,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e52",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "159":{
+        "147":{
           "Id":"s3p53",
           "Type":"5",
           "Star":"3",
@@ -2379,13 +2199,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e53",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "160":{
+        "148":{
           "Id":"s4p54",
           "Type":"5",
           "Star":"4",
@@ -2394,13 +2214,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e54",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "161":{
+        "149":{
           "Id":"s5p55",
           "Type":"5",
           "Star":"5",
@@ -2413,9 +2233,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "162":{
+        "150":{
           "Id":"s6p56",
           "Type":"5",
           "Star":"5",
@@ -2428,9 +2248,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "163":{
+        "151":{
           "Id":"s7p57",
           "Type":"5",
           "Star":"5",
@@ -2439,13 +2259,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e57",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "164":{
+        "152":{
           "Id":"s1p81",
           "Type":"5",
           "Star":"1",
@@ -2458,9 +2278,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "165":{
+        "153":{
           "Id":"s2p82",
           "Type":"5",
           "Star":"2",
@@ -2469,13 +2289,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e82",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "166":{
+        "154":{
           "Id":"s3p83",
           "Type":"5",
           "Star":"3",
@@ -2484,13 +2304,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e83",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "167":{
+        "155":{
           "Id":"s4p84",
           "Type":"5",
           "Star":"4",
@@ -2499,13 +2319,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e84",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "168":{
+        "156":{
           "Id":"s5p85",
           "Type":"5",
           "Star":"5",
@@ -2518,9 +2338,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "169":{
+        "157":{
           "Id":"s6p86",
           "Type":"5",
           "Star":"5",
@@ -2533,9 +2353,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "170":{
+        "158":{
           "Id":"s7p87",
           "Type":"5",
           "Star":"5",
@@ -2544,13 +2364,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e87",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "171":{
+        "159":{
           "Id":"s1p91",
           "Type":"5",
           "Star":"1",
@@ -2563,9 +2383,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "172":{
+        "160":{
           "Id":"s2p92",
           "Type":"5",
           "Star":"2",
@@ -2574,13 +2394,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e92",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "173":{
+        "161":{
           "Id":"s3p93",
           "Type":"5",
           "Star":"3",
@@ -2589,13 +2409,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e93",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "174":{
+        "162":{
           "Id":"s4p94",
           "Type":"5",
           "Star":"4",
@@ -2604,13 +2424,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e94",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "175":{
+        "163":{
           "Id":"s5p95",
           "Type":"5",
           "Star":"5",
@@ -2623,9 +2443,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "176":{
+        "164":{
           "Id":"s6p96",
           "Type":"5",
           "Star":"5",
@@ -2638,9 +2458,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "177":{
+        "165":{
           "Id":"s7p97",
           "Type":"5",
           "Star":"5",
@@ -2649,13 +2469,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e97",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "178":{
+        "166":{
           "Id":"s1p101",
           "Type":"5",
           "Star":"1",
@@ -2668,9 +2488,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "179":{
+        "167":{
           "Id":"s2p102",
           "Type":"5",
           "Star":"2",
@@ -2679,13 +2499,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e102",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "180":{
+        "168":{
           "Id":"s3p103",
           "Type":"5",
           "Star":"3",
@@ -2694,13 +2514,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e103",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "181":{
+        "169":{
           "Id":"s4p104",
           "Type":"5",
           "Star":"4",
@@ -2709,13 +2529,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e104",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "182":{
+        "170":{
           "Id":"s5p105",
           "Type":"5",
           "Star":"5",
@@ -2728,9 +2548,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "183":{
+        "171":{
           "Id":"s6p106",
           "Type":"5",
           "Star":"5",
@@ -2743,9 +2563,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "184":{
+        "172":{
           "Id":"s7p107",
           "Type":"5",
           "Star":"5",
@@ -2754,13 +2574,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e107",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "185":{
+        "173":{
           "Id":"s1p111",
           "Type":"5",
           "Star":"1",
@@ -2773,9 +2593,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "186":{
+        "174":{
           "Id":"s2p112",
           "Type":"5",
           "Star":"2",
@@ -2784,13 +2604,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e112",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "187":{
+        "175":{
           "Id":"s3p113",
           "Type":"5",
           "Star":"3",
@@ -2799,13 +2619,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e113",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "188":{
+        "176":{
           "Id":"s4p114",
           "Type":"5",
           "Star":"4",
@@ -2814,13 +2634,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e114",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "189":{
+        "177":{
           "Id":"s5p115",
           "Type":"5",
           "Star":"5",
@@ -2833,9 +2653,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "190":{
+        "178":{
           "Id":"s6p116",
           "Type":"5",
           "Star":"5",
@@ -2848,9 +2668,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "191":{
+        "179":{
           "Id":"s7p117",
           "Type":"5",
           "Star":"5",
@@ -2859,13 +2679,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e117",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "192":{
+        "180":{
           "Id":"s1p121",
           "Type":"5",
           "Star":"1",
@@ -2878,9 +2698,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "193":{
+        "181":{
           "Id":"s2p122",
           "Type":"5",
           "Star":"2",
@@ -2889,13 +2709,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s2e122",
-          "Num":"5",
+          "Num":"2",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "194":{
+        "182":{
           "Id":"s3p123",
           "Type":"5",
           "Star":"3",
@@ -2904,13 +2724,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s3e123",
-          "Num":"10",
+          "Num":"5",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "195":{
+        "183":{
           "Id":"s4p124",
           "Type":"5",
           "Star":"4",
@@ -2919,13 +2739,13 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s4e124",
-          "Num":"15",
+          "Num":"10",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "196":{
+        "184":{
           "Id":"s5p125",
           "Type":"5",
           "Star":"5",
@@ -2938,9 +2758,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "197":{
+        "185":{
           "Id":"s6p126",
           "Type":"5",
           "Star":"5",
@@ -2953,9 +2773,9 @@
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         },
-        "198":{
+        "186":{
           "Id":"s7p127",
           "Type":"5",
           "Star":"5",
@@ -2964,11 +2784,11 @@
           "KeyId":"",
           "PowerNum":"",
           "EquipId":"s7e127",
-          "Num":"30",
+          "Num":"40",
           "Unit":"",
           "UnitNum":"",
           "SPrice":"",
-          "Price":"1500"
+          "Price":"1"
         }
    }
 }

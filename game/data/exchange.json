@@ -6,7 +6,7 @@
           "ItemId":"s1e11",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"252"
         },
         "2":{
           "Id":"2",
@@ -14,7 +14,7 @@
           "ItemId":"s2e12",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "3":{
           "Id":"3",
@@ -22,7 +22,7 @@
           "ItemId":"s3e13",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "4":{
           "Id":"4",
@@ -30,7 +30,7 @@
           "ItemId":"s4e14",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "5":{
           "Id":"5",
@@ -38,7 +38,7 @@
           "ItemId":"s1e21",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "6":{
           "Id":"6",
@@ -46,7 +46,7 @@
           "ItemId":"s2e22",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "7":{
           "Id":"7",
@@ -54,7 +54,7 @@
           "ItemId":"s3e23",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "8":{
           "Id":"8",
@@ -62,7 +62,7 @@
           "ItemId":"s4e24",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "9":{
           "Id":"9",
@@ -70,7 +70,7 @@
           "ItemId":"s1e31",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "10":{
           "Id":"10",
@@ -78,7 +78,7 @@
           "ItemId":"s2e32",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "11":{
           "Id":"11",
@@ -86,7 +86,7 @@
           "ItemId":"s3e33",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "12":{
           "Id":"12",
@@ -94,7 +94,7 @@
           "ItemId":"s4e34",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "13":{
           "Id":"13",
@@ -102,7 +102,7 @@
           "ItemId":"s1e41",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "14":{
           "Id":"14",
@@ -110,7 +110,7 @@
           "ItemId":"s2e42",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "15":{
           "Id":"15",
@@ -118,7 +118,7 @@
           "ItemId":"s3e43",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "16":{
           "Id":"16",
@@ -126,7 +126,7 @@
           "ItemId":"s4e44",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "17":{
           "Id":"17",
@@ -134,7 +134,7 @@
           "ItemId":"s1e51",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "18":{
           "Id":"18",
@@ -142,7 +142,7 @@
           "ItemId":"s2e52",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "19":{
           "Id":"19",
@@ -150,7 +150,7 @@
           "ItemId":"s3e53",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "20":{
           "Id":"20",
@@ -158,7 +158,7 @@
           "ItemId":"s4e54",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "21":{
           "Id":"21",
@@ -166,7 +166,7 @@
           "ItemId":"s1e61",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "22":{
           "Id":"22",
@@ -174,7 +174,7 @@
           "ItemId":"s2e62",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "23":{
           "Id":"23",
@@ -182,7 +182,7 @@
           "ItemId":"s3e63",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "24":{
           "Id":"24",
@@ -190,7 +190,7 @@
           "ItemId":"s4e64",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "25":{
           "Id":"25",
@@ -198,7 +198,7 @@
           "ItemId":"s1e71",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "26":{
           "Id":"26",
@@ -206,7 +206,7 @@
           "ItemId":"s2e72",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "27":{
           "Id":"27",
@@ -214,7 +214,7 @@
           "ItemId":"s3e73",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "28":{
           "Id":"28",
@@ -222,7 +222,7 @@
           "ItemId":"s4e74",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "29":{
           "Id":"29",
@@ -230,7 +230,7 @@
           "ItemId":"s1e81",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "30":{
           "Id":"30",
@@ -238,7 +238,7 @@
           "ItemId":"s2e82",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "31":{
           "Id":"31",
@@ -246,7 +246,7 @@
           "ItemId":"s3e83",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "32":{
           "Id":"32",
@@ -254,7 +254,7 @@
           "ItemId":"s4e84",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "33":{
           "Id":"33",
@@ -262,7 +262,7 @@
           "ItemId":"s1e91",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"244"
         },
         "34":{
           "Id":"34",
@@ -270,7 +270,7 @@
           "ItemId":"s2e92",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "35":{
           "Id":"35",
@@ -278,7 +278,7 @@
           "ItemId":"s3e93",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "36":{
           "Id":"36",
@@ -286,7 +286,7 @@
           "ItemId":"s4e94",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "37":{
           "Id":"37",
@@ -294,7 +294,7 @@
           "ItemId":"s1e101",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "38":{
           "Id":"38",
@@ -302,7 +302,7 @@
           "ItemId":"s2e102",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "39":{
           "Id":"39",
@@ -310,7 +310,7 @@
           "ItemId":"s3e103",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "40":{
           "Id":"40",
@@ -318,7 +318,7 @@
           "ItemId":"s4e104",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "41":{
           "Id":"41",
@@ -326,7 +326,7 @@
           "ItemId":"s1e111",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "42":{
           "Id":"42",
@@ -334,7 +334,7 @@
           "ItemId":"s2e112",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "43":{
           "Id":"43",
@@ -342,7 +342,7 @@
           "ItemId":"s3e113",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "44":{
           "Id":"44",
@@ -350,7 +350,7 @@
           "ItemId":"s4e114",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "45":{
           "Id":"45",
@@ -358,7 +358,7 @@
           "ItemId":"s1e121",
           "Num":"1",
           "Cost":"200",
-          "Weight":"52"
+          "Weight":"246"
         },
         "46":{
           "Id":"46",
@@ -366,7 +366,7 @@
           "ItemId":"s2e122",
           "Num":"1",
           "Cost":"300",
-          "Weight":"10"
+          "Weight":"97"
         },
         "47":{
           "Id":"47",
@@ -374,7 +374,7 @@
           "ItemId":"s3e123",
           "Num":"1",
           "Cost":"500",
-          "Weight":"10"
+          "Weight":"73"
         },
         "48":{
           "Id":"48",
@@ -382,391 +382,199 @@
           "ItemId":"s4e124",
           "Num":"1",
           "Cost":"1200",
-          "Weight":"10"
+          "Weight":"39"
         },
         "49":{
           "Id":"49",
           "ItemType":"3",
-          "ItemId":"s1p61",
+          "ItemId":"s3p63",
           "Num":"1",
           "Cost":"100",
-          "Weight":"6"
+          "Weight":"183"
         },
         "50":{
           "Id":"50",
           "ItemType":"3",
-          "ItemId":"s2p62",
+          "ItemId":"s4p64",
           "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
+          "Cost":"120",
+          "Weight":"195"
         },
         "51":{
           "Id":"51",
           "ItemType":"3",
-          "ItemId":"s3p63",
+          "ItemId":"s3p73",
           "Num":"1",
           "Cost":"100",
-          "Weight":"208"
+          "Weight":"183"
         },
         "52":{
           "Id":"52",
           "ItemType":"3",
-          "ItemId":"s4p64",
+          "ItemId":"s4p74",
           "Num":"1",
           "Cost":"120",
-          "Weight":"416"
+          "Weight":"195"
         },
         "53":{
           "Id":"53",
           "ItemType":"3",
-          "ItemId":"s1p71",
+          "ItemId":"s3p13",
           "Num":"1",
           "Cost":"100",
-          "Weight":"2"
+          "Weight":"183"
         },
         "54":{
           "Id":"54",
           "ItemType":"3",
-          "ItemId":"s2p72",
+          "ItemId":"s4p14",
           "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
+          "Cost":"120",
+          "Weight":"195"
         },
         "55":{
           "Id":"55",
           "ItemType":"3",
-          "ItemId":"s3p73",
+          "ItemId":"s3p23",
           "Num":"1",
           "Cost":"100",
-          "Weight":"208"
+          "Weight":"183"
         },
         "56":{
           "Id":"56",
           "ItemType":"3",
-          "ItemId":"s4p74",
+          "ItemId":"s4p24",
           "Num":"1",
           "Cost":"120",
-          "Weight":"416"
+          "Weight":"195"
         },
         "57":{
           "Id":"57",
           "ItemType":"3",
-          "ItemId":"s1p11",
+          "ItemId":"s3p33",
           "Num":"1",
           "Cost":"100",
-          "Weight":"2"
+          "Weight":"183"
         },
         "58":{
           "Id":"58",
           "ItemType":"3",
-          "ItemId":"s2p12",
+          "ItemId":"s4p34",
           "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
+          "Cost":"120",
+          "Weight":"195"
         },
         "59":{
           "Id":"59",
           "ItemType":"3",
-          "ItemId":"s3p13",
+          "ItemId":"s3p43",
           "Num":"1",
           "Cost":"100",
-          "Weight":"208"
+          "Weight":"183"
         },
         "60":{
           "Id":"60",
           "ItemType":"3",
-          "ItemId":"s4p14",
+          "ItemId":"s4p44",
           "Num":"1",
           "Cost":"120",
-          "Weight":"416"
+          "Weight":"195"
         },
         "61":{
           "Id":"61",
           "ItemType":"3",
-          "ItemId":"s1p21",
+          "ItemId":"s3p53",
           "Num":"1",
           "Cost":"100",
-          "Weight":"2"
+          "Weight":"183"
         },
         "62":{
           "Id":"62",
           "ItemType":"3",
-          "ItemId":"s2p22",
+          "ItemId":"s4p54",
           "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
+          "Cost":"120",
+          "Weight":"195"
         },
         "63":{
           "Id":"63",
           "ItemType":"3",
-          "ItemId":"s3p23",
+          "ItemId":"s3p83",
           "Num":"1",
           "Cost":"100",
-          "Weight":"208"
+          "Weight":"183"
         },
         "64":{
           "Id":"64",
           "ItemType":"3",
-          "ItemId":"s4p24",
+          "ItemId":"s4p84",
           "Num":"1",
           "Cost":"120",
-          "Weight":"416"
+          "Weight":"195"
         },
         "65":{
           "Id":"65",
           "ItemType":"3",
-          "ItemId":"s1p31",
+          "ItemId":"s3p93",
           "Num":"1",
           "Cost":"100",
-          "Weight":"2"
+          "Weight":"183"
         },
         "66":{
           "Id":"66",
           "ItemType":"3",
-          "ItemId":"s2p32",
+          "ItemId":"s4p94",
           "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
+          "Cost":"120",
+          "Weight":"195"
         },
         "67":{
           "Id":"67",
           "ItemType":"3",
-          "ItemId":"s3p33",
+          "ItemId":"s3p103",
           "Num":"1",
           "Cost":"100",
-          "Weight":"208"
+          "Weight":"183"
         },
         "68":{
           "Id":"68",
           "ItemType":"3",
-          "ItemId":"s4p34",
+          "ItemId":"s4p104",
           "Num":"1",
           "Cost":"120",
-          "Weight":"416"
+          "Weight":"195"
         },
         "69":{
           "Id":"69",
           "ItemType":"3",
-          "ItemId":"s1p41",
+          "ItemId":"s3p113",
           "Num":"1",
           "Cost":"100",
-          "Weight":"2"
+          "Weight":"183"
         },
         "70":{
           "Id":"70",
           "ItemType":"3",
-          "ItemId":"s2p42",
+          "ItemId":"s4p114",
           "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
+          "Cost":"120",
+          "Weight":"195"
         },
         "71":{
           "Id":"71",
           "ItemType":"3",
-          "ItemId":"s3p43",
+          "ItemId":"s3p123",
           "Num":"1",
           "Cost":"100",
-          "Weight":"208"
+          "Weight":"183"
         },
         "72":{
           "Id":"72",
           "ItemType":"3",
-          "ItemId":"s4p44",
-          "Num":"1",
-          "Cost":"120",
-          "Weight":"416"
-        },
-        "73":{
-          "Id":"73",
-          "ItemType":"3",
-          "ItemId":"s1p51",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"2"
-        },
-        "74":{
-          "Id":"74",
-          "ItemType":"3",
-          "ItemId":"s2p52",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
-        },
-        "75":{
-          "Id":"75",
-          "ItemType":"3",
-          "ItemId":"s3p53",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"208"
-        },
-        "76":{
-          "Id":"76",
-          "ItemType":"3",
-          "ItemId":"s4p54",
-          "Num":"1",
-          "Cost":"120",
-          "Weight":"416"
-        },
-        "77":{
-          "Id":"77",
-          "ItemType":"3",
-          "ItemId":"s1p81",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"2"
-        },
-        "78":{
-          "Id":"78",
-          "ItemType":"3",
-          "ItemId":"s2p82",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
-        },
-        "79":{
-          "Id":"79",
-          "ItemType":"3",
-          "ItemId":"s3p83",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"208"
-        },
-        "80":{
-          "Id":"80",
-          "ItemType":"3",
-          "ItemId":"s4p84",
-          "Num":"1",
-          "Cost":"120",
-          "Weight":"416"
-        },
-        "81":{
-          "Id":"81",
-          "ItemType":"3",
-          "ItemId":"s1p91",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"2"
-        },
-        "82":{
-          "Id":"82",
-          "ItemType":"3",
-          "ItemId":"s2p92",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
-        },
-        "83":{
-          "Id":"83",
-          "ItemType":"3",
-          "ItemId":"s3p93",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"208"
-        },
-        "84":{
-          "Id":"84",
-          "ItemType":"3",
-          "ItemId":"s4p94",
-          "Num":"1",
-          "Cost":"120",
-          "Weight":"416"
-        },
-        "85":{
-          "Id":"85",
-          "ItemType":"3",
-          "ItemId":"s1p101",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"2"
-        },
-        "86":{
-          "Id":"86",
-          "ItemType":"3",
-          "ItemId":"s2p102",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
-        },
-        "87":{
-          "Id":"87",
-          "ItemType":"3",
-          "ItemId":"s3p103",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"208"
-        },
-        "88":{
-          "Id":"88",
-          "ItemType":"3",
-          "ItemId":"s4p104",
-          "Num":"1",
-          "Cost":"120",
-          "Weight":"416"
-        },
-        "89":{
-          "Id":"89",
-          "ItemType":"3",
-          "ItemId":"s1p111",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"2"
-        },
-        "90":{
-          "Id":"90",
-          "ItemType":"3",
-          "ItemId":"s2p112",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
-        },
-        "91":{
-          "Id":"91",
-          "ItemType":"3",
-          "ItemId":"s3p113",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"208"
-        },
-        "92":{
-          "Id":"92",
-          "ItemType":"3",
-          "ItemId":"s4p114",
-          "Num":"1",
-          "Cost":"120",
-          "Weight":"416"
-        },
-        "93":{
-          "Id":"93",
-          "ItemType":"3",
-          "ItemId":"s1p121",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"2"
-        },
-        "94":{
-          "Id":"94",
-          "ItemType":"3",
-          "ItemId":"s2p122",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"125"
-        },
-        "95":{
-          "Id":"95",
-          "ItemType":"3",
-          "ItemId":"s3p123",
-          "Num":"1",
-          "Cost":"100",
-          "Weight":"208"
-        },
-        "96":{
-          "Id":"96",
-          "ItemType":"3",
           "ItemId":"s4p124",
           "Num":"1",
           "Cost":"120",
-          "Weight":"416"
+          "Weight":"195"
         }
    }
 }

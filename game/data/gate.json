@@ -37,7 +37,7 @@
           "PowerCost":"5",
           "LvLimited":"",
           "War":"war010501",
-          "DropInfo":"3,s1e71|3,s1e31",
+          "DropInfo":"3,s1e71",
           "WarriorExp":"12"
         },
         "6":{
@@ -860,7 +860,7 @@
           "GateId":"d02",
           "PowerCost":"1",
           "LvLimited":"6",
-          "War":"twar0201,twar0202,twar0203",
+          "War":"twar0201,twar0202,twar0203,twar0204,twar0205",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -868,7 +868,7 @@
           "GateId":"d03",
           "PowerCost":"1",
           "LvLimited":"9",
-          "War":"twar0301,twar0302,twar0303",
+          "War":"twar0301,twar0302,twar0303,twar0304,twar0305,twar0306",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -876,7 +876,7 @@
           "GateId":"d04",
           "PowerCost":"1",
           "LvLimited":"12",
-          "War":"twar0401,twar0402,twar0403",
+          "War":"twar0401,twar0402,twar0403,twar0404,twar0405,twar0406,twar0407",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -884,7 +884,7 @@
           "GateId":"d05",
           "PowerCost":"1",
           "LvLimited":"15",
-          "War":"twar0501,twar0502,twar0503",
+          "War":"twar0501,twar0502,twar0503,twar0504,twar0505,twar0506,twar0507",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -892,7 +892,7 @@
           "GateId":"d06",
           "PowerCost":"1",
           "LvLimited":"18",
-          "War":"twar0601,twar0602,twar0603",
+          "War":"twar0601,twar0602,twar0603,twar0604,twar0605,twar0606,twar0607,twar0608",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -900,7 +900,7 @@
           "GateId":"d07",
           "PowerCost":"1",
           "LvLimited":"21",
-          "War":"twar0701,twar0702,twar0703",
+          "War":"twar0701,twar0702,twar0703,twar0704,twar0705,twar0706",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -908,7 +908,7 @@
           "GateId":"d08",
           "PowerCost":"1",
           "LvLimited":"25",
-          "War":"twar0801,twar0802,twar0803",
+          "War":"twar0801,twar0802,twar0803,twar0804,twar0805,twar0806",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -916,7 +916,7 @@
           "GateId":"d09",
           "PowerCost":"1",
           "LvLimited":"29",
-          "War":"twar0901,twar0902,twar0903",
+          "War":"twar0901,twar0902,twar0903,twar0904,twar0905,twar0906,twar0907",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -924,7 +924,7 @@
           "GateId":"d10",
           "PowerCost":"1",
           "LvLimited":"33",
-          "War":"twar1001,twar1002,twar1003",
+          "War":"twar1001,twar1002,twar1003,twar1004,twar1005,twar1006,twar1007",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -932,7 +932,7 @@
           "GateId":"d11",
           "PowerCost":"1",
           "LvLimited":"38",
-          "War":"twar1101,twar1102,twar1103",
+          "War":"twar1101,twar1102,twar1103,twar1104,twar1105,twar1106",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -940,7 +940,7 @@
           "GateId":"d12",
           "PowerCost":"1",
           "LvLimited":"44",
-          "War":"twar1201,twar1202,twar1203",
+          "War":"twar1201,twar1202,twar1203,twar1204,twar1205,twar1206",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -948,7 +948,7 @@
           "GateId":"d13",
           "PowerCost":"1",
           "LvLimited":"51",
-          "War":"twar1301,twar1302,twar1303",
+          "War":"twar1301,twar1302,twar1303,twar1304,twar1305,twar1306",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -956,7 +956,7 @@
           "GateId":"d14",
           "PowerCost":"1",
           "LvLimited":"59",
-          "War":"twar1401,twar1402,twar1403",
+          "War":"twar1401,twar1402,twar1403,twar1404,twar1405,twar1406",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -964,7 +964,7 @@
           "GateId":"d15",
           "PowerCost":"1",
           "LvLimited":"68",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -972,7 +972,7 @@
           "GateId":"d16",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -980,7 +980,7 @@
           "GateId":"d17",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -988,7 +988,7 @@
           "GateId":"d18",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -996,7 +996,7 @@
           "GateId":"d19",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1004,7 +1004,7 @@
           "GateId":"d20",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1012,7 +1012,7 @@
           "GateId":"d21",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1020,7 +1020,7 @@
           "GateId":"d22",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1028,7 +1028,7 @@
           "GateId":"d23",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1036,7 +1036,7 @@
           "GateId":"d24",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1044,7 +1044,7 @@
           "GateId":"d25",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1052,7 +1052,7 @@
           "GateId":"d26",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1060,7 +1060,7 @@
           "GateId":"d27",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1068,7 +1068,7 @@
           "GateId":"d28",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1076,7 +1076,7 @@
           "GateId":"d29",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1084,7 +1084,7 @@
           "GateId":"d30",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1092,7 +1092,7 @@
           "GateId":"d31",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1100,7 +1100,7 @@
           "GateId":"d32",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1108,7 +1108,7 @@
           "GateId":"d33",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1116,7 +1116,7 @@
           "GateId":"d34",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1124,7 +1124,7 @@
           "GateId":"d35",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1132,7 +1132,7 @@
           "GateId":"d36",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1140,7 +1140,7 @@
           "GateId":"d37",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         },
@@ -1148,7 +1148,7 @@
           "GateId":"d38",
           "PowerCost":"1",
           "LvLimited":"200",
-          "War":"twar1501,twar1502,twar1503",
+          "War":"twar1501,twar1502,twar1503,twar1504,twar1505,twar1506",
           "DropInfo":"",
           "WarriorExp":""
         }
