@@ -10,6 +10,7 @@ var CardData=function()
     this.star=0;
     this.level=0;
     this.level_limit=0;
+    this.reborn_limit=0;
     this.leader_skill=0;
     this.equip_list=[];
     this.exp=0;
@@ -50,6 +51,7 @@ function load_card_data()
         card_data.star=Number(data["CARD"][i].Star);
         card_data.level=Number(data["CARD"][i].Level);
         card_data.level_limit=Number(data["CARD"][i].LevelLimit);
+        card_data.reborn_limit=Number(data["CARD"][i].RebornLimit);
         card_data.leader_skill=data["CARD"][i].LeaderSkill;
         if(data["CARD"][i].EquipListReborn)
         {
