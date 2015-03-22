@@ -554,6 +554,17 @@ function on_card_reborn(data,send,s)
         global.log("_card_data==undefined||_card_json_data==undefined");
         return;
     }
+
+    if(_card_data.b_level>=_card_json_data.reborn_limit)
+    {
+        var msg = {
+            "op" : msg_id.NM_CARD_REBORN,
+            "ret" : msg_code.REBORN_EXCEED_LIMIT
+        };
+        send(msg);
+        return;
+    }
+
     var lv_limit=0;
     switch(_card_data.b_level)
     {
