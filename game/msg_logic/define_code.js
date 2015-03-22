@@ -108,6 +108,7 @@ function MsgCode()
     this.ACCOUNT_GUEST_ERROR =65; //账号不能以guest开头PWD_TOO_LONG
     this.PWD_FORMAT_ERROR =66; //密码长度介于6到20个字符之间
     this.LEVEL_EXCEED_LIMIT=67;//武将等级超过上限！
+    this.REBORN_EXCEED_LIMIT=68;//武将已经达到最大转生等级！
 }
 exports.msg_code = new MsgCode();
 

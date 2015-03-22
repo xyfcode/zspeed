@@ -280,9 +280,9 @@ function on_explore(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_EXPLORE,
-        "eventId" : 7021,
-        "reward" : [],
-        "ratio" : 1,
+        "eventId" : event_id,
+        "reward" : result.reward,
+        "ratio" : result.ratio,
         "ret" : msg_code.SUCC
     };
     send(msg);
