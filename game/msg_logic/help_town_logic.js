@@ -214,6 +214,7 @@ function on_get_challenge_town(data,send,s)
             client_data.owner_uid=_town_db_data.owner_grid;
             client_data.owner_name=owner_formation_data.name;
             client_data.leader_xid=owner_formation_data.card_ls[0].card_id;
+            client_data.guard_uid=_town_db_data.guard_data.unique_id;
             client_data.guard_xid=_town_db_data.guard_data.card_id;
             client_data.guard_level=_town_db_data.guard_data.level;
             client_data.guard_rlevel=_town_db_data.guard_data.b_level;
