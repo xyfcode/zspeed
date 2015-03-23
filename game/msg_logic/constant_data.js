@@ -65,14 +65,8 @@ var ConstValue=function()
     this.EXCHANGE_COST=0;
     //武将超出角色等级限制
     this.CARD_EXCEED_ROLE_LIMIT=0;
-    //转生等级1级限制
-    this.REBORN_LEVEL_ONE=0;
-    this.REBORN_LEVEL_TWO=0;
-    this.REBORN_LEVEL_THREE=0;
-    this.REBORN_LEVEL_FOUR=0;
-    this.REBORN_LEVEL_FIVE=0;
-    this.REBORN_LEVEL_SIX=0;
-    this.REBORN_LEVEL_SEVEN=0;
+    //转生等级限制
+    this.REBORN_LEVEL=0;
     //招募开启等级
     this.RECRUIT_LEVEL=0;
     //强化开启等级
@@ -260,16 +254,7 @@ function load_constant_data()
         const_value.EXCHANGE_HOUR= Number(data["CONST"][i].ExchangeHour);
         const_value.EXCHANGE_COST= Number(data["CONST"][i].ExchangeCost);
         const_value.CARD_EXCEED_ROLE_LIMIT= Number(data["CONST"][i].CardExceedRoleLimit);
-
-        const_value.REBORN_LEVEL_ONE= Number(data["CONST"][i].Reborn1Level);
-        const_value.REBORN_LEVEL_TWO= Number(data["CONST"][i].Reborn2Level);
-        const_value.REBORN_LEVEL_THREE= Number(data["CONST"][i].Reborn3Level);
-        const_value.REBORN_LEVEL_FOUR= Number(data["CONST"][i].Reborn4Level);
-        const_value.REBORN_LEVEL_FIVE= Number(data["CONST"][i].Reborn5Level);
-        const_value.REBORN_LEVEL_SIX= Number(data["CONST"][i].Reborn6Level);
-        const_value.REBORN_LEVEL_SEVEN= Number(data["CONST"][i].Reborn7Level);
-
-
+        const_value.REBORN_LEVEL= (data["CONST"][i].RebornLevel).split(',');
         const_value.RECRUIT_LEVEL= Number(data["CONST"][i].RecruitLv);
         const_value.STRENGTH_LEVEL= Number(data["CONST"][i].StrengthenLv);
         const_value.LOGIN_LEVEL= Number(data["CONST"][i].LoginLv);
@@ -295,5 +280,5 @@ function load_constant_data()
     var logData=log_data_logic.help_create_log_data("sys","sys","sys","sys","sys","load_constant_data",log_content,log_data.logType.LOG_CONFIG);
     log_data_logic.log(logData);
 
-};
+}
 

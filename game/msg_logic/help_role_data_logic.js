@@ -44,7 +44,7 @@ function make_role_level(role,exp)
     }
 
     //增加经验
-    role.exp+=exp;
+    role.exp+=Math.floor(exp);
 
     var exp_json_data = role_exp_data.role_exp_data_list[role.level];
     //超过最大等级
@@ -63,7 +63,7 @@ function make_role_level(role,exp)
             global.log("_formation_data==undefined");
             return;
         }
-        role.exp-=exp_json_data.exp_limit;
+        role.exp-=Math.floor(exp_json_data.exp_limit);
         role.level +=1;
         //体力加满
         role.stamina=(role.stamina>const_value.STAMINA_MAX?role.stamina:const_value.STAMINA_MAX);

@@ -396,23 +396,19 @@ function on_card_strengthen(data,send,s)
 
     //等级限制
     var lv_limit=card_json_data.level_limit;
-    switch(_card_data.b_level)
+    if(_card_data.b_level>=3)
     {
-        case 3:
-            lv_limit=const_value.REBORN_LEVEL_FOUR;
-            break;
-        case 4:
-            lv_limit=const_value.REBORN_LEVEL_FIVE;
-            break;
-        case 5:
-            lv_limit=const_value.REBORN_LEVEL_SIX;
-            break;
-        case 6:
-            lv_limit=const_value.REBORN_LEVEL_SEVEN;
-            break;
+        lv_limit=Number(const_value.REBORN_LEVEL[_card_data.b_level]);
+        if(!lv_limit)
+        {
+            lv_limit=Number(const_value.REBORN_LEVEL[const_value.REBORN_LEVEL.length-1]);
+        }
     }
 
-    if(_card_data.level>lv_limit)
+    var role_lv_limit=role.level+const_value.CARD_EXCEED_ROLE_LIMIT;
+    lv_limit=lv_limit>role_lv_limit?role_lv_limit:lv_limit;
+
+    if(_card_data.level>=lv_limit)
     {
         var msg = {
             "op" : msg_id.NM_CARD_STRENGTH,
@@ -565,31 +561,8 @@ function on_card_reborn(data,send,s)
         return;
     }
 
-    var lv_limit=0;
-    switch(_card_data.b_level)
-    {
-        case 0:
-            lv_limit=const_value.REBORN_LEVEL_ONE;
-            break;
-        case 1:
-            lv_limit=const_value.REBORN_LEVEL_TWO;
-            break;
-        case 2:
-            lv_limit=const_value.REBORN_LEVEL_THREE;
-            break;
-        case 3:
-            lv_limit=const_value.REBORN_LEVEL_FOUR;
-            break;
-        case 4:
-            lv_limit=const_value.REBORN_LEVEL_FIVE;
-            break;
-        case 5:
-            lv_limit=const_value.REBORN_LEVEL_SIX;
-            break;
-        case 6:
-            lv_limit=const_value.REBORN_LEVEL_SEVEN;
-            break;
-    }
+    var lv_limit=const_value.REBORN_LEVEL[_card_data.b_level];
+
 
     if(_card_data.level<lv_limit)
     {
@@ -641,7 +614,7 @@ function on_card_reborn(data,send,s)
     }
 
 
-    var cost_money=Math.floor(1380000*(_card_data.b_level+1)/66);
+    var cost_money=Math.floor(Math.pow(_card_data.b_level+1,2)/140*1237228);
     var pay_ok=money_logic.help_pay_money(role,cost_money);
     if(pay_ok)
     {
@@ -935,14 +908,13 @@ var help_card_level_up=function(role,role_card_data,exp)
     }
 
     var card_json_data=card_data.card_data_list[role_card_data.card_id];
-    if(card_json_data==undefined)
+    var _card_exp_data=card_exp_data.card_exp_data_list[role_card_data.level];
+    if(card_json_data==undefined || _card_exp_data==undefined)
     {
-        global.log("card_json_data == undefined");
+        global.log("card_json_data==undefined || _card_exp_data==undefined");
         return;
     }
-    role_card_data.exp+=exp;
 
-    var _card_exp_data=card_exp_data.card_exp_data_list[role_card_data.level];
 
     /*
     * 1：武将等级不能超过角色等级+10；
@@ -954,32 +926,42 @@ var help_card_level_up=function(role,role_card_data,exp)
 
     //等级限制
     var lv_limit=card_json_data.level_limit;
-    switch(role_card_data.b_level)
+    if(role_card_data.b_level>=3)
     {
-        case 3:
-            lv_limit=const_value.REBORN_LEVEL_FOUR;
-            break;
-        case 4:
-            lv_limit=const_value.REBORN_LEVEL_FIVE;
-            break;
-        case 5:
-            lv_limit=const_value.REBORN_LEVEL_SIX;
-            break;
-        case 6:
-            lv_limit=const_value.REBORN_LEVEL_SEVEN;
-            break;
+        lv_limit=Number(const_value.REBORN_LEVEL[role_card_data.b_level]);
+        if(!lv_limit)
+        {
+            lv_limit=Number(const_value.REBORN_LEVEL[const_value.REBORN_LEVEL.length-1]);
+        }
+    }
+
+    var role_lv_limit=role.level+const_value.CARD_EXCEED_ROLE_LIMIT;
+
+    lv_limit=lv_limit>role_lv_limit?role_lv_limit:lv_limit;
+
+    //不能超过等级上限
+    if(role_card_data.level>=lv_limit)
+    {
+        return;
     }
 
 
+    role_card_data.exp+=Math.floor(exp);
 
      while(_card_exp_data
      &&role_card_data.exp>=_card_exp_data.exp_limit*card_json_data.exp_param
      &&role_card_data.level<=role.level+const_value.CARD_EXCEED_ROLE_LIMIT
      &&role_card_data.level<=lv_limit)
     {
-        role_card_data.exp-=_card_exp_data.exp_limit*card_json_data.exp_param;
+        role_card_data.exp-=Math.floor(_card_exp_data.exp_limit*card_json_data.exp_param);
         role_card_data.level++;
         _card_exp_data=card_exp_data.card_exp_data_list[role_card_data.level];
+    }
+
+    //升完级之后，如果超过等级上限，归零
+    if(role_card_data.level>=lv_limit)
+    {
+        role_card_data.exp=0;
     }
 
     //更新阵型
