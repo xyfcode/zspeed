@@ -35,7 +35,7 @@
           "Boss":"60141",
           "FirstExp":"12",
           "FirstCoin":"30",
-          "FirstDrop":"1041",
+          "FirstDrop":"1040",
           "CommonExp":"6",
           "CommonCoin":"15",
           "CommonDrop":"1041"
@@ -45,7 +45,7 @@
           "Boss":"60151",
           "FirstExp":"14",
           "FirstCoin":"35",
-          "FirstDrop":"1051",
+          "FirstDrop":"1050",
           "CommonExp":"7",
           "CommonCoin":"18",
           "CommonDrop":"1051"
@@ -55,7 +55,7 @@
           "Boss":"60211,60212",
           "FirstExp":"3,3",
           "FirstCoin":"7,7",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"1,1",
           "CommonCoin":"3,3",
           "CommonDrop":"0,0"
@@ -65,7 +65,7 @@
           "Boss":"60213,60214",
           "FirstExp":"3,3",
           "FirstCoin":"7,7",
-          "FirstDrop":"2011,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"1,1",
           "CommonCoin":"3,3",
           "CommonDrop":"2011,0"
@@ -75,7 +75,7 @@
           "Boss":"60215",
           "FirstExp":"5",
           "FirstCoin":"13",
-          "FirstDrop":"2012",
+          "FirstDrop":"2010",
           "CommonExp":"3",
           "CommonCoin":"7",
           "CommonDrop":"2012"
@@ -85,7 +85,7 @@
           "Boss":"60221",
           "FirstExp":"6",
           "FirstCoin":"15",
-          "FirstDrop":"2021",
+          "FirstDrop":"91001",
           "CommonExp":"3",
           "CommonCoin":"8",
           "CommonDrop":"2021"
@@ -95,7 +95,7 @@
           "Boss":"60222,60223",
           "FirstExp":"3,3",
           "FirstCoin":"8,8",
-          "FirstDrop":"2022,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"4,4",
           "CommonDrop":"2022,0"
@@ -105,7 +105,7 @@
           "Boss":"60224",
           "FirstExp":"6",
           "FirstCoin":"15",
-          "FirstDrop":"0",
+          "FirstDrop":"2020",
           "CommonExp":"3",
           "CommonCoin":"8",
           "CommonDrop":"0"
@@ -115,7 +115,7 @@
           "Boss":"60231,60232",
           "FirstExp":"3,3",
           "FirstCoin":"8,8",
-          "FirstDrop":"2031,2032",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"4,4",
           "CommonDrop":"2031,2032"
@@ -125,7 +125,7 @@
           "Boss":"60233,60234",
           "FirstExp":"3,3",
           "FirstCoin":"8,8",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"4,4",
           "CommonDrop":"0,0"
@@ -135,7 +135,7 @@
           "Boss":"60235",
           "FirstExp":"6",
           "FirstCoin":"15",
-          "FirstDrop":"0",
+          "FirstDrop":"2030",
           "CommonExp":"3",
           "CommonCoin":"8",
           "CommonDrop":"0"
@@ -145,7 +145,7 @@
           "Boss":"60241,60242",
           "FirstExp":"3,3",
           "FirstCoin":"8,8",
-          "FirstDrop":"2041,2042",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"4,4",
           "CommonDrop":"2041,2042"
@@ -155,7 +155,7 @@
           "Boss":"60243,60244",
           "FirstExp":"3,3",
           "FirstCoin":"8,8",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"4,4",
           "CommonDrop":"0,0"
@@ -165,7 +165,7 @@
           "Boss":"60245",
           "FirstExp":"7",
           "FirstCoin":"17",
-          "FirstDrop":"0",
+          "FirstDrop":"2040",
           "CommonExp":"3",
           "CommonCoin":"8",
           "CommonDrop":"0"
@@ -175,7 +175,7 @@
           "Boss":"60251,60252",
           "FirstExp":"3,3",
           "FirstCoin":"8,8",
-          "FirstDrop":"2051,2052",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"4,4",
           "CommonDrop":"2051,2052"
@@ -185,7 +185,7 @@
           "Boss":"60253,60254",
           "FirstExp":"3,3",
           "FirstCoin":"8,8",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"4,4",
           "CommonDrop":"0,0"
@@ -193,10 +193,10 @@
         "20":{
           "WarId":"war020503",
           "Boss":"60255",
-          "FirstExp":"7",
+          "FirstExp":"8",
           "FirstCoin":"17",
-          "FirstDrop":"0",
-          "CommonExp":"3",
+          "FirstDrop":"2050",
+          "CommonExp":"4",
           "CommonCoin":"8",
           "CommonDrop":"0"
         },
@@ -215,7 +215,7 @@
           "Boss":"60313,60314",
           "FirstExp":"4,4",
           "FirstCoin":"9,9",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"5,5",
           "CommonDrop":"0,0"
@@ -225,7 +225,7 @@
           "Boss":"60315",
           "FirstExp":"7",
           "FirstCoin":"18",
-          "FirstDrop":"0",
+          "FirstDrop":"91001",
           "CommonExp":"4",
           "CommonCoin":"9",
           "CommonDrop":"0"
@@ -235,7 +235,7 @@
           "Boss":"60321,60322",
           "FirstExp":"4,4",
           "FirstCoin":"9,9",
-          "FirstDrop":"3021,0",
+          "FirstDrop":"3021,91001",
           "CommonExp":"2,2",
           "CommonCoin":"5,5",
           "CommonDrop":"3021,0"
@@ -245,7 +245,7 @@
           "Boss":"60323,60324",
           "FirstExp":"4,4",
           "FirstCoin":"9,9",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"5,5",
           "CommonDrop":"0,0"
@@ -255,7 +255,7 @@
           "Boss":"60325",
           "FirstExp":"7",
           "FirstCoin":"18",
-          "FirstDrop":"0",
+          "FirstDrop":"91001",
           "CommonExp":"4",
           "CommonCoin":"9",
           "CommonDrop":"0"
@@ -265,7 +265,7 @@
           "Boss":"60331,60332",
           "FirstExp":"4,4",
           "FirstCoin":"10,10",
-          "FirstDrop":"3031,0",
+          "FirstDrop":"3031,91001",
           "CommonExp":"2,2",
           "CommonCoin":"5,5",
           "CommonDrop":"3031,0"
@@ -275,7 +275,7 @@
           "Boss":"60333,60334",
           "FirstExp":"4,4",
           "FirstCoin":"10,10",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"5,5",
           "CommonDrop":"0,0"
@@ -285,7 +285,7 @@
           "Boss":"60335",
           "FirstExp":"8",
           "FirstCoin":"20",
-          "FirstDrop":"0",
+          "FirstDrop":"91001",
           "CommonExp":"4",
           "CommonCoin":"10",
           "CommonDrop":"0"
@@ -305,7 +305,7 @@
           "Boss":"60343,60344",
           "FirstExp":"4,4",
           "FirstCoin":"10,10",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"5,5",
           "CommonDrop":"0,0"
@@ -315,7 +315,7 @@
           "Boss":"60345",
           "FirstExp":"8",
           "FirstCoin":"20",
-          "FirstDrop":"0",
+          "FirstDrop":"91001",
           "CommonExp":"4",
           "CommonCoin":"10",
           "CommonDrop":"0"
@@ -335,7 +335,7 @@
           "Boss":"60353,60354",
           "FirstExp":"4,4",
           "FirstCoin":"11,11",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"5,5",
           "CommonDrop":"0,0"
@@ -345,7 +345,7 @@
           "Boss":"60355",
           "FirstExp":"9",
           "FirstCoin":"22",
-          "FirstDrop":"0",
+          "FirstDrop":"91001",
           "CommonExp":"4",
           "CommonCoin":"11",
           "CommonDrop":"0"
@@ -365,7 +365,7 @@
           "Boss":"60363,60364",
           "FirstExp":"4,4",
           "FirstCoin":"11,11",
-          "FirstDrop":"0,0",
+          "FirstDrop":"91001,91001",
           "CommonExp":"2,2",
           "CommonCoin":"5,5",
           "CommonDrop":"0,0"
@@ -375,7 +375,7 @@
           "Boss":"60365",
           "FirstExp":"9",
           "FirstCoin":"22",
-          "FirstDrop":"0",
+          "FirstDrop":"91001",
           "CommonExp":"4",
           "CommonCoin":"11",
           "CommonDrop":"0"
@@ -405,7 +405,7 @@
           "Boss":"60415",
           "FirstExp":"9",
           "FirstCoin":"23",
-          "FirstDrop":"0",
+          "FirstDrop":"91001",
           "CommonExp":"5",
           "CommonCoin":"12",
           "CommonDrop":"0"
