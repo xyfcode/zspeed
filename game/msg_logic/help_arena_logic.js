@@ -503,15 +503,22 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
             }
             else
             {
-                while(mid<rank_arr.length-1)
+                while(mid<=rank_arr.length-1)
                 {
-                    mid++;
-                    if(new_hurt>rank_arr[mid].hurt)
+                    //最后一名
+                    if(mid==rank_arr.length-1)
+                    {
+                        ret.new_rank=rank_arr.length;
+                        break;
+                    }
+                    else if(new_hurt>rank_arr[mid].hurt)
                     {
                         rank_arr.splice(mid,0,new_rank_data);
                         ret.new_rank=mid+1;
                         break;
                     }
+                    mid++;
+
                 }
             }
         }
@@ -524,6 +531,15 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
 
         //计算超越玩家百分比，排名所占百分比
         ret.exceed=Math.ceil((rank_arr.length-ret.new_rank+1)/rank_arr.length*100);
+        if(ret.exceed>=100)
+        {
+            global.log("ret.exceed:"+ret.exceed);
+            global.log("rank_arr.length:"+rank_arr.length);
+            global.log("rank_arr:"+JSON.stringify(rank_arr));
+            global.log("ret.new_rank:"+ret.new_rank);
+            global.err("exceed is error");
+            ret.exceed=100;
+        }
     }
     return ret;
 };

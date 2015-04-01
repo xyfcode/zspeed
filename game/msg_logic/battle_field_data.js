@@ -10,7 +10,7 @@ var BattleData=function()
     this.gate=[];
     this.lv_limit=[];
     this.count_limit=[];
-}
+};
 
 var battle_field_data_list={};
 exports.battle_field_data_list=battle_field_data_list;

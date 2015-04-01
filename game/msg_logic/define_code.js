@@ -109,6 +109,7 @@ function MsgCode()
     this.PWD_FORMAT_ERROR =66; //密码长度介于6到20个字符之间
     this.LEVEL_EXCEED_LIMIT=67;//武将等级超过上限！
     this.REBORN_EXCEED_LIMIT=68;//武将已经达到最大转生等级！
+    this.GATE_NOT_OPNE=69;//关卡未开启！
 }
 exports.msg_code = new MsgCode();
 

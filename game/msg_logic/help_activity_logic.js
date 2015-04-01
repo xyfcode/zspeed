@@ -573,7 +573,7 @@ function on_sacrifice(data,send,s)
 
         for(var i=0;i<drop_data.length;i++)
         {
-            var gain_item=drop_logic.help_put_item_to_role(role,drop_data[i].id,drop_data[i].num,drop_data[i].type);
+            var gain_item=drop_logic.help_put_item_to_role(role,drop_data[i].xid,drop_data[i].count,drop_data[i].type);
             if(gain_item)
             {
                 var obj_item=new Object();

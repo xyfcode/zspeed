@@ -42,7 +42,7 @@ function help_open_role_town(role,tid)
     var town_bag_data=role.town_bag;
     if(tid == undefined)
     {
-        global.log("fb_id == undefined");
+        global.log("tid == undefined");
         return;
     }
 
@@ -584,6 +584,17 @@ function help_town_reward_data(data,send,s)
     if(parent_id==undefined)
     {
         global.log("parent_id==undefined");
+        return;
+    }
+
+    var _town_bag_data=role.town_bag[parent_id];
+    if(!_town_bag_data.passed)
+    {
+        var msg = {
+            "op" :msg_id.NM_WAR_REWARD_DATA,
+            "ret" : msg_code.TOWN_NOT_PASSED
+        };
+        send(msg);
         return;
     }
 

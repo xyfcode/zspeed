@@ -693,7 +693,7 @@ function on_fight_friend_data(data,send,s)
         {
             temp_arr.push(help_organize_client_friend_data(temp_full_arr[random_index[i]]));
         }
-    };
+    }
 
      //机器人
     if(friend_arr.length==0&&temp_full_arr.length==0)

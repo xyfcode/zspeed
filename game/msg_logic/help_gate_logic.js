@@ -338,17 +338,30 @@ function help_gate_reward_data(data,send,s)
     }
 
     var is_first=1;
+    var is_open=0; //该关卡是否已经开启
     var _town_bag_data=role.town_bag[parent_id];
     for(var i=0;i<_town_bag_data.gate.length;i++)
     {
         if(_town_bag_data.gate[i].gate_id==gate_id)
         {
+            is_open=1;
             if(_town_bag_data.gate[i].passed)
             {
                 is_first=0;
             }
             break;
         }
+    }
+
+    if(!is_open)
+    {
+        global.err("gate is not open!");
+        var msg = {
+            "op" :msg_id.NM_WAR_REWARD_DATA,
+            "ret" : msg_code.GATE_NOT_OPNE
+        };
+        send(msg);
+        return;
     }
 
     //缓存奖励数据
@@ -771,10 +784,12 @@ function help_open_role_gate(role)
         return;
     }
 
+    var is_exist=0;
     for(var i=0;i<role_tn_bag.gate.length;i++)
     {
         if(role_tn_bag.gate[i].gate_id==fight_user_data.gate_id)
         {
+            is_exist=1;
             if(role_tn_bag.gate[i].passed==1)
             {
                 //已经过关
@@ -783,8 +798,14 @@ function help_open_role_gate(role)
             else
             {
                 role_tn_bag.gate[i].passed=1;
+                break;
             }
         }
+    }
+    if(!is_exist)
+    {
+        global.err("gate is not exist,fight_user_data.gate_id:"+fight_user_data.gate_id);
+        return;
     }
 
     var tn_json_data=tn_data.town_data_list[tid];
@@ -798,13 +819,10 @@ function help_open_role_gate(role)
     if(tn_json_data.gate.length>role_tn_bag.gate.length)
     {
         //开启下一个关卡
-        if(role_tn_bag.gate[tn_json_data.gate.length]==undefined)
-        {
-            var role_gate_data=new ds.Role_Gate_Data();
-            role_gate_data.is_first=1;
-            role_gate_data.gate_id=tn_json_data.gate[role_tn_bag.gate.length];
-            role_tn_bag.gate.push(role_gate_data);
-        }
+        var role_gate_data=new ds.Role_Gate_Data();
+        role_gate_data.is_first=1;
+        role_gate_data.gate_id=tn_json_data.gate[role_tn_bag.gate.length];
+        role_tn_bag.gate.push(role_gate_data);
     }
     else
     {

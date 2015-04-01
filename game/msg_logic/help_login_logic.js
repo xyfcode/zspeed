@@ -84,7 +84,7 @@ function on_user_socket_connect(s)
     s.interval = setInterval(function(){
         help_user_tick(s);
     },3*1000);
-};
+}
 exports.on_user_socket_connect = on_user_socket_connect;
 
 //关闭玩家socket连接(私有函数)
@@ -102,7 +102,7 @@ function help_close_user_socket(s)
         clearInterval(s.interval);
         s = null;
     }
-};
+}
 
 
 //玩家socket断开连接,用户下线
@@ -173,7 +173,7 @@ function on_user_socket_close(s)
     {
         help_close_user_socket(s);
     }
-};
+}
 exports.on_user_socket_close = on_user_socket_close;
 
 //用户登录
@@ -231,7 +231,7 @@ function on_user_login(data,send,s)
         global.log("billing socket error!");
     }
 
-};
+}
 exports.on_user_login = on_user_login;
 
 //创建用户数据结构
@@ -379,7 +379,7 @@ function on_create_role(data,send,s)
             }
         });
 
-};
+}
 exports.on_create_role = on_create_role;
 
 //初始化用户数据
@@ -404,7 +404,7 @@ function help_initialize_role_info(role)
            card_logic.help_create_role_card(role,card_arr[i]);
        }
    }
-};
+}
 
 //进入游戏
 function on_enter_game(data,send,s)
@@ -511,7 +511,7 @@ function on_enter_game(data,send,s)
     log_data_logic.log(logData);
 
 
-};
+}
 exports.on_enter_game = on_enter_game;
 
 //随机用户名
@@ -573,7 +573,7 @@ function on_random_name(data,send,s)
     send(msg);
 
     user.rand_name.name = _name;
-};
+}
 exports.on_random_name = on_random_name;
 
 //断线重新连接
@@ -670,7 +670,7 @@ function on_user_reconnect(data,send,s)
         };
         billing_socket.send(msg);
     }
-};
+}
 exports.on_user_reconnect = on_user_reconnect;
 
 //快速登录账号重新绑定
@@ -808,4 +808,4 @@ function help_reset_user_state(user,send,s)
 
     user.send = send;
     user.socket = s;
-};
+}

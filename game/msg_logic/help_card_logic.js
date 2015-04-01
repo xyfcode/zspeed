@@ -384,7 +384,7 @@ function on_card_strengthen(data,send,s)
     }
 
     //不能超过角色+10
-    if(_card_data.level>role.level+const_value.CARD_EXCEED_ROLE_LIMIT)
+    if(_card_data.level>=role.level+const_value.CARD_EXCEED_ROLE_LIMIT)
     {
         var msg = {
             "op" : msg_id.NM_CARD_STRENGTH,
@@ -404,9 +404,6 @@ function on_card_strengthen(data,send,s)
             lv_limit=Number(const_value.REBORN_LEVEL[const_value.REBORN_LEVEL.length-1]);
         }
     }
-
-    var role_lv_limit=role.level+const_value.CARD_EXCEED_ROLE_LIMIT;
-    lv_limit=lv_limit>role_lv_limit?role_lv_limit:lv_limit;
 
     if(_card_data.level>=lv_limit)
     {
@@ -596,7 +593,8 @@ function on_card_reborn(data,send,s)
         for(var key in role.card_bag)
         {
             var _material_data=role.card_bag[key];
-            if(_material_data.card_id==_card_data.card_id&&_material_data.unique_id!=_card_data.unique_id&&_material_data.b_level==0)
+            if(_material_data.card_id==_card_data.card_id&&!_material_data.used&&!_material_data.guard
+                &&_material_data.unique_id!=_card_data.unique_id&&_material_data.b_level==0)
             {
                 material_arr.push(_material_data);
             }
@@ -951,7 +949,7 @@ var help_card_level_up=function(role,role_card_data,exp)
      while(_card_exp_data
      &&role_card_data.exp>=_card_exp_data.exp_limit*card_json_data.exp_param
      &&role_card_data.level<=role.level+const_value.CARD_EXCEED_ROLE_LIMIT
-     &&role_card_data.level<=lv_limit)
+     &&role_card_data.level<lv_limit)
     {
         role_card_data.exp-=Math.floor(_card_exp_data.exp_limit*card_json_data.exp_param);
         role_card_data.level++;
