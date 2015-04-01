@@ -203,7 +203,7 @@ exports.server = function(server)
     town_logic.init(server);
     purchase_shop_logic.init(server);
     //释放对象
-    json_config_file.json_config_file_list={};
+    json_config_file.json_config_file_list=null;
 
 };
 
