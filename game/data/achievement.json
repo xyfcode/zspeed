@@ -13,9 +13,9 @@
           "RewardType1":"5",
           "RewardId1":"",
           "RewardNum1":"115",
-          "RewardType2":"",
-          "RewardId2":"",
-          "RewardNum2":""
+          "RewardType2":"1",
+          "RewardId2":"4103",
+          "RewardNum2":"1"
         },
         "2":{
           "Id":"2",
@@ -27,12 +27,12 @@
           "IntParam":"",
           "SParam1":"",
           "SParam2":"",
-          "RewardType1":"1",
-          "RewardId1":"4103",
-          "RewardNum1":"1",
-          "RewardType2":"4",
+          "RewardType1":"4",
+          "RewardId1":"",
+          "RewardNum1":"20",
+          "RewardType2":"",
           "RewardId2":"",
-          "RewardNum2":"20"
+          "RewardNum2":""
         },
         "3":{
           "Id":"3",

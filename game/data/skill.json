@@ -13,12 +13,12 @@
         "3":{
           "SkillId":"5003",
           "Resource":"",
-          "Percent":"0.5"
+          "Percent":"1"
         },
         "4":{
           "SkillId":"5004",
           "Resource":"",
-          "Percent":""
+          "Percent":"3.8"
         },
         "5":{
           "SkillId":"5005",

@@ -5,7 +5,7 @@
           "PowerCost":"5",
           "LvLimited":"",
           "War":"war010101",
-          "DropInfo":"3,s1e11",
+          "DropInfo":"",
           "WarriorExp":"4"
         },
         "2":{
@@ -29,7 +29,7 @@
           "PowerCost":"5",
           "LvLimited":"",
           "War":"war010401",
-          "DropInfo":"3,s1e71",
+          "DropInfo":"3,s1e41",
           "WarriorExp":"10"
         },
         "5":{
@@ -37,7 +37,7 @@
           "PowerCost":"5",
           "LvLimited":"",
           "War":"war010501",
-          "DropInfo":"3,s1e71",
+          "DropInfo":"3,s1e71|3,s1e31",
           "WarriorExp":"12"
         },
         "6":{
@@ -101,7 +101,7 @@
           "PowerCost":"5",
           "LvLimited":"",
           "War":"war030301,war030302,war030303",
-          "DropInfo":"3,s1e81",
+          "DropInfo":"3,s1e81|3,s1e121",
           "WarriorExp":"20"
         },
         "14":{
@@ -141,7 +141,7 @@
           "PowerCost":"5",
           "LvLimited":"",
           "War":"war040201,war040202,war040203",
-          "DropInfo":"3,s1e41|3,s1e81",
+          "DropInfo":"3,s1e71|3,s1e81",
           "WarriorExp":"26"
         },
         "19":{
@@ -301,7 +301,7 @@
           "PowerCost":"5",
           "LvLimited":"",
           "War":"war070401,war070402,war070403",
-          "DropInfo":"3,s1e121|3,s2e122",
+          "DropInfo":"3,s2e122",
           "WarriorExp":"46"
         },
         "39":{

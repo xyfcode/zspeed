@@ -1585,7 +1585,7 @@
           "EquipListReborn":"s1e11,s1e61,s1e71",
           "Coin":"50",
           "CoinGrowth":"1",
-          "Exp":"400",
+          "Exp":"3000",
           "ExpGrowth":"4",
           "ExpParameters":"0.25",
           "RebornLimit":"0"
@@ -1600,7 +1600,7 @@
           "EquipListReborn":"s1e31,s1e61,s1e71",
           "Coin":"100",
           "CoinGrowth":"1",
-          "Exp":"800",
+          "Exp":"6000",
           "ExpGrowth":"4",
           "ExpParameters":"0.4",
           "RebornLimit":"0"
