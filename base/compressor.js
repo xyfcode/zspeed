@@ -5,7 +5,7 @@ var g = {};
 function mycrypto(type)
 {
     this._crypto = g[type] ? g[type] : g["gzip"];
-};
+}
 
 mycrypto.prototype.encode = function(buffer,cb)
 {

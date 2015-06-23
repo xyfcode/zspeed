@@ -68,12 +68,12 @@ DBProvider.prototype.find = function(collectionName, condition, option, callback
     var length=arguments.length;
     if(length==2)
     {
-        var option={};
+        option={};
     }
     else if(length==3)
     {
-        var callback=arguments[2];
-        var option={};
+        callback=arguments[2];
+        option={};
     }
 
     this.getCollection(collectionName, function(error, collection) {
@@ -120,8 +120,7 @@ DBProvider.prototype.insert = function(collectionName, doc, callback) {
 
         }
         else {
-            //如果不指定{safe:true}，则不会执行回调函数
-            collection.insert(doc,{safe:true},function(error,objects){
+            collection.insert(doc,{},function(error,objects){
                 if(error){
                     global.err(error);
                 }
@@ -131,7 +130,7 @@ DBProvider.prototype.insert = function(collectionName, doc, callback) {
                         callback(true);
                     }
                 }
-            })
+            });
         }
     });
 };
@@ -143,7 +142,7 @@ DBProvider.prototype.update = function(collectionName, options,obj_new,  callbac
             global.err(error);
         }
         else {
-            collection.update(options,obj_new,{safe:true},function(error){
+            collection.update(options,obj_new,{},function(error){
                 if(error){
                     global.err(error);
                 }

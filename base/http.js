@@ -1,7 +1,7 @@
 var http = require("http");
 
 var express = require("express");
-var routes = require('../server/routes');
+//var routes = require('../server/routes');
 var path = require('path');
 
 exports.initserver = function(h_conf)

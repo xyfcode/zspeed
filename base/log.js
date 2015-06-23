@@ -43,7 +43,7 @@ function log2_struct()
     this.len=0;
     this.type='';
     this.lock=0;
-};
+}
 
 function check_log()
 {
@@ -115,7 +115,7 @@ function check_log()
 
 
     }
-};
+}
 
 function check_err()
 {
@@ -185,7 +185,7 @@ function check_err()
 
 
     }
-};
+}
 
 function check_log2(t_log)
 {
@@ -256,7 +256,7 @@ function check_log2(t_log)
 
 
     }
-};
+}
 
 function write_log(type,logData)
 {
@@ -290,7 +290,7 @@ function write_log(type,logData)
     {
         console.log(str);
     }
-};
+}
 global.log2=write_log;
 
 var log_ok=true;
@@ -324,7 +324,7 @@ function console_log(txt)
         console.log(str);
     }
 
-};
+}
 global.log=console_log;
 
 function err_log(err)
@@ -361,13 +361,13 @@ function err_log(err)
         console.error(err_str);
     }
 
-};
+}
 global.err=err_log;
 
 
 function create_stream(path)
 {
     log_stream[path]=fs.createWriteStream(path ,{flags:'w'});
-};
+}
 
 
