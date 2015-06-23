@@ -251,7 +251,7 @@ function on_gain_arena_reward(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "exp" : role.exp ,
         "level":role.level,
         "gold":role.gold,
@@ -451,7 +451,7 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
         ret.new_rank=ret.old_rank=help_get_hurt_rank(role_grid,old_hurt);
 
         //计算超越玩家百分比，排名所占百分比
-        //ret.exceed=Math.ceil((rank_arr.length-help_get_new_hurt_rank(new_hurt)+1)/rank_arr.length*100);
+        ret.exceed=Math.ceil((rank_arr.length-ret.new_rank+1)/rank_arr.length*100);
         return ret;
     }
     else
@@ -531,7 +531,7 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
 
         //计算超越玩家百分比，排名所占百分比
         ret.exceed=Math.ceil((rank_arr.length-ret.new_rank+1)/rank_arr.length*100);
-        if(ret.exceed>=100)
+        if(ret.exceed>100)
         {
             global.log("ret.exceed:"+ret.exceed);
             global.log("rank_arr.length:"+rank_arr.length);

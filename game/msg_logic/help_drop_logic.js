@@ -32,7 +32,7 @@ function help_put_item_to_role(role,item_id,item_num,item_type)
 
     var item_num=Number(item_num);
 
-    var gain_item=new Object();
+    var gain_item={};
     gain_item.uids=[];
     gain_item.flag=0; //判断是否发送通知
 
@@ -88,15 +88,17 @@ exports.help_put_item_to_role=help_put_item_to_role;
 
 
 //获取掉落数据,根据drop_id drop表ID
-function help_gain_drop_data(drop_id)
+function help_gain_drop_data(drop_id,drop_arr)
 {
     global.log("help_gain_drop_data");
+    var drop_data=drop_arr||[];
+
     if(common_func.isEmpty(drop_id))
     {
-        global.log("param is empty");
-        return;
+        global.log("drop_id is error:"+drop_id);
+        return drop_data;
     }
-    global.log("drop_id:"+drop_id);
+
     var drop_json_data=drop.drop_data_list[drop_id];
     if(drop_json_data==undefined)
     {
@@ -106,21 +108,15 @@ function help_gain_drop_data(drop_id)
 
     //概率
     var probability=drop_json_data.probability;
-    var random_num=common_func.help_make_one_random(1,10000);
+    var random_num=common_func.help_make_one_random(1,100);
 
-    var drop_data=[];
-    if(probability*10000<=random_num)
+
+    if(probability<random_num)
     {
         //概率不足
         global.log("probability inadequate!");
         return drop_data;
-
-        /*var client_drop_data=new Object();
-        client_drop_data.type=-1;
-        drop_data.push(client_drop_data); */
-
     }
-
 
     //全部掉落
     if(drop_json_data.is_all)
@@ -134,7 +130,7 @@ function help_gain_drop_data(drop_id)
             //物品id
             client_drop_data.xid=drop_json_data.drop_ls[i].drop;
             //数量
-            client_drop_data.count=drop_json_data.drop_ls[i].num;
+            client_drop_data.num=drop_json_data.drop_ls[i].num;
             drop_data.push(client_drop_data);
         }
     }
@@ -152,7 +148,7 @@ function help_gain_drop_data(drop_id)
                 //物品id
                 client_drop_data.xid=drop_json_data.drop_ls[j].drop;
                 //数量
-                client_drop_data.count=drop_json_data.drop_ls[j].num;
+                client_drop_data.num=drop_json_data.drop_ls[j].num;
                 drop_data.push(client_drop_data);
                 break;
             }

@@ -9,12 +9,10 @@
 var define_code = require("./define_code");
 var friend_data = require("./friend_data");
 var gate_data=require("./gate_data");
-var skill_data=require("./skill_data");
 var card_data=require("./card_data");
 var activity_data = require("./activity_data");
 var battle_field_data = require("./battle_field_data");
 var formation_data=require("./formation_data");
-var war_data=require("./war_data");
 var make_db = require("./make_db");
 var ds = require("./data_struct");
 var log_data=require("./log_data");
@@ -72,10 +70,9 @@ function on_get_activity_states(data,send,s)
         "visit_max" : 0,
         "visit_now" : 0,
         "can_visit" : 0,
-        "ex_time" : 0,
-        "ex_list" : [],
         "e_count" : 0,
         "e_time" : 0,
+        "battle" :[],
         "ret" : msg_code.SUCC
     };
 
@@ -124,36 +121,7 @@ function on_get_activity_states(data,send,s)
         msg.can_visit=1;
     }
 
-    //更新兑换列表
-    var time_diff=now_time-role.exchange.date;
-    var exchange_time=const_value.EXCHANGE_HOUR*60*60*1000;
-
-    if(time_diff>exchange_time)
-    {
-        //刷新
-        msg.exlist=help_refresh_exchange_data();
-        var times=0;  //倍率
-        do
-        {
-            time_diff-=exchange_time;
-            times++;
-        }while(time_diff>exchange_time);
-        msg.ex_time=exchange_time-time_diff;
-
-        role.exchange.ex_list=msg.exlist;
-        role.exchange.date+=times*exchange_time;
-        user.nNeedSave=1;
-    }
-    else
-    {
-        //时间未到，不刷新
-        msg.ex_time=exchange_time-time_diff;
-        msg.exlist=role.exchange.ex_list;
-    }
-
     //获取探索状态
-
-
     var _millisecond_diff = now_time - role.time_explore;
     var _explore = Math.floor(_millisecond_diff/1000/60/const_value.EXPLORE_TICK);
 
@@ -180,12 +148,53 @@ function on_get_activity_states(data,send,s)
     }
     msg.e_count=role.explore;
 
+    //获取战场活动
+    for(var key in role.battle_bag)
+    {
+        var role_battle_data=role.battle_bag[key];
+        var battle_json_data=battle_field_data.battle_field_data_list[key];
+        if(role_battle_data==undefined||battle_json_data==undefined)
+        {
+            global.log("role_battle_data == undefined||battle_json_data==undefined");
+            return;
+        }
+
+        var client_obj={};
+        client_obj.xid=key;
+        client_obj.gates=[];
+
+        for(var i=0;i<battle_json_data.gate.length;i++)
+        {
+            var obj={};
+            obj.gate_id=battle_json_data.gate[i];
+            obj.times=Number(battle_json_data.count_limit[i]);
+
+            for(var j=0;j<role_battle_data.gate.length;j++)
+            {
+                if(role_battle_data.gate[j].gate_id==obj.gate_id)
+                {
+                    if(!common_func.help_judge_today(role_battle_data.gate[j].date))
+                    {
+                        //次数重置
+                        role_battle_data.gate[j].times=0;
+                    }
+                    obj.times-=role_battle_data.gate[j].times;
+                }
+            }
+
+            client_obj.gates.push(obj);
+        }
+
+        msg.battle.push(client_obj);
+
+    }
+
     send(msg);
 
     var log_content={"msg":msg};
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_get_activity_states",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
-};
+}
 exports.on_get_activity_states = on_get_activity_states;
 
 //吃鸡恢复体力
@@ -244,7 +253,7 @@ function on_eat_chick(data,send,s)
 
             //推送客户端全局修改信息
             var g_msg = {
-                "op" : msg_id.NM_ENTER_GAME,
+                "op" : msg_id.NM_USER_DATA,
                 "stamina":role.stamina, //体力
                 "ret" :msg_code.SUCC
             };
@@ -308,19 +317,20 @@ function on_refresh_exlist(data,send,s)
     if(type==1)
     {
         //时间到了，自动刷新
-        var now=(new Date()).getTime();
-        var diff=now-role.exchange.date;
+        var now_time=(new Date()).getTime();
+        var diff=now_time-role.exchange.date;
 
-        if(diff-const_value.EXCHANGE_HOUR*60*60*1000>0)
+        if(diff+60000-const_value.EXCHANGE_MS>=0)
         {
-            role.exchange.date=now;
+            role.exchange.date=now_time;
             role.exchange.ex_list=help_refresh_exchange_data();
         }
         else
         {
+            global.log("on_refresh_exlist error:"+(diff-const_value.EXCHANGE_MS));
             var msg = {
                 "op" : msg_id.NM_REFRESH_EXLIST,
-                "ret" : msg_code.SERVER_ERROR
+                "ret" : msg_code.EMPTY_ERROR
             };
             send(msg);
             return;
@@ -336,7 +346,7 @@ function on_refresh_exlist(data,send,s)
 
             //推送客户端全局修改信息
             var g_msg = {
-                "op" : msg_id.NM_ENTER_GAME,
+                "op" : msg_id.NM_USER_DATA,
                 "rmb":role.rmb ,
                 "ret" :msg_code.SUCC
             };
@@ -457,7 +467,7 @@ function on_exchange(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "exp" : role.exp ,
         "level":role.level,
         "gold":role.gold,
@@ -475,10 +485,10 @@ function on_exchange(data,send,s)
 }
 exports.on_exchange = on_exchange;
 
-//参拜
-function on_sacrifice(data,send,s)
+//获取兑换店列表
+function on_get_exchange_list(data,send,s)
 {
-    global.log("on_sacrifice");
+    global.log("on_get_exchange_list");
 
     var gid = s.gid;
     if(gid == undefined)
@@ -500,6 +510,53 @@ function on_sacrifice(data,send,s)
         return;
     }
 
+    var msg = {
+        "op" : msg_id.NM_GET_EXCHANGE_LIST,
+        "ret" : msg_code.SUCC
+    };
+
+    //现在时间
+    var now_time=(new Date()).getTime();
+
+    //更新兑换列表
+    var time_diff=now_time-role.exchange.date;
+
+    if(time_diff>const_value.EXCHANGE_MS)
+    {
+        //刷新
+        msg.exlist=help_refresh_exchange_data();
+        var times=0;  //倍率
+        do
+        {
+            time_diff-=const_value.EXCHANGE_MS;
+            times++;
+        }while(time_diff>const_value.EXCHANGE_MS);
+        msg.ex_time=const_value.EXCHANGE_MS-time_diff;
+
+        role.exchange.ex_list=msg.exlist;
+        role.exchange.date+=times*const_value.EXCHANGE_MS;
+        user.nNeedSave=1;
+    }
+    else
+    {
+        //时间未到，不刷新
+        msg.ex_time=const_value.EXCHANGE_MS-time_diff;
+        msg.exlist=role.exchange.ex_list;
+    }
+
+    send(msg);
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_get_exchange_list",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+}
+exports.on_get_exchange_list = on_get_exchange_list;
+
+//参拜
+function on_sacrifice(data,send,s)
+{
+    global.log("on_sacrifice");
+
     var gid = s.gid;
     if(gid == undefined)
     {
@@ -513,7 +570,6 @@ function on_sacrifice(data,send,s)
         global.log("user == undefined");
         return;
     }
-
     var role = ds.get_cur_role(user);
     if(role == undefined)
     {
@@ -550,43 +606,22 @@ function on_sacrifice(data,send,s)
     role_sacrifice_data.times++;
     role_sacrifice_data.date=(new Date()).getTime();
 
-    var gain_gold=sacrifice_json_data.gold;
-    if(gain_gold)
-    {
-        var gold_item={};
-        gold_item.type=const_value.REWARD_TYPE_MONEY;
-        gold_item.xid="";
-        gold_item.uids=[];
-        gold_item.num=gain_gold;
-        items.push(gold_item);
-
-        //金钱结算
-        money_logic.help_gain_money(role,gain_gold);
-    }
+    var drop_arr=[];
 
     //祭拜次数达到
     var is_notify=0;
     if(role_sacrifice_data.times>=sacrifice_json_data.times)
     {
         var drop_id=sacrifice_json_data.drop_id;
-        var drop_data=drop_logic.help_gain_drop_data(drop_id);
+        drop_logic.help_gain_drop_data(drop_id,drop_arr);
 
-        for(var i=0;i<drop_data.length;i++)
+        for(var i=0;i<drop_arr.length;i++)
         {
-            var gain_item=drop_logic.help_put_item_to_role(role,drop_data[i].xid,drop_data[i].count,drop_data[i].type);
-            if(gain_item)
+            var gain_item=drop_logic.help_put_item_to_role(role,drop_arr[i].xid,drop_arr[i].num,drop_arr[i].type);
+            drop_arr[i].uids=gain_item.uids;
+            if(gain_item.flag)
             {
-                var obj_item=new Object();
-                obj_item.type=drop_data[i].type;
-                obj_item.xid=drop_data[i].id;
-                obj_item.uids=gain_item.uids;
-                obj_item.num=drop_data[i].num;
-                items.push(obj_item);
-
-                if(gain_item.flag)
-                {
-                    is_notify=1;
-                }
+                is_notify=1;
             }
         }
         if(is_notify)
@@ -595,9 +630,23 @@ function on_sacrifice(data,send,s)
         }
     }
 
+    var gain_gold=sacrifice_json_data.gold;
+    if(gain_gold)
+    {
+        var gold_item={};
+        gold_item.type=const_value.REWARD_TYPE_MONEY;
+        gold_item.xid="";
+        gold_item.uids=[];
+        gold_item.num=gain_gold;
+        drop_arr.push(gold_item);
+
+        //金钱结算
+        money_logic.help_gain_money(role,gain_gold);
+    }
+
     var msg = {
         "op" : msg_id.NM_SACRIFICE,
-        "items":items,
+        "items":drop_arr,
         "ret" : msg_code.SUCC
     };
     send(msg);
@@ -606,7 +655,7 @@ function on_sacrifice(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "exp" : role.exp ,
         "level":role.level,
         "gold":role.gold,
@@ -624,10 +673,10 @@ function on_sacrifice(data,send,s)
 }
 exports.on_sacrifice = on_sacrifice;
 
-//获取战场数据
-function on_battle_field_data(data,send,s)
+//招财
+function on_money_tree(data,send,s)
 {
-    global.log("on_battle_field_data");
+    global.log("on_money_tree");
 
     var gid = s.gid;
     if(gid == undefined)
@@ -649,56 +698,122 @@ function on_battle_field_data(data,send,s)
         return;
     }
 
-    var battle_id=data.xid;
-    if(battle_id==undefined)
+    var type=data.type;
+    if(type==undefined)
     {
-        global.log("battle_id == undefined");
+        global.log("type == undefined");
         return;
     }
 
-    var role_battle_data=role.battle_bag[battle_id];
-    var battle_json_data=battle_field_data.battle_field_data_list[battle_id];
-    if(role_battle_data==undefined||battle_json_data==undefined)
+    if(role.tree_times>=const_value.MT_VIP_TIMES[role.vip])
     {
-        global.log("role_battle_data == undefined||battle_json_data==undefined");
+        var msg = {
+            "op" : msg_id.NM_MONEY_TREE,
+            "ret" : msg_code.MONTY_TREE_USED
+        };
+        send(msg);
         return;
     }
 
-    var client_data=[];
-    for(var i=0;i<battle_json_data.gate.length;i++)
+    var crit_arr=[];
+    //花费的金钱
+    var cost_rmb=0;
+    var gain_money=0;
+    var times=0;
+    if(type==1)
     {
-        var obj=new Object();
-        obj.gate_id=battle_json_data.gate[i];
-        obj.times=Number(battle_json_data.count_limit[i]);
-
-        for(var j=0;j<role_battle_data.gate.length;j++)
+        cost_rmb=const_value.MT_COST[role.tree_times];
+        var rand=common_func.help_make_one_random(1,10);
+        if(rand<=const_value.MT_Crit_LOW)
         {
-            if(role_battle_data.gate[j].gate_id==obj.gate_id)
+            crit_arr.push(const_value.MT_LOW_GAIN);
+            gain_money+=const_value.MT_GOLD*const_value.MT_LOW_GAIN;
+        }
+        else if(rand<=const_value.MT_Crit_HIGH)
+        {
+            crit_arr.push(const_value.MT_HIGH_GAIN);
+            gain_money+=const_value.MT_GOLD*const_value.MT_HIGH_GAIN;
+        }
+        else
+        {
+            crit_arr.push(1);
+            gain_money+=const_value.MT_GOLD;
+        }
+        times++;
+    }
+    else
+    {
+        var left_times=const_value.MT_VIP_TIMES[role.vip]-role.tree_times;
+        for(var i=0;i<left_times;i++)
+        {
+            cost_rmb+=const_value.MT_COST[role.tree_times+i];
+            var rand=common_func.help_make_one_random(1,10);
+            //注意是<=不是<
+            if(rand<=const_value.MT_Crit_LOW)
             {
-                if(!common_func.help_judge_today(role_battle_data.gate[j].date))
-                {
-                    //次数重置
-                    role_battle_data.gate[j].times=0;
-                }
-                obj.times-=role_battle_data.gate[j].times;
+                crit_arr.push(const_value.MT_LOW_GAIN);
+                gain_money+=const_value.MT_GOLD*const_value.MT_LOW_GAIN;
             }
+            else if(rand<=const_value.MT_Crit_HIGH)
+            {
+                crit_arr.push(const_value.MT_HIGH_GAIN);
+                gain_money+=const_value.MT_GOLD*const_value.MT_HIGH_GAIN;
+            }
+            else
+            {
+                crit_arr.push(1);
+                gain_money+=const_value.MT_GOLD;
+            }
+            times++;
         }
 
-        client_data.push(obj);
     }
 
+    var pay_ok=money_logic.help_pay_rmb(role,cost_rmb);
+    if(!pay_ok)
+    {
+        var msg = {
+            "op" : msg_id.NM_MONEY_TREE,
+            "ret" : msg_code.RMB_NOT_ENOUGH
+        };
+        send(msg);
+        return;
+    }
+
+
+    //结果核算
+    role.tree_times+=times;
+    role.tree_date+=times;
+    money_logic.help_gain_money(role,gain_money);
+
+    user.nNeedSave=1;
+
     var msg = {
-        "op" : msg_id.NM_BATTLE_FIELD_DATA,
-        "battle":client_data,
+        "op" : msg_id.NM_MONEY_TREE,
+        "extra":crit_arr,
         "ret" : msg_code.SUCC
     };
     send(msg);
 
+
+
+    //推送客户端全局修改信息
+    var g_msg = {
+        "op" : msg_id.NM_USER_DATA,
+        "rmb":role.rmb,
+        "gold":role.gold,
+        "used_money_tree":role.tree_times,
+        "ret" :msg_code.SUCC
+    };
+    send(g_msg);
+    global.log(JSON.stringify(g_msg));
+
     var log_content={"msg":msg};
-    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_battle_field_data",log_content,log_data.logType.LOG_BEHAVIOR);
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_money_tree",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
+
 }
-exports.on_battle_field_data = on_battle_field_data;
+exports.on_money_tree = on_money_tree;
 
 function help_battle_reward_data(data,send,s)
 {
@@ -810,7 +925,6 @@ function help_battle_reward_data(data,send,s)
         formation_data.fight_user_data_list[role.grid]=fight_user_data;
     }
 
-    var skill_add=new Object();
     //好友
     if(fight_user_data.is_friend)
     {
@@ -824,21 +938,7 @@ function help_battle_reward_data(data,send,s)
                 break;
             }
         }
-
         fight_user_data.score=const_value.FRIEND_SCORE;
-        var f_formation_data=formation_data.formation_list[fight_user_data.friend_uid];
-        if( f_formation_data==undefined)
-        {
-            global.log("f_formation_data==undefined");
-            return;
-        }
-        var leader_f_card=f_formation_data.card_ls[0];
-        var leader_f_json_card=card_data.card_data_list[leader_f_card.card_id];
-        var leader_f_skill_data=skill_data.skill_data_list[leader_f_json_card.leader_skill];
-        if(leader_f_skill_data && leader_f_skill_data.resource)
-        {
-            skill_add[leader_f_skill_data.resource]=leader_f_skill_data.percent;
-        }
     }
     else
     {
@@ -851,53 +951,31 @@ function help_battle_reward_data(data,send,s)
             fight_user_data.score=0; //没有添加好友操作
         }
     }
-    var role_formation_data=formation_data.formation_list[role.grid];
-    if(role_formation_data==undefined)
-    {
-        global.log("role_formation_data==undefined");
-        return;
-    }
-    var leader_card=role_formation_data.card_ls[0];
-    var leader_json_card=card_data.card_data_list[leader_card.card_id];
-    var leader_skill_data=skill_data.skill_data_list[leader_json_card.leader_skill];
-
-    if(leader_skill_data && leader_skill_data.resource)
-    {
-        if(skill_add[leader_skill_data.resource])
-        {
-            skill_add[leader_skill_data.resource]+=leader_skill_data.percent;
-        }
-        else
-        {
-            skill_add[leader_skill_data.resource]=leader_skill_data.percent;
-        }
-    }
 
     var drops=[];
-    for(var i=0;i<_gate_data.war.length;i++)
+    for(var i=0;i<_gate_data.common_drop.length;i++)
     {
-        var _war_data=war_data.war_data_list[_gate_data.war[i]];
-        if(_war_data==undefined)
-        {
-            global.log("_war_data==undefined");
-            return;
-        }
-        drops.push(help_get_war_drop_data(_war_data,skill_add));
+        drop_logic.help_gain_drop_data(_gate_data.common_drop[i],drops);
     }
+
+    //经验结算
+    var exp={};
+    exp.type=const_value.REWARD_TYPE_EXP;
+    exp.xid="";
+    exp.num=_gate_data.common_exp;
+    drops.push(exp);
+
+    //铜钱结算
+    var gold={};
+    gold.type=const_value.REWARD_TYPE_MONEY;
+    gold.xid="";
+    gold.num=_gate_data.common_coin;
+    drops.push(gold);
 
     fight_user_data.nonce=common_func.help_make_one_random(0,100);
     fight_user_data.parent_id=parent_id;
     fight_user_data.gate_id=gate_id;
     fight_user_data.drops=drops;
-
-    //如果体力是满的，则倒计时从现在开始
-    if(role.stamina>=const_value.STAMINA_MAX)
-    {
-        //预防延迟3秒
-        role.time_stamina=(new Date().getTime()-3*1000);
-    }
-    //体力值结算
-    role.stamina-=Number(_gate_data.power_cost);
 
     var msg=
     {
@@ -909,72 +987,12 @@ function help_battle_reward_data(data,send,s)
     send(msg);
     user.nNeedSave=1;
 
-    //推送客户端全局修改信息
-    var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
-        "stamina":role.stamina, //体力
-        "ret" :msg_code.SUCC
-    };
-    send(g_msg);
-    global.log(JSON.stringify(msg));
-
     var log_content={"msg":msg};
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_gate_reward_data",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
 }
 exports.help_battle_reward_data = help_battle_reward_data;
 
-function help_get_war_drop_data(_war_data,skill_add)
-{
-    global.log("help_get_war_drop_data");
-
-    if(_war_data==undefined)
-    {
-        global.log("_war_data==undefined");
-        return;
-    }
-
-    var war_arr=[];
-    //一场战役最多有三个怪物
-
-    for(var i=0;i<3;i++)
-    {
-        if(_war_data.boss[i])
-        {
-            //随机掉落结算
-            var reward=[];
-            if(_war_data.first_drop[i])
-            {
-                reward=drop_logic.help_gain_drop_data(_war_data.first_drop[i]);
-            }
-
-            //经验结算
-            var exp=new Object();
-            exp.type=const_value.REWARD_TYPE_EXP;
-            exp.xid="";
-            exp.count=Number(_war_data.common_exp[i]);
-            if(skill_add[exp.type])
-            {
-                exp.count+=(exp.count*skill_add[exp.type]);
-            }
-            reward.push(exp);
-
-            //铜钱结算
-            var money=new Object();
-            money.type=const_value.REWARD_TYPE_MONEY;
-            money.xid="";
-            money.count=Number(_war_data.common_coin[i]);
-            if(skill_add[money.type])
-            {
-                money.count+=(money.count*skill_add[money.type]);
-            }
-            reward.push(money);
-            war_arr.push(reward);
-        }
-    }
-
-    return  war_arr;
-}
 
 //活动战场战斗结算
 function help_battle_fight_result(data,send,s)
@@ -1078,33 +1096,17 @@ function help_battle_fight_result(data,send,s)
             role_battle_data.gate.push(_battle_gate_data);
         }
 
-        //经验结算
-        var card_ls=role_formation_data.card_ls;
-        for(var i=0;i<card_ls.length;i++)
-        {
-            var _card_data=role.card_bag[card_ls[i].unique_id];
-            card_logic.help_card_level_up(role,_card_data,_gate_data.exp);
-        }
-
         //积分值结算
         role.score+=Number(fight_user_data.score);
         //掉落结算
         var drops=fight_user_data.drops;
         for(var i=0;i<drops.length;i++)
         {
-            var drop_one_arr=drops[i];
-            for(var j=0;j<drop_one_arr.length;j++)
-            {
-                for(var k=0;k<drop_one_arr[j].length;k++)
-                {
-                    if(drop_one_arr[j][k].type>=0)
-                    {
-                        var gain_item=drop_logic.help_put_item_to_role(role,drop_one_arr[j][k].xid,drop_one_arr[j][k].count,drop_one_arr[j][k].type);
-                        drop_one_arr[j][k].uids=gain_item.uids;
-                    }
-                }
-            }
+            var gain_item=drop_logic.help_put_item_to_role(role,drops[i].xid,drops[i].num,drops[i].type);
+            drops[i].uids=gain_item.uids;
         }
+        //体力值结算
+        role_data_logic.help_reduce_stamina(role,_gate_data.power_cost);
 
         var msg=
         {
@@ -1123,7 +1125,7 @@ function help_battle_fight_result(data,send,s)
 
         //推送客户端全局修改信息
         var g_msg = {
-            "op" : msg_id.NM_ENTER_GAME,
+            "op" : msg_id.NM_USER_DATA,
             "exp" : role.exp ,
             "level":role.level,
             "gold":role.gold,

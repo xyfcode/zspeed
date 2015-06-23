@@ -14,9 +14,10 @@ var CardData=function()
     this.leader_skill=0;
     this.equip_list=[];
     this.exp=0;
-    this.exp_add=0;
+    this.exp_param=0;
     this.money=0;
     this.money_add=0;
+    this.card_score=0;
 };
 
 
@@ -62,8 +63,8 @@ function load_card_data()
         card_data.money_add=Number(data["CARD"][i].CoinGrowth);
 
         card_data.exp=Number(data["CARD"][i].Exp);
-        card_data.exp_add=Number(data["CARD"][i].ExpGrowth);
         card_data.exp_param=Number(data["CARD"][i].ExpParameters);
+        card_data.card_score=Number(data["CARD"][i].WarriorScore);
 
         card_data_list[card_data.card_id]=card_data;
     }

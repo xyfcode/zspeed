@@ -90,6 +90,7 @@ function on_exchange_gift(data,send,s)
     }
     else
     {
+        global.log("on_exchange_gift error");
         var msg = {
             "op" : msg_id.NM_EXCHANGE_GIFT,
             "ret" : msg_code.SERVER_ERROR
@@ -140,7 +141,7 @@ function help_get_gift_result(data,send,s)
                     var item=new Object();
                     item.type=_drop_data[i].type;
                     item.id=_drop_data[i].xid;
-                    item.num=_drop_data[i].count;
+                    item.num=_drop_data[i].num;
 
                     mail_logic.help_create_mail_data(temp_user.gid,temp_user.grid,const_value.MAIL_TYPE_REWARD,_gift_data.des,item);
                 }

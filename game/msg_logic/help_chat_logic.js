@@ -107,7 +107,7 @@ function on_user_chat_data(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "rmb":role.rmb ,
         "free_chat":(const_value.CHAT_FREE_TIMES-role.chat_time),
         "ret" :msg_code.SUCC

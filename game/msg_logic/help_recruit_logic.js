@@ -109,10 +109,10 @@ function on_user_recruit_data(data,send,s)
                 //首次抽卡得四星
                 client_recruit_data.left_count=1;
             }
-            else if(role_recruit_data.count<3)
+            else if(role_recruit_data.count<4)
             {
                 //第三次抽得五星
-                client_recruit_data.left_count=3-role_recruit_data.count;//五星剩余次数
+                client_recruit_data.left_count=4-role_recruit_data.count;//五星剩余次数
             }
             else
             {
@@ -185,16 +185,6 @@ function on_take_card(data,send,s)
     if(recruitId == undefined || type == undefined)
     {
         global.log("recruitId == undefined || type == undefined");
-        return;
-    }
-
-    if(recruitId==1&&Object.keys(role.card_bag).length>=role.cbag_limit)
-    {
-        var msg = {
-            "op" :msg_id.NM_TAKE_CARD,
-            "ret" : msg_code.CARD_BAG_IS_FULL
-        };
-        send(msg);
         return;
     }
 
@@ -311,10 +301,10 @@ function on_take_card(data,send,s)
     var left_count=0;
     if(type==1 && recruitId==1)
     {
-        if(role_recruit_data.count<3)
+        if(role_recruit_data.count<4)
         {
-            //第三次抽五星
-            left_count=3- role_recruit_data.count;//五星剩余次数
+            //第四次抽五星
+            left_count=4- role_recruit_data.count;//五星剩余次数
         }
         else
         {
@@ -334,7 +324,7 @@ function on_take_card(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "gold":role.gold ,
         "rmb":role.rmb ,
         "ret" :msg_code.SUCC
@@ -361,9 +351,9 @@ function help_take_card(role,recruit_json_data,role_recruit_data,take_arr,type)
         take_item = help_get_one_random_item(recruit_json_data.first_coll_arr);
         role_recruit_data.h_count++;
     }
-    else if(type==1 && role_recruit_data.count==2 && recruit_json_data.recruit_id=="1")
+    else if(type==1 && role_recruit_data.count==3 && recruit_json_data.recruit_id=="1")
     {
-        //第三次抽必获五星武将(十连抽不计算在首抽里面，单独计算)
+        //第四次抽必获五星武将(十连抽不计算在首抽里面，单独计算)
         take_item = help_get_one_random_item(recruit_json_data.mid_coll_arr);
         role_recruit_data.l_pro+=role_recruit_data.m_pro;
         role_recruit_data.m_pro=0; //概率重置

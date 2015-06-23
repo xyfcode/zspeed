@@ -64,7 +64,7 @@ function MsgCode()
     this.LEVEL_TOO_LOW=19;//用户等级不足！
     this.FORMATION_NOT_EXIST=20;//阵型不存在！
     this.EXPLOIT_NOT_ENOUGH=21;//功勋不足！
-    this.LEVEL_EXCEED_ROLE_LIMIT=22;//武将等级不可超过主公10级！
+    this.LEVEL_EXCEED_ROLE_LIMIT=22;//武将等级不可超过主公2倍！
     this.COUNT_EXCEED_LIMIT=23;//数量超过上限！
     this.RACE_NOT_MATE=24;//职业不匹配！
     this.TOWN_NOT_PASSED=25;//城池没有通关！
@@ -77,12 +77,12 @@ function MsgCode()
     this.CARD_ON_FORMATION=34;//该武将在阵型上，操作无效！
     this.MAIL_NOT_EXIST=35;//邮件不存在！
     this.ACTIVITY_NOT_OPEN=36;//活动未开启！
-    this.CARD_BAG_IS_FULL=37;//卡牌背包已经满！
+    this.CARD_BAG_IS_FULL=37;//卡牌背包已经满，请前往强化或者扩充背包！
     this.EQUIP_BAG_IS_FULL=38;//装备背包已经满！
     this.STAMINA_NOT_ENOUCH=39;//体力不足！
     this.PIECE_NOT_ENOUCH=40;//碎片数量不够！
     this.EXPLORE_NOT_ENOUCH=41;//探索次数不足！
-    this.SERVER_ERROR=42;//服务器出错啦，请联系客服要补偿
+    this.SERVER_ERROR=42;//服务器出错啦，请检查网络
     this.SIGN_IS_END=43;//已经签过到了
     this.ACHIEVEMENT_NOT_COMPL=44;//成就未完成
     this.MENU_NOT_OPEN=45;//功能未开启
@@ -105,11 +105,21 @@ function MsgCode()
     this.COMPOSE_MATERIAL_NOT_ENOUGH=62;//合成需要的材料不足！
     this.KEY_NOT_ENOUGH=63;//所需钥匙不存在！
     this.ACCOUNT_FORMAT_ERROR =64; //账号和密码只能输入6-20个字母、数字、下划线
-    this.ACCOUNT_GUEST_ERROR =65; //账号不能以guest开头PWD_TOO_LONG
+    this.ACCOUNT_GUEST_ERROR =65; //账号不能以guest开头
     this.PWD_FORMAT_ERROR =66; //密码长度介于6到20个字符之间
     this.LEVEL_EXCEED_LIMIT=67;//武将等级超过上限！
     this.REBORN_EXCEED_LIMIT=68;//武将已经达到最大转生等级！
     this.GATE_NOT_OPNE=69;//关卡未开启！
+    this.ACCOUNT_EXIST=70;//账号已经存在！
+    this.MONTY_TREE_USED=71;//今日次数已经用完！
+    this.CARD_FORGE_ERROR=72;//城守或上阵武将不能作为炼化材料！
+    this.GATE_NOT_PASSED=73;//关卡尚未通过，不可扫荡！
+    this.SWEEP_TIMES_OVER=74;//关卡次数用尽，需要重置次数！
+    this.RESET_TIMES_OVER=75;//重置次数用尽！
+    this.EMPTY_ERROR=76;//错误，但客户端不显示！
+    this.VIP_BUY_ONLY=77;//VIP礼包只能购买一次！
+    this.VIP_LEVEL_LOW=78;//VIP等级不够，请充值！
+
 }
 exports.msg_code = new MsgCode();
 

@@ -8,7 +8,6 @@ var constant_data = require("./msg_logic/constant_data");
 var card_data=require("./msg_logic/card_data");
 var mail_data=require("./msg_logic/mail_data");
 var play_name=require("./msg_logic/play_name");
-var war_data=require("./msg_logic/war_data");
 var formation_data=require("./msg_logic/formation_data");
 var gate_data=require("./msg_logic/gate_data");
 var town_data=require("./msg_logic/town_data");
@@ -19,7 +18,6 @@ var role_exp_data=require("./msg_logic/role_exp_data");
 var card_exp_data=require("./msg_logic/card_exp_data");
 var recruit_data=require("./msg_logic/recruit_data");
 var activity_data=require("./msg_logic/activity_data");
-var skill_data=require("./msg_logic/skill_data");
 var key_words_data=require("./msg_logic/key_words_data");
 var card_frag_data=require("./msg_logic/card_frag_data");
 var explore_data=require("./msg_logic/explore_data");
@@ -60,13 +58,16 @@ var tick_logic=require("./msg_logic/help_tick_logic");
 var gm_billing_logic=require("./msg_logic/help_gm_billing_logic");
 var client_error_logic=require("./msg_logic/help_client_error_logic");
 
+
+var test = require("./msg_logic/test");
+
 var handler = {
 	"___connect___" : new on_user_socket_connect(),
 	"___close___"  : new on_user_socket_close(),
 
     "2" : new on_user_reconnect(),
-    "3" : new on_alived(),
-    "10" : new on_client_error(),
+    "3" : new on_alive(),
+    "11" : new on_client_error(),
 
     "50": new on_friend_data_list(),//查看好友列表
     "51": new on_add_friend(),//申请添加好友
@@ -106,6 +107,8 @@ var handler = {
     "275" : new on_gate_fight_result(), //战斗结果数据
     "274" : new on_sell_items(), //出售道具
     "273" : new on_sell_cards(), //出售武将
+    "272" : new on_sweep_gate(), //关卡扫荡
+    "271" : new on_reset_sweep(), //恢复扫荡
     "267" : new on_buy_explore_count(), //购买探索次数
     "266" : new on_user_recruit_data(), //用户招募信息
     "265" : new on_take_card(), //抽卡
@@ -138,17 +141,20 @@ var handler = {
     "230" : new on_get_challenge_town(), //获取挑战城池信息
     "229" : new on_set_town_guard(), //设置守城武将
     "228" : new on_gain_guard_town_reward(), //领取守城奖励
-    "227" : new on_use_item_water(), //道具使用之体力药水
-    "226" : new on_use_item_box(), //道具使用之宝箱
+    "227" : new on_use_item(), //使用道具
     "225" : new on_sell_card_fragment(), //出售武将碎片
     "224" : new on_arena_data(), //查看竞技场中玩家本人的信息
-    "223" : new on_battle_field_data(), //获取战场数据
     "222" : new on_gain_arena_reward(), //领取排行榜奖励
     "221" : new on_get_rank_role_detail(), //获取排行榜玩家阵型信息
     "220" : new on_get_rank_reward_data(), //获取排行榜玩家奖励信息
     "219" : new on_shop_data(), //获取商城数据
     "218" : new on_shop_buy(), //商城购买
-    "217" : new on_account_rebind() //快速登录账号重新绑定
+    "217" : new on_account_rebind(),//快速登录账号重新绑定
+    "216" : new on_get_exchange_list(), //获取兑换店列表
+    "215" : new on_money_tree(), //招财
+    "214" : new on_card_forge(), //武将炼化
+    "3000" : new on_test_town() //跳过关卡
+
 };
 exports.handler = handler;
 
@@ -170,7 +176,6 @@ exports.server = function(server)
     server_config_data.init(server);
     constant_data.init(server);
     card_data.init(server);
-    war_data.init(server);
     town_data.init(server);
     gate_data.init(server);
     item_data.init(server);
@@ -179,7 +184,6 @@ exports.server = function(server)
     card_exp_data.init(server);
     recruit_data.init(server);
     activity_data.init(server);
-    skill_data.init(server);
     key_words_data.init();
     card_frag_data.init(server);
     explore_data.init(server);
@@ -204,6 +208,8 @@ exports.server = function(server)
     purchase_shop_logic.init(server);
     //释放对象
     json_config_file.json_config_file_list=null;
+
+    //test.init(server);
 
 };
 
@@ -278,11 +284,11 @@ function on_user_reconnect()
     }
 }
 
-function on_alived()
+function on_alive()
 {
     this.handle = function(data,send,s)
     {
-        global.log("on_alived");
+        global.log("on_alive");
         s.nAliveTime = (new Date()).getTime();
     }
 }
@@ -316,6 +322,14 @@ function on_gate_data()
     this.handle = function(data,send,s)
     {
         gate_logic.on_gate_data(data,send,s);
+    }
+}
+
+function on_test_town()
+{
+    this.handle = function(data,send,s)
+    {
+        gate_logic.on_test_town(data,send,s);
     }
 }
 
@@ -464,6 +478,14 @@ function on_card_strengthen()
     }
 }
 
+function on_card_forge()
+{
+    this.handle = function(data,send,s)
+    {
+        card_logic.on_card_forge(data,send,s);
+    }
+}
+
 function on_card_reborn()
 {
     this.handle = function(data,send,s)
@@ -537,6 +559,22 @@ function on_sell_cards()
     }
 }
 
+function on_sweep_gate()
+{
+    this.handle = function(data,send,s)
+    {
+        gate_logic.on_sweep_gate(data,send,s);
+    }
+}
+
+function on_reset_sweep()
+{
+    this.handle = function(data,send,s)
+    {
+        gate_logic.on_reset_sweep(data,send,s);
+    }
+}
+
 function on_sell_card_fragment()
 {
     this.handle = function(data,send,s)
@@ -568,15 +606,6 @@ function on_take_card()
         recruit_logic.on_take_card(data,send,s);
     }
 }
-
-function on_battle_field_data()
-{
-    this.handle = function(data,send,s)
-    {
-        activity_logic.on_battle_field_data(data,send,s);
-    }
-}
-
 
 function on_finish_rookie_guide()
 {
@@ -786,6 +815,14 @@ function on_sacrifice()
     }
 }
 
+function on_money_tree()
+{
+    this.handle = function(data,send,s)
+    {
+        activity_logic.on_money_tree(data,send,s);
+    }
+}
+
 function on_get_challenge_town()
 {
     this.handle = function(data,send,s)
@@ -810,19 +847,11 @@ function on_gain_guard_town_reward()
     }
 }
 
-function on_use_item_water()
+function on_use_item()
 {
     this.handle = function(data,send,s)
     {
-        item_logic.on_use_item_water(data,send,s);
-    }
-}
-
-function on_use_item_box()
-{
-    this.handle = function(data,send,s)
-    {
-        item_logic.on_use_item_box(data,send,s);
+        item_logic.on_use_item(data,send,s);
     }
 }
 
@@ -879,6 +908,14 @@ function on_account_rebind()
     this.handle = function(data,send,s)
     {
         login_logic.on_account_rebind(data,send,s);
+    }
+}
+
+function on_get_exchange_list()
+{
+    this.handle = function(data,send,s)
+    {
+        activity_logic.on_get_exchange_list(data,send,s);
     }
 }
 

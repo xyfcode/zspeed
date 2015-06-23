@@ -1,13 +1,8 @@
-var str="woaizhongguo359";
+var num=10;
+var num2=15;
 
-
-
-if(str.length>20)
+if(num-num2>-50)
 {
-    console.log(11);
-}
-else
-{
+    console.log(1);
 
-    console.log("not match")
 }

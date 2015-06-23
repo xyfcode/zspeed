@@ -12,6 +12,7 @@ var formation=require("./formation_data");
 var ds = require("./data_struct");
 var define_code=require("./define_code");
 var common_func = require("./common_func");
+var friend_data = require("./friend_data");
 
 var arena_logic=require("./help_arena_logic");
 var mail_logic=require("./help_mail_logic");
@@ -189,7 +190,7 @@ function on_get_challenge_town(data,send,s)
             global.log("_town_data == undefined");
             return;
         }
-        var max_base_money=_town_data.basic_money*const_value.TOWN_EFFECTIVE_HOUR/const_value.TOWN_MONEY_HOUR;
+        var max_base_money=_town_data.basic_money*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_MONEY_MS;
 
         var _town_db_data=town_data.town_db_data_list[xids[i]];
         var client_data=new Object();
@@ -244,26 +245,26 @@ function on_get_challenge_town(data,send,s)
             var now=new Date();
             var total_money=0;
             var total_rmb=0;
-            var base_money=Math.floor((now-_town_db_data.pick_time)/(const_value.TOWN_MONEY_HOUR*60*60*1000))*_town_data.basic_money;
+            var base_money=Math.floor((now-_town_db_data.pick_time)/const_value.TOWN_MONEY_MS)*_town_data.basic_money;
             base_money=base_money>max_base_money?max_base_money:base_money;
 
-            var max_extra_money=_town_data.add_money*const_value.TOWN_EFFECTIVE_HOUR/const_value.TOWN_MONEY_HOUR;
-            var max_extra_rmb=_town_data.add_rmb*const_value.TOWN_EFFECTIVE_HOUR/const_value.TOWN_RMB_HOUR;
+            var max_extra_money=_town_data.add_money*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_MONEY_MS;
+            var max_extra_rmb=_town_data.add_rmb*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_RMB_MS;
 
             //上个城守获得的额外奖励
             var extra_money=0;
             var extra_rmb=0;
             if(_town_db_data.guard_t_time)
             {
-                extra_money+=Math.floor(_town_db_data.guard_t_time/(const_value.TOWN_MONEY_HOUR*60*60*1000))*_town_data.add_money;
-                extra_rmb+=Math.floor(_town_db_data.guard_t_time/(const_value.TOWN_RMB_HOUR*60*60*1000))*_town_data.add_rmb;
+                extra_money+=Math.floor(_town_db_data.guard_t_time/const_value.TOWN_MONEY_MS)*_town_data.add_money;
+                extra_rmb+=Math.floor(_town_db_data.guard_t_time/const_value.TOWN_RMB_MS)*_town_data.add_rmb;
             }
 
             //城守获得的额外奖励
             if(_town_db_data.guard_data.card_id)
             {
-                extra_money+=Math.floor((now-_town_db_data.guard_time)/(const_value.TOWN_MONEY_HOUR*60*60*1000))*_town_data.add_money;
-                extra_rmb+=Math.floor((now-_town_db_data.guard_time)/(const_value.TOWN_RMB_HOUR*60*60*1000))*_town_data.add_rmb;
+                extra_money+=Math.floor((now-_town_db_data.guard_time)/const_value.TOWN_MONEY_MS)*_town_data.add_money;
+                extra_rmb+=Math.floor((now-_town_db_data.guard_time)/const_value.TOWN_RMB_MS)*_town_data.add_rmb;
             }
 
             extra_money=extra_money>max_extra_money?max_extra_money:extra_money;
@@ -334,34 +335,34 @@ function on_gain_guard_town_reward(data,send,s)
     if(_town_db_data.owner_grid==role.grid)
     {
         //城池自己产出的铜钱，最大只能产出24小时的收益
-        var max_base_money=_town_data.basic_money*const_value.TOWN_EFFECTIVE_HOUR/const_value.TOWN_MONEY_HOUR;
+        var max_base_money=_town_data.basic_money*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_MONEY_MS;
 
         var now=(new Date()).getTime();
         var total_money=0;
         var total_rmb=0;
-        var base_money=Math.floor((now-_town_db_data.pick_time)/(const_value.TOWN_MONEY_HOUR*60*60*1000))*_town_data.basic_money;
+        var base_money=Math.floor((now-_town_db_data.pick_time)/const_value.TOWN_MONEY_MS)*_town_data.basic_money;
         //城池自己产出的铜钱，不能大于最大24能产出的收益
         base_money=base_money>max_base_money?max_base_money:base_money;
 
         //城守获取的额外最大收益 铜钱和元宝 都是24小时
-        var max_extra_money=_town_data.add_money*const_value.TOWN_EFFECTIVE_HOUR/const_value.TOWN_MONEY_HOUR;
-        var max_extra_rmb=_town_data.add_rmb*const_value.TOWN_EFFECTIVE_HOUR/const_value.TOWN_RMB_HOUR;
+        var max_extra_money=_town_data.add_money*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_MONEY_MS;
+        var max_extra_rmb=_town_data.add_rmb*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_RMB_MS;
 
         //旧城守获得的额外奖励
         var extra_money=0;
         var extra_rmb=0;
         if(_town_db_data.guard_t_time>0)
         {
-            extra_money+=Math.floor(_town_db_data.guard_t_time/(const_value.TOWN_MONEY_HOUR*60*60*1000))*_town_data.add_money;
-            extra_rmb+=Math.floor(_town_db_data.guard_t_time/(const_value.TOWN_RMB_HOUR*60*60*1000))*_town_data.add_rmb;
+            extra_money+=Math.floor(_town_db_data.guard_t_time/const_value.TOWN_MONEY_MS)*_town_data.add_money;
+            extra_rmb+=Math.floor(_town_db_data.guard_t_time/const_value.TOWN_RMB_MS)*_town_data.add_rmb;
 
         }
 
         //城守获得的额外奖励
         if(_town_db_data.guard_data.unique_id)
         {
-            extra_money+=Math.floor((now-_town_db_data.guard_time)/(const_value.TOWN_MONEY_HOUR*60*60*1000))*_town_data.add_money;
-            extra_rmb+=Math.floor((now-_town_db_data.guard_time)/(const_value.TOWN_RMB_HOUR*60*60*1000))*_town_data.add_rmb;
+            extra_money+=Math.floor((now-_town_db_data.guard_time)/const_value.TOWN_MONEY_MS)*_town_data.add_money;
+            extra_rmb+=Math.floor((now-_town_db_data.guard_time)/const_value.TOWN_RMB_MS)*_town_data.add_rmb;
 
         }
         //城守产生的额外铜钱
@@ -393,7 +394,7 @@ function on_gain_guard_town_reward(data,send,s)
 
         //推送客户端全局修改信息
         var g_msg = {
-            "op" : msg_id.NM_ENTER_GAME,
+            "op" : msg_id.NM_USER_DATA,
             "gold":role.gold,
             "rmb":role.rmb ,
             "ret" :msg_code.SUCC
@@ -569,17 +570,6 @@ function help_town_reward_data(data,send,s)
         return;
     }
 
-    if(Object.keys(role.card_bag).length>=role.cbag_limit)
-    {
-        var msg = {
-            "op" :msg_id.NM_WAR_REWARD_DATA,
-            "ret" : msg_code.BAG_IS_FULL
-        };
-        send(msg);
-        return;
-    }
-
-
     var parent_id=data.parent_id;
     if(parent_id==undefined)
     {
@@ -611,6 +601,33 @@ function help_town_reward_data(data,send,s)
     fight_user_data.nonce=common_func.help_make_one_random(0,100);
     fight_user_data.parent_id=parent_id;
 
+    if(fight_user_data.is_friend)
+    {
+        var me_friend_data=friend_data.friend_data_list[role.grid];
+        for(var i=0;i<me_friend_data.friends.length;i++)
+        {
+            if(me_friend_data.friends[i].grid==fight_user_data.friend_uid)
+            {
+                me_friend_data.friends[i].f_time=(new Date()).getTime();
+                friend_data.friend_update_db_list.push(role.grid);
+                break;
+            }
+        }
+
+        fight_user_data.score=const_value.FRIEND_SCORE;
+    }
+    else
+    {
+        if(fight_user_data.friend_uid)
+        {
+            fight_user_data.score=const_value.USER_SCORE;
+        }
+        else
+        {
+            fight_user_data.score=0; //没有添加好友操作
+        }
+    }
+
     var msg=
     {
         "op":msg_id.NM_WAR_REWARD_DATA,
@@ -628,7 +645,7 @@ function help_town_reward_data(data,send,s)
 exports.help_town_reward_data = help_town_reward_data;
 
 //处理挑战城池结果
-function    help_town_fight_result(data,send,s)
+function help_town_fight_result(data,send,s)
 {
     global.log("help_town_fight_result");
 
@@ -716,10 +733,10 @@ function    help_town_fight_result(data,send,s)
             total_lb=1;
 
             //成就 占城数量
-            if(fight_user_formation_data.town_num>role.achievement[const_value.ACHI_TYPE_TOWNS].times)
+            /*if(fight_user_formation_data.town_num>role.achievement[const_value.ACHI_TYPE_TOWNS].times)
             {
-                role.achievement[const_value.ACHI_TYPE_TOWNS].times=fight_user_formation_data.town_num;
-            }
+                //role.achievement[const_value.ACHI_TYPE_TOWNS].times=fight_user_formation_data.town_num;
+            }*/
 
             //给新城主发送邮件
             mail_logic.help_send_new_town_mail(_town_db_data.owner_gid,_town_db_data.owner_grid,_town_json_data.town_name,_town_db_data.tid,"",1);
@@ -742,10 +759,10 @@ function    help_town_fight_result(data,send,s)
                 fight_user_formation_data.town_num++;
 
                 //成就 占城数量
-                if(fight_user_formation_data.town_num>role.achievement[const_value.ACHI_TYPE_TOWNS].times)
+                /*if(fight_user_formation_data.town_num>role.achievement[const_value.ACHI_TYPE_TOWNS].times)
                 {
-                    role.achievement[const_value.ACHI_TYPE_TOWNS].times=fight_user_formation_data.town_num;
-                }
+                    //role.achievement[const_value.ACHI_TYPE_TOWNS].times=fight_user_formation_data.town_num;
+                }*/
 
                 //旧第二名排到第三名
                 _town_db_data.third_grid=_town_db_data.second_grid;
@@ -797,6 +814,9 @@ function    help_town_fight_result(data,send,s)
             town_data.town_update_db_list.push(tid);
         }
 
+
+        //积分值结算
+        role.score+=Number(fight_user_data.score);
         var msg=
         {
             "op":msg_id.NM_GATE_FIGHT_RESULT,
@@ -830,7 +850,7 @@ function    help_town_fight_result(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "hurt":fight_user_formation_data.top_hurt,
         "ret" :msg_code.SUCC
     };

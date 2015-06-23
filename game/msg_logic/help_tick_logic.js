@@ -16,6 +16,7 @@ var friend_logic = require("./help_friend_logic");
 var purchase_shop_logic = require("./help_purchase_shop_logic");
 var town_logic = require("./help_town_logic");
 var arena_logic = require("./help_arena_logic");
+var role_data_logic = require("./help_role_data_logic");
 
 
 var const_value=define_code.const_value;
@@ -37,13 +38,14 @@ var init=function(s)
     if(g_server.config.test==1)
     {
         //控制台模式，监听程序打断事件
-        process.on('SIGINT',function(){
+        /*process.on('SIGINT',function(){
+            global.log(11)
             close_server();
             setTimeout(function(){
                 process.exit();
             },5*1000);
 
-        });
+        });*/
 
     }
 
@@ -77,10 +79,13 @@ function open_auto_24_timer()
     purchase_shop_logic.auto_dispatch_cd_reward();
     //只读邮件清空
     mail_logic.auto_clear_user_mail();
+    //清除战斗好友缓存
+    friend_logic.auto_clear_fight_list();
     //24小时执行一次
     auto_24_timer=setInterval(function(){
         purchase_shop_logic.auto_dispatch_cd_reward();
         mail_logic.auto_clear_user_mail();
+        role_data_logic.auto_reset_online_user_data();
     },24*60*60*1000);
 }
 

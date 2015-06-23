@@ -22,7 +22,6 @@ function FormationData()
     this.grid=0;
     this.level=0;
     this.name='';
-    this.time=0;//登录时间
     this.top_hurt=0;//最高伤害
     this.town_num=0;//拥有城池的数量
     this.card_ls=[]; //卡组编号，value：FormationCardBase

@@ -229,7 +229,7 @@ function on_equip_compose(data,send,s)
 
         //推送客户端全局修改信息
         var g_msg = {
-            "op" : msg_id.NM_ENTER_GAME,
+            "op" : msg_id.NM_USER_DATA,
             "gold":role.gold,
             "ret" :msg_code.SUCC
         };
@@ -331,6 +331,7 @@ function on_equip_piece_compose(data,send,s)
     }
     else
     {
+        global.log("on_equip_piece_compose error");
         var msg = {
             "op" : msg_id.NM_EQUIP_PIECE_COMPOSE,
             "ret" : msg_code.SERVER_ERROR
@@ -535,7 +536,7 @@ function on_sell_items(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "gold":role.gold,
         "ret" :msg_code.SUCC
     };
@@ -550,10 +551,10 @@ function on_sell_items(data,send,s)
 }
 exports.on_sell_items = on_sell_items;
 
-//道具使用之药水
-function on_use_item_water(data,send,s)
+//使用道具
+function on_use_item(data,send,s)
 {
-    global.log("on_use_item_water");
+    global.log("on_use_item");
 
     var gid = s.gid;
     if(gid == undefined)
@@ -585,175 +586,83 @@ function on_use_item_water(data,send,s)
         return;
     }
 
-    if(_item_json_data.type==const_value.ITEM_TYPE_WATER)
+    var rewards=[];
+    switch(_item_json_data.type)
     {
-        role.stamina+=_item_json_data.power_num;
-        _item_data.num--;
-        if(_item_data.num<=0)
-        {
-            delete role.item_bag[item_id];
-        }
-
-        var msg = {
-            "op" : msg_id.NM_USE_ITEM_WATER,
-            "ret" : msg_code.SUCC
-        };
-        send(msg);
-
-        user.nNeedSave=1;
-
-        //推送客户端全局修改信息
-        var g_msg = {
-            "op" : msg_id.NM_ENTER_GAME,
-            "stamina":role.stamina, //体力
-            "ret" :msg_code.SUCC
-        };
-        send(g_msg);
-        global.log(JSON.stringify(g_msg));
-
-    }
-    else
-    {
-        var msg = {
-            "op" : msg_id.NM_USE_ITEM_WATER,
-            "ret" : msg_code.SERVER_ERROR
-        };
-        send(msg);
-    }
-
-    var log_content={"msg":msg};
-    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_use_item_water",log_content,log_data.logType.LOG_BEHAVIOR);
-    log_data_logic.log(logData);
-
-}
-exports.on_use_item_water = on_use_item_water;
-
-//道具使用之宝箱
-function on_use_item_box(data,send,s)
-{
-    global.log("on_use_item_box");
-
-    var gid = s.gid;
-    if(gid == undefined)
-    {
-        global.log("gid == undefined");
-        return;
-    }
-
-    var user = ds.user_list[gid];
-    if(user == undefined)
-    {
-        global.log("user == undefined");
-        return;
-    }
-
-    var role = ds.get_cur_role(user);
-    if(role == undefined)
-    {
-        global.log("role == undefined");
-        return;
-    }
-
-    var box_id=data.xid;
-    var box_item_data=role.item_bag[box_id];
-    var box_item_json_data=item_data.item_data_list[box_id];
-    if(box_item_data==undefined || box_item_json_data==undefined)
-    {
-        global.log("box_item_data==undefined || box_item_json_data==undefined");
-        return;
-    }
-
-    if(box_item_json_data.type==const_value.ITEM_TYPE_BOX)
-    {
-        var key_id=box_item_json_data.key_id;
-        if(key_id)
-        {
-            //使用钥匙
-            var key_item_data=role.item_bag[key_id];
-            if(key_item_data==undefined)
-            {
-                var msg = {
-                    "op" : msg_id.NM_USE_ITEM_BOX,
-                    "ret" : msg_code.KEY_NOT_ENOUGH
-                };
-                send(msg);
-                return;
-            }
-            //消耗一个钥匙
-            key_item_data.num-=1;
-            if(key_item_data.num<=0)
-            {
-                delete role.item_bag[key_id];
-            }
-
-        }
-
-
-        var drop_data=drop_logic.help_gain_drop_data(box_item_json_data.drop_id);
-        var rewards=[];
-        for(var i=0;i<drop_data.length;i++)
-        {
-            var obj=new Object();
-            obj.type=drop_data[i].type;
-            obj.xid=drop_data[i].xid;
-            obj.num=drop_data[i].count;
-            obj.uids=[];
-            var gain_item=drop_logic.help_put_item_to_role(role,obj.xid,obj.num,obj.type);
-            if(gain_item)
-            {
-                obj.uids=gain_item.uids;
-            }
+        case const_value.ITEM_TYPE_STAMINA:
+            role.stamina+=_item_json_data.power_num;
+            var obj={};
+            obj.type=const_value.REWARD_TYPE_POINT;
+            obj.xid="";
+            obj.num=_item_json_data.power_num;
             rewards.push(obj);
-        }
-
-        //消耗一个宝箱
-        box_item_data.num-=1;
-        if(box_item_data.num<=0)
-        {
-            delete role.item_bag[box_id];
-        }
-
-
-        var msg = {
-            "op" : msg_id.NM_USE_ITEM_BOX,
-            "rewards" : rewards,
-            "ret" : msg_code.SUCC
-        };
-        send(msg);
-
-        user.nNeedSave=1;
-
-        //推送客户端全局修改信息
-        var g_msg = {
-            "op" : msg_id.NM_ENTER_GAME,
-            "exp" : role.exp ,
-            "level":role.level,
-            "gold":role.gold,
-            "rmb":role.rmb ,
-            "score":role.score,
-            "stamina":role.stamina, //体力
-            "ret" :msg_code.SUCC
-        };
-        send(g_msg);
-        global.log(JSON.stringify(g_msg));
-
+            break;
+        case const_value.ITEM_TYPE_BOX:
+            var key_id=_item_json_data.key_id;
+            if(key_id)
+            {
+                //使用钥匙
+                var key_item_data=role.item_bag[key_id];
+                if(key_item_data==undefined)
+                {
+                    var msg = {
+                        "op" : msg_id.NM_USE_ITEM,
+                        "ret" : msg_code.KEY_NOT_ENOUGH
+                    };
+                    send(msg);
+                    return;
+                }
+                //消耗一个钥匙
+                key_item_data.num-=1;
+                if(key_item_data.num<=0)
+                {
+                    delete role.item_bag[key_id];
+                }
+            }
+            drop_logic.help_gain_drop_data(_item_json_data.drop_id,rewards);
+            for(var i=0;i<rewards.length;i++)
+            {
+                var gain_item=drop_logic.help_put_item_to_role(role,rewards[i].xid,rewards[i].num,rewards[i].type);
+                rewards[i].uids=gain_item.uids;
+            }
+            break;
     }
-    else
+
+    //道具结算
+    _item_data.num--;
+    //如果道具个数为零
+    if(_item_data.num<=0)
     {
-        var msg = {
-            "op" : msg_id.NM_USE_ITEM_BOX,
-            "ret" : msg_code.SERVER_ERROR
-        };
-        send(msg);
+        delete role.item_bag[item_id];
     }
+
+    var msg = {
+        "op" : msg_id.NM_USE_ITEM,
+        "rewards" :rewards,
+        "ret" : msg_code.SUCC
+    };
+    send(msg);
+
+    //推送客户端全局修改信息
+    var g_msg = {
+        "op" : msg_id.NM_USER_DATA,
+        "exp" : role.exp ,
+        "level":role.level,
+        "gold":role.gold,
+        "rmb":role.rmb ,
+        "score":role.score,
+        "stamina":role.stamina, //体力
+        "ret" :msg_code.SUCC
+    };
+    send(g_msg);
+    global.log(JSON.stringify(g_msg));
 
     var log_content={"msg":msg};
-    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_use_item_box",log_content,log_data.logType.LOG_BEHAVIOR);
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_use_item",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
 
 }
-exports.on_use_item_box = on_use_item_box;
-
+exports.on_use_item = on_use_item;
 
 function help_auto_equip_card(role,_card_data)
 {

@@ -30,7 +30,7 @@ var g_server = null;
 function init(s)
 {
     g_server = s;
-};
+}
 exports.init=init;
 
 //获取商城数据
@@ -68,10 +68,14 @@ function on_shop_data(data,send,s)
         client_shop_data.times=0;
         var role_shop_data=role.shop_bag[key];
 
-        if(role_shop_data && comm_fun.help_judge_today(role_shop_data.date))
+        if(role_shop_data)
         {
-            client_shop_data.times=role_shop_data.times;
+            if(!comm_fun.isEmpty(shop_data.shop_data_list[key].vip)||comm_fun.help_judge_today(role_shop_data.date))
+            {
+                client_shop_data.times=role_shop_data.times;
+            }
         }
+
         list.push(client_shop_data);
     }
 
@@ -86,7 +90,7 @@ function on_shop_data(data,send,s)
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_shop_data",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
 
-};
+}
 exports.on_shop_data = on_shop_data;
 
 //购买商品
@@ -128,6 +132,7 @@ function on_shop_buy(data,send,s)
         global.log("_shop_data == undefined");
         return;
     }
+
     var role_shop_data=role.shop_bag[shop_id];
     if(role_shop_data==undefined)
     {
@@ -137,34 +142,65 @@ function on_shop_buy(data,send,s)
         role.shop_bag[shop_id]=role_shop_data;
     }
 
-    //今天开始次数清零
-    if(!comm_fun.help_judge_today(role_shop_data.date))
-    {
-        role_shop_data.times=0;
-    }
-
-    if(role_shop_data.times>=_shop_data.times)
-    {
-        var msg = {
-            "op" : msg_id.NM_SHOP_BUY,
-            "ret" : msg_code.TIME_IS_OVER
-        };
-        send(msg);
-        return;
-    }
-
     var cost_rmb=0;
-    if(role_shop_data.times<_shop_data.cost_arr.length)
+    if(!comm_fun.isEmpty(_shop_data.vip))
     {
-        cost_rmb=Number(_shop_data.cost_arr[role_shop_data.times]);
+        if(role_shop_data.times>=time_limit)
+        {
+            var msg = {
+                "op" : msg_id.NM_SHOP_BUY,
+                "ret" : msg_code.VIP_BUY_ONLY
+            };
+            send(msg);
+            return;
+        }
+
+        //判断VIP等级
+        if(role.vip<_shop_data.vip)
+        {
+            var msg = {
+                "op" : msg_id.NM_SHOP_BUY,
+                "ret" : msg_code.VIP_LEVEL_LOW
+            };
+            send(msg);
+            return;
+        }
+
+        cost_rmb=_shop_data.cost;
     }
     else
     {
-        cost_rmb=Number(_shop_data.cost_arr[_shop_data.cost_arr.length-1]);
+        //今天开始次数清零
+        if(!comm_fun.help_judge_today(role_shop_data.date))
+        {
+            role_shop_data.times=0;
+        }
+
+        var time_limit=0;
+        //包子
+        if(shop_id=="dumpling")
+        {
+            time_limit=_shop_data.times_limited[role.vip];
+            cost_rmb=_shop_data.cost[role_shop_data.times];
+        }
+        else
+        {
+            time_limit=_shop_data.times_limited;
+            cost_rmb=_shop_data.cost;
+        }
+
+        if(role_shop_data.times>=time_limit)
+        {
+            var msg = {
+                "op" : msg_id.NM_SHOP_BUY,
+                "ret" : msg_code.TIME_IS_OVER
+            };
+            send(msg);
+            return;
+        }
     }
 
     var pay_ok=money_logic.help_pay_rmb(role,cost_rmb);
-
     var gain_item;
     if(pay_ok)
     {
@@ -200,7 +236,7 @@ function on_shop_buy(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "exp" : role.exp ,
         "level":role.level,
         "gold":role.gold, //游戏币
@@ -216,7 +252,7 @@ function on_shop_buy(data,send,s)
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_shop_buy",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
 
-};
+}
 exports.on_shop_buy = on_shop_buy;
 
 
@@ -272,7 +308,7 @@ function on_buy_explore_count(data,send,s)
         //更新时间
         role.explore_date=(new Date()).getTime();
         //成就
-        role.achievement[const_value.ACHI_TYPE_BUY_EXPLORE].times++;
+        //role.achievement[const_value.ACHI_TYPE_BUY_EXPLORE].times++;
         user.nNeedSave=1;
 
         var msg = {
@@ -294,7 +330,7 @@ function on_buy_explore_count(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "rmb":role.rmb ,//
         "explore":role.explore,
         "explore_buy":role.explore_times,
@@ -307,7 +343,7 @@ function on_buy_explore_count(data,send,s)
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_buy_explore_count",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
 
-};
+}
 exports.on_buy_explore_count = on_buy_explore_count;
 
 //购买战斗复活
@@ -367,7 +403,7 @@ function on_fight_revive(data,send,s)
 
             //推送客户端全局修改信息
             var g_msg = {
-                "op" : msg_id.NM_ENTER_GAME,
+                "op" : msg_id.NM_USER_DATA,
                 "rmb":role.rmb ,
                 "ret" :msg_code.SUCC
             };
@@ -397,6 +433,6 @@ function on_fight_revive(data,send,s)
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_fight_revive",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
 
-};
+}
 exports.on_fight_revive = on_fight_revive;
 

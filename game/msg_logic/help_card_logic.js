@@ -19,8 +19,11 @@ var log_data=require("./log_data");
 
 var log_data_logic=require("./help_log_data_logic");
 var money_logic=require("./help_money_logic");
-var common_func = require("./common_func");
+var item_logic=require("./help_item_logic");
 var role_data_logic=require("./help_role_data_logic");
+var common_func = require("./common_func");
+
+
 
 var const_value=define_code.const_value;
 var msg_id=define_code.msg_id;
@@ -275,7 +278,7 @@ function on_card_piece_compose(data,send,s)
         return;
     }
 
-    if(Object.keys(role.card_bag).length>=role.cbag_limit)
+    /*if(Object.keys(role.card_bag).length>=role.cbag_limit)
     {
         var msg = {
             "op" :msg_id.NM_CAED_PIECE_COMPOSE,
@@ -283,7 +286,7 @@ function on_card_piece_compose(data,send,s)
         };
         send(msg);
         return;
-    }
+    }*/
 
     var card_piece_data=role.card_piece[xid];
     if(card_piece_data==undefined)
@@ -383,33 +386,12 @@ function on_card_strengthen(data,send,s)
         return;
     }
 
-    //不能超过角色+10
-    if(_card_data.level>=role.level+const_value.CARD_EXCEED_ROLE_LIMIT)
+    //不能玩家等级2倍
+    if(_card_data.level>=role.level*2)
     {
         var msg = {
             "op" : msg_id.NM_CARD_STRENGTH,
             "ret" : msg_code.LEVEL_EXCEED_ROLE_LIMIT
-        };
-        send(msg);
-        return;
-    }
-
-    //等级限制
-    var lv_limit=card_json_data.level_limit;
-    if(_card_data.b_level>=3)
-    {
-        lv_limit=Number(const_value.REBORN_LEVEL[_card_data.b_level]);
-        if(!lv_limit)
-        {
-            lv_limit=Number(const_value.REBORN_LEVEL[const_value.REBORN_LEVEL.length-1]);
-        }
-    }
-
-    if(_card_data.level>=lv_limit)
-    {
-        var msg = {
-            "op" : msg_id.NM_CARD_STRENGTH,
-            "ret" : msg_code.LEVEL_EXCEED_LIMIT
         };
         send(msg);
         return;
@@ -452,15 +434,23 @@ function on_card_strengthen(data,send,s)
             global.log("material_json_data == undefined,uid:"+material_uids[i]);
             return;
         }
-        var material_exp=material_json_data.exp+material_json_data.exp_add*(material_data.level-1);
-        if(material_json_data.race==card_json_data.race)
+
+        var material_exp=material_json_data.exp+material_data.exp;
+        if(material_data.level>1)
         {
-            material_exp*=2;
+            for(var j=2;j<=material_data.level;j++)
+            {
+                material_exp+=Math.floor(card_exp_data.card_exp_data_list[j-1].exp_limit*material_json_data.exp_param);
+            }
         }
+
         gain_exp+=material_exp;
     }
 
     var cost_money=gain_exp*const_value.Up_CARD_COST_MONEY_RATIO;
+    global.log("cost_money:"+cost_money);
+    global.log("gain_exp:"+gain_exp);
+
     //升级
     var pay_ok=money_logic.help_pay_money(role,cost_money);
     if(pay_ok)
@@ -494,7 +484,7 @@ function on_card_strengthen(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "gold":role.gold,
         "ret" :msg_code.SUCC
     };
@@ -506,6 +496,218 @@ function on_card_strengthen(data,send,s)
     log_data_logic.log(logData);
 }
 exports.on_card_strengthen = on_card_strengthen;
+
+//武将熔炼
+function on_card_forge(data,send,s)
+{
+    global.log("on_card_forge");
+
+    var gid = s.gid;
+    if(gid == undefined)
+    {
+        global.log("gid == undefined");
+        return;
+    }
+
+    var user = ds.user_list[gid];
+    if(user == undefined)
+    {
+        global.log("user == undefined");
+        return;
+    }
+
+    var role = ds.get_cur_role(user);
+    if(role == undefined)
+    {
+        global.log("role == undefined");
+        return;
+    }
+
+    var uids = data.uids ; //消耗的武将uids
+    if(uids == undefined)
+    {
+        global.log("uids == undefined");
+        return;
+    }
+
+    var gain_exp=0;
+    var gain_money_exp=0;
+    var gain_score=0;
+    var is_exist=1;
+    for(var i=0;i<uids.length;i++)
+    {
+        var material_data=role.card_bag[uids[i]];
+        if(material_data==undefined)
+        {
+            is_exist=0;
+            global.log("material_data == undefined,uid:"+uids[i]);
+            break;
+        }
+        //不能强化城守和上阵武将
+        if(material_data.guard || material_data.used)
+        {
+            var msg = {
+                "op" : msg_id.NM_CARD_FORGE,
+                "ret" : msg_code.CARD_FORGE_ERROR
+            };
+            send(msg);
+            return;
+        }
+
+
+        var material_json_data=card_data.card_data_list[material_data.card_id];
+        if(material_json_data==undefined)
+        {
+            global.log("material_json_data == undefined,uid:"+uids[i]);
+            return;
+        }
+
+        var material_exp=material_data.exp;
+        if(material_data.level>1)
+        {
+            for(var j=2;j<=material_data.level;j++)
+            {
+                material_exp+=Math.floor(card_exp_data.card_exp_data_list[j-1].exp_limit*material_json_data.exp_param);
+            }
+        }
+        gain_money_exp+=material_exp;
+        gain_exp+=(material_exp+material_json_data.exp);
+        gain_score+=material_json_data.card_score;
+    }
+
+    if(!is_exist)
+    {
+        global.log("on_card_forge error");
+        var msg = {
+            "op" : msg_id.NM_CARD_FORGE,
+            "ret" : msg_code.SERVER_ERROR
+        };
+        send(msg);
+        return;
+    }
+
+    //除去材料
+    for(var i=0;i<uids.length;i++)
+    {
+        delete role.card_bag[uids[i]];
+    }
+
+
+    //铜钱结算
+    var gain_money=gain_money_exp*const_value.Up_CARD_COST_MONEY_RATIO;
+
+    money_logic.help_gain_money(role,gain_money);
+    //积分结算
+    role.score+=Number(gain_score);
+
+
+    //道具获得，卡获得
+    var item_num=0,c_num=0;
+    var type=1;
+    var items=[],cards=[];
+
+    global.log("gain_exp:"+gain_exp);
+    var N=Math.floor(gain_exp/5000);
+
+    if(N%2==0)
+    {
+        //熊猫
+        if(N/2>=5)
+        {
+            item_num=Math.floor(N/2/5);
+            c_num=(N/2)%5;
+        }
+        else
+        {
+            c_num=(N/2)%5;
+        }
+    }
+    else
+    {
+        //肥猪
+        type=2;
+        if(N>=5)
+        {
+            item_num=Math.floor(N/5);
+            c_num=N%5;
+
+        }
+        else
+        {
+            c_num=N%5;
+        }
+    }
+
+    if(type==1)
+    {
+        if(item_num>0)
+        {
+            item_logic.help_create_role_item(role,const_value.PANDA_ITEM_ID,item_num);
+            var obj_item={};
+            obj_item.xid=const_value.PANDA_ITEM_ID;
+            obj_item.num=item_num;
+            items.push(obj_item);
+        }
+
+        for(var i=0;i<c_num;i++)
+        {
+            var card_uid=help_create_role_card(role,const_value.PANDA_CARD_ID);
+            var obj_card={};
+            obj_card.uid=card_uid;
+            obj_card.xid=const_value.PANDA_CARD_ID;
+            cards.push(obj_card);
+        }
+    }
+    else
+    {
+        if(item_num)
+        {
+            item_logic.help_create_role_item(role,const_value.PIG_ITEM_ID,item_num);
+            var obj_item={};
+            obj_item.xid=const_value.PIG_ITEM_ID;
+            obj_item.num=item_num;
+            items.push(obj_item);
+        }
+
+
+        for(var i=0;i<c_num;i++)
+        {
+            var card_uid=help_create_role_card(role,const_value.PIG_CARD_ID);
+            var obj_card={};
+            obj_card.uid=card_uid;
+            obj_card.xid=const_value.PIG_CARD_ID;
+            cards.push(obj_card);
+        }
+    }
+
+    user.nNeedSave=1;
+
+    var msg = {
+        "op" : msg_id.NM_CARD_FORGE,
+        "items":items,
+        "cards":cards,
+        "ret" : msg_code.SUCC
+    };
+    send(msg);
+
+    //推送客户端全局修改信息
+    var g_msg = {
+        "op" : msg_id.NM_USER_DATA,
+        "gold":role.gold,
+        "score":role.score,
+        "ret" :msg_code.SUCC
+    };
+    send(g_msg);
+    global.log(JSON.stringify(g_msg));
+
+    role_data_logic.help_notice_role_msg(role,send);
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_card_forge",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+}
+exports.on_card_forge = on_card_forge;
+
 
 //卡牌转生
 function on_card_reborn(data,send,s)
@@ -586,122 +788,68 @@ function on_card_reborn(data,send,s)
     }
 
 
-    //检测是否需要消耗武将
-    var material_arr=[];
-    if(_card_data.b_level>=3)
+    //转生等级提升
+    _card_data.b_level++;
+    //成就
+    if(_card_data.b_level==1)
     {
-        for(var key in role.card_bag)
+        //转生武将个数
+        role.achievement[const_value.ACHI_TYPE_CARD_EVOLVE_COUNT].times++;
+    }
+    if(_card_data.b_level>role.achievement[const_value.ACHI_TYPE_CARD_EVOLVE_LEVEL].times)
+    {
+        //转生武将等级
+        role.achievement[const_value.ACHI_TYPE_CARD_EVOLVE_LEVEL].times=_card_data.b_level;
+    }
+
+    //去除装备
+    _card_data.e_list.splice(0,3,0,0,0);
+
+    //更新阵型
+    if(_card_data.used)
+    {
+        var _formation_data=formation_data.formation_list[role.grid];
+        for(var j=0;i<_formation_data.card_ls.length;i++)
         {
-            var _material_data=role.card_bag[key];
-            if(_material_data.card_id==_card_data.card_id&&!_material_data.used&&!_material_data.guard
-                &&_material_data.unique_id!=_card_data.unique_id&&_material_data.b_level==0)
+            if(_formation_data.card_ls[i].unique_id==_card_data.unique_id)
             {
-                material_arr.push(_material_data);
+                _formation_data.card_ls[i].b_level=_card_data.b_level;
+                _formation_data.card_ls[i].e_list=[0,0,0];
             }
         }
-
-        if(material_arr.length<=0)
+    }
+    //更新守城武将
+    if(_card_data.guard)
+    {
+        for(var key in town_data.town_data_list)
         {
-            var msg = {
-                "op" : msg_id.NM_CARD_REBORN,
-                "ret" : msg_code.CARD_NOT_ENOUGH
-            };
-            send(msg);
-            return;
+            if(town_data.town_data_list[key].owner_grid==role.grid&&town_data.town_data_list[key].guard_data.unique_id==_card_data.unique_id)
+            {
+                town_data.town_data_list[key].guard_data.b_level=_card_data.b_level;
+                town_data.town_data_list[key].guard_data.equips=[0,0,0];
+                break;
+            }
         }
     }
 
 
-    var cost_money=Math.floor(Math.pow(_card_data.b_level+1,2)/140*1237228);
-    var pay_ok=money_logic.help_pay_money(role,cost_money);
-    if(pay_ok)
-    {
-        //转生等级提升
-        _card_data.b_level++;
-        //成就
-        if(_card_data.b_level==1)
-        {
-            //转生武将个数
-            role.achievement[const_value.ACHI_TYPE_CARD_EVOLVE_COUNT].times++;
-        }
-        if(_card_data.b_level>role.achievement[const_value.ACHI_TYPE_CARD_EVOLVE_LEVEL].times)
-        {
-            //转生武将等级
-            role.achievement[const_value.ACHI_TYPE_CARD_EVOLVE_LEVEL].times=_card_data.b_level;
-        }
+    user.nNeedSave=1;
 
+    var msg = {
+        "op" : msg_id.NM_CARD_REBORN,
+        "ret" : msg_code.SUCC
+    };
+    send(msg);
 
-        //去除材料
-        var min_level=0;
-        var min_uid=0;
-        for(var i=0;i<material_arr.length;i++)
-        {
-            if(min_level==0||material_arr[i].level<min_level)
-            {
-                min_level=material_arr[i].level;
-                min_uid=material_arr[i].unique_id;
-            }
-        }
+    //推送客户端全局修改信息
+    var g_msg = {
+        "op" : msg_id.NM_USER_DATA,
+        "gold":role.gold ,
+        "ret" :msg_code.SUCC
+    };
+    send(g_msg);
+    global.log(JSON.stringify(g_msg));
 
-        delete role.card_bag[min_uid];
-        //去除装备
-        _card_data.e_list.splice(0,3,0,0,0);
-
-        //更新阵型
-        if(_card_data.used)
-        {
-            var _formation_data=formation_data.formation_list[role.grid];
-            for(var j=0;i<_formation_data.card_ls.length;i++)
-            {
-                if(_formation_data.card_ls[i].unique_id==_card_data.unique_id)
-                {
-                    _formation_data.card_ls[i].b_level=_card_data.b_level;
-                    _formation_data.card_ls[i].e_list=[0,0,0];
-                }
-            }
-        }
-        //更新守城武将
-        if(_card_data.guard)
-        {
-            for(var key in town_data.town_data_list)
-            {
-                if(town_data.town_data_list[key].owner_grid==role.grid&&town_data.town_data_list[key].guard_data.unique_id==_card_data.unique_id)
-                {
-                    town_data.town_data_list[key].guard_data.b_level=_card_data.b_level;
-                    town_data.town_data_list[key].guard_data.equips=[0,0,0];
-                    break;
-                }
-            }
-        }
-
-
-        user.nNeedSave=1;
-
-        var msg = {
-            "op" : msg_id.NM_CARD_REBORN,
-            "uid":min_uid,
-            "ret" : msg_code.SUCC
-        };
-        send(msg);
-
-        //推送客户端全局修改信息
-        var g_msg = {
-            "op" : msg_id.NM_ENTER_GAME,
-            "gold":role.gold ,
-            "ret" :msg_code.SUCC
-        };
-        send(g_msg);
-        global.log(JSON.stringify(g_msg));
-    }
-    else
-    {
-        var msg = {
-            "op" : msg_id.NM_CARD_REBORN,
-            "ret" : msg_code.GOLD_NOT_ENOUGH
-        };
-        send(msg);
-        return;
-    }
 
     var log_content={"msg":msg};
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_card_reborn",log_content,log_data.logType.LOG_BEHAVIOR);
@@ -798,7 +946,7 @@ function on_sell_cards(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "gold":role.gold,
         "ret" :msg_code.SUCC
     };
@@ -880,7 +1028,7 @@ function on_sell_card_fragment(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "gold":role.gold,
         "ret" :msg_code.SUCC
     };
@@ -914,28 +1062,7 @@ var help_card_level_up=function(role,role_card_data,exp)
     }
 
 
-    /*
-    * 1：武将等级不能超过角色等级+10；
-    * 2：武将在满足条件1的情况下，可以不受限制的升级到30；
-    * 3：武将1,2转最高等级上限是30.
-    * 3：武将超过30级，必须转生才能提高等级上限
-    * 4：武将等级上限是下次转生限制等级
-    * */
-
-    //等级限制
-    var lv_limit=card_json_data.level_limit;
-    if(role_card_data.b_level>=3)
-    {
-        lv_limit=Number(const_value.REBORN_LEVEL[role_card_data.b_level]);
-        if(!lv_limit)
-        {
-            lv_limit=Number(const_value.REBORN_LEVEL[const_value.REBORN_LEVEL.length-1]);
-        }
-    }
-
-    var role_lv_limit=role.level+const_value.CARD_EXCEED_ROLE_LIMIT;
-
-    lv_limit=lv_limit>role_lv_limit?role_lv_limit:lv_limit;
+    var lv_limit=role.level*2;
 
     //不能超过等级上限
     if(role_card_data.level>=lv_limit)
@@ -946,14 +1073,13 @@ var help_card_level_up=function(role,role_card_data,exp)
 
     role_card_data.exp+=Math.floor(exp);
 
-     while(_card_exp_data
-     &&role_card_data.exp>=_card_exp_data.exp_limit*card_json_data.exp_param
-     &&role_card_data.level<=role.level+const_value.CARD_EXCEED_ROLE_LIMIT
-     &&role_card_data.level<lv_limit)
+     while(_card_exp_data&&role_card_data.exp>=_card_exp_data.exp_limit*card_json_data.exp_param&&role_card_data.level<lv_limit)
     {
         role_card_data.exp-=Math.floor(_card_exp_data.exp_limit*card_json_data.exp_param);
         role_card_data.level++;
         _card_exp_data=card_exp_data.card_exp_data_list[role_card_data.level];
+
+        lv_limit=role.level*2;
     }
 
     //升完级之后，如果超过等级上限，归零

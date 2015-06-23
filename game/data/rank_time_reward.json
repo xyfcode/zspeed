@@ -4,55 +4,61 @@
           "Id":"1",
           "RandLowLimit":"1",
           "RandHighLimit":"1",
-          "Reward":"3,t101,1"
+          "Reward":"4,,300"
         },
         "2":{
           "Id":"2",
           "RandLowLimit":"2",
           "RandHighLimit":"2",
-          "Reward":"3,t102,1"
+          "Reward":"4,,250"
         },
         "3":{
           "Id":"3",
           "RandLowLimit":"3",
           "RandHighLimit":"3",
-          "Reward":"3,t103,1"
+          "Reward":"4,,200"
         },
         "4":{
           "Id":"4",
           "RandLowLimit":"4",
           "RandHighLimit":"10",
-          "Reward":"3,t104,1"
+          "Reward":"4,,150"
         },
         "5":{
           "Id":"5",
-          "RandLowLimit":"11",
-          "RandHighLimit":"50",
-          "Reward":"3,t105,1"
+          "RandLowLimit":"5",
+          "RandHighLimit":"10",
+          "Reward":"4,,100"
         },
         "6":{
           "Id":"6",
-          "RandLowLimit":"51",
-          "RandHighLimit":"100",
-          "Reward":"3,t106,1"
+          "RandLowLimit":"11",
+          "RandHighLimit":"50",
+          "Reward":"4,,75"
         },
         "7":{
           "Id":"7",
-          "RandLowLimit":"101",
-          "RandHighLimit":"200",
-          "Reward":"3,t107,1"
+          "RandLowLimit":"51",
+          "RandHighLimit":"100",
+          "Reward":"4,,50"
         },
         "8":{
           "Id":"8",
-          "RandLowLimit":"201",
-          "RandHighLimit":"1000",
-          "Reward":"3,t108,1"
+          "RandLowLimit":"101",
+          "RandHighLimit":"200",
+          "Reward":"4,,40"
         },
         "9":{
           "Id":"9",
+          "RandLowLimit":"200",
+          "RandHighLimit":"1000",
+          "Reward":"4,,30"
+        },
+        "10":{
+          "Id":"10",
           "RandLowLimit":"1001",
           "RandHighLimit":"9999",
-          "Reward":"3,t109,1"
+          "Reward":"4,,20"
         }
    }
 }

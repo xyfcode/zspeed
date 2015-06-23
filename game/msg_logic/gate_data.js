@@ -8,8 +8,14 @@ var GateData=function()
     this.gate_id=0;
     this.power_cost=0;
     this.lv_limit=0;
-    this.exp=0;
-    this.war=[];
+    this.sweep_max=0;
+    this.reset_max=0;
+    this.first_exp=0;
+    this.first_coin=0;
+    this.first_drop=[];
+    this.common_exp=0;
+    this.common_coin=0;
+    this.common_drop=[];
 };
 
 var gate_data_list={};
@@ -39,8 +45,23 @@ function load_gate_data()
         gate_data.gate_id=data["GATE"][i].GateId;
         gate_data.power_cost=Number(data["GATE"][i].PowerCost);
         gate_data.lv_limit=Number(data["GATE"][i].LvLimited);
-        gate_data.exp=Number(data["GATE"][i].WarriorExp);
-        gate_data.war=(data["GATE"][i].War).split(",");
+        gate_data.sweep_max=Number(data["GATE"][i].DaySweepTimes);
+        gate_data.reset_max=Number(data["GATE"][i].MaxResetSweep);
+        gate_data.first_exp=Number(data["GATE"][i].FirstExp);
+        gate_data.first_coin=Number(data["GATE"][i].FirstCoin);
+        gate_data.common_exp=Number(data["GATE"][i].CommonExp);
+        gate_data.common_coin=Number(data["GATE"][i].CommonCoin);
+
+
+        if(data["GATE"][i].FirstDrop)
+        {
+            gate_data.first_drop=(data["GATE"][i].FirstDrop).split(',');
+        }
+
+        if(data["GATE"][i].CommonDrop)
+        {
+            gate_data.common_drop=(data["GATE"][i].CommonDrop).split(',');
+        }
 
         gate_data_list[gate_data.gate_id]=gate_data;
     }

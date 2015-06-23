@@ -7,9 +7,10 @@ var ShopData=function()
 {
     this.id=0;
     this.type=0;
+    this.vip=0;
     this.item_id=0;
     this.num=0;
-    this.cost_arr=0;
+    this.cost=0;
     this.times_limited=0;
 };
 
@@ -39,10 +40,23 @@ function load_shop_data()
 
         shop_data.id=data["SHOP"][i].Id;
         shop_data.type=Number(data["SHOP"][i].Type);
+        if(data["SHOP"][i].Vip)
+        {
+            shop_data.vip=Number(data["SHOP"][i].Vip);
+        }
         shop_data.item_id=data["SHOP"][i].ItemId;
         shop_data.num=Number(data["SHOP"][i].Num);
-        shop_data.cost_arr=(data["SHOP"][i].Cost).split(',');
-        shop_data.times_limited=Number(data["SHOP"][i].TimesLimited);
+        if(shop_data.id=="dumpling")
+        {
+            shop_data.cost=(data["SHOP"][i].Cost).split(',');
+            shop_data.times_limited=(data["SHOP"][i].TimesLimited).split(',');
+        }
+        else
+        {
+            shop_data.cost=Number(data["SHOP"][i].Cost);
+            shop_data.times_limited=Number(data["SHOP"][i].TimesLimited);
+        }
+
 
         shop_data_list[shop_data.id]=shop_data;
     }

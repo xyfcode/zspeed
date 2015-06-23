@@ -9,8 +9,10 @@ var common_func=require("./common_func");
 
 var const_value=define_code.const_value;
 var server_list = server_config_data.server_config_data_list;
+var msg_id=define_code.msg_id;
+var msg_code=define_code.msg_code;
 
-var g_server=null;
+var g_server=null,notice_data;
 
 function init(s)
 {
@@ -77,69 +79,52 @@ function on_change_activity(data,send,s)
 exports.on_change_activity =on_change_activity;
 
 
-//更改公告
-function on_change_notice(data,send,s)
+//发送用户公告
+function on_user_notice(data,send,s)
 {
-    global.log("on_change_notice");
+    global.log("on_user_notice");
 
-    var id=data.id;
-    var buttonID=data.buttonID;
-    var buttonText=data.buttonText;
-    var title=data.title;
-    var text=data.text;
     var type=data.type;
+    var content=data.content;
 
-    var path="./dynamic.ini";
-    var str=fs.readFileSync(path,'utf8');
-    var dynamic_txt;
-    if(str)
+    if(type==undefined || content==undefined)
     {
-        var sub_data=str.toString();
-        dynamic_txt=JSON.parse(sub_data);
-        global.log("dynamic_txt:"+JSON.stringify(dynamic_txt));
+        global.log("type==undefined || content==undefined");
+        return;
     }
 
-    switch(Number(type))
-    {
-        case 1:
-            //添加
-            global.log("添加");
+    var msg = {
+        "op" : msg_id.NM_USER_NOTICE,
+        "msg" : content,
+        "force" : type,
+        "ret" : msg_code.SUCC
+    };
 
-            if(id&&buttonID&&buttonText&&title&&text)
-            {
-                var notice={};
-                notice.buttonID=buttonID;
-                notice.buttonText=buttonText;
-                notice.title=title;
-                notice.text=text;
-                dynamic_txt.notice[id]=notice;
-            }
-            break;
-        case 2:
-            //编辑
-            global.log("编辑");
-            if(id&&buttonID&&buttonText&&title&&text&&dynamic_txt.notice[id])
-            {
-                dynamic_txt.notice[id].buttonID=buttonID;
-                dynamic_txt.notice[id].buttonText=buttonText;
-                dynamic_txt.notice[id].title=title;
-                dynamic_txt.notice[id].text=text;
-            }
-            break;
-        case 3:
-            //删除
-            global.log("删除");
-            if(id&&dynamic_txt.notice[id])
-            {
-                delete  dynamic_txt.notice[id];
-            }
-            break;
-    }
-    fs.writeFile(path,JSON.stringify(dynamic_txt) , function (err) {
-        if (err) throw err;
-    });
+    notice_data=msg;
+
+    help_send_user_notice();
+
+
+
 }
-exports.on_change_notice =on_change_notice;
+exports.on_user_notice =on_user_notice;
+
+function help_send_user_notice()
+{
+    if(notice_data)
+    {
+        for(var key in ds.user_account_list)
+        {
+            var user =  ds.user_account_list[key];
+
+            if(user && user.online && user.send)
+            {
+                user.send(notice_data);
+            }
+        }
+    }
+}
+exports.help_send_user_notice =help_send_user_notice;
 
 //获取用户数据on_gm_role_data
 function on_gm_role_data(data,send,s)
@@ -187,18 +172,18 @@ function on_gm_edit_role_data(data,send,s)
 {
     global.log("on_gm_edit_role_data");
     var name=data.name;
-    var attribute=data.attribute;
-    var type=data.type;
+    var attr=data.attr;
 
-    if(name==undefined || attribute==undefined || type==undefined)
+    if(name==undefined || attr==undefined)
     {
-        global.log("name==undefined || attribute==undefined || type==undefined");
+        global.log("name==undefined || attr==undefined");
         return ;
     }
 
-    var user=help_get_role_by_name(name);
-    if(user)
+    var user=help_get_user_by_name(name);
+    if(user && user.online)
     {
+        global.log("user is online");
         //在线用户
         var role=ds.get_cur_role(user);
         if(role==undefined)
@@ -206,70 +191,54 @@ function on_gm_edit_role_data(data,send,s)
             global.log("role==undefined");
             return;
         }
-        switch(type)
+
+        if(common_func.isEmpty(attr.rmb))
         {
-            case 1:
-                //修改用户游戏币
-                role.rmb+=Number(attribute);
-                user.nNeedSave=1;
-                break;
-            case 2:
-                //修改用户金币
-                role.gold+=Number(attribute);
-                user.nNeedSave=1;
-                break;
-            case 3:
-                //修改用户体力
-                role.stamina+=Number(attribute);
-                user.nNeedSave=1;
-                break;
-            case 4:
-                //修改用户积分
-                role.score+=Number(attribute);
-                user.nNeedSave=1;
-                break;
-            default :
-                global.log("type is error ,type:"+type);
-                break;
+            //修改用户人民币
+            role.rmb=Number(attr.rmb);
         }
+        if(common_func.isEmpty(attr.gold))
+        {
+            //修改用户金币
+            role.gold=Number(attr.gold);
+        }
+
+
+        user.nNeedSave=1;
+
+        //推送客户端全局修改信息
+        var g_msg = {
+            "op" : msg_id.NM_USER_DATA,
+            "rmb":role.rmb,
+            "gold":role.gold,
+            "ret" :msg_code.SUCC
+        };
+        user.send(g_msg);
+        global.log(JSON.stringify(g_msg));
+
     }
     else
     {
+
+        global.log("user is offline");
+        var setObj={};
+
         //离线用户
-        switch(type)
+        if(common_func.isEmpty(attr.rmb))
         {
-            case 1:
-                //修改用户游戏币
-                if(Number(attribute))
-                {
-                    g_server.db.update(make_db.t_role,{"data.name":name},{"$inc":{"data.rmb":Number(attribute)}});
-                }
-                break;
-            case 2:
-                //修改用户金币
-                if(Number(attribute))
-                {
-                    g_server.db.update(make_db.t_role,{"data.name":name},{"$inc":{"data.gold":Number(attribute)}});
-                }
-                break;
-            case 3:
-                //修改用户体力
-                if(Number(attribute))
-                {
-                    g_server.db.update(make_db.t_role,{"data.name":name},{"$inc":{"data.stamina":Number(attribute)}});
-                }
-                break;
-            case 4:
-                //修改用户积分
-                if(Number(attribute))
-                {
-                    g_server.db.update(make_db.t_role,{"data.name":name},{"$inc":{"data.score":Number(attribute)}});
-                }
-                break;
-            default :
-                global.log("type is error ,type:"+type);
-                break;
+            //修改用户人民币
+            setObj["data.rmb"]=Number(attr.rmb);
+
         }
+        if(common_func.isEmpty(attr.gold))
+        {
+            //修改用户金币
+            setObj["data.gold"]=Number(attr.gold);
+        }
+
+
+        g_server.db.update(make_db.t_role,{"data.name":name},{"$set":setObj});
+
     }
 
 }
@@ -332,10 +301,10 @@ function on_gm_send_role_mail(data,send,s)
 }
 exports.on_gm_send_role_mail =on_gm_send_role_mail;
 
-var help_get_role_by_name=function(name)
+var help_get_user_by_name=function(name)
 {
-    global.log("help_get_role_by_name");
-    var user;
+    global.log("help_get_user_by_name");
+    var _user;
 
     for(var key in ds.user_account_list)
     {
@@ -345,13 +314,13 @@ var help_get_role_by_name=function(name)
             var _role = ds.get_cur_role(user);
             if(_role != undefined && _role.name==name)
             {
-                user= user;
+                _user= user;
                 break;
             }
         }
     }
 
-    return user;
+    return _user;
 
 };
 

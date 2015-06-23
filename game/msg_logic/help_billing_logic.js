@@ -7,10 +7,14 @@ var billing_client = require("../billing_client");
 var server_config_data = require("./server_config_data");
 var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
+var gm_billing_logic=require("./help_gm_billing_logic");
 var common_func=require("./common_func");
+
+var role_data_logic = require("./help_role_data_logic");
 
 var msg_id=define_code.msg_id;
 var msg_code=define_code.msg_code;
+var const_value=define_code.const_value;
 var server_list = server_config_data.server_config_data_list;
 
 var g_server=null,billing_socket_send = null;
@@ -153,7 +157,6 @@ function on_gs_user_login(data,send,s)
                var gid = make_db.get_global_unique_id();
                new_user.socket = temp_user.socket;
                new_user.send = temp_user.send;
-               new_user.key = temp_user.key;
                new_user.online = 1;
 
                new_user.account_data.login_type = temp_user.login_type;
@@ -197,11 +200,11 @@ function on_gs_user_login(data,send,s)
                        var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
                        _name = play_name.play_name_arr[r].name;
                        play_name.play_name_arr.splice(r,1);
-                       if(key_words.reg.test(_name))
+                       /*if(key_words.reg.test(_name))
                        {
                            global.log("error name:"+_name);
                            continue;
-                       }
+                       }*/
                        break;
                    }
                    new_user.rand_name.name =_name;
@@ -229,7 +232,6 @@ function on_gs_user_login(data,send,s)
                global.log("old user");
                var user = new ds.UserInfo();
                user.account_data = arr[0];
-               user.key = temp_user.key;
                user.socket = temp_user.socket;
                user.send = temp_user.send;
                user.online = 1;
@@ -273,11 +275,11 @@ function on_gs_user_login(data,send,s)
                            var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
                            _name = play_name.play_name_arr[r].name;
                            play_name.play_name_arr.splice(r,1);
-                           if(key_words.reg.test(_name))
-                           {
-                               global.log("error name:"+_name);
-                               continue;
-                           }
+                           /*if(key_words.reg.test(_name))
+                            {
+                            global.log("error name:"+_name);
+                            continue;
+                            }*/
                            break;
                        }
                        user.rand_name.name = _name;
@@ -301,6 +303,7 @@ function on_gs_user_login(data,send,s)
                        user.send(msg);
                        global.log("old user login ok!");
                    }
+
                });
 
                delete ds.temp_user_account_list[account];
@@ -414,19 +417,42 @@ function on_billing_account_rebind(data,send,s)
 {
     global.log("on_billing_account_rebind");
 
-    var account = data.account;
-    if(account == undefined)
+    var old_acc = data.old_acc;
+    var new_acc = data.new_acc;
+    if(old_acc == undefined || new_acc == undefined)
     {
-        global.log("account == undefined");
+        global.log("old_acc == undefined || new_acc == undefined");
         return ;
     }
-    var user = ds.user_account_list[account];
+    var user = ds.user_account_list[old_acc];
 
     if(user && user.socket)
     {
+
+        var role = ds.get_cur_role(user);
+        if(role == undefined)
+        {
+            global.log("role == undefined");
+            return;
+        }
+
+        //更新游戏服账号信息
+        role.account=new_acc;
+        user.nNeedSave=1;
+
+        //更新内存user account数据
+        user.account_data.account=new_acc;
+        //清除旧key
+        delete ds.user_account_list[old_acc];
+        ds.user_account_list[new_acc]=user;
+
+        //更新DB user表
+        g_server.db.update(make_db.t_user,{"gid":role.gid},{"$set":{account:new_acc}});
+
+
         var msg ={
             "op" : msg_id.NM_ACCOUNT_REBIND,
-            "ret" : msg_code.SUCC
+            "ret" : data.ret
         };
         user.socket.send(msg);
     }
@@ -437,3 +463,105 @@ function on_billing_account_rebind(data,send,s)
 
 }
 exports.on_billing_account_rebind = on_billing_account_rebind;
+
+
+//关闭玩家socket连接(私有函数)
+function help_close_user_socket(s)
+{
+    global.log("help_close_user_socket");
+    if(s != undefined)
+    {
+        if(s.writable)
+        {
+            global.log("s writable is true!");
+            s.end();
+            s.destroy();
+        }
+        clearInterval(s.interval);
+        s = null;
+    }
+}
+//返回用户断线重连结果
+function on_billing_reconnect_result(data,send,s)
+{
+    global.log("on_billing_reconnect_result");
+
+    var account = data.acc;
+    var b_ret = data.ret;
+    if(account == undefined)
+    {
+        global.log("account == undefined || ret == undefined");
+        return ;
+    }
+
+    if(b_ret==msg_code.SUCC)
+    {
+        var con = {"account" : account};
+        g_server.db.find(make_db.t_user,con,function(arr){
+            if(arr.length == 0)
+            {
+                global.log("account err [" + account +" ]");
+                return;
+            }
+            var user = new ds.UserInfo();
+            user.account_data = arr[0];
+            user.online = 1;
+
+            user.account_data.cur_sid = server_list[0].server_id;
+            user.account_data.cur_rid = 1;
+
+            var temp_user=ds.temp_reconn_user_list[account];
+            if(temp_user==undefined)
+            {
+                global.err("temp_user==undefined");
+                return;
+            }
+            help_reset_user_state(user,temp_user.socket,temp_user.send);
+            delete ds.temp_reconn_user_list[account];
+
+
+            var con = {"gid" : user.account_data.gid};
+            g_server.db.find(make_db.t_role,con,function(role_arr){
+                if(role_arr.length ==0)
+                {
+                    global.log("gid err [" + user.account_data.gid +" ]");
+                    return;
+                }
+
+                var grid = role_arr[0].grid;
+                user.role_data[grid] = role_arr[0];
+
+                ds.user_account_list[account] = user;
+                ds.user_list[arr[0].gid] = user;
+
+                var msg = {
+                    "op" : msg_id.NM_RECONNECT,
+                    "ret" : msg_code.SUCC
+                };
+                user.send(msg);
+
+                global.log("msg"+JSON.stringify(msg));
+                role_data_logic.help_reset_role_info(user);
+
+            });
+        });
+    }
+    else
+    {
+        var temp_user=ds.temp_reconn_user_list[account];
+
+        var msg = {
+            "op" : msg_id.NM_RECONNECT,
+            "ret" : b_ret
+        };
+        temp_user.send(msg);
+
+        help_close_user_socket(temp_user.s);
+
+        delete ds.temp_reconn_user_list[account];
+    }
+}
+exports.on_billing_reconnect_result = on_billing_reconnect_result;
+
+
+

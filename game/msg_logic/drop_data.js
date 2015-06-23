@@ -45,7 +45,7 @@ function load_drop_data()
         var drop_data=new DropData();
 
         drop_data.drop_id=data["DROP"][i].DropId;
-        drop_data.probability=Number(data["DROP"][i].Probability);
+        drop_data.probability=Number(data["DROP"][i].Probability)*100;
         drop_data.is_all=Number(data["DROP"][i].IsAll);
 
         var assemble=data["DROP"][i].Assemble;

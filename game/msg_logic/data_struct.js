@@ -58,22 +58,24 @@ function RoleData()
     this.pft="";//平台类别
     this.name = "";//名称
     this.gold = 0;//游戏币
-    this.rmb = 0;  //元宝/钻石/金币 GS
+    this.rmb = 0;  //元宝
     this.level = 0;//等级
     this.exp = 0;//经验
     this.vip = 0;//vip等级
     this.score=0;// 积分
     this.c_date = 0;//角色创建日期
-    this.lock = 0;//是否加锁
     this.stamina = 0;//体力值
     this.time_stamina = 0;//体力回复时间
     this.explore=0;//探索次数
     this.time_explore = 0;//探索次数回复时间
     this.explore_date = 0;//探索购买日期
     this.explore_times=0;//探索购买次数
+    this.tree_times = 0;//今日招财次数
+    this.tree_date=0;//招财时间
 
     this.guide_step=0;//新手引导编号
     this.is_cd_exist=0;//是否存在月卡
+    this.purchase_rmb=0; //充值获得的金额
     this.purchase_record={};//key:商品id,value:  Purchase_Record_Data
     this.chat_date=0;//一天第一次聊天的时间
     this.chat_time=0;//发表聊天次数
@@ -205,7 +207,6 @@ exports.Role_Item_Data = Role_Item_Data;
 function Role_Town_Data()
 {
     this.tid=0;//城池ID
-    this.is_first=0;//是否第一次进入该区域 0:否，1是
     this.passed=0;//是否通关 0:否，1是
     this.rewarded=0;//是否已经领取通关奖励 0:否，1是
     this.hurt=0;//挑战模式下，该城的最高总伤害
@@ -219,7 +220,9 @@ function Role_Gate_Data()
     this.gate_id = 0;//关卡ID
     this.is_first=0;//是否第一次进入该关卡 0:否，1是
     this.passed=0; //是否过关 0:否，1是
-    this.hurt=0;//历史最高单次伤害
+    this.sweep=0;//今日扫荡次数
+    this.s_date=0;//上次扫荡时间
+    this.s_reset=0;//今日扫荡重置次数
 }
 exports.Role_Gate_Data = Role_Gate_Data;
 
@@ -261,7 +264,6 @@ function UserInfo()
     this.nNeedSave = 0; //是否需要定时保存数据入库
     this.offline_time = 0;//下线时间
     this.nSaveDBTime=0; //用户保存DB时间
-    this.key=0;//唯一标示
 }
 exports.UserInfo = UserInfo;
 
@@ -289,6 +291,10 @@ exports.temp_user_account_list = temp_user_account_list;
 //兑换码验证用户容器
 var cd_verify_account_list = {}; //key:account，value :UserInfo
 exports.cd_verify_account_list = cd_verify_account_list;
+
+//临时断线重连用户数据
+var temp_reconn_user_list={}; //key:account ，value :UserInfo
+exports.temp_reconn_user_list = temp_reconn_user_list;
 
 //处理用户服务器登录列表
 function check_server_role_list(user,sid)

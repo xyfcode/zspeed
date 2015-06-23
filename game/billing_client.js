@@ -11,9 +11,9 @@ var handler = {
     "28" : new on_kick_user(),  //玩家账号在另一个设备登录，踢出该设备用户
     "29" : new on_billing_account_rebind(),  //快速登录账号绑定billing返回结果
     "30" : new on_gs_verify_cd_key(),
+    "31" : new on_billing_reconnect_result(), //billing 返回用户断线重连结果
     "purchase_verify" : new on_billing_purchase_verify_result(),//用户支付(billing返回的验证结果)
-    "100" : new on_change_activity(), //更改活动(GM)
-    "101" : new on_change_notice(), //更改公告 (GM)
+    "100" : new on_user_notice(), //用户公告 (GM)
     "102" : new on_gm_role_data(), //获取用户数据 (GM)
     "103" : new on_gm_edit_role_data(), //编辑用户数据 (GM)
     "104" : new on_gm_send_role_mail() //发送用户邮件 (GM)
@@ -100,20 +100,20 @@ function on_billing_account_rebind()
     }
 }
 
-//处理GM工具
-function on_change_activity()
+function on_billing_reconnect_result()
 {
     this.handle = function(data,send,s)
     {
-        gm_billing_logic.on_change_activity(data,send,s);
+        billing_logic.on_billing_reconnect_result(data,send,s);
     }
 }
 
-function on_change_notice()
+
+function on_user_notice()
 {
     this.handle = function(data,send,s)
     {
-        gm_billing_logic.on_change_notice(data,send,s);
+        gm_billing_logic.on_user_notice(data,send,s);
     }
 }
 

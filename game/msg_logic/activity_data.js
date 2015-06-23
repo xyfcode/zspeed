@@ -64,7 +64,7 @@ function load_sacrifice_data()
         sacrifice_data.next_id=data["SACRIFICE"][i].NextId;
         sacrifice_data.times=Number(data["SACRIFICE"][i].Times);
         sacrifice_data.gold=Number(data["SACRIFICE"][i].Gold);
-        sacrifice_data.drop_id=Number(data["SACRIFICE"][i].DropId);
+        sacrifice_data.drop_id=data["SACRIFICE"][i].DropId;
 
         sacrifice_data_list[sacrifice_data.id] = sacrifice_data;
     }

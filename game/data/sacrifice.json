@@ -4,36 +4,36 @@
           "Id":"sa_1",
           "NextId":"sa_2",
           "Times":"2",
-          "Gold":"2500",
+          "Gold":"1000",
           "DropId":"1"
         },
         "2":{
           "Id":"sa_2",
           "NextId":"sa_3",
           "Times":"3",
-          "Gold":"6600",
+          "Gold":"1000",
           "DropId":"2"
         },
         "3":{
           "Id":"sa_3",
           "NextId":"sa_4",
-          "Times":"2",
-          "Gold":"8000",
+          "Times":"4",
+          "Gold":"1000",
           "DropId":"3"
         },
         "4":{
           "Id":"sa_4",
           "NextId":"sa_5",
           "Times":"5",
-          "Gold":"10000",
+          "Gold":"1000",
           "DropId":"4"
         },
         "5":{
           "Id":"sa_5",
           "NextId":"sa_5",
           "Times":"5",
-          "Gold":"11000",
-          "DropId":"5"
+          "Gold":"1000",
+          "DropId":"4"
         }
    }
 }

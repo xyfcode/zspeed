@@ -26,6 +26,7 @@ var tick_logic = require("./help_tick_logic");
 var role_data_logic = require("./help_role_data_logic");
 var friend_data_logic = require("./help_friend_logic");
 var activity_logic = require("./help_activity_logic");
+//var gm_billing_logic = require("./help_gm_billing_logic");
 
 var const_value=define_code.const_value;
 var msg_id=define_code.msg_id;
@@ -33,11 +34,10 @@ var msg_code=define_code.msg_code;
 var server_list=server_config_data.server_config_data_list;
 
 var g_server=null;
-
 function init(s)
 {
     g_server=s;
-};
+}
 exports.init=init;
 
 //用户定时器
@@ -47,31 +47,26 @@ function help_user_tick(s)
     {
         return;
     }
-    var now = new Date();
-    if(now.getTime() - s.nAliveTime > 90 * 1000)
+    var now_time = new Date().getTime();
+    if(now_time - s.nAliveTime > 90 * 1000)
     {
         global.log("now.getTime() - s.nAliveTime > 90 * 1000");
-        global.log("now.getTime():"+now.getTime());
+        global.log("now_time:"+now_time);
         global.log("s.nAliveTime:"+s.nAliveTime);
         global.log("ip:"+ s.c_ip+",port:"+ s.c_port);
         help_close_user_socket(s);
         return;
     }
     //save user data
-    var user = ds.user_list[s.gid];
-    if(user==undefined)
-    {
-        return;
-    }
-
+    var user= ds.user_list[s.gid];
     //用户数据5秒更新入库一次
-    if(user.nNeedSave == 1 && now.getTime()-user.nSaveDBTime >5*1000)
+    if(user && user.nNeedSave == 1 && now_time-user.nSaveDBTime >5*1000)
     {
         global.log("account:[" + user.account_data.account +"] gid:[" + user.account_data.gid + "] upgraded!");
         tick_logic.auto_save_data(user);
 
         user.nNeedSave = 0;
-        user.nSaveDBTime = now.getTime();
+        user.nSaveDBTime = now_time;
     }
 
 }
@@ -277,7 +272,7 @@ function on_create_role(data,send,s)
     }
     //不能包含非法字符，不能包含任何空白字符，包括空格、制表符、换页符等
     var reg=/\s/;
-    if(key_words.reg.test(role_name) || reg.test(role_name))
+    /*if(key_words.reg.test(role_name) || reg.test(role_name))
     {
         var msg = {
             "op" : msg_id.NM_CREATE_ROLE,
@@ -285,7 +280,7 @@ function on_create_role(data,send,s)
         };
         send(msg);
         return;
-    }
+    }*/
 
     var sid = server_list[0].server_id;
     ds.check_server_role_list(user,sid);
@@ -429,82 +424,18 @@ function on_enter_game(data,send,s)
         return;
     }
 
-    var is_today=common_func.help_judge_today(role.login_time);
-    var is_yesterday=common_func.help_judge_yesterday(role.login_time);
-
-    if(!is_today)
-    {
-        role.login_days++;
-
-        if(is_yesterday)
-        {
-            //昨天登录
-            role.achievement[const_value.ACHI_TYPE_LOGIN].times++;
-        }
-        else
-        {
-            //既不是今天，也不是昨天,重置联系登录次数
-            role.achievement[const_value.ACHI_TYPE_LOGIN].times=1;
-        }
-    }
-
-    //初始化探索次数
-    if(!common_func.help_judge_today(role.explore_date))
-    {
-        role.explore_times=0;
-    }
-
-
-    var now = new Date();
-    role.login_time = now.getTime();
-    formation_data.formation_list[role.grid].time=role.login_time;
-
-    if(role.stamina<const_value.STAMINA_MAX)
-    {
-        //体力恢复
-        var _millisecond_diff = now.getTime() - role.time_stamina;
-        var _point = Math.floor(_millisecond_diff/1000/60/const_value.POINT_TICK);
-
-        if(_point >0)
-        {
-            if((role.stamina + _point) > const_value.STAMINA_MAX)
-            {
-                role.stamina = const_value.STAMINA_MAX;
-                role.time_stamina = now.getTime();
-            }
-            else
-            {
-                role.stamina += _point;
-                role.time_stamina +=_point*60*1000*const_value.POINT_TICK;
-            }
-
-        }
-    }
-    //登录次数
-    role.login_count +=1;
-
-
-    user.nNeedSave=1;
     var msg = {
         "op" : msg_id.NM_ENTER_GAME,
-        "index" : role.grid ,
-        "exp" : role.exp ,
-        "level":role.level,
-        "name":role.name,
-        "gold":role.gold,
-        "rmb":role.rmb ,
-        "score":role.score,
-        "stamina":role.stamina, //体力
-        "explore":role.explore, //探索次数
-        "hurt":formation_data.formation_list[role.grid].top_hurt, //伤害
-        "free_chat":(const_value.CHAT_FREE_TIMES-role.chat_time), //聊天次数
-        "explore_buy":role.explore_times, //今日购买探索次数
         "ret" :msg_code.SUCC
     };
     send(msg);
 
-
+    //重置用户信息
+    role_data_logic.help_reset_role_info(user);
     role_data_logic.help_notice_role_msg(role,send);
+
+    //公告缓存数据
+    //gm_billing_logic.help_send_user_notice();
 
     var log_content={"msg":msg};
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_enter_game",log_content,log_data.logType.LOG_BEHAVIOR);
@@ -557,11 +488,11 @@ function on_random_name(data,send,s)
         var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
         _name = play_name.play_name_arr[r].name;
         play_name.play_name_arr.splice(r,1);
-        if(key_words.reg.test(_name))
+        /*if(key_words.reg.test(_name))
         {
             global.log("error name:"+_name);
             continue;
-        }
+        }*/
         break;
     }
 
@@ -587,14 +518,22 @@ function on_user_reconnect(data,send,s)
         return;
     }
 
-    var account =common_func.get_account_by_type(data.ac,data.type) ;
+    var account=data.ac;
+    var type=data.type;
+    var pwd=data.pwd;
+    if(account==undefined || type==undefined || pwd ==undefined)
+    {
+        global.log("account==undefined || type==undefined || pwd ==undefined");
+        return;
+    }
+
+    account =common_func.get_account_by_type(account,type) ;
     if(account == undefined)
     {
         global.log("account == undefined");
         return;
     }
 
-    //不记录7日登录数据，连续登录数据
     var now = new Date();
     var user = ds.user_account_list[account];
     if(user)
@@ -617,56 +556,20 @@ function on_user_reconnect(data,send,s)
         user = null;
     }
 
-    //todo::no password ,not safe
-    var con = {"account" : account};
-    g_server.db.find(make_db.t_user,con,function(arr){
-        if(arr.length == 0)
-        {
-            global.log("account err [" + account +" ]");
-            return;
-        }
-        var user = new ds.UserInfo();
-        user.account_data = arr[0];
-        user.key = data.token;
-        user.socket = s;
-        user.send = send;
-        user.online = 1;
+    var temp=new ds.UserInfo();
+    temp.socket=s;
+    temp.send=send;
 
+    ds.temp_reconn_user_list[account]=temp;
 
-        user.account_data.cur_sid = server_list[0].server_id;
-        user.account_data.cur_rid = 1;
-        help_reset_user_state(user,send,s);
-
-        var con = {"gid" : user.account_data.gid};
-        g_server.db.find(make_db.t_role,con,function(arr1){
-            if(arr1.length !=0)
-            {
-                for(var i = 0;i<arr1.length;i++)
-                {
-                    var grid = arr1[i].grid;
-                    user.role_data[grid] = arr1[i];
-                }
-            }
-            ds.user_account_list[account] = user;
-            ds.user_list[arr[0].gid] = user;
-
-            var msg = {
-                "op" : msg_id.NM_RECONNECT,
-                "ret" : msg_code.SUCC
-            };
-            send(msg);
-
-            global.log("msg"+JSON.stringify(msg));
-        });
-    });
-
+    //去账号服务器确定
     var billing_socket = billing_client.get_billing_socket();
     if(billing_socket)
     {
         var msg = {
             "op" : msg_id.NM_USER_RECONNECT_TO_BILLING,
             "account" : account,
-            "token" : data.token
+            "pwd" : data.pwd
         };
         billing_socket.send(msg);
     }
@@ -725,6 +628,7 @@ function on_account_rebind(data,send,s)
     }
 
     var new_ac=common_func.get_account_by_type(data.ac,define_code.loginType.LT_DEFAULT);
+
     var new_pwd=data.pwd;
     if(new_ac == undefined || new_pwd==undefined)
     {
@@ -743,50 +647,48 @@ function on_account_rebind(data,send,s)
         return;
     }
 
-    var old_ac=role.account;
 
-    //更新游戏服账号信息
-    role.account=new_ac;
-    user.nNeedSave=1;
+    g_server.db.find(make_db.t_user,{"account":new_ac},function(arr){
+        if(arr.length==0)
+        {
+            //通知账号服务器修改账号密码
+            var b_msg = {
+                "op": msg_id.NM_BL_ACCOUNT_BIND,
+                "old_account" : role.account,
+                "new_account" : new_ac,
+                "new_pwd" : new_pwd
+            };
 
-    //更新内存user account数据
-    user.account_data.account=new_ac;
-    //清除旧key
-    delete ds.user_account_list[old_ac];
-    ds.user_account_list[new_ac]=user;
+            var b_socket = billing_client.get_billing_socket();
+            if(b_socket != null)
+            {
+                b_socket.send(b_msg);
+                global.log("send to billing_server ok!");
+            }
+            else
+            {
+                global.log("billing socket error!");
+                var msg = {
+                    "op" : msg_id.NM_ACCOUNT_REBIND,
+                    "ret" : msg_code.SERVER_ERROR
+                };
+                send(msg);
+                return;
+            }
 
-    //更新DB user表
-    g_server.db.update(make_db.t_user,{"gid":gid},{"$set":{account:new_ac}});
-
-
-    //通知账号服务器修改账号密码
-    var b_msg = {
-        "op": msg_id.NM_BL_ACCOUNT_BIND,
-        "old_account" : old_ac,
-        "new_account" : new_ac,
-        "new_pwd" : new_pwd
-    };
-
-    var b_socket = billing_client.get_billing_socket();
-    if(b_socket != null)
-    {
-        b_socket.send(b_msg);
-        global.log("send to billing_server ok!");
-    }
-    else
-    {
-        global.log("billing socket error!");
-        var msg = {
-            "op" : msg_id.NM_ACCOUNT_REBIND,
-            "ret" : msg_code.SERVER_ERROR
-        };
-        send(msg);
-        return;
-    }
-
-    var log_content={"msg":msg};
-    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_account_rebind",log_content,log_data.logType.LOG_BEHAVIOR);
-    log_data_logic.log(logData);
+            var log_content={"msg":msg};
+            var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_account_rebind",log_content,log_data.logType.LOG_BEHAVIOR);
+            log_data_logic.log(logData);
+        }
+        else
+        {
+            var msg = {
+                "op"   :  msg_id.NM_ACCOUNT_REBIND,
+                "ret" : 1002
+            };
+            s.send(msg);
+        }
+    });
 
 }
 exports.on_account_rebind = on_account_rebind;

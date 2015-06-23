@@ -42,13 +42,13 @@ function help_pay_money(role,money)
         global.err("param money error");
         return;
     }
-};
+}
 exports.help_pay_money = help_pay_money;
 
 //获取金钱
 function help_gain_money(role,money)
 {
-    global.log("help_pay_money");
+    global.log("help_gain_money");
 
     if(role==undefined)
     {
@@ -66,7 +66,7 @@ function help_gain_money(role,money)
     {
         role.gold+=Math.round(money);
         var log_content={"money":money};
-        var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"help_pay_money",log_content,log_data.logType.LOG_MONEY);
+        var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"help_gain_money",log_content,log_data.logType.LOG_MONEY);
         log_data_logic.log(logData);
     }
     else
@@ -77,7 +77,7 @@ function help_gain_money(role,money)
 
 
 
-};
+}
 exports.help_gain_money = help_gain_money;
 
 //支付RMB
@@ -120,7 +120,7 @@ function help_pay_rmb(role,rmb)
         global.err("param rmb error");
         return;
     }
-};
+}
 exports.help_pay_rmb = help_pay_rmb;
 
 //获取RMB
@@ -151,5 +151,5 @@ function help_gain_rmb(role,rmb)
         global.err("param rmb error");
         return;
     }
-};
+}
 exports.help_gain_rmb = help_gain_rmb;

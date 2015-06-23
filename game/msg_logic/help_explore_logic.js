@@ -60,7 +60,7 @@ function on_add_exploration(data,send,s)
 
         //推送客户端全局修改信息
         var g_msg = {
-            "op" : msg_id.NM_ENTER_GAME,
+            "op" : msg_id.NM_USER_DATA,
             "explore":role.explore, //探索次数
             "ret" :msg_code.SUCC
         };
@@ -160,7 +160,7 @@ function on_buy_explore(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "exp" : role.exp ,
         "level":role.level,
         "gold":role.gold, //游戏币
@@ -224,7 +224,7 @@ function on_explore(data,send,s)
         send(msg);
         return;
     }
-
+    /*
     if(Object.keys(role.card_bag).length>=role.cbag_limit)
     {
         var msg = {
@@ -233,7 +233,7 @@ function on_explore(data,send,s)
         };
         send(msg);
         return;
-    }
+    }*/
 
     var _explore_data=explore_data.explore_data_list[role.level];
     if(_explore_data==undefined)
@@ -289,7 +289,7 @@ function on_explore(data,send,s)
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "exp" : role.exp ,
         "level":role.level,
         "gold":role.gold,

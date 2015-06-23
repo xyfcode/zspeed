@@ -634,81 +634,104 @@ function on_fight_friend_data(data,send,s)
         return;
     }
 
-    var _friend_data=friend_data.friend_data_list[role.grid];
-    if(_friend_data==undefined)
-    {
-       global.log("_friend_data==undefined");
-       return;
-    }
+    var now_time=new Date().getTime();
 
-    var friend_arr=[];//邀请好友列表
-    for(var i=0;i<_friend_data.friends.length;i++)
+    //战斗缓存列表
+    var fight_list_data=friend_data.fight_friend_data_list[role.grid];
+
+    if(fight_list_data==undefined||
+        fight_list_data.date-now_time>21600000||
+        fight_list_data.friends.length+fight_list_data.strangers.length<=3)
     {
-        if(!comm_fun.help_judge_today(_friend_data.friends[i].f_time))
+        if(fight_list_data)
         {
-            friend_arr.push(help_organize_client_friend_data(_friend_data.friends[i].grid));
+            delete friend_data.fight_friend_data_list[role.grid];
         }
-    }
-    friend_arr=comm_fun.compare_sort_des(friend_arr,"time").reverse();
 
-    if(friend_arr.length>const_value.FIGHT_FRIEND_NUM)
-    {
-        friend_arr.slice(0,const_value.FIGHT_FRIEND_NUM-1);
-    }
+        fight_list_data=new friend_data.FightFriendData();
+        fight_list_data.grid=role.grid;
+        fight_list_data.date=now_time;
+        friend_data.fight_friend_data_list[role.grid]=fight_list_data;
 
-    var temp_arr=[];//邀请冒险者列表
-    if(friend_arr.length<const_value.FIGHT_FRIEND_NUM)
-    {
-        var diff_num=const_value.FIGHT_FRIEND_NUM-friend_arr.length;
-        var temp_full_arr=[];
-        for(var key in formation.formation_list)
+
+        var _friend_data=friend_data.friend_data_list[role.grid];
+        if(_friend_data==undefined)
         {
-            var temp_formation_data=formation.formation_list[key];
-            if(temp_formation_data.level>=(role.level-10)&&temp_formation_data.level<=(role.level+5)&&temp_formation_data.grid !=role.grid)
+            global.log("_friend_data==undefined");
+            return;
+        }
+
+        for(var i=0;i<_friend_data.friends.length;i++)
+        {
+            if(!comm_fun.help_judge_today(_friend_data.friends[i].f_time))
             {
-                var temp_grid=temp_formation_data.grid;
-                var is_exist=0;
-                for(var i=0;i<_friend_data.friends.length;i++)
-                {
-                    //非好友
-                    if(_friend_data.friends[i].grid==temp_grid)
-                    {
-                        is_exist=1;
-                        break;
-                    }
-                }
-                //除去好友
-                if(!is_exist)
-                {
-                    temp_full_arr.push(temp_grid);
-                }
+                //重置次数
+                _friend_data.friends[i].times=0;
+                _friend_data.friends[i].f_time=now_time;
             }
 
+            if(_friend_data.friends[i].times<const_value.FRIEND_USE_TIMES)
+            {
+                fight_list_data.friends.push(help_organize_client_friend_data(_friend_data.friends[i].grid));
+            }
         }
 
-
-        var random_index =comm_fun.help_make_random(diff_num,0,temp_full_arr.length-1);
-
-        for(var i=0;i<random_index.length;i++)
+        if(fight_list_data.friends.length>const_value.FIGHT_FRIEND_NUM)
         {
-            temp_arr.push(help_organize_client_friend_data(temp_full_arr[random_index[i]]));
+            fight_list_data.friends.slice(0,const_value.FIGHT_FRIEND_NUM-1);
+        }
+
+        //陌生人
+        if(fight_list_data.friends.length<const_value.FIGHT_FRIEND_NUM)
+        {
+            var diff_num=const_value.FIGHT_FRIEND_NUM-fight_list_data.friends.length;
+            var temp_arr=[];
+            for(var key in formation.formation_list)
+            {
+                var temp_formation_data=formation.formation_list[key];
+                if(temp_formation_data.level>=(role.level-20)&&temp_formation_data.level<=(role.level+5)&&temp_formation_data.grid !=role.grid)
+                {
+                    var temp_grid=temp_formation_data.grid;
+                    var is_exist=0;
+                    for(var i=0;i<_friend_data.friends.length;i++)
+                    {
+                        //非好友
+                        if(_friend_data.friends[i].grid==temp_grid)
+                        {
+                            is_exist=1;
+                            break;
+                        }
+                    }
+                    //除去好友
+                    if(!is_exist)
+                    {
+                        temp_arr.push(temp_grid);
+                    }
+                }
+
+            }
+
+
+            var random_index =comm_fun.help_make_random(diff_num,0,temp_arr.length-1);
+
+            for(var i=0;i<random_index.length;i++)
+            {
+                fight_list_data.strangers.push(help_organize_client_friend_data(temp_arr[random_index[i]]));
+            }
+        }
+
+        //机器人
+        if(fight_list_data.friends.length==0&&fight_list_data.strangers.length==0)
+        {
+            fight_list_data.strangers.push(help_create_robot("1"));
         }
     }
-
-     //机器人
-    if(friend_arr.length==0&&temp_full_arr.length==0)
-    {
-        temp_arr.push(help_create_robot("1"));
-    }
-
 
     var msg=
     {
         "op":msg_id.NM_FIGHT_FRIEND_DATA,
-        "u_score":const_value.USER_SCORE,
-        "f_score":const_value.FRIEND_SCORE,
-        "friends":friend_arr,
-        "users":temp_arr,
+        "friends":fight_list_data.friends,
+        "users":fight_list_data.strangers,
         "ret": msg_code.SUCC
     };
     send(msg);
@@ -755,14 +778,32 @@ function on_select_fight_friend(data,send,s)
 
     var isFriend=0;
     var me_friend_data=friend_data.friend_data_list[role.grid];
+
     for(var i=0;i<me_friend_data.friends.length;i++)
     {
         if(me_friend_data.friends[i].grid==f_uid)
         {
+            me_friend_data.friends[i].times++;
             isFriend=1;
             break;
         }
     }
+
+    var fight_friend_list=friend_data.fight_friend_data_list[role.grid];
+    var delete_arr=fight_friend_list.strangers;
+    if(isFriend)
+    {
+        delete_arr=fight_friend_list.friends;
+    }
+    for(var i=0;i<delete_arr.length;i++)
+    {
+        if(delete_arr[i].uid==f_uid)
+        {
+            delete_arr.splice(i,1);
+            break;
+        }
+    }
+
 
     //保存战斗数据
     var fight_user_data=new formation.FightUserData();
@@ -1017,7 +1058,6 @@ function on_extend_friend_bag(data,send,s)
                 return;
             }
             _friend_data.extend_num+=const_value.FRIEND_EXPEND_LIMIT;
-
         }
         else
         {
@@ -1043,7 +1083,7 @@ function on_extend_friend_bag(data,send,s)
 
         //推送客户端全局修改信息
         var g_msg = {
-            "op" : msg_id.NM_ENTER_GAME,
+            "op" : msg_id.NM_USER_DATA,
             "rmb":role.rmb ,
             "ret" :msg_code.SUCC
         };
@@ -1279,6 +1319,27 @@ var help_init_friend_data=function(role)
     make_db.insert_friend_data(_friend_data);
 };
 exports.help_init_friend_data=help_init_friend_data;
+
+//定时清理战斗好友缓存
+var auto_clear_fight_list=function()
+{
+    global.log("auto_clear_fight_list");
+    for(var grid_key in friend_data.fight_friend_data_list)
+    {
+        var fight_friend_list=friend_data.fight_friend_data_list[grid_key];
+        if(fight_friend_list==undefined)
+        {
+            continue;
+        }
+
+        var now_time=new Date().getTime();
+        if(fight_friend_list.date-now_time>21600000)
+        {
+            delete friend_data.fight_friend_data_list[grid_key];
+        }
+    }
+};
+exports.auto_clear_fight_list=auto_clear_fight_list;
 
 
 

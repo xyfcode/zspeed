@@ -223,6 +223,7 @@ function on_apple_user_purchase(data,send,s)
     }
     else
     {
+        global.log("on_apple_user_purchase error");
         var msg = {
             "op" : msg_id.NM_APPLE_USER_PURCHASE,
             "ret" : msg_code.SERVER_ERROR
@@ -356,6 +357,7 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
                     //月卡剩余次数
                     role_purchase_record.cd_left=const_value.CD_REWARD_TIME-1;
                     role.is_cd_exist=1;
+                    role.purchase_rmb+=goods.cd_reward;
                 }
             }
             else
@@ -377,6 +379,7 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
                     //月卡剩余次数
                     role_purchase_record.cd_left=const_value.CD_REWARD_TIME-1;
                     role.is_cd_exist=1;
+                    role.purchase_rmb+=goods.cd_reward;
                 }
 
                 role.purchase_record[goods.goods_id]=role_purchase_record;
@@ -384,9 +387,12 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
 
             //得到人民币
             money_logic.help_gain_rmb(role,gain_rmb);
-            //成就
-            role.achievement[const_value.ACHI_TYPE_RECHARGE_TIMES].times++;
-            role.achievement[const_value.ACHI_TYPE_RECHARGE_SUM].times+=goods_price;
+            role.purchase_rmb+=gain_rmb;
+            //计算VIP等级
+            if(const_value.VIP[role.vip+1]&&role.purchase_rmb>=const_value.VIP[role.vip+1])
+            {
+                role.vip++;
+            }
 
             user.nNeedSave=1;
             var msg = {
@@ -398,8 +404,10 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
 
             //推送客户端全局修改信息
             var g_msg = {
-                "op" : msg_id.NM_ENTER_GAME,
-                "rmb":role.rmb ,
+                "op" : msg_id.NM_USER_DATA,
+                "rmb":role.rmb,
+                "vip":role.vip,
+                "vip_rmb":role.purchase_rmb,
                 "ret" :msg_code.SUCC
             };
             user.send(g_msg);
@@ -422,7 +430,7 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
         global.log("user is not online");
 
         //用户不在线的情况 //目前一个账号对应一个用户
-        var select_val={"gid":1,"grid":1,"data.name":1,"data.level":1,"data.purchase_record":1,"data.achievement":1};
+        var select_val={"gid":1,"grid":1,"data.name":1,"data.level":1,"data.purchase_rmb":1,"data.vip":1,"data.purchase_record":1};
         g_server.db.find(make_db.t_role,{"data.account":account},select_val,function(arr){
             if(arr.length)
             {
@@ -433,6 +441,8 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
                 var grid=arr[0].grid;
                 var name=arr[0].data.name;
                 var level=arr[0].data.level;
+                var vip=arr[0].data.vip;
+                var purchase_rmb=arr[0].data.purchase_rmb;
 
                 //首冲物品奖励
                 if(Object.keys(purchase_record).length==0)
@@ -460,6 +470,7 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
                         //月卡剩余次数
                         role_purchase_record.cd_left=const_value.CD_REWARD_TIME-1;
                         is_cd=1;
+                        purchase_rmb+=goods.cd_reward;
                     }
                 }
                 else
@@ -481,13 +492,18 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
                         //月卡剩余次数
                         role_purchase_record.cd_left=const_value.CD_REWARD_TIME-1;
                         is_cd=1;
+                        purchase_rmb+=goods.cd_reward;
                     }
 
                     purchase_record[goods.goods_id]=role_purchase_record;
                 }
 
-                achievement[const_value.ACHI_TYPE_RECHARGE_TIMES].times++;
-                achievement[const_value.ACHI_TYPE_RECHARGE_SUM].times+=goods_price;
+                purchase_rmb+=gain_rmb;
+                //计算VIP等级
+                if(const_value.VIP[vip+1]&&purchase_rmb>=const_value.VIP[vip+1])
+                {
+                    vip++;
+                }
 
                 if(is_cd)
                 {
@@ -495,7 +511,8 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
                         make_db.t_role,{"data.account":account},
                         {
                             "$inc":{"data.rmb":gain_rmb},
-                            "$set":{"data.purchase_record":purchase_record,"data.is_cd_exist":1,"data.achievement":achievement}
+                            "$set":{"data.purchase_record":purchase_record,"data.purchase_rmb":purchase_rmb,
+                                "data.is_cd_exist":1,"data.vip":vip}
                         }
                     );
                 }
@@ -504,7 +521,7 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
                     g_server.db.update(make_db.t_role,{"data.account":account},
                         {
                             "$inc":{"data.rmb":gain_rmb},
-                            "$set":{"data.purchase_record":purchase_record,"data.achievement":achievement}
+                            "$set":{"data.purchase_record":purchase_record,"data.purchase_rmb":purchase_rmb,"data.vip":vip}
                         }
                     );
                 }
@@ -593,7 +610,7 @@ var auto_dispatch_cd_reward=function()
 
                             //推送客户端全局修改信息
                             var g_msg = {
-                                "op" : msg_id.NM_ENTER_GAME,
+                                "op" : msg_id.NM_USER_DATA,
                                 "rmb":role.rmb ,
                                 "ret" :msg_code.SUCC
                             };
@@ -612,18 +629,12 @@ var auto_dispatch_cd_reward=function()
                         {
                             //月卡使用完
                             global.log("cd is out of date!");
-
-                            var record_key= "data.purchase_record."+cd_id;
-                            global.log("record_key:"+record_key);
-                            g_server.db.update(make_db.t_role,{"gid":gid,"grid":grid},{"$set":{record_key:_cd_record_data,"data.is_cd_exist":0}});
+                            g_server.db.update(make_db.t_role,{"gid":gid,"grid":grid},{"$set":{"data.purchase_record":_purchase_record,"data.is_cd_exist":0}});
                         }
                         else
                         {
                             global.log("cd can use !");
-
-                            var record_key= "data.purchase_record."+cd_id;
-                            global.log("record_key:"+record_key);
-                            g_server.db.update(make_db.t_role,{"gid":gid,"grid":grid},{"$set":{record_key:_cd_record_data}});
+                            g_server.db.update(make_db.t_role,{"gid":gid,"grid":grid},{"$set":{"data.purchase_record":_purchase_record}});
                         }
                     }
 
@@ -633,5 +644,5 @@ var auto_dispatch_cd_reward=function()
 
     });
 
-}
+};
 exports.auto_dispatch_cd_reward=auto_dispatch_cd_reward;

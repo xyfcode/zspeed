@@ -9,6 +9,8 @@ function MsgID()
     this.NM_UPDATE_SERVER_STATUS = 6;  //上传游戏服信息到billing服务器
     this.NM_USER_RECONNECT_TO_BILLING = 7;//重连GS后通知billing
     this.NM_BL_USER_OFFLINE = 8;
+    this.NM_USER_NOTICE = 9; //GM发送用户公告 推送
+    this.NM_USER_DATA = 10; //用户基础数据推送
     this.NM_ROLE_LIST=20;
     this.NM_MAIL_DATA=21; //服务器推送客户端单个邮件
     this.NM_BL_GS_USER_LOGIN = 26;   //billing 登录确认
@@ -61,6 +63,8 @@ function MsgID()
     this.NM_GATE_FIGHT_RESULT=275;//关卡战斗结果数据
     this.NM_ITEM_SELL=274;//道具出售
     this.NM_CARD_SELL=273;//武将出售
+    this.NM_SWEEP_GATE=272;//关卡扫荡
+    this.NM_RESET_SWEEP=271;//重置扫荡
     this.NM_BUY_EXPLORE_COUNT=267;//购买用户探索次数
     this.NM_USER_RECRUIT_DATA=266;//用户招募信息
     this.NM_TAKE_CARD=265;//抽卡
@@ -97,16 +101,18 @@ function MsgID()
     this.NM_TOWN_CHALLENGE=230; //挑战城池信息
     this.NM_SET_TOWN_GUARD=229;//设置城守
     this.NM_GAIN_GUARD_TOWN_REWARD=228;//领取守城奖励
-    this.NM_USE_ITEM_WATER=227; //道具使用之药水
-    this.NM_USE_ITEM_BOX=226; //道具使用之宝箱
+    this.NM_USE_ITEM=227; //使用道具
     this.NM_CARDFRAGMENT_SELL=225;//武将碎片出售
     this.NM_ARENA_DATA=224;//查看竞技场中玩家本人的信息
-    this.NM_BATTLE_FIELD_DATA=223;//获取战场数据
     this.NM_GAIN_ARENA_REWARD=222;//领取排行榜奖励
     this.NM_ARENA_ROLE_DETAIL=221;//获取排行榜玩家信息
     this.NM_ARENA_RANK_REWARD_DATA=220;//获取排行榜玩家奖励信息
     this.NM_SHOP_DATA=219;//获取商城数据
     this.NM_SHOP_BUY=218;//商城购买
     this.NM_ACCOUNT_REBIND=217;//账号重新绑定
+    this.NM_GET_EXCHANGE_LIST=216; //获取兑换店列表
+    this.NM_MONEY_TREE=215; //招财
+    this.NM_CARD_FORGE=214; //卡牌熔炼
+    this.NM_TEST_TOWN=3000; //城池全部打开
 }
 exports.MsgID=MsgID;

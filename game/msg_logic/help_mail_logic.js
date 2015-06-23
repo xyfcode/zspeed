@@ -55,7 +55,7 @@ var create_mail_data=function(recev_gid,recev_grid,type,content,attachment)
     }
     else
     {
-        if(role_mail_date.mail_arr.length>=const_value.MAIN_MAX)
+        if(role_mail_date.mail_arr.length>=const_value.MAIL_MAX)
         {
             role_mail_date.mail_arr.pop();
         }
@@ -227,6 +227,7 @@ var on_gain_mail_reward=function(data,send,s)
 
     var rewards=[];
     var delete_mail=[];
+    var is_full=0;
     //单个领取
     if(type==1)
     {
@@ -245,15 +246,6 @@ var on_gain_mail_reward=function(data,send,s)
                 //奖励存在
                 if(item_data)
                 {
-                    if(item_data.type==const_value.REWARD_TYPE_CARD&&Object.keys(role.card_bag).length>=role.cbag_limit)
-                    {
-                        var msg = {
-                            "op" :msg_id.NM_GAIN_MAIL_REWARD,
-                            "ret" : msg_code.CARD_BAG_IS_FULL
-                        };
-                        send(msg);
-                        return;
-                    }
                     //获取奖励
                     var gain_item=drop_logic.help_put_item_to_role(role,item_data.id,item_data.num,item_data.type);
                     if(gain_item.uids.length>0)
@@ -271,7 +263,7 @@ var on_gain_mail_reward=function(data,send,s)
     }
     else if(type==2)
     {
-        var is_full=0;
+        var is_delete_mail=0;
         for(var i=0;i<role_mail_data.mail_arr.length;i++)
         {
             //是奖励邮件
@@ -281,11 +273,6 @@ var on_gain_mail_reward=function(data,send,s)
                 //奖励存在
                 if(item_data)
                 {
-                    if(item_data.type==const_value.REWARD_TYPE_CARD&&Object.keys(role.card_bag).length>=role.cbag_limit)
-                    {
-                        is_full=1;
-                        continue;
-                    }
                     //获取奖励
                     var gain_item=drop_logic.help_put_item_to_role(role,item_data.id,item_data.num,item_data.type);
                     if(gain_item.uids.length>0)
@@ -295,6 +282,7 @@ var on_gain_mail_reward=function(data,send,s)
                     delete_mail.push(role_mail_data.mail_arr[i].id);
                     //删除邮件
                     role_mail_data.mail_arr.splice(i,1);
+                    is_delete_mail=1;
                     i--;
                 }
             }
@@ -302,39 +290,30 @@ var on_gain_mail_reward=function(data,send,s)
             {
                 //删除邮件,其它目前都是只读邮件。可直接删除
                 role_mail_data.mail_arr.splice(i,1);
+                is_delete_mail=1;
                 i--;
             }
         }
 
-        if(is_full)
-        {
-            var msg = {
-                "op" :msg_id.NM_GAIN_MAIL_REWARD,
-                "ret" : msg_code.BAG_IS_FULL
-            };
-            send(msg);
-            return;
-        }
-        else
+        if(is_delete_mail)
         {
             mail_data.mail_update_db_list.push(role_mail_data.grid);//放入更新列表中，定时入库
         }
-
     }
 
-    var msg=
-    {
-        "op":msg_id.NM_GAIN_MAIL_REWARD,
+    var msg = {
+        "op" :msg_id.NM_GAIN_MAIL_REWARD,
         "delete_mail":delete_mail,
         "rewards":rewards,
-        "ret":msg_code.SUCC
+        "ret" : msg_code.SUCC
     };
+
     send(msg);
     user.nNeedSave=1;
 
     //推送客户端全局修改信息
     var g_msg = {
-        "op" : msg_id.NM_ENTER_GAME,
+        "op" : msg_id.NM_USER_DATA,
         "exp" : role.exp ,
         "level":role.level,
         "gold":role.gold,
