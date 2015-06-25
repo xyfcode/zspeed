@@ -1,6 +1,7 @@
 var fs=require("fs");
-var path="./log";
 var util = require("util");
+
+var path="./log";
 var is_test=null;
 
 var log_path,new_log_path;
