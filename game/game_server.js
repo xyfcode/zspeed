@@ -97,7 +97,6 @@ var handler = {
     "294" : new on_fight_friend_data(), //邀请战斗好友列表
     "293" : new on_select_fight_friend(), //选择邀请好友
     "292" : new on_extend_bag(), //扩充武将背包
-    "291" : new on_extend_friend_bag(), //扩充好友背包
     "283" : new on_card_strengthen(), //武将强化
     "282" : new on_card_reborn(), //武将转生
     "281" : new on_formation_edit(), //队伍编辑
@@ -452,15 +451,6 @@ function on_extend_bag()
         role_data_logic.on_extend_bag(data,send,s);
     }
 }
-
-function on_extend_friend_bag()
-{
-    this.handle = function(data,send,s)
-    {
-        friend_logic.on_extend_friend_bag(data,send,s);
-    }
-}
-
 
 function on_formation_edit()
 {
