@@ -702,14 +702,22 @@ function on_sign_in(data,send,s)
         return;
     }
 
-    if(reward_json_data.rmb>0)
+    var gain_rmb=reward_json_data.rmb;
+    var gain_gold=reward_json_data.gold;
+    if(role.vip>0)
     {
-        money_logic.help_gain_rmb(role,reward_json_data.rmb);
+        gain_rmb*=2;
+        gain_gold*=2;
     }
 
-    if(reward_json_data.gold>0)
+    if(gain_rmb>0)
     {
-        money_logic.help_gain_money(role,reward_json_data.gold);
+        money_logic.help_gain_rmb(role,gain_rmb);
+    }
+
+    if(gain_gold>0)
+    {
+        money_logic.help_gain_money(role,gain_gold);
     }
 
     if(reward_json_data.exp>0)
@@ -729,10 +737,6 @@ function on_sign_in(data,send,s)
             {
                 help_notice_role_msg(role,send);
             }
-        }
-        else
-        {
-            u_ids.push([]);
         }
     }
 
@@ -1138,8 +1142,14 @@ function help_reset_role_info(user)
     //重置摇钱树次数
     if(!common_func.help_judge_today(role.tree_date))
     {
-        role.tree_times=0;
+        role.trees=0;
         role.tree_date=now;
+    }
+    //重置战斗复活次数
+    if(!common_func.help_judge_today(role.revive_date))
+    {
+        role.revives=0;
+        role.revive_date=now;
     }
 
     //记录登录时间
@@ -1207,7 +1217,8 @@ function help_reset_role_info(user)
         "hurt":formation.formation_list[role.grid].top_hurt, //伤害
         "free_chat":(const_value.CHAT_FREE_TIMES-role.chat_time), //聊天次数
         "explore_buy":role.explore_times, //今日购买探索次数
-        "used_money_tree":role.tree_times,
+        "money_tree":role.trees,
+        "revive":role.revives,
         "ret" :msg_code.SUCC
     };
     user.send(g_msg);
@@ -1236,7 +1247,7 @@ var auto_reset_online_user_data=function()
             //重置摇钱树次数
             if(!common_func.help_judge_today(role.tree_date))
             {
-                role.tree_times=0;
+                role.trees=0;
                 role.tree_date=now;
             }
             //今日探索购买次数恢复
@@ -1250,7 +1261,7 @@ var auto_reset_online_user_data=function()
             var g_msg = {
                 "op" : msg_id.NM_USER_DATA,
                 "explore_buy":role.explore_times,
-                "used_money_tree":role.tree_times,
+                "money_tree":role.trees,
                 "ret" :msg_code.SUCC
             };
             user.send(g_msg);
