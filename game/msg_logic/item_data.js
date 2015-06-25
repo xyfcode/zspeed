@@ -59,7 +59,10 @@ function load_item_data()
         if(data["ITEM"][i].Unit)
         {
             item_data.unit=(data["ITEM"][i].Unit).split(',');
-            item_data.unit_num=(data["ITEM"][i].UnitNum).split(',');
+            console.log(item_data.item_id);
+            (data["ITEM"][i].UnitNum).split(',').forEach(function(e){
+                item_data.unit_num.push(Number(e));
+            });
         }
         item_data.s_price=Number(data["ITEM"][i].SPrice);
         item_data.price=Number(data["ITEM"][i].Price);

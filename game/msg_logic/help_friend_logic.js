@@ -98,7 +98,7 @@ function on_add_friend(data,send,s)
         }
     }
 
-    if(me_friend_data.friends.length>=comm_fun.role_friend_limit(role.level,me_friend_data.extend_num))
+    if(me_friend_data.friends.length>=const_value.FRIEND_INIT_LIMIT[role.vip])
     {
         var msg = {
             "op" : msg_id.NM_ADD_FRIEND,
@@ -116,15 +116,6 @@ function on_add_friend(data,send,s)
         return;
     }
 
-    if(ask_friend_data.friends.length>=comm_fun.role_friend_limit(ask_formation_data.level,ask_friend_data.extend_num))
-    {
-        var msg = {
-            "op" : msg_id.NM_ADD_FRIEND,
-            "ret" : msg_code.FRIEND_OTHER_LIMIT
-        };
-        send(msg);
-        return;
-    }
     //剔除重复申请
     for(var i=0;i<ask_friend_data.asks.length;i++)
     {
@@ -135,7 +126,7 @@ function on_add_friend(data,send,s)
         }
     }
     ask_friend_data.asks.push(role.grid);
-    if(ask_friend_data.asks.length>=comm_fun.role_friend_limit(ask_formation_data.level,me_friend_data.extend_num))
+    if(ask_friend_data.asks.length>=const_value.FRIEND_INIT_LIMIT[ask_formation_data.vip])
     {
         //删除最早的一个
         ask_friend_data.asks.shift();
@@ -288,7 +279,7 @@ function on_friend_data_list(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_FRIEND_DATA_LIST,
-        "limit":comm_fun.role_friend_limit(role.level,me_friend_data.extend_num),
+        "limit":comm_fun.role_friend_limit(role.level,role.vip),
         "friends":friend_arr,
         "ret" : msg_code.SUCC
     };
@@ -342,7 +333,7 @@ function on_friend_request_list(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_FRIEND_REQUEST_LIST,
-        "limit":comm_fun.role_request_limit(role.level,me_friend_data.extend_num),
+        "limit":const_value.FRIEND_ASK_LIMIT[role.vip],
         "requests" : ask_arr,
         "ret" : msg_code.SUCC
     };
@@ -447,7 +438,7 @@ function on_agree_request(data,send,s)
     }
 
     //判断是否好友数量超过上限
-    if(me_friend_data.friends.length>=comm_fun.role_friend_limit(role.level,me_friend_data.extend_num))
+    if(me_friend_data.friends.length>=comm_fun.role_friend_limit(role.level,role.vip))
     {
         var msg = {
             "op" : msg_id.NM_AGREE_REQUEST,
@@ -464,7 +455,7 @@ function on_agree_request(data,send,s)
         global.log("other_formation_data==undefined || other_friend_data==undefined");
         return;
     }
-    if(other_friend_data.friends.length>=comm_fun.role_friend_limit(other_formation_data.level,other_friend_data.extend_num))
+    if(other_friend_data.friends.length>=comm_fun.role_friend_limit(other_formation_data.level,other_formation_data.vip))
     {
         var msg = {
             "op" : msg_id.NM_AGREE_REQUEST,
@@ -995,108 +986,6 @@ function on_friend_detail(data,send,s)
     log_data_logic.log(logData);
 }
 exports.on_friend_detail = on_friend_detail;
-
-//扩充好友背包
-function on_extend_friend_bag(data,send,s)
-{
-    global.log("on_extend_friend_bag");
-
-    var gid = s.gid;
-    if(gid == undefined)
-    {
-        global.log("gid == undefined");
-        return;
-    }
-
-    var user = ds.user_list[gid];
-    if(user == undefined)
-    {
-        global.log("user == undefined");
-        return;
-    }
-
-    var role = ds.get_cur_role(user);
-    if(role == undefined)
-    {
-        global.log("role == undefined");
-        return;
-    }
-
-    var type=data.type;
-
-    if(type==1)
-    {
-        var _friend_data=friend_data.friend_data_list[role.grid];
-        if(_friend_data==undefined)
-        {
-            global.log("_friend_data==undefined");
-            return;
-        }
-
-        var oldLimit=comm_fun.role_friend_limit(role.level,_friend_data.extend_num);
-        var newLimit=oldLimit+const_value.FRIEND_EXPEND_LIMIT;
-        //预扩充
-        var msg = {
-            "op" : msg_id.NM_EXTEND_FRIEND_BAG,
-            "rmb":const_value.FRIEND_EXPAND_COST,
-            "oldLimit" :oldLimit,
-            "newLimit" :newLimit,
-            "ret" : msg_code.SUCC
-        };
-        send(msg);
-    }
-    else
-    {
-        //扩充
-        var pay_ok=money_logic.help_pay_rmb(role,const_value.FRIEND_EXPAND_COST);
-        if(pay_ok)
-        {
-            var _friend_data=friend_data.friend_data_list[role.grid];
-            if(_friend_data==undefined)
-            {
-                global.log("_friend_data==undefined");
-                return;
-            }
-            _friend_data.extend_num+=const_value.FRIEND_EXPEND_LIMIT;
-        }
-        else
-        {
-            var msg = {
-                "op" : msg_id.NM_EXTEND_FRIEND_BAG,
-                "ret" : msg_code.RMB_NOT_ENOUGH
-            };
-            send(msg);
-            return;
-        }
-
-        var newLimit=comm_fun.role_friend_limit(role.level,_friend_data.extend_num);
-
-        user.nNeedSave=1;
-
-        friend_data.friend_update_db_list.push(role.grid);
-        var msg = {
-            "op" : msg_id.NM_EXTEND_FRIEND_BAG,
-            "newLimit" :newLimit,
-            "ret" : msg_code.SUCC
-        };
-        send(msg);
-
-        //推送客户端全局修改信息
-        var g_msg = {
-            "op" : msg_id.NM_USER_DATA,
-            "rmb":role.rmb ,
-            "ret" :msg_code.SUCC
-        };
-        send(g_msg);
-        global.log(JSON.stringify(g_msg));
-    }
-
-    var log_content={"msg":msg};
-    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_extend_friend_bag",log_content,log_data.logType.LOG_BEHAVIOR);
-    log_data_logic.log(logData);
-
-}
-exports.on_extend_friend_bag = on_extend_friend_bag;
 
 //获得用户信息
 function on_get_user_info(data,send,s)

@@ -53,7 +53,6 @@ function MsgID()
     this.NM_FIGHT_FRIEND_DATA=294;//邀请战斗好友列表
     this.NM_SELECT_FIGHT_FRIEND=293;//选择邀请好友
     this.NM_EXTEND_BAG=292;//扩充武将装备背包
-    this.NM_EXTEND_FRIEND_BAG=291;//扩充好友背包
     this.NM_CARD_STRENGTH=283;//武将强化
     this.NM_CARD_REBORN=282;//武将转生
     this.NM_FORMATION_EDIT=281;//阵型编辑

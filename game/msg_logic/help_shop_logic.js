@@ -143,7 +143,7 @@ function on_shop_buy(data,send,s)
     }
 
     var cost_rmb=0;
-    if(!comm_fun.isEmpty(_shop_data.vip))
+    if(_shop_data.id.match("vip"))
     {
         if(role_shop_data.times>=time_limit)
         {
@@ -177,8 +177,7 @@ function on_shop_buy(data,send,s)
         }
 
         var time_limit=0;
-        //包子
-        if(shop_id=="dumpling")
+        if(shop_id=="dumpling"||shop_id=="chestGold"||shop_id=="chestSilver"||shop_id=="chestIron")
         {
             time_limit=_shop_data.times_limited[role.vip];
             cost_rmb=_shop_data.cost[role_shop_data.times];
@@ -200,6 +199,7 @@ function on_shop_buy(data,send,s)
         }
     }
 
+    global.log("cost_rmb:"+cost_rmb);
     var pay_ok=money_logic.help_pay_rmb(role,cost_rmb);
     var gain_item;
     if(pay_ok)
@@ -291,11 +291,11 @@ function on_buy_explore_count(data,send,s)
     var cost_rmb=0;
     if(role.explore_times<const_value.EXPLORE_COST.length)
     {
-        cost_rmb=Number(const_value.EXPLORE_COST[role.explore_times]);
+        cost_rmb=const_value.EXPLORE_COST[role.explore_times];
     }
     else
     {
-        cost_rmb=Number(const_value.EXPLORE_COST[const_value.EXPLORE_COST.length-1]);
+        cost_rmb=const_value.EXPLORE_COST[const_value.EXPLORE_COST.length-1];
     }
 
 
@@ -372,10 +372,13 @@ function on_fight_revive(data,send,s)
         return;
     }
 
-    var seq= Number(data.seq);
-    if(seq == undefined)
+    if(role.revives>=const_value.REVIVE_TIMES[role.vip])
     {
-        global.log("seq == undefined");
+        var msg = {
+            "op" : msg_id.NM_FIGHT_REVIVE,
+            "ret" : msg_code.MONTY_TREE_USED
+        };
+        send(msg);
         return;
     }
 
@@ -386,48 +389,41 @@ function on_fight_revive(data,send,s)
         return;
     }
 
-    if(seq>fight_user_data.seq)
-    {
-        var cost_rmb=const_value.FIGHT_RELIVE_COST;
-        var pay_ok=money_logic.help_pay_rmb(role,cost_rmb);
-        if(pay_ok)
-        {
-            var msg = {
-                "op" : msg_id.NM_FIGHT_REVIVE,
-                "ret" : msg_code.SUCC
-            };
-            send(msg);
 
-            fight_user_data.seq=seq;
-            user.nNeedSave=1;
-
-            //推送客户端全局修改信息
-            var g_msg = {
-                "op" : msg_id.NM_USER_DATA,
-                "rmb":role.rmb ,
-                "ret" :msg_code.SUCC
-            };
-            send(g_msg);
-            global.log(JSON.stringify(g_msg));
-        }
-        else
-        {
-            var msg = {
-                "op" : msg_id.NM_FIGHT_REVIVE,
-                "ret" : msg_code.RMB_NOT_ENOUGH
-            };
-            send(msg);
-            return;
-        }
-    }
-    else
+    var cost_rmb=const_value.REVIVE_COST[role.revives];
+    global.log("cost_rmb:"+cost_rmb);
+    var pay_ok=money_logic.help_pay_rmb(role,cost_rmb);
+    if(pay_ok)
     {
         var msg = {
             "op" : msg_id.NM_FIGHT_REVIVE,
             "ret" : msg_code.SUCC
         };
         send(msg);
+
+        role.revives++;
+        user.nNeedSave=1;
+
+        //推送客户端全局修改信息
+        var g_msg = {
+            "op" : msg_id.NM_USER_DATA,
+            "rmb":role.rmb ,
+            "revive":role.revives ,
+            "ret" :msg_code.SUCC
+        };
+        send(g_msg);
+        global.log(JSON.stringify(g_msg));
     }
+    else
+    {
+        var msg = {
+            "op" : msg_id.NM_FIGHT_REVIVE,
+            "ret" : msg_code.RMB_NOT_ENOUGH
+        };
+        send(msg);
+        return;
+    }
+
 
     var log_content={};
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_fight_revive",log_content,log_data.logType.LOG_BEHAVIOR);

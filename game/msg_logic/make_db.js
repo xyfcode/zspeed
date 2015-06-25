@@ -15,6 +15,7 @@ exports.t_user = t_user;
 exports.t_role = t_role;
 exports.t_rand_name_list = t_rand_name_list;
 exports.t_friend_list = t_friend_list;
+exports.t_formation_list = t_formation_list;
 
 var DataGid=function()
 {

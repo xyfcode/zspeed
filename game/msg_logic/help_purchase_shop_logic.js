@@ -7,6 +7,8 @@ var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
 var money_logic=require("./help_money_logic");
 var mail_data=require("./mail_data");
+var formation_data=require("./formation_data");
+
 var mail_logic=require("./help_mail_logic");
 var billing_client=require("../billing_client");
 
@@ -389,9 +391,10 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
             money_logic.help_gain_rmb(role,gain_rmb);
             role.purchase_rmb+=gain_rmb;
             //计算VIP等级
-            if(const_value.VIP[role.vip+1]&&role.purchase_rmb>=const_value.VIP[role.vip+1])
+            while(const_value.VIP[role.vip+1]&&role.purchase_rmb>=const_value.VIP[role.vip+1])
             {
                 role.vip++;
+                formation_data.formation_list[role.grid].vip++;
             }
 
             user.nNeedSave=1;
@@ -500,9 +503,15 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
 
                 purchase_rmb+=gain_rmb;
                 //计算VIP等级
-                if(const_value.VIP[vip+1]&&purchase_rmb>=const_value.VIP[vip+1])
+                while(const_value.VIP[vip+1]&&purchase_rmb>=const_value.VIP[vip+1])
                 {
                     vip++;
+                    g_server.db.update(
+                        make_db.t_formation_list,{"grid":grid},
+                        {
+                            "$inc":{"vip":vip}
+                        }
+                    );
                 }
 
                 if(is_cd)

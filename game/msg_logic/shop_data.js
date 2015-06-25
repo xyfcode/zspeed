@@ -40,16 +40,25 @@ function load_shop_data()
 
         shop_data.id=data["SHOP"][i].Id;
         shop_data.type=Number(data["SHOP"][i].Type);
-        if(data["SHOP"][i].Vip)
+        if(shop_data.id.match("vip"))
         {
             shop_data.vip=Number(data["SHOP"][i].Vip);
         }
         shop_data.item_id=data["SHOP"][i].ItemId;
         shop_data.num=Number(data["SHOP"][i].Num);
-        if(shop_data.id=="dumpling")
+        if(shop_data.id=="dumpling"||shop_data.id=="chestGold"||shop_data.id=="chestSilver"||shop_data.id=="chestIron")
         {
-            shop_data.cost=(data["SHOP"][i].Cost).split(',');
-            shop_data.times_limited=(data["SHOP"][i].TimesLimited).split(',');
+            shop_data.cost=[];
+            shop_data.times_limited=[];
+
+            (data["SHOP"][i].Cost).split(',').forEach(function(e){
+                shop_data.cost.push(Number(e));
+            });
+
+            (data["SHOP"][i].TimesLimited).split(',').forEach(function(e){
+                shop_data.times_limited.push(Number(e));
+            });
+
         }
         else
         {
