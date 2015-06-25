@@ -26,7 +26,7 @@ var RewardData=function()
     this.type=0;
     this.id=0;
     this.num=0;
-}
+};
 
 var g_server=null;
 

@@ -179,46 +179,6 @@ function compare_sort_des(compare_arr,key)
 }
 exports.compare_sort_des = compare_sort_des;
 
-
-//用户好友上限
-function role_friend_limit(level,extend_num)
-{
-    if(level== undefined)
-    {
-        global.log("level== undefined");
-        return;
-    }
-
-    var level=Number(level);
-    var extend_num=Number(extend_num);
-
-    var f_num=Math.floor(const_value.FRIEND_INIT_LIMIT+Math.floor(level/2)*const_value.FRIEND_ADD+extend_num);
-    return f_num;
-
-}
-exports.role_friend_limit = role_friend_limit;
-
-
-//用户申请好友上限
-function role_request_limit(level,extend_num)
-{
-    if(level== undefined)
-    {
-        global.log("level== undefined");
-        return;
-    }
-
-    var level=Number(level);
-    var extend_num=Number(extend_num);
-
-    var r_num=Math.floor(const_value.FRIEND_ASK_LIMIT+Math.floor(level/2)*const_value.FRIEND_ASK_ADD+extend_num);
-
-    return r_num;
-
-}
-exports.role_request_limit = role_request_limit;
-
-
 ////////////////////////////////////////////////////
 function cloneObject(o){
     if(!o||'object'!= typeof o){

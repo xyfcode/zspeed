@@ -1061,31 +1061,22 @@ var help_card_level_up=function(role,role_card_data,exp)
         return;
     }
 
-
+    //卡牌等级上限
     var lv_limit=role.level*2;
-
-    //不能超过等级上限
-    if(role_card_data.level>=lv_limit)
-    {
-        return;
-    }
-
 
     role_card_data.exp+=Math.floor(exp);
 
-     while(_card_exp_data&&role_card_data.exp>=_card_exp_data.exp_limit*card_json_data.exp_param&&role_card_data.level<lv_limit)
+     while(role_card_data.level<lv_limit&&_card_exp_data&&role_card_data.exp>=_card_exp_data.exp_limit*card_json_data.exp_param)
     {
         role_card_data.exp-=Math.floor(_card_exp_data.exp_limit*card_json_data.exp_param);
         role_card_data.level++;
         _card_exp_data=card_exp_data.card_exp_data_list[role_card_data.level];
-
-        lv_limit=role.level*2;
     }
 
-    //升完级之后，如果超过等级上限，归零
-    if(role_card_data.level>=lv_limit)
+    //升完级之后，如果超过等级上限
+    if(role_card_data.level>=lv_limit&&role_card_data.exp>_card_exp_data.exp_limit*card_json_data.exp_param)
     {
-        role_card_data.exp=0;
+        role_card_data.exp=_card_exp_data.exp_limit*card_json_data.exp_param;
     }
 
     //更新阵型

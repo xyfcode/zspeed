@@ -22,6 +22,7 @@ function FormationData()
     this.grid=0;
     this.level=0;
     this.name='';
+    this.vip=0;
     this.top_hurt=0;//最高伤害
     this.town_num=0;//拥有城池的数量
     this.card_ls=[]; //卡组编号，value：FormationCardBase
@@ -61,7 +62,6 @@ var FightUserData=function()
     this.score=0;//获取的积分
     this.is_friend=0;//是否是好友
     this.friend_uid=0;//好友ID
-    this.seq=0;//复活次数
     this.drops=[];//掉落数据
 };
 exports.FightUserData=FightUserData;

@@ -705,7 +705,7 @@ function on_money_tree(data,send,s)
         return;
     }
 
-    if(role.tree_times>=const_value.MT_VIP_TIMES[role.vip])
+    if(role.trees>=const_value.MT_VIP_TIMES[role.vip])
     {
         var msg = {
             "op" : msg_id.NM_MONEY_TREE,
@@ -722,7 +722,7 @@ function on_money_tree(data,send,s)
     var times=0;
     if(type==1)
     {
-        cost_rmb=const_value.MT_COST[role.tree_times];
+        cost_rmb=const_value.MT_COST[role.trees];
         var rand=common_func.help_make_one_random(1,10);
         if(rand<=const_value.MT_Crit_LOW)
         {
@@ -743,10 +743,10 @@ function on_money_tree(data,send,s)
     }
     else
     {
-        var left_times=const_value.MT_VIP_TIMES[role.vip]-role.tree_times;
+        var left_times=const_value.MT_VIP_TIMES[role.vip]-role.trees;
         for(var i=0;i<left_times;i++)
         {
-            cost_rmb+=const_value.MT_COST[role.tree_times+i];
+            cost_rmb+=const_value.MT_COST[role.trees+i];
             var rand=common_func.help_make_one_random(1,10);
             //注意是<=不是<
             if(rand<=const_value.MT_Crit_LOW)
@@ -782,8 +782,8 @@ function on_money_tree(data,send,s)
 
 
     //结果核算
-    role.tree_times+=times;
-    role.tree_date+=times;
+    role.trees+=times;
+
     money_logic.help_gain_money(role,gain_money);
 
     user.nNeedSave=1;
@@ -802,7 +802,7 @@ function on_money_tree(data,send,s)
         "op" : msg_id.NM_USER_DATA,
         "rmb":role.rmb,
         "gold":role.gold,
-        "used_money_tree":role.tree_times,
+        "money_tree":role.trees,
         "ret" :msg_code.SUCC
     };
     send(g_msg);

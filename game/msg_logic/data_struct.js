@@ -55,8 +55,8 @@ function RoleData()
     this.gid = 0;//帐号唯一ID
     this.grid = 0;//角色唯一ID
     this.account=0;//用户账号
-    this.pft="";//平台类别
-    this.name = "";//名称
+    this.pft=0;//平台类别
+    this.name = 0;//名称
     this.gold = 0;//游戏币
     this.rmb = 0;  //元宝
     this.level = 0;//等级
@@ -70,8 +70,10 @@ function RoleData()
     this.time_explore = 0;//探索次数回复时间
     this.explore_date = 0;//探索购买日期
     this.explore_times=0;//探索购买次数
-    this.tree_times = 0;//今日招财次数
+    this.trees = 0;//今日招财次数
     this.tree_date=0;//招财时间
+    this.revives = 0;//今日复活次数
+    this.revive_date=0;//复活时间
 
     this.guide_step=0;//新手引导编号
     this.is_cd_exist=0;//是否存在月卡

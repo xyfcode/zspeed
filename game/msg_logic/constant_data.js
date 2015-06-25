@@ -9,16 +9,6 @@ var ConstValue=function()
     this.STAMINA_ADD = 0;
     //初始好友上限
     this.FRIEND_INIT_LIMIT = 0;
-    //好友上限增长/2级
-    this.FRIEND_ADD = 0;
-    //好友申请上限
-    this.FRIEND_ASK_LIMIT = 0;
-    //好友申请上限增长/2级
-    this.FRIEND_ASK_ADD = 0;
-    //每次扩充好友上限数量
-    this.FRIEND_EXPEND_LIMIT=0;
-    //扩充好友上限消耗元宝
-    this.FRIEND_EXPAND_COST = 0;
     //单个好友每日使用次数限制
     this.FRIEND_USE_TIMES = 0;
     //武将空间初始上限
@@ -42,7 +32,7 @@ var ConstValue=function()
     //邀请陌生人获得积分
     this.USER_SCORE = 0;
     //补满探索个数花费
-    this.EXPLORE_COST = 0;
+    this.EXPLORE_COST = [];
     //初始探索上限
     this.EXPLORE_INIT_LIMIT = 0;
     //探索恢复时间
@@ -70,7 +60,7 @@ var ConstValue=function()
     //武将超出角色等级限制
     this.CARD_EXCEED_ROLE_LIMIT=0;
     //转生等级限制
-    this.REBORN_LEVEL=0;
+    this.REBORN_LEVEL=[];
     //招募开启等级
     this.RECRUIT_LEVEL=0;
     //强化开启等级
@@ -110,9 +100,9 @@ var ConstValue=function()
     //摇钱树获取的铜钱
     this.MT_GOLD=0;
     //摇钱花费
-    this.MT_COST=0;
+    this.MT_COST=[];
     //摇钱树VIP次数
-    this.MT_VIP_TIMES=0;
+    this.MT_VIP_TIMES=[];
     //摇钱树低级暴击概率
     this.MT_Crit_LOW=0;
     //摇钱树高级暴击概率
@@ -127,9 +117,13 @@ var ConstValue=function()
     //肥猪卡牌ID
     this.PIG_CARD_ID=0;
     //重置扫荡花费
-    this.RESET_SWEEP_COST=0;
+    this.RESET_SWEEP_COST=[];
     //VIP对应的充值额度
-    this.VIP=0;
+    this.VIP=[];
+    //战斗复活花费
+    this.REVIVE_COST=[];
+    //战斗复活VIP次数
+    this.REVIVE_TIMES=[];
 
 
 
@@ -258,11 +252,6 @@ function load_constant_data()
     {
         const_value.STAMINA_ADD=Number(data["CONST"][i].StaminaAdd);
         const_value.FRIEND_INIT_LIMIT=Number(data["CONST"][i].FriendInitLimit);
-        const_value.FRIEND_ADD=Number(data["CONST"][i].FriendAdd);
-        const_value.FRIEND_ASK_LIMIT=Number(data["CONST"][i].FriendAskLimit);
-        const_value.FRIEND_ASK_ADD= Number(data["CONST"][i].FriendAskAdd);
-        const_value.FRIEND_EXPEND_LIMIT=Number(data["CONST"][i].FriendExpandLimit);
-        const_value.FRIEND_EXPAND_COST= Number(data["CONST"][i].FriendExpandCost);
         const_value.FRIEND_USE_TIMES=Number(data["CONST"][i].EveryFirendUseTimes);
         const_value.CARD_BAG_LIMIT=Number(data["CONST"][i].CardBagLimit);
         const_value.BAG_EXPEND_LIMIT=Number(data["CONST"][i].BagExpandLimit);
@@ -274,7 +263,10 @@ function load_constant_data()
         const_value.FIGHT_FRIEND_NUM= Number(data["CONST"][i].FightFriendNum);
         const_value.FRIEND_SCORE= Number(data["CONST"][i].FriendScore);
         const_value.USER_SCORE= Number(data["CONST"][i].UserScore);
-        const_value.EXPLORE_COST= (data["CONST"][i].ExploreCost).split(',');
+
+        (data["CONST"][i].ExploreCost).split(',').forEach(function(e){
+            const_value.EXPLORE_COST.push(Number(e));
+        });
         const_value.EXPLORE_INIT_LIMIT= Number(data["CONST"][i].ExploreInitLimit);
         const_value.EXPLORE_TICK= Number(data["CONST"][i].ExploreTick);
         const_value.RECRUIT_DISCOUNT= Number(data["CONST"][i].RecruitDiscount);
@@ -288,7 +280,11 @@ function load_constant_data()
         const_value.EXCHANGE_MS= Number(data["CONST"][i].ExchangeHour)*60*60*1000;
         const_value.EXCHANGE_COST= Number(data["CONST"][i].ExchangeCost);
         const_value.CARD_EXCEED_ROLE_LIMIT= Number(data["CONST"][i].CardExceedRoleLimit);
-        const_value.REBORN_LEVEL= (data["CONST"][i].RebornLevel).split(',');
+
+        (data["CONST"][i].RebornLevel).split(',').forEach(function(e){
+            const_value.REBORN_LEVEL.push(Number(e));
+        });
+
         const_value.RECRUIT_LEVEL= Number(data["CONST"][i].RecruitLv);
         const_value.STRENGTH_LEVEL= Number(data["CONST"][i].StrengthenLv);
         const_value.LOGIN_LEVEL= Number(data["CONST"][i].LoginLv);
@@ -308,16 +304,35 @@ function load_constant_data()
         const_value.TOWN_EFFECTIVE_MS= Number(data["CONST"][i].TownEffecHour)*60*60*1000;
         const_value.UP_ADD_POWER= Number(data["CONST"][i].UpGradePower);
         const_value.MT_GOLD= Number(data["CONST"][i].MTGold);
-        const_value.MT_COST= (data["CONST"][i].MTCost).split(',');
-        const_value.MT_VIP_TIMES= (data["CONST"][i].MTVipTimes).split(',');
+        (data["CONST"][i].MTCost).split(',').forEach(function(e){
+            const_value.MT_COST.push(Number(e));
+        });
+
+        (data["CONST"][i].MTVipTimes).split(',').forEach(function(e){
+            const_value.MT_VIP_TIMES.push(Number(e));
+        });
         const_value.MT_Crit_LOW= Number(data["CONST"][i].MTCritLow)*10;
         const_value.MT_Crit_HIGH= Number(data["CONST"][i].MTCritHigh)*10+const_value.MT_Crit_LOW;
         const_value.PANDA_ITEM_ID= data["CONST"][i].PandaItemId;
         const_value.PIG_ITEM_ID= data["CONST"][i].PigItemId;
         const_value.PANDA_CARD_ID= data["CONST"][i].PandaCardId;
         const_value.PIG_CARD_ID= data["CONST"][i].PigCardId;
-        const_value.RESET_SWEEP_COST= (data["CONST"][i].ResetSweepCost).split(',');
-        const_value.VIP= (data["CONST"][i].Vip).split(',');
+
+        (data["CONST"][i].ResetSweepCost).split(',').forEach(function(e){
+            const_value.RESET_SWEEP_COST.push(Number(e));
+        });
+
+        (data["CONST"][i].Vip).split(',').forEach(function(e){
+            const_value.VIP.push(Number(e));
+        });
+
+        (data["CONST"][i].ReviveCost).split(',').forEach(function(e){
+            const_value.REVIVE_COST.push(Number(e));
+        });
+
+        (data["CONST"][i].ReviveTimes).split(',').forEach(function(e){
+            const_value.REVIVE_TIMES.push(Number(e));
+        });
 
         break;
     }

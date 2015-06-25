@@ -10,7 +10,6 @@ var FriendData=function()
 {
     this.gid=0;
     this.grid=0;
-    this.extend_num=0;//扩充数量
     this.friends=[]; //好友列表  value:FriendBaseData
     this.asks=[];//申请列表 value:grid
 };
