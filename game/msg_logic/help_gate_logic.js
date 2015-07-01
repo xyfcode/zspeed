@@ -574,7 +574,7 @@ function help_gate_fight_result(data,send,s)
     }
 
     var win=data.win;
-    var nonce=data.nonce; //伤害值
+    var nonce=data.nonce; //验证码
     if(win == undefined || nonce == undefined)
     {
         global.log("win == undefined || nonce == undefined");

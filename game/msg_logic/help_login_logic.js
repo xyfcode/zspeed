@@ -260,8 +260,8 @@ function on_create_role(data,send,s)
         send(msg);
         return;
     }
-    //名字不能长于10个字符
-    if(role_name.length >10)
+    //名字不能长于12个字符
+    if(common_func.get_str_length(role_name)>12||common_func.get_str_length(role_name)<6)
     {
         var msg = {
             "op" : msg_id.NM_CREATE_ROLE,
@@ -272,7 +272,7 @@ function on_create_role(data,send,s)
     }
     //不能包含非法字符，不能包含任何空白字符，包括空格、制表符、换页符等
     var reg=/\s/;
-    /*if(key_words.reg.test(role_name) || reg.test(role_name))
+    if(key_words.reg.test(role_name) || reg.test(role_name))
     {
         var msg = {
             "op" : msg_id.NM_CREATE_ROLE,
@@ -280,7 +280,7 @@ function on_create_role(data,send,s)
         };
         send(msg);
         return;
-    }*/
+    }
 
     var sid = server_list[0].server_id;
     ds.check_server_role_list(user,sid);
@@ -488,11 +488,11 @@ function on_random_name(data,send,s)
         var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
         _name = play_name.play_name_arr[r].name;
         play_name.play_name_arr.splice(r,1);
-        /*if(key_words.reg.test(_name))
+        if(key_words.reg.test(_name))
         {
             global.log("error name:"+_name);
             continue;
-        }*/
+        }
         break;
     }
 

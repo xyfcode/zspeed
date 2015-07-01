@@ -47,7 +47,7 @@ function on_user_chat_data(data,send,s)
 
     message=message.replace(key_words.reg,"*");
 
-    /*if(key_words.reg.test(message))
+    if(comm_fun.get_str_length(message)>45)
     {
         var msg = {
             "op" : msg_id.NM_USER_CHAT_DATA,
@@ -55,7 +55,17 @@ function on_user_chat_data(data,send,s)
         };
         send(msg);
         return;
-    } */
+    }
+
+    if(key_words.reg.test(message))
+    {
+        var msg = {
+            "op" : msg_id.NM_USER_CHAT_DATA,
+            "ret" : msg_code.INVALID_CODE_EXIST
+        };
+        send(msg);
+        return;
+    }
 
     var role_formation_data=formation_data.formation_list[role.grid];
     if(role_formation_data==undefined)
@@ -100,6 +110,7 @@ function on_user_chat_data(data,send,s)
     msg_obj.name=role.name;
     msg_obj.time=Math.floor((new Date()).getTime()/1000);
     msg_obj.level=role.level;
+    msg_obj.vip=role.vip;
     msg_obj.learder_xid=role_formation_data.card_ls[0].card_id;
     msg_obj.msg=message;
 
@@ -136,6 +147,7 @@ function help_notice_online_user(msg_obj)
         "l" : msg_obj.level,
         "x" : msg_obj.learder_xid,
         "m" : msg_obj.msg,
+        "v" : msg_obj.vip,
         "ret" : msg_code.SUCC
     };
 

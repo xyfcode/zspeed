@@ -1152,6 +1152,13 @@ function help_reset_role_info(user)
         role.revive_date=now;
     }
 
+    //重置聊天次数
+    if(!common_func.help_judge_today(role.chat_date))
+    {
+        role.chat_time=0;
+        role.chat_date=now;
+    }
+
     //记录登录时间
     role.login_time = now;
 

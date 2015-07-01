@@ -192,12 +192,12 @@ function on_gm_edit_role_data(data,send,s)
             return;
         }
 
-        if(common_func.isEmpty(attr.rmb))
+        if(!common_func.isEmpty(attr.rmb))
         {
             //修改用户人民币
             role.rmb=Number(attr.rmb);
         }
-        if(common_func.isEmpty(attr.gold))
+        if(!common_func.isEmpty(attr.gold))
         {
             //修改用户金币
             role.gold=Number(attr.gold);
@@ -224,13 +224,13 @@ function on_gm_edit_role_data(data,send,s)
         var setObj={};
 
         //离线用户
-        if(common_func.isEmpty(attr.rmb))
+        if(!common_func.isEmpty(attr.rmb))
         {
             //修改用户人民币
             setObj["data.rmb"]=Number(attr.rmb);
 
         }
-        if(common_func.isEmpty(attr.gold))
+        if(!common_func.isEmpty(attr.gold))
         {
             //修改用户金币
             setObj["data.gold"]=Number(attr.gold);

@@ -8,7 +8,7 @@ var ConstValue=function()
     //升级体力上限增加数量
     this.STAMINA_ADD = 0;
     //初始好友上限
-    this.FRIEND_INIT_LIMIT = 0;
+    this.FRIEND_INIT_LIMIT = [];
     //单个好友每日使用次数限制
     this.FRIEND_USE_TIMES = 0;
     //武将空间初始上限
@@ -251,7 +251,11 @@ function load_constant_data()
     for(var i=1 ; i<=count ; i++)
     {
         const_value.STAMINA_ADD=Number(data["CONST"][i].StaminaAdd);
-        const_value.FRIEND_INIT_LIMIT=Number(data["CONST"][i].FriendInitLimit);
+
+        (data["CONST"][i].FriendInitLimit).split(',').forEach(function(e){
+            const_value.FRIEND_INIT_LIMIT.push(Number(e));
+        });
+
         const_value.FRIEND_USE_TIMES=Number(data["CONST"][i].EveryFirendUseTimes);
         const_value.CARD_BAG_LIMIT=Number(data["CONST"][i].CardBagLimit);
         const_value.BAG_EXPEND_LIMIT=Number(data["CONST"][i].BagExpandLimit);

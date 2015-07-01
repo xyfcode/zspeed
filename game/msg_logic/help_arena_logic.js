@@ -682,7 +682,7 @@ var help_get_new_hurt_rank=function(new_hurt)
 
 
 
-//玩家如在排行榜前200名，则会每周三和周日22点收到排名奖励
+//玩家如在排行榜前200名
 var auto_provide_rank_reward=function()
 {
     global.log("auto_provide_rank_reward");
