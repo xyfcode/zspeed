@@ -279,7 +279,7 @@ function on_friend_data_list(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_FRIEND_DATA_LIST,
-        "limit":comm_fun.role_friend_limit(role.level,role.vip),
+        "limit":const_value.FRIEND_INIT_LIMIT[role.vip],
         "friends":friend_arr,
         "ret" : msg_code.SUCC
     };
@@ -333,7 +333,7 @@ function on_friend_request_list(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_FRIEND_REQUEST_LIST,
-        "limit":const_value.FRIEND_ASK_LIMIT[role.vip],
+        "limit":const_value.FRIEND_INIT_LIMIT[role.vip],
         "requests" : ask_arr,
         "ret" : msg_code.SUCC
     };
@@ -438,7 +438,7 @@ function on_agree_request(data,send,s)
     }
 
     //判断是否好友数量超过上限
-    if(me_friend_data.friends.length>=comm_fun.role_friend_limit(role.level,role.vip))
+    if(me_friend_data.friends.length>=const_value.FRIEND_INIT_LIMIT[role.vip])
     {
         var msg = {
             "op" : msg_id.NM_AGREE_REQUEST,
@@ -455,7 +455,7 @@ function on_agree_request(data,send,s)
         global.log("other_formation_data==undefined || other_friend_data==undefined");
         return;
     }
-    if(other_friend_data.friends.length>=comm_fun.role_friend_limit(other_formation_data.level,other_formation_data.vip))
+    if(other_friend_data.friends.length>=const_value.FRIEND_INIT_LIMIT[other_formation_data.vip])
     {
         var msg = {
             "op" : msg_id.NM_AGREE_REQUEST,
@@ -630,6 +630,7 @@ function on_fight_friend_data(data,send,s)
     //战斗缓存列表
     var fight_list_data=friend_data.fight_friend_data_list[role.grid];
 
+    //大于6小时或者数量小于三个刷新一次
     if(fight_list_data==undefined||
         fight_list_data.date-now_time>21600000||
         fight_list_data.friends.length+fight_list_data.strangers.length<=3)
@@ -652,6 +653,8 @@ function on_fight_friend_data(data,send,s)
             return;
         }
 
+        //好友助战
+        var temp_friend_arr=[];
         for(var i=0;i<_friend_data.friends.length;i++)
         {
             if(!comm_fun.help_judge_today(_friend_data.friends[i].f_time))
@@ -663,43 +666,53 @@ function on_fight_friend_data(data,send,s)
 
             if(_friend_data.friends[i].times<const_value.FRIEND_USE_TIMES)
             {
-                fight_list_data.friends.push(help_organize_client_friend_data(_friend_data.friends[i].grid));
+                temp_friend_arr.push(_friend_data.friends[i].grid);
             }
         }
 
         if(fight_list_data.friends.length>const_value.FIGHT_FRIEND_NUM)
         {
-            fight_list_data.friends.slice(0,const_value.FIGHT_FRIEND_NUM-1);
+            var random_index =comm_fun.help_make_random(const_value.FIGHT_FRIEND_NUM,0,temp_arr.length-1);
+            for(var i=0;i<random_index.length;i++)
+            {
+                fight_list_data.friends.push(help_organize_client_friend_data(temp_friend_arr[random_index[i]]));
+            }
         }
 
-        //陌生人
+        //陌生人助战
         if(fight_list_data.friends.length<const_value.FIGHT_FRIEND_NUM)
         {
             var diff_num=const_value.FIGHT_FRIEND_NUM-fight_list_data.friends.length;
             var temp_arr=[];
+
+            var num=0;
             for(var key in formation.formation_list)
             {
                 var temp_formation_data=formation.formation_list[key];
                 if(temp_formation_data.level>=(role.level-20)&&temp_formation_data.level<=(role.level+5)&&temp_formation_data.grid !=role.grid)
                 {
                     var temp_grid=temp_formation_data.grid;
-                    var is_exist=0;
+                    var is_friend=0;
                     for(var i=0;i<_friend_data.friends.length;i++)
                     {
                         //非好友
                         if(_friend_data.friends[i].grid==temp_grid)
                         {
-                            is_exist=1;
+                            is_friend=1;
                             break;
                         }
                     }
                     //除去好友
-                    if(!is_exist)
+                    if(!is_friend)
                     {
                         temp_arr.push(temp_grid);
+                        num++;
+                        if(num>=2*diff_num)
+                        {
+                            break;
+                        }
                     }
                 }
-
             }
 
 

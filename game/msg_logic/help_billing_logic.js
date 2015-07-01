@@ -200,11 +200,11 @@ function on_gs_user_login(data,send,s)
                        var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
                        _name = play_name.play_name_arr[r].name;
                        play_name.play_name_arr.splice(r,1);
-                       /*if(key_words.reg.test(_name))
+                       if(key_words.reg.test(_name))
                        {
                            global.log("error name:"+_name);
                            continue;
-                       }*/
+                       }
                        break;
                    }
                    new_user.rand_name.name =_name;
@@ -275,11 +275,11 @@ function on_gs_user_login(data,send,s)
                            var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
                            _name = play_name.play_name_arr[r].name;
                            play_name.play_name_arr.splice(r,1);
-                           /*if(key_words.reg.test(_name))
-                            {
-                            global.log("error name:"+_name);
-                            continue;
-                            }*/
+                           if(key_words.reg.test(_name))
+                           {
+                               global.log("error name:"+_name);
+                               continue;
+                           }
                            break;
                        }
                        user.rand_name.name = _name;
