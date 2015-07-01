@@ -1186,7 +1186,7 @@
           "DropId":"29",
           "Probability":"1",
           "IsAll":"0",
-          "Assemble":"2,3201,3,10000"
+          "Assemble":"2,4301,3,10000"
         },
         "199":{
           "DropId":"30",
@@ -1360,7 +1360,7 @@
           "DropId":"61",
           "Probability":"1",
           "IsAll":"1",
-          "Assemble":"1,6306,1,2000|1,3,1,2000|5,,10000,6000"
+          "Assemble":"1,5306,1,2000|1,3,1,2000|5,,10000,6000"
         },
         "228":{
           "DropId":"62",
@@ -1421,6 +1421,24 @@
           "Probability":"1",
           "IsAll":"1",
           "Assemble":"1,2,1,5000|5,,5000,5000"
+        },
+        "238":{
+          "DropId":"71",
+          "Probability":"1",
+          "IsAll":"0",
+          "Assemble":"3,s1e11,1,10000"
+        },
+        "239":{
+          "DropId":"72",
+          "Probability":"1",
+          "IsAll":"0",
+          "Assemble":"3,s1e61,1,10000"
+        },
+        "240":{
+          "DropId":"73",
+          "Probability":"1",
+          "IsAll":"0",
+          "Assemble":"3,s1e71,1,10000"
         }
    }
 }

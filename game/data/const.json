@@ -51,7 +51,7 @@
           "TownEffecHour":"24",
           "MTGold":"8000",
           "MTCost":"0,0,0,20,20,40,40,80,80,120,120,120,120,120,120",
-          "MTVipTimes":"4,4,4,8,8,8,12,12,12,15,15",
+          "MTVipTimes":"4,5,6,7,8,10,11,12,13",
           "MTCritLow":"0.3",
           "MTCritHigh":"0.1",
           "PandaItemId":"t113",
