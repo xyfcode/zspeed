@@ -179,7 +179,7 @@ function compare_sort_des(compare_arr,key)
 }
 exports.compare_sort_des = compare_sort_des;
 
-////////////////////////////////////////////////////
+//深度拷贝对象
 function cloneObject(o){
     if(!o||'object'!= typeof o){
         return o;
@@ -199,6 +199,26 @@ function cloneObject(o){
     return c;
 }
 exports.cloneObject =cloneObject;
+
+//获取字符串的长度
+function get_str_length(str)
+{
+    if(str==undefined)
+    {
+        global.log("str==undefined");
+        return;
+    }
+    var len=0;
+    var l=str.length;
+    for(var i=0; i<l; i++) {
+        if ((str.charCodeAt(i) & 0xff00) != 0) {
+            len ++;
+        }
+        len ++;
+    }
+    return len;
+}
+exports.get_str_length = get_str_length;
 
 //判断是否是今天,data毫秒值格式
 function help_judge_today(date)
