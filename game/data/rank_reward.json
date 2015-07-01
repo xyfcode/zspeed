@@ -3,168 +3,168 @@
         "1":{
           "Id":"1",
           "DamageRecord":"5000",
-          "Reward1":"4,0,10",
+          "Reward1":"4,,10",
           "Reward2":"",
           "Reward3":""
         },
         "2":{
           "Id":"2",
           "DamageRecord":"10000",
-          "Reward1":"4,0,10",
+          "Reward1":"4,,10",
           "Reward2":"",
           "Reward3":""
         },
         "3":{
           "Id":"3",
           "DamageRecord":"20000",
-          "Reward1":"4,0,10",
+          "Reward1":"4,,10",
           "Reward2":"",
           "Reward3":""
         },
         "4":{
           "Id":"4",
           "DamageRecord":"30000",
-          "Reward1":"4,0,10",
+          "Reward1":"4,,10",
           "Reward2":"",
           "Reward3":""
         },
         "5":{
           "Id":"5",
           "DamageRecord":"40000",
-          "Reward1":"4,0,10",
+          "Reward1":"4,,10",
           "Reward2":"",
           "Reward3":""
         },
         "6":{
           "Id":"6",
           "DamageRecord":"50000",
-          "Reward1":"4,0,20",
+          "Reward1":"4,,20",
           "Reward2":"",
           "Reward3":""
         },
         "7":{
           "Id":"7",
           "DamageRecord":"60000",
-          "Reward1":"4,0,20",
+          "Reward1":"4,,20",
           "Reward2":"",
           "Reward3":""
         },
         "8":{
           "Id":"8",
           "DamageRecord":"70000",
-          "Reward1":"4,0,20",
+          "Reward1":"4,,20",
           "Reward2":"",
           "Reward3":""
         },
         "9":{
           "Id":"9",
           "DamageRecord":"80000",
-          "Reward1":"4,0,20",
+          "Reward1":"4,,20",
           "Reward2":"",
           "Reward3":""
         },
         "10":{
           "Id":"10",
           "DamageRecord":"90000",
-          "Reward1":"4,0,20",
+          "Reward1":"4,,20",
           "Reward2":"",
           "Reward3":""
         },
         "11":{
           "Id":"11",
           "DamageRecord":"100000",
-          "Reward1":"4,0,20",
+          "Reward1":"4,,20",
           "Reward2":"",
           "Reward3":""
         },
         "12":{
           "Id":"12",
           "DamageRecord":"150000",
-          "Reward1":"4,0,50",
+          "Reward1":"4,,50",
           "Reward2":"",
           "Reward3":""
         },
         "13":{
           "Id":"13",
           "DamageRecord":"200000",
-          "Reward1":"4,0,50",
+          "Reward1":"4,,50",
           "Reward2":"",
           "Reward3":""
         },
         "14":{
           "Id":"14",
           "DamageRecord":"250000",
-          "Reward1":"4,0,50",
+          "Reward1":"4,,50",
           "Reward2":"",
           "Reward3":""
         },
         "15":{
           "Id":"15",
           "DamageRecord":"300000",
-          "Reward1":"4,0,50",
+          "Reward1":"4,,50",
           "Reward2":"",
           "Reward3":""
         },
         "16":{
           "Id":"16",
           "DamageRecord":"350000",
-          "Reward1":"4,0,50",
+          "Reward1":"4,,50",
           "Reward2":"",
           "Reward3":""
         },
         "17":{
           "Id":"17",
           "DamageRecord":"400000",
-          "Reward1":"4,0,50",
+          "Reward1":"4,,50",
           "Reward2":"",
           "Reward3":""
         },
         "18":{
           "Id":"18",
           "DamageRecord":"450000",
-          "Reward1":"4,0,50",
+          "Reward1":"4,,50",
           "Reward2":"",
           "Reward3":""
         },
         "19":{
           "Id":"19",
           "DamageRecord":"500000",
-          "Reward1":"4,0,50",
+          "Reward1":"4,,50",
           "Reward2":"",
           "Reward3":""
         },
         "20":{
           "Id":"20",
           "DamageRecord":"600000",
-          "Reward1":"4,0,100",
+          "Reward1":"4,,100",
           "Reward2":"",
           "Reward3":""
         },
         "21":{
           "Id":"21",
           "DamageRecord":"700000",
-          "Reward1":"4,0,100",
+          "Reward1":"4,,100",
           "Reward2":"",
           "Reward3":""
         },
         "22":{
           "Id":"22",
           "DamageRecord":"800000",
-          "Reward1":"4,0,100",
+          "Reward1":"4,,100",
           "Reward2":"",
           "Reward3":""
         },
         "23":{
           "Id":"23",
           "DamageRecord":"900000",
-          "Reward1":"4,0,100",
+          "Reward1":"4,,100",
           "Reward2":"",
           "Reward3":""
         },
         "24":{
           "Id":"24",
           "DamageRecord":"1000000",
-          "Reward1":"4,0,100",
+          "Reward1":"4,,100",
           "Reward2":"",
           "Reward3":""
         }

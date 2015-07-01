@@ -21,7 +21,7 @@
         "4":{
           "Id":"4",
           "RandLowLimit":"4",
-          "RandHighLimit":"10",
+          "RandHighLimit":"4",
           "Reward":"4,,150"
         },
         "5":{

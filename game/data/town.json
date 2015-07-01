@@ -15,9 +15,9 @@
           "Type3":"1",
           "Id3":"3102",
           "Num3":"1",
-          "BasicMoney":"25",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"1"
+          "Gold":"5"
         },
         "2":{
           "TId":"t02",
@@ -34,9 +34,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"51",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"1"
+          "Gold":"5"
         },
         "3":{
           "TId":"t03",
@@ -53,9 +53,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"51",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"1"
+          "Gold":"5"
         },
         "4":{
           "TId":"t04",
@@ -72,9 +72,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"76",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"2"
+          "Gold":"5"
         },
         "5":{
           "TId":"t05",
@@ -91,9 +91,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"76",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"2"
+          "Gold":"5"
         },
         "6":{
           "TId":"t06",
@@ -110,9 +110,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"102",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"2"
+          "Gold":"10"
         },
         "7":{
           "TId":"t07",
@@ -129,9 +129,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"102",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"3"
+          "Gold":"10"
         },
         "8":{
           "TId":"t08",
@@ -148,9 +148,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"127",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"3"
+          "Gold":"10"
         },
         "9":{
           "TId":"t09",
@@ -167,9 +167,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"127",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"3"
+          "Gold":"10"
         },
         "10":{
           "TId":"t10",
@@ -186,9 +186,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"153",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"4"
+          "Gold":"10"
         },
         "11":{
           "TId":"t11",
@@ -205,9 +205,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"178",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"4"
+          "Gold":"15"
         },
         "12":{
           "TId":"t12",
@@ -224,9 +224,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"204",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"4"
+          "Gold":"15"
         },
         "13":{
           "TId":"t13",
@@ -243,9 +243,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"229",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"5"
+          "Gold":"15"
         },
         "14":{
           "TId":"t14",
@@ -262,9 +262,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"255",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"6"
+          "Gold":"15"
         },
         "15":{
           "TId":"t15",
@@ -281,9 +281,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"383",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"7"
+          "Gold":"15"
         },
         "16":{
           "TId":"t16",
@@ -300,9 +300,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"383",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"7"
+          "Gold":"20"
         },
         "17":{
           "TId":"t17",
@@ -319,9 +319,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"383",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"8"
+          "Gold":"20"
         },
         "18":{
           "TId":"t18",
@@ -338,9 +338,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"383",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"8"
+          "Gold":"20"
         },
         "19":{
           "TId":"t19",
@@ -357,9 +357,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"383",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"8"
+          "Gold":"20"
         },
         "20":{
           "TId":"t20",
@@ -376,9 +376,9 @@
           "Type3":"",
           "Id3":"",
           "Num3":"",
-          "BasicMoney":"383",
+          "BasicMoney":"",
           "ArithmeticProgression":"0",
-          "Gold":"8"
+          "Gold":"30"
         },
         "21":{
           "TId":"t21",
