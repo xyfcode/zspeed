@@ -9,7 +9,7 @@
           "FirstDrop":"91001,91001,91001,91002,91002,91002,71",
           "CommonDrop":"91001,91001,91001,91002,91002,91002,10101",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"3500",
           "CommonExp":"100",
           "CommonCoin":"500"
         },
@@ -19,10 +19,10 @@
           "LvLimited":"",
           "DaySweepTimes":"99",
           "MaxResetSweep":"2",
-          "FirstDrop":"91001,91001,91001,91002,91002,91002,10201",
+          "FirstDrop":"91001,91001,91001,91002,91002,91002,10201,91003",
           "CommonDrop":"91001,91001,91001,91002,91002,91002,10201",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"3500",
           "CommonExp":"100",
           "CommonCoin":"500"
         },
