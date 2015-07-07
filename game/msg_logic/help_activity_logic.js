@@ -1059,6 +1059,9 @@ function help_battle_fight_result(data,send,s)
         }
 
         //处理战斗结果
+        //体力值结算
+        role_data_logic.help_reduce_stamina(role,_gate_data.power_cost);
+
         var role_formation_data=formation_data.formation_list[role.grid];
         if(role_formation_data==undefined)
         {
@@ -1105,8 +1108,7 @@ function help_battle_fight_result(data,send,s)
             var gain_item=drop_logic.help_put_item_to_role(role,drops[i].xid,drops[i].num,drops[i].type);
             drops[i].uids=gain_item.uids;
         }
-        //体力值结算
-        role_data_logic.help_reduce_stamina(role,_gate_data.power_cost);
+
 
         var msg=
         {
