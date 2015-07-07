@@ -616,6 +616,8 @@ function help_gate_fight_result(data,send,s)
 
         //处理战斗结果
 
+        //体力值结算
+        role_data_logic.help_reduce_stamina(role,_gate_data.power_cost);
         var role_formation_data=formation_data.formation_list[role.grid];
         if(role_formation_data==undefined)
         {
@@ -636,8 +638,6 @@ function help_gate_fight_result(data,send,s)
             var gain_item=drop_logic.help_put_item_to_role(role,drops[i].xid,drops[i].num,drops[i].type);
             drops[i].uids=gain_item.uids;
         }
-        //体力值结算
-        role_data_logic.help_reduce_stamina(role,_gate_data.power_cost);
         //清空战斗数据
         delete formation_data.fight_user_data_list[role.grid];
         user.nNeedSave=1;
@@ -875,6 +875,9 @@ function on_sweep_gate(data,send,s)
         return;
     }
 
+    //体力值结算
+    role_data_logic.help_reduce_stamina(role,cost_power);
+
 
     var all_drops=[];
 
@@ -909,9 +912,6 @@ function on_sweep_gate(data,send,s)
         }
 
     }
-
-    //体力值结算
-    role_data_logic.help_reduce_stamina(role,cost_power);
     //次数结算
     role_gate_data.sweep+=num;
     role_gate_data.s_date=new Date().getTime();

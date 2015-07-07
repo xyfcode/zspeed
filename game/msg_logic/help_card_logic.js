@@ -399,6 +399,7 @@ function on_card_strengthen(data,send,s)
 
 
     var gain_exp=0;
+    var money_exp=0;
     for(var i=0;i<material_uids.length;i++)
     {
         var material_data=role.card_bag[material_uids[i]];
@@ -443,11 +444,11 @@ function on_card_strengthen(data,send,s)
                 material_exp+=Math.floor(card_exp_data.card_exp_data_list[j-1].exp_limit*material_json_data.exp_param);
             }
         }
-
+        money_exp+=material_json_data.exp;
         gain_exp+=material_exp;
     }
 
-    var cost_money=gain_exp*const_value.Up_CARD_COST_MONEY_RATIO;
+    var cost_money=money_exp*const_value.Up_CARD_COST_MONEY_RATIO;
     global.log("cost_money:"+cost_money);
     global.log("gain_exp:"+gain_exp);
 

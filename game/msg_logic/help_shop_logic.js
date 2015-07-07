@@ -70,7 +70,7 @@ function on_shop_data(data,send,s)
 
         if(role_shop_data)
         {
-            if(!comm_fun.isEmpty(shop_data.shop_data_list[key].vip)||comm_fun.help_judge_today(role_shop_data.date))
+            if(key.match("vip")||comm_fun.help_judge_today(role_shop_data.date))
             {
                 client_shop_data.times=role_shop_data.times;
             }

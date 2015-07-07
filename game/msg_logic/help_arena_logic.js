@@ -447,11 +447,8 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
     var rank_arr=formation.top_hurt_rank;
     if(old_hurt>=new_hurt)
     {
-        //排名不变
-        ret.new_rank=ret.old_rank=help_get_hurt_rank(role_grid,old_hurt);
-
-        //计算超越玩家百分比，排名所占百分比
-        ret.exceed=Math.ceil((rank_arr.length-ret.new_rank+1)/rank_arr.length*100);
+        //计算超越玩家百分比
+        ret.exceed=Math.ceil((rank_arr.length-help_get_new_hurt_rank(new_hurt)+1)/rank_arr.length*100);
         return ret;
     }
     else
@@ -529,7 +526,7 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
             ret.new_rank=1;
         }
 
-        //计算超越玩家百分比，排名所占百分比
+        //计算超越玩家百分比
         ret.exceed=Math.ceil((rank_arr.length-ret.new_rank+1)/rank_arr.length*100);
         if(ret.exceed>100)
         {
@@ -626,15 +623,19 @@ var help_get_new_hurt_rank=function(new_hurt)
         return;
     }
 
-    var rank;
-
-    global.log("new_hurt:"+new_hurt);
-    global.log("arr:"+JSON.stringify(arr));
-
     var arr=formation.top_hurt_rank;
-    if(arr.length<=0)
+    var rank=arr.length+1;//默认最后一名
+
+    if(arr.length<=100)
     {
-        rank=1;
+        for(var i=0;i<arr.length;i++)
+        {
+            if(new_hurt>arr[i].hurt)
+            {
+                return rank=i+1;
+                break;
+            }
+        }
         return rank;
     }
     else
