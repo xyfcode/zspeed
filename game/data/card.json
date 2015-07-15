@@ -451,7 +451,7 @@
           "LeaderSkill":"41041",
           "EquipListReborn":"s1e11,s1e61,s1e71,s2e12,s2e62,s2e72,s3e13,s3e63,s3e73,s4e14,s4e64,s4e74,s5e15,s5e65,s5e75,s6e16,s6e66,s6e76,s7e17,s7e67,s7e77",
           "Exp":"1000",
-          "ExpParameters":"1.5",
+          "ExpParameters":"1.4",
           "WarriorScore":"500",
           "RebornLimit":"7"
         },

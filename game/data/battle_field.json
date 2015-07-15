@@ -5,7 +5,7 @@
           "Type":"1",
           "Name":"单刀赴宴",
           "Gate":"b101,b102,b103",
-          "LvLimited":"15,15,25",
+          "LvLimited":"8,15,25",
           "CountLimited":"1,1,1"
         },
         "2":{
@@ -13,7 +13,7 @@
           "Type":"1",
           "Name":"北魏战场",
           "Gate":"b201,b202,b203",
-          "LvLimited":"15,15,25",
+          "LvLimited":"8,15,25",
           "CountLimited":"1,1,1"
         },
         "3":{
@@ -21,7 +21,7 @@
           "Type":"1",
           "Name":"西蜀战场",
           "Gate":"b301,b302,b303",
-          "LvLimited":"15,15,25",
+          "LvLimited":"8,15,25",
           "CountLimited":"1,1,1"
         },
         "4":{
@@ -29,7 +29,7 @@
           "Type":"1",
           "Name":"东吴战场",
           "Gate":"b401,b402,b403",
-          "LvLimited":"15,15,25",
+          "LvLimited":"8,15,25",
           "CountLimited":"1,1,1"
         }
    }

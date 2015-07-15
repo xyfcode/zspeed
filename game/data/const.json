@@ -45,7 +45,7 @@
           "RankLv":"1",
           "EquipBattleLv":"1",
           "WarrBattleLv":"1",
-          "CastellanLv":"1",
+          "CastellanLv":"20",
           "TownMoneyHour":"0.5",
           "TownRmbHour":"1",
           "TownEffecHour":"24",
@@ -61,7 +61,7 @@
           "DumplingItemId":"m1",
           "ResetSweepCost":"10,20,30,50,100,200,300,500",
           "Vip":"0,60,300,1000,2000,5000,10000,20000,50000",
-          "ReviveTimes":"1,2,3,4,5,6,7,8,9",
+          "ReviveTimes":"0,1,2,3,4,5,6,7,8",
           "ReviveCost":"100,100,150,150,200,200,300,400,500"
         }
    }
