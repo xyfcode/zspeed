@@ -37,6 +37,8 @@ function PlatformType()
 {
     this.PT_PP_IOS = 1;//PP助手平台（用于区别开服）
     this.PT_APP_STORE = 2; //app_store(苹果)
+
+    this.PT_ANDROID_GOOGLE_PLAY = 11; //android google play
 }
 exports.pfType = new PlatformType();
 
