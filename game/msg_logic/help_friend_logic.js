@@ -670,12 +670,19 @@ function on_fight_friend_data(data,send,s)
             }
         }
 
-        if(fight_list_data.friends.length>const_value.FIGHT_FRIEND_NUM)
+        if(temp_friend_arr.length>const_value.FIGHT_FRIEND_NUM)
         {
-            var random_index =comm_fun.help_make_random(const_value.FIGHT_FRIEND_NUM,0,temp_arr.length-1);
-            for(var i=0;i<random_index.length;i++)
+            var random_arr =comm_fun.help_make_random(const_value.FIGHT_FRIEND_NUM,0,temp_friend_arr.length-1);
+            for(var i=0;i<random_arr.length;i++)
             {
-                fight_list_data.friends.push(help_organize_client_friend_data(temp_friend_arr[random_index[i]]));
+                fight_list_data.friends.push(help_organize_client_friend_data(temp_friend_arr[random_arr[i]]));
+            }
+        }
+        else
+        {
+            for(var i=0;i<temp_friend_arr.length;i++)
+            {
+                fight_list_data.friends.push(help_organize_client_friend_data(temp_friend_arr[i]));
             }
         }
 
@@ -716,11 +723,11 @@ function on_fight_friend_data(data,send,s)
             }
 
 
-            var random_index =comm_fun.help_make_random(diff_num,0,temp_arr.length-1);
+            var random_arr =comm_fun.help_make_random(diff_num,0,temp_arr.length-1);
 
-            for(var i=0;i<random_index.length;i++)
+            for(var i=0;i<random_arr.length;i++)
             {
-                fight_list_data.strangers.push(help_organize_client_friend_data(temp_arr[random_index[i]]));
+                fight_list_data.strangers.push(help_organize_client_friend_data(temp_arr[random_arr[i]]));
             }
         }
 
