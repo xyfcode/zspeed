@@ -3,7 +3,7 @@
         "1":{
           "EventId":"9",
           "EventType":"1",
-          "Gold":"300",
+          "Gold":"100",
           "Exp":"0",
           "ItemId":"",
           "CardId":"",
@@ -11,9 +11,9 @@
           "CostType":"",
           "CostNum":"",
           "ProbabilityOne":"50",
-          "ProbabilityTwo":"25",
+          "ProbabilityTwo":"50",
           "ProbabilityThree":"0",
-          "ProbabilityFour":"25",
+          "ProbabilityFour":"0",
           "ProbabilityFive":"0",
           "Score":"0",
           "Weight":""
