@@ -32,7 +32,7 @@ var gift_data=require("./msg_logic/gift_data");
 var battle_field_data=require("./msg_logic/battle_field_data");
 var arena_data=require("./msg_logic/arena_data");
 var shop_data=require("./msg_logic/shop_data");
-
+var share_data=require("./msg_logic/share_data");
 
 //逻辑
 var billing_logic = require("./msg_logic/help_billing_logic");
@@ -53,6 +53,7 @@ var gift_logic=require("./msg_logic/help_gift_logic");
 var arena_logic=require("./msg_logic/help_arena_logic");
 var chat_logic=require("./msg_logic/help_chat_logic");
 var login_logic = require("./msg_logic/help_login_logic");
+var share_logic = require("./msg_logic/help_share_logic");
 
 var tick_logic=require("./msg_logic/help_tick_logic");
 var gm_billing_logic=require("./msg_logic/help_gm_billing_logic");
@@ -152,6 +153,7 @@ var handler = {
     "216" : new on_get_exchange_list(), //获取兑换店列表
     "215" : new on_money_tree(), //招财
     "214" : new on_card_forge(), //武将炼化
+    "213" : new on_get_share_reward(), //分享facebook获取元宝
     "3000" : new on_test_town() //跳过关卡
 
 };
@@ -161,41 +163,45 @@ var g_server;
 
 exports.server = function(server)
 {
+    //初始化
     g_server = server;
-    json_config_file.init(server);
+    json_config_file.init();
     make_db.server(server);
-    //数据
+
+    //数据，需要数据库
     play_name.init(server);
     mail_data.init(server);
     friend_data.init(server);
     formation_data.init(server);
-    arena_data.init(server);
-
-    initialization_data.init(server);
-    server_config_data.init(server);
-    constant_data.init(server);
-    card_data.init(server);
     town_data.init(server);
-    gate_data.init(server);
-    item_data.init(server);
-    drop_data.init(server);
-    role_exp_data.init(server);
-    card_exp_data.init(server);
-    recruit_data.init(server);
-    activity_data.init(server);
+    //数据
+    arena_data.init();
+    initialization_data.init();
+    server_config_data.init();
+    constant_data.init();
+    card_data.init();
+
+    gate_data.init();
+    item_data.init();
+    drop_data.init();
+    role_exp_data.init();
+    card_exp_data.init();
+    recruit_data.init();
+    activity_data.init();
     key_words_data.init();
-    card_frag_data.init(server);
-    explore_data.init(server);
-    explore_event_data.init(server);
-    purchase_shop_data.init(server);
-    recharge_reward_data.init(server);
-    login_reward_data.init(server);
-    sign_reward_data.init(server);
-    achievement_data.init(server);
-    robot_data.init(server);
-    gift_data.init(server);
-    battle_field_data.init(server);
-    shop_data.init(server);
+    card_frag_data.init();
+    explore_data.init();
+    explore_event_data.init();
+    purchase_shop_data.init();
+    recharge_reward_data.init();
+    login_reward_data.init();
+    sign_reward_data.init();
+    achievement_data.init();
+    robot_data.init();
+    gift_data.init();
+    battle_field_data.init();
+    shop_data.init();
+    share_data.init();
 
     //逻辑
     billing_logic.init(server);
@@ -906,6 +912,14 @@ function on_get_exchange_list()
     this.handle = function(data,send,s)
     {
         activity_logic.on_get_exchange_list(data,send,s);
+    }
+}
+
+function on_get_share_reward()
+{
+    this.handle = function(data,send,s)
+    {
+        share_logic.on_get_share_reward(data,send,s);
     }
 }
 
