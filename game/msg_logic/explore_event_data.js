@@ -24,12 +24,8 @@ var RewardData=function()
 var explore_event_data_list={};
 exports.explore_event_data_list=explore_event_data_list;
 
-
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_explore_event_data();
 }
 exports.init=init;

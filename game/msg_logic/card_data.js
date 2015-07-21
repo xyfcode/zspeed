@@ -21,15 +21,12 @@ var CardData=function()
 };
 
 
-
 var card_data_list={};
 exports.card_data_list=card_data_list;
 
-var g_server=null;
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_card_data();
 }
 exports.init=init;

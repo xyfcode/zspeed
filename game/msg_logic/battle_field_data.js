@@ -15,11 +15,8 @@ var BattleData=function()
 var battle_field_data_list={};
 exports.battle_field_data_list=battle_field_data_list;
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_battle_field_data();
 }
 exports.init=init;

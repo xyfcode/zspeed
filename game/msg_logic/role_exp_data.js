@@ -12,11 +12,9 @@ var RoleExpData=function()
 var role_exp_data_list={};
 exports.role_exp_data_list=role_exp_data_list;
 
-var g_server=null;
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_role_exp_data();
 }
 exports.init=init;

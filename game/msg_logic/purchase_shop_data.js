@@ -1,7 +1,7 @@
 var json_config_file=require("./json_config_file");
 var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
-var g_server=null;
+
 
 //充值商城数据结构
 var PurchaseShopData=function()
@@ -18,9 +18,8 @@ var PurchaseShopData=function()
 };
 exports.PurchaseShopData=PurchaseShopData;
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_purchase_shop_data();
 
 }

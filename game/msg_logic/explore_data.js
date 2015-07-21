@@ -22,11 +22,8 @@ var Assemble_Data=function()
 };
 
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_explore_data();
 }
 exports.init=init;

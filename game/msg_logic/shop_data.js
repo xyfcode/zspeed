@@ -17,11 +17,8 @@ var ShopData=function()
 var shop_data_list={};
 exports.shop_data_list=shop_data_list;
 
-var g_server=null;
-
 function init(s)
 {
-    g_server=s;
     load_shop_data();
 }
 exports.init=init;

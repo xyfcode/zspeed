@@ -230,11 +230,8 @@ var const_value=new ConstValue();
 exports.const_value=const_value;
 
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_constant_data();
 }
 exports.init=init;

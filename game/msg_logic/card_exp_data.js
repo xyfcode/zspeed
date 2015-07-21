@@ -12,11 +12,8 @@ var CardExpData=function()
 var card_exp_data_list={};
 exports.card_exp_data_list=card_exp_data_list;
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_card_exp_data();
 }
 exports.init=init;

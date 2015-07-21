@@ -14,11 +14,8 @@ var RechargeRewardData=function()
 var recharge_reward_data_list={};
 exports.recharge_reward_data_list=recharge_reward_data_list;
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_recharge_reward_data();
 }
 exports.init=init;

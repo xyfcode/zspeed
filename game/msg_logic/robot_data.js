@@ -17,11 +17,9 @@ var RobotData=function()
 var robot_data_list={};
 exports.robot_data_list=robot_data_list;
 
-var g_server=null;
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_robot_data();
 }
 exports.init=init;

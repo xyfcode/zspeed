@@ -13,11 +13,9 @@ var CardFragData=function()
 var card_frag_data_list={};
 exports.card_frag_data_list=card_frag_data_list;
 
-var g_server=null;
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_card_frag_data();
 }
 exports.init=init;

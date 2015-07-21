@@ -3,7 +3,6 @@ var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
 var define_code=require("./define_code");
 var const_value=define_code.const_value;
-var g_server=null;
 
 
 var RewardData=function()
@@ -39,9 +38,8 @@ var rank_time_reward_data_list={};
 exports.rank_time_reward_data_list=rank_time_reward_data_list;
 
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_rank_reward_data();
     load_rank_time_reward_data();
 }

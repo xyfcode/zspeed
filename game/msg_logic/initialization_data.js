@@ -11,15 +11,13 @@ var InitData=function()
     this.score = 0;   //人气
     this.init_card=[];
     this.share_card=[];
-}
+};
 var initialization_data = new InitData();
 exports.initialization_data = initialization_data;
 
-var g_server=null;
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_initialization_data();
 }
 exports.init=init;

@@ -23,11 +23,9 @@ var ItemData=function()
 var item_data_list={};
 exports.item_data_list=item_data_list;
 
-var g_server=null;
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_item_data();
 }
 exports.init=init;

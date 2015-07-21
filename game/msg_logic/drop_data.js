@@ -22,11 +22,9 @@ var Drop_Ls_Data=function()
 var drop_data_list={};
 exports.drop_data_list=drop_data_list;
 
-var g_server=null;
 
-function init(s)
+function init()
 {
-    g_server=s;
     load_drop_data();
 }
 exports.init=init;

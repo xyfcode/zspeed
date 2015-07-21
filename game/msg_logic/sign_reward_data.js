@@ -23,11 +23,8 @@ var RewardData=function()
     this.num=0;
 };
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_sign_reward_data();
 }
 exports.init=init;

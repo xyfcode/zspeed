@@ -37,11 +37,8 @@ var ExchangeWData=function()
 var exchange_data_arr=[];
 exports.exchange_data_arr=exchange_data_arr;
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_sacrifice_data();
     load_exchange_data();
 }

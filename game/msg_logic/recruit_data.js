@@ -33,13 +33,9 @@ var recruit_data_list = {};
 exports.recruit_data_list = recruit_data_list;
 
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_recruit_data();
-
 }
 exports.init=init;
 
