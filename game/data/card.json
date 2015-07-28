@@ -23,7 +23,7 @@
           "EquipListReborn":"s1e11,s1e61,s1e71",
           "Exp":"200",
           "ExpParameters":"0.5",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "3":{
@@ -36,7 +36,7 @@
           "EquipListReborn":"s1e21,s1e61,s1e71",
           "Exp":"200",
           "ExpParameters":"0.5",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "4":{
@@ -49,7 +49,7 @@
           "EquipListReborn":"s1e31,s1e61,s1e71",
           "Exp":"200",
           "ExpParameters":"0.5",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "5":{
@@ -62,7 +62,7 @@
           "EquipListReborn":"s1e41,s1e61,s1e71",
           "Exp":"200",
           "ExpParameters":"0.5",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "6":{
@@ -75,7 +75,7 @@
           "EquipListReborn":"s1e51,s1e61,s1e71",
           "Exp":"200",
           "ExpParameters":"0.5",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "7":{
@@ -88,7 +88,7 @@
           "EquipListReborn":"s1e11,s1e61,s1e71",
           "Exp":"400",
           "ExpParameters":"0.75",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "8":{
@@ -101,7 +101,7 @@
           "EquipListReborn":"s1e21,s1e61,s1e71",
           "Exp":"400",
           "ExpParameters":"0.75",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "9":{
@@ -114,7 +114,7 @@
           "EquipListReborn":"s1e31,s1e61,s1e71",
           "Exp":"400",
           "ExpParameters":"0.75",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "10":{
@@ -127,7 +127,7 @@
           "EquipListReborn":"s1e41,s1e61,s1e71",
           "Exp":"400",
           "ExpParameters":"0.75",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "11":{
@@ -140,7 +140,7 @@
           "EquipListReborn":"s1e41,s1e61,s1e71",
           "Exp":"400",
           "ExpParameters":"0.75",
-          "WarriorScore":"0",
+          "WarriorScore":"1",
           "RebornLimit":"0"
         },
         "12":{

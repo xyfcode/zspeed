@@ -19,7 +19,7 @@
         "2":{
           "RecruitId":"2",
           "CostType":"5",
-          "CostNum":"20000",
+          "CostNum":"5000",
           "FreeTimes":"5",
           "FirstFreeMinute":"0",
           "FreeMinute":"10",
