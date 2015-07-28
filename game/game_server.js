@@ -82,6 +82,7 @@ var handler = {
 
     "80" : new on_user_purchase_data(), //查看用户充值信息
     "81" :new on_apple_user_purchase(),//正式苹果用户支付
+    "82" :new on_gp_user_purchase(),//正式google play用户支付
 
     "198": new on_get_notice_count(),//获得通知数量
     "197": new on_add_stamina(),//增加体力
@@ -688,6 +689,14 @@ function on_apple_user_purchase()
     this.handle = function(data,send,s)
     {
         purchase_shop_logic.on_apple_user_purchase(data,send,s);
+    }
+}
+
+function on_gp_user_purchase()
+{
+    this.handle = function(data,send,s)
+    {
+        purchase_shop_logic.on_gp_user_purchase(data,send,s);
     }
 }
 
