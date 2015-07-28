@@ -12,12 +12,10 @@ var constant_data=require('./constant_data');
 //登录类型
 function LoginType()
 {
-    this.LT_FAST = 1;//use login 快速登录
-    this.LT_DEFAULT  = 2;//use acc & pwd login 注册登录
-    this.LT_PP = 3; // PP助手
-    this.LT_TONGBUTUI = 4; // 同步推
-    this.LT_91  = 5;//91账号
-    this.LT_KUAIYONG = 6; //快用账号
+    this.LT_FAST = 1;//快速登录
+    this.LT_DEFAULT  = 2;//注册登录
+    this.LT_PP = 3; //PP助手
+    this.LT_FACEBOOK = 4; //facebook登录
 }
 exports.loginType = new LoginType();
 
@@ -25,10 +23,8 @@ exports.loginType = new LoginType();
 function AccountTag()
 {
     this.WY="wy"; //微云普通注册
-    this.PP = "pp";//
-    this.TB = "tb";//
-    this.JY = "91";//
-    this.KY = "ky";//
+    this.PP = "pp";//pp助手
+    this.FB = "fb";// facebook
 }
 exports.accountTag = new AccountTag();
 
@@ -106,7 +102,7 @@ function MsgCode()
     this.PURCHASE_ERROR=61;//充值发生异常，请联系客服
     this.COMPOSE_MATERIAL_NOT_ENOUGH=62;//合成需要的材料不足！
     this.KEY_NOT_ENOUGH=63;//所需钥匙不存在！
-    this.ACCOUNT_FORMAT_ERROR =64; //账号和密码只能输入6-20个字母、数字、下划线
+    this.ACCOUNT_FORMAT_ERROR =64; //
     this.ACCOUNT_GUEST_ERROR =65; //账号不能以guest开头
     this.PWD_FORMAT_ERROR =66; //密码长度介于6到20个字符之间
     this.LEVEL_EXCEED_LIMIT=67;//武将等级超过上限！

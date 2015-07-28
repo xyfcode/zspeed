@@ -286,20 +286,13 @@ function get_account_by_type(account,type)
         case define_code.loginType.LT_FAST:
             break;
         case define_code.loginType.LT_DEFAULT:
-            //自己平台的账号
             account+=define_code.accountTag.WY;
             break;
         case define_code.loginType.LT_PP:
             account+=define_code.accountTag.PP;
             break;
-        case define_code.loginType.LT_TONGBUTUI:
-            account+=define_code.accountTag.TB;
-            break;
-        case define_code.loginType.LT_91:
-            account+=define_code.accountTag.JY;
-            break;
-        case define_code.loginType.LT_KUAIYONG:
-            account+=define_code.accountTag.KY;
+        case define_code.loginType.LT_FACEBOOK:
+            account+=define_code.accountTag.FB;
             break;
         default :
             global.log("type is error,type :"+type);

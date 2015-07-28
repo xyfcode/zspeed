@@ -603,27 +603,15 @@ function on_account_rebind(data,send,s)
     }
 
 
-    //校验密码：只能输入6-20个字母、数字、下划线
-    var reg=/^(\w){6,20}$/;
-    if(!reg.test(data.ac))
+    //账号只能是邮箱
+    var reg=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(!reg.test(account))
     {
         var msg = {
-            "op"   :  msg_id.NM_ACCOUNT_REBIND,
+            "op"   :  msg_id.NM_BL_ACCOUNT_BIND,
             "ret" : msg_code.ACCOUNT_FORMAT_ERROR
         };
-        send(msg);
-        return;
-    }
-
-    //不能以guest开头
-    var guest_reg=/^guest/;
-    if(guest_reg.test(data.ac))
-    {
-        var msg = {
-            "op"   :  msg_id.NM_ACCOUNT_REBIND,
-            "ret" : msg_code.ACCOUNT_GUEST_ERROR
-        };
-        send(msg);
+        s.send(msg);
         return;
     }
 
@@ -640,7 +628,7 @@ function on_account_rebind(data,send,s)
     if(new_pwd.length<6||new_pwd.length>20)
     {
         var msg = {
-            "op"   :  msg_id.NM_USER_REGISTER,
+            "op"   :  msg_id.NM_BL_ACCOUNT_BIND,
             "ret" : msg_code.PWD_FORMAT_ERROR
         };
         s.send(msg);

@@ -8,13 +8,9 @@ exports.file_path=file_path;
 var json_config_file_list={};
 exports.json_config_file_list=json_config_file_list;
 
-var g_server=null;
-
-function init(s)
+function init()
 {
-    g_server=s;
     load_data_file();
-
 }
 exports.init=init;
 

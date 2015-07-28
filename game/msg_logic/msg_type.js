@@ -31,7 +31,8 @@ function MsgID()
 
     this.NM_USER_PURC_DATA=80;//用户商城充值信息
     this.NM_APPLE_USER_PURCHASE=81;//正式苹果用户支付
-    this.NM_USER_PURCHASE=88;//用户充值结果(目前是PP助手的推送充值结果，可以换成82号协议)
+    this.NM_GP_USER_PURCHASE=82;//正式Google play用户支付
+    this.NM_PP_USER_PURCHASE=88;//用户充值结果(目前是PP助手的推送充值结果)
 
 
     this.NM_GET_NOTICE_COUNT=198; //获得通知数量
@@ -112,6 +113,7 @@ function MsgID()
     this.NM_GET_EXCHANGE_LIST=216; //获取兑换店列表
     this.NM_MONEY_TREE=215; //招财
     this.NM_CARD_FORGE=214; //卡牌熔炼
+    this.NM_GET_SHARE_REWARD=213; //获取分享奖励
     this.NM_TEST_TOWN=3000; //城池全部打开
 }
 exports.MsgID=MsgID;
