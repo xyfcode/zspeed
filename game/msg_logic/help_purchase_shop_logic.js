@@ -201,14 +201,11 @@ function on_apple_user_purchase(data,send,s)
     }
 
     var app_data=data.data;
-    var goods_id=data.goods_id;
 
-    global.log("app_data:"+app_data);
-    global.log("goods_id:"+goods_id);
-
-    if(app_data==undefined || goods_id==undefined)
+    //去掉了goods_id 客户端也要去掉
+    if(app_data==undefined)
     {
-        global.log("app_data==undefined || goods_id==undefined");
+        global.log("app_data==undefined");
         return;
     }
 
@@ -218,8 +215,7 @@ function on_apple_user_purchase(data,send,s)
         var msg = {
             "op" : msg_id.NM_APPLE_USER_PURCHASE,
             "account": role.account, //用户账号
-            "app_data": app_data,
-            "goods_id": goods_id
+            "app_data": app_data
         };
         billing_socket.send(msg);
     }
@@ -234,12 +230,71 @@ function on_apple_user_purchase(data,send,s)
     }
 
 
-    var log_content={"app_data":app_data ,"goods_id":goods_id};
+    var log_content={"app_data":app_data};
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_apple_user_purchase",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
 
 }
 exports.on_apple_user_purchase = on_apple_user_purchase;
+
+//正式google play用户支付(客户端发送的支付请求)
+function on_gp_user_purchase(data,send,s)
+{
+    global.log("on_gp_user_purchase");
+
+    var gid = s.gid;
+    if(gid == undefined)
+    {
+        global.log("gid == undefined");
+        return;
+    }
+
+    var user = ds.user_list[gid];
+    if(user == undefined)
+    {
+        global.log("user == undefined");
+        return;
+    }
+
+    var role = ds.get_cur_role(user);
+    if(role == undefined)
+    {
+        global.log("role == undefined");
+        return;
+    }
+
+    var google_data=data.google_data;
+    if(google_data==undefined)
+    {
+        global.log("google_data==undefined");
+        return;
+    }
+
+    var billing_socket=billing_client.get_billing_socket();
+    if(billing_socket)
+    {
+        var msg = {
+            "op" : msg_id.NM_GP_USER_PURCHASE,
+            "account": role.account, //用户账号
+            "google_data": google_data
+        };
+        billing_socket.send(msg);
+    }
+    else
+    {
+        global.log("on_gp_user_purchase error");
+        var msg = {
+            "op" : msg_id.NM_GP_USER_PURCHASE,
+            "ret" : msg_code.SERVER_ERROR
+        };
+        send(msg);
+    }
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_gp_user_purchase",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+}
+exports.on_gp_user_purchase = on_gp_user_purchase;
 
 //用户支付(billing返回的验证结果)
 function on_billing_purchase_verify_result(data,send,s)
@@ -270,11 +325,15 @@ function on_billing_purchase_verify_result(data,send,s)
         {
             case define_code.pfType.PT_PP_IOS:
                 //PP助手
-                _msg_id=msg_id.NM_USER_PURCHASE;
+                _msg_id=msg_id.NM_PP_USER_PURCHASE;
                 break;
             case define_code.pfType.PT_APP_STORE:
                 //苹果app_store
                 _msg_id=msg_id.NM_APPLE_USER_PURCHASE;
+                break;
+            case define_code.pfType.PT_ANDROID_GOOGLE_PLAY:
+                //google play
+                _msg_id=msg_id.NM_GP_USER_PURCHASE;
                 break;
         }
 
@@ -306,11 +365,15 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
     {
         case define_code.pfType.PT_PP_IOS:
             //PP助手
-            _msg_id=msg_id.NM_USER_PURCHASE;
+            _msg_id=msg_id.NM_PP_USER_PURCHASE;
             break;
         case define_code.pfType.PT_APP_STORE:
             //苹果app_store
             _msg_id=msg_id.NM_APPLE_USER_PURCHASE;
+            break;
+        case define_code.pfType.PT_ANDROID_GOOGLE_PLAY:
+            //google play
+            _msg_id=msg_id.NM_GP_USER_PURCHASE;
             break;
     }
 
@@ -545,13 +608,8 @@ function help_user_gain_purchase_goods(goodsId,account,pf_type)
             {
                 global.log("user is not exist:"+account);
             }
-            
-
         });
-
     }
-
-
 }
 exports.help_user_gain_purchase_goods=help_user_gain_purchase_goods;
 
