@@ -602,19 +602,6 @@ function on_account_rebind(data,send,s)
         return;
     }
 
-
-    //账号只能是邮箱
-    var reg=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if(!reg.test(account))
-    {
-        var msg = {
-            "op"   :  msg_id.NM_BL_ACCOUNT_BIND,
-            "ret" : msg_code.ACCOUNT_FORMAT_ERROR
-        };
-        s.send(msg);
-        return;
-    }
-
     var new_ac=common_func.get_account_by_type(data.ac,define_code.loginType.LT_DEFAULT);
 
     var new_pwd=data.pwd;
@@ -624,11 +611,23 @@ function on_account_rebind(data,send,s)
         return;
     }
 
+    //账号只能是邮箱
+    var reg=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(!reg.test(new_ac))
+    {
+        var msg = {
+            "op"   :  msg_id.NM_ACCOUNT_REBIND,
+            "ret" : msg_code.ACCOUNT_FORMAT_ERROR
+        };
+        s.send(msg);
+        return;
+    }
+
     //检测密码
     if(new_pwd.length<6||new_pwd.length>20)
     {
         var msg = {
-            "op"   :  msg_id.NM_BL_ACCOUNT_BIND,
+            "op"   :  msg_id.NM_ACCOUNT_REBIND,
             "ret" : msg_code.PWD_FORMAT_ERROR
         };
         s.send(msg);

@@ -36,10 +36,9 @@ exports.ServerConfigData = ServerConfigData;
 var server_config_data_list = [];
 exports.server_config_data_list = server_config_data_list;
 
-var g_server = null;
-exports.init = function(s)
+
+exports.init = function()
 {
-    g_server = s;
     load_server_config_data();
 };
 

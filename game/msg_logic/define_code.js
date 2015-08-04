@@ -102,7 +102,7 @@ function MsgCode()
     this.PURCHASE_ERROR=61;//充值发生异常，请联系客服
     this.COMPOSE_MATERIAL_NOT_ENOUGH=62;//合成需要的材料不足！
     this.KEY_NOT_ENOUGH=63;//所需钥匙不存在！
-    this.ACCOUNT_FORMAT_ERROR =64; //
+    this.ACCOUNT_FORMAT_ERROR =64; //账号只能使用邮箱注册
     this.ACCOUNT_GUEST_ERROR =65; //账号不能以guest开头
     this.PWD_FORMAT_ERROR =66; //密码长度介于6到20个字符之间
     this.LEVEL_EXCEED_LIMIT=67;//武将等级超过上限！

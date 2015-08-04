@@ -263,10 +263,11 @@ function on_gp_user_purchase(data,send,s)
         return;
     }
 
-    var google_data=data.google_data;
-    if(google_data==undefined)
+    var purchaseData=data.purchaseData;
+    var signature=data.signature;
+    if(purchaseData==undefined||signature==undefined)
     {
-        global.log("google_data==undefined");
+        global.log("purchaseData==undefined||signature==undefined");
         return;
     }
 
@@ -276,7 +277,8 @@ function on_gp_user_purchase(data,send,s)
         var msg = {
             "op" : msg_id.NM_GP_USER_PURCHASE,
             "account": role.account, //用户账号
-            "google_data": google_data
+            "purchaseData": purchaseData,
+            "signature": signature
         };
         billing_socket.send(msg);
     }
