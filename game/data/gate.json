@@ -2866,12 +2866,12 @@
           "LvLimited":"5",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,54,54,54,54",
-          "CommonDrop":"91001,91001,91001,91002,54,54,54,54",
+          "FirstDrop":"54,54,54,54",
+          "CommonDrop":"54,54,54,54",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"1000",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"1000"
         },
         "222":{
           "GateId":"b102",
@@ -2879,12 +2879,12 @@
           "LvLimited":"15",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,55,55,55,55,55",
-          "CommonDrop":"91001,91001,91001,91002,55,55,55,55,55",
+          "FirstDrop":"55,55,55,55,55",
+          "CommonDrop":"55,55,55,55,55",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"2000",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"2000"
         },
         "223":{
           "GateId":"b103",
@@ -2892,12 +2892,12 @@
           "LvLimited":"25",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,56,56,56,56,55,55",
-          "CommonDrop":"91001,91001,91001,91002,56,56,56,56,55,55",
+          "FirstDrop":"56,56,56,56,55,55",
+          "CommonDrop":"56,56,56,56,55,55",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"3500",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"3500"
         },
         "224":{
           "GateId":"b201",
@@ -2905,12 +2905,12 @@
           "LvLimited":"5",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,29",
-          "CommonDrop":"91001,91001,91001,91002,29",
+          "FirstDrop":"29",
+          "CommonDrop":"29",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"1000",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"1000"
         },
         "225":{
           "GateId":"b202",
@@ -2918,12 +2918,12 @@
           "LvLimited":"15",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,30",
-          "CommonDrop":"91001,91001,91001,91002,30",
+          "FirstDrop":"30",
+          "CommonDrop":"30",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"2000",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"2000"
         },
         "226":{
           "GateId":"b203",
@@ -2931,12 +2931,12 @@
           "LvLimited":"25",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,31",
-          "CommonDrop":"91001,91001,91001,91002,31",
+          "FirstDrop":"31",
+          "CommonDrop":"31",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"3500",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"3500"
         },
         "227":{
           "GateId":"b301",
@@ -2944,12 +2944,12 @@
           "LvLimited":"5",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,32",
-          "CommonDrop":"91001,91001,91001,91002,32",
+          "FirstDrop":"32",
+          "CommonDrop":"32",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"1000",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"1000"
         },
         "228":{
           "GateId":"b302",
@@ -2957,12 +2957,12 @@
           "LvLimited":"15",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,33",
-          "CommonDrop":"91001,91001,91001,91002,33",
+          "FirstDrop":"33",
+          "CommonDrop":"33",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"2000",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"2000"
         },
         "229":{
           "GateId":"b303",
@@ -2970,12 +2970,12 @@
           "LvLimited":"25",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,34",
-          "CommonDrop":"91001,91001,91001,91002,34",
+          "FirstDrop":"34",
+          "CommonDrop":"34",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"3500",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"3500"
         },
         "230":{
           "GateId":"b401",
@@ -2983,12 +2983,12 @@
           "LvLimited":"5",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,35",
-          "CommonDrop":"91001,91001,91001,91002,35",
+          "FirstDrop":"35",
+          "CommonDrop":"35",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"1000",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"1000"
         },
         "231":{
           "GateId":"b402",
@@ -2996,12 +2996,12 @@
           "LvLimited":"15",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,36",
-          "CommonDrop":"91001,91001,91001,91002,36",
+          "FirstDrop":"36",
+          "CommonDrop":"36",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"2000",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"2000"
         },
         "232":{
           "GateId":"b403",
@@ -3009,12 +3009,12 @@
           "LvLimited":"25",
           "DaySweepTimes":"",
           "MaxResetSweep":"0",
-          "FirstDrop":"91001,91001,91001,91002,37",
-          "CommonDrop":"91001,91001,91001,91002,37",
+          "FirstDrop":"37",
+          "CommonDrop":"37",
           "FirstExp":"100",
-          "FirstCoin":"500",
+          "FirstCoin":"3500",
           "CommonExp":"100",
-          "CommonCoin":"500"
+          "CommonCoin":"3500"
         },
         "233":{
           "GateId":"d01",
