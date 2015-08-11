@@ -177,6 +177,24 @@ DBProvider.prototype.getOne= function(collectionName, id, callback) {
     });
 };
 
+DBProvider.prototype.getCount= function(collectionName,condition, callback) {
+    this.getCollection(collectionName, function(error, collection) {
+        if( error ) {
+            callback(error);
+        }
+        else {
+            collection.count(condition, function(error, count) {
+                if( error ) {
+                    global.err(error);
+                }
+                else {
+                    callback(count);
+                }
+            });
+        }
+    });
+};
+
 DBProvider.prototype.save = function(collectionName, itemToSave,  callback) {
     this.getCollection(collectionName, function(error, collection) {
         if( error ) callback(error);
