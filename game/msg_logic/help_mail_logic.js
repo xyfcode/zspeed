@@ -354,7 +354,7 @@ var help_send_first_purchase_mail=function(recev_gid,recev_grid,account)
         {
             var recev_gid=recev_gid;
             var recev_grid=recev_grid;
-            var content="首冲礼包";
+            var content="首沖禮包";
 
             //邮件附件是道具
             var item=new Object();
@@ -383,7 +383,7 @@ var help_send_role_rank_mail=function(role_gid,role_grid,rank_reward)
         global.log("role_gid == undefined || role_grid == undefined || rank_reward == undefined");
         return;
     }
-    var content="排行榜奖励";
+    var content="排行榜獎勵";
     var item=common_func.cloneObject(rank_reward);
     help_create_mail_data(role_gid, role_grid,const_value.MAIL_TYPE_REWARD, content,item);
 };
@@ -402,7 +402,7 @@ var help_send_role_cd_reward_mail=function(gid,grid,num)
 
     var recev_gid=gid;
     var recev_grid=grid;
-    var content="每日月卡奖励";
+    var content="每日月卡獎勵";
 
     var item=new Object();
     item.type=const_value.REWARD_TYPE_RMB;
@@ -426,7 +426,7 @@ var help_send_old_town_mail=function(recev_gid,recev_grid,town_name,tid,user_nam
 
     var recev_gid=recev_gid;
     var recev_grid=recev_grid;
-    var content="你的城池 "+town_name+" 被 "+user_name+" 夺走，快去抢回来吧！";
+    var content="妳的城池 "+town_name+" 被 "+user_name+" 奪走，快去搶回來吧！";
     var attachment=tid;
     help_create_mail_data(recev_gid, recev_grid,const_value.MAIL_TYPE_READ_FAIL, content,attachment);
 
@@ -458,11 +458,11 @@ var help_send_new_town_mail=function(recev_gid,recev_grid,town_name,tid,user_nam
     var content="";
     if(is_first)
     {
-        content="你占领了城池"+town_name+",设置城守可以获得额外奖励哦！";
+        content="妳占領了城池"+town_name+",設置城守可以獲得額外獎勵哦！";
     }
     else
     {
-        content="你击败了"+user_name+",占领了"+town_name+",设置城守可获得额外奖励";
+        content="妳擊敗了"+user_name+",占領了"+town_name+",設置城守可獲得額外獎勵";
     }
 
     var attachment=tid;

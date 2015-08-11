@@ -269,15 +269,6 @@ function UserInfo()
 }
 exports.UserInfo = UserInfo;
 
-
-//随机名数据结构
-function RandName()
-{
-    this.name = "";
-    this.time = 0;
-}
-exports.RandName = RandName;
-
 //在线用户容器
 var user_list = {};  //key:gid，value :UserInfo
 exports.user_list = user_list;
@@ -335,6 +326,7 @@ function get_cur_role(user)
     }
     else
     {
+        //只创建user,未创建role时
         global.log("s_data == undefined");
     }
     return role;

@@ -1,6 +1,8 @@
 var json_config_file=require("./json_config_file");
 var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
+var common_func=require("./common_func");
+var key_words = require("./key_words_data");
 var make_db=require("./make_db");
 
 
@@ -17,8 +19,6 @@ exports.play_first_name=play_first_name;
 var play_last_name=[];
 exports.play_last_name=play_last_name;
 
-var play_name_data_list={};  //key:name value:PlayNameData
-exports.play_name_data_list=play_name_data_list;
 
 var play_name_arr=[]; //可用名字库数组，value：PlayNameData
 exports.play_name_arr=play_name_arr;
@@ -85,40 +85,114 @@ function load_play_last_name_data()
 function make_random_play_name()
 {
     global.log("make_random_play_name");
-    var ret=g_server.db.find("t_rand_name_list",{},{},function(arr){
-          if(arr.length==0){
-              global.log("make_random_play_name start");
-              for(var i in play_first_name)
-              {
-                  for(var j in play_last_name)
-                  {
-                      var insert_name=function(x,y)
-                      {
-                          var play_name=new PlayNameData();
-                          play_name.name=play_first_name[x]+play_last_name[y].last_name;
-                          play_name.used=0;
-                          play_name_data_list[play_name.name]=play_name;
-                          play_name_arr.push(play_name);
-                          make_db.insert_play_rand_name(play_name);
-                      };
-                      insert_name(i,j);
-                  }
-              }
-          }
+
+    g_server.db.getCount("t_rand_name_list",{},function(count){
+        global.log("rand name total count is :"+count);
+        if(count==0)
+        {
+            global.log("make_random_play_name start");
+            for(var i in play_first_name)
+            {
+                for(var j in play_last_name)
+                {
+                    var insert_name=function(x,y)
+                    {
+                        var play_name=new PlayNameData();
+                        play_name.name=play_first_name[x]+play_last_name[y].last_name;
+                        play_name.used=0;
+                        play_name_arr.push(play_name.name);
+                        make_db.insert_play_rand_name(play_name);
+                    };
+                    insert_name(i,j);
+                }
+            }
+        }
         else
-          {
-              for(var i=0;i<arr.length;i++)
-              {
-                  //只加载没使用的名字
-                  if(arr[i]&&arr[i].used==0)
-                  {
-                      play_name_data_list[arr[i].name]=arr[i];
-                      play_name_arr.push(arr[i]);
-                  }
-              }
-          }
+        {
+            g_server.db.find("t_rand_name_list",{"used":0},{},function(arr){
+                if(arr.length==0){
+                    global.log("used rand name is over!");
+                }
+                else
+                {
+
+                    if(arr.length>3000)
+                    {
+                        var nums=common_func.help_make_random(3000,0,arr.length);
+
+                        for(var i=0;i<nums.length;i++)
+                        {
+                            play_name_arr.push(arr[nums[i]].name);
+                        }
+                    }
+                    else
+                    {
+                        for(var i=0;i<arr.length;i++)
+                        {
+                            play_name_arr.push(arr[i].name);
+                        }
+                    }
+
+                }
+            });
+        }
+    });
+
+    g_server.db.getCount("t_rand_name_list",{"used":0},function(count){
+        global.log("unused rand name count is :"+count);
     });
 }
+
+
+function getUnUsedName()
+{
+    if(play_name_arr.length<100)
+    {
+        global.log("load unused random name!");
+        g_server.db.find("t_rand_name_list",{"used":0},{},function(arr){
+            if(arr.length==0){
+                global.log("used rand name is over!");
+            }
+            else
+            {
+                if(arr.length>3000)
+                {
+                    var nums=common_func.help_make_random(3000,0,arr.length-1);
+
+                    for(var i=0;i<nums.length;i++)
+                    {
+                        play_name_arr.push(arr[nums[i]].name);
+                    }
+                }
+                else
+                {
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        play_name_arr.push(arr[i].name);
+                    }
+                }
+
+            }
+        });
+    }
+
+    var rand_name;
+    while(play_name_arr.length)
+    {
+        var r=common_func.help_make_one_random(0,play_name_arr.length-1);
+        rand_name = play_name_arr[r];
+        play_name_arr.splice(r,1);
+        if(key_words.reg.test(rand_name))
+        {
+            global.log("error name:"+rand_name);
+            continue;
+        }
+        return rand_name;
+    }
+}
+exports.getUnUsedName=getUnUsedName;
+
+
 
 
 

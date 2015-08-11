@@ -91,9 +91,19 @@ function on_add_friend(data,send,s)
         {
             var msg = {
                 "op" : msg_id.NM_ADD_FRIEND,
+                "ret" : msg_code.SUCC
+            };
+            send(msg);
+
+            /*
+            var msg = {
+                "op" : msg_id.NM_ADD_FRIEND,
                 "ret" : msg_code.FRIEND_IS_EXIST
             };
             send(msg);
+
+            */
+
             return;
         }
     }

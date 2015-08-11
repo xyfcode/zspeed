@@ -1,13 +1,11 @@
 var make_db = require("./make_db");
 var ds = require("./data_struct");
 var play_name = require("./play_name");
-var key_words = require("./key_words_data");
 var define_code = require("./define_code");
 var billing_client = require("../billing_client");
 var server_config_data = require("./server_config_data");
 var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
-var gm_billing_logic=require("./help_gm_billing_logic");
 var common_func=require("./common_func");
 
 var role_data_logic = require("./help_role_data_logic");
@@ -182,36 +180,10 @@ function on_gs_user_login(data,send,s)
                }
                else
                {
-                   if(new_user.rand_name == null)
-                   {
-                       new_user.rand_name = new ds.RandName();
-                   }
-                   else
-                   {
-                       if(play_name.play_name_data_list[new_user.rand_name.name])
-                       {
-                           //该名字未使用，放回名字库
-                           play_name.play_name_arr.push(play_name.play_name_data_list[new_user.rand_name.name]);
-                       }
-                   }
-                   var _name;
-                   while(play_name.play_name_arr.length)
-                   {
-                       var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
-                       _name = play_name.play_name_arr[r].name;
-                       play_name.play_name_arr.splice(r,1);
-                       if(key_words.reg.test(_name))
-                       {
-                           global.log("error name:"+_name);
-                           continue;
-                       }
-                       break;
-                   }
-                   new_user.rand_name.name =_name;
-
+                   new_user.rand_name=play_name.getUnUsedName();
                    var msg = {
                        "op"     : msg_id.NM_LOGIN,
-                       "randName"   : _name, //客户端根据是否有姓名，判断是否走createrole流程
+                       "randName"   : new_user.rand_name, //客户端根据是否有姓名，判断是否走createrole流程
                        "guide_step" : 0,//新手引导编号
                        "ret"    : msg_code.SUCC
 
@@ -223,9 +195,6 @@ function on_gs_user_login(data,send,s)
                    var logData=log_data_logic.help_create_log_data(0,account,0,0,0,"on_gs_user_login",log_content,log_data.logType.LOG_LOGIN);
                    log_data_logic.log(logData);
                }
-
-               delete ds.temp_user_account_list[account];
-               temp_user = null;
            }
            else
            {
@@ -240,60 +209,26 @@ function on_gs_user_login(data,send,s)
                user.account_data.cur_rid = 1;
                help_reset_user_state(user,temp_user.socket,temp_user.send);
 
+               ds.user_account_list[account] = user;
+               ds.user_list[arr[0].gid] = user;
+
                var con = {"gid" : user.account_data.gid};
-               g_server.db.find(make_db.t_role,con,function(arr1){
-                   if(arr1.length !=0)
+               g_server.db.find(make_db.t_role,con,function(role_arr){
+                   if(role_arr.length >0)
                    {
-                       for(var i = 0;i<arr1.length;i++)
-                       {
-                           var grid = arr1[i].grid;
-                           user.role_data[grid] = arr1[i];
-                       }
-                   }
+                       global.log("old user login ok!");
 
-                   ds.user_account_list[account] = user;
-                   ds.user_list[arr[0].gid] = user;
+                       //只有一个角色
+                       var grid = role_arr[0].grid;
+                       user.role_data[grid] = role_arr[0];
 
-                   var role_data = ds.get_cur_role(user); //只有在走create_role该方法才能生效，
-                   if(role_data == undefined )
-                   {
-                       if(user.rand_name == null)
+                       var role_data = ds.get_cur_role(user); //只有在走create_role该方法才能生效
+                       if(role_data==undefined)
                        {
-                           user.rand_name = new ds.RandName();
+                           global.log("role_data==undefined");
+                           return;
                        }
-                       else
-                       {
-                           if(play_name.play_name_data_list[user.rand_name.name])
-                           {
-                               //该名字未使用，放回名字库
-                               play_name.play_name_arr.push(play_name.play_name_data_list[user.rand_name.name]);
-                           }
-                       }
-                       var _name;
-                       while(play_name.play_name_arr.length)
-                       {
-                           var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
-                           _name = play_name.play_name_arr[r].name;
-                           play_name.play_name_arr.splice(r,1);
-                           if(key_words.reg.test(_name))
-                           {
-                               global.log("error name:"+_name);
-                               continue;
-                           }
-                           break;
-                       }
-                       user.rand_name.name = _name;
 
-                       var msg = {
-                           "op"     : msg_id.NM_LOGIN,
-                           "randName"   : _name,
-                           "guide_step" : 0,//新手引导编号
-                           "ret"    : msg_code.SUCC
-                       };
-                       user.send(msg);
-                   }
-                   else
-                   {
                        g_server.db.update(make_db.t_role,{account:account},{"$set":{login_count:user.account_data.login_count}});
                        var msg = {
                            "op" : msg_id.NM_LOGIN,
@@ -301,15 +236,26 @@ function on_gs_user_login(data,send,s)
                            "ret" : msg_code.SUCC
                        };
                        user.send(msg);
-                       global.log("old user login ok!");
                    }
+                   else
+                   {
+                       global.log("role is not create!");
+                       user.rand_name = play_name.getUnUsedName();
 
+                       var msg = {
+                           "op"     : msg_id.NM_LOGIN,
+                           "randName"   : user.rand_name,
+                           "guide_step" : 0,//新手引导编号
+                           "ret"    : msg_code.SUCC
+                       };
+                       user.send(msg);
+                   }
                });
-
-               delete ds.temp_user_account_list[account];
-               temp_user = null;
-               global.log("clear temp user");
            }
+
+            delete ds.temp_user_account_list[account];
+            temp_user = null;
+            global.log("clear temp user data!");
         });
     }
     else
@@ -323,6 +269,7 @@ function on_gs_user_login(data,send,s)
 
         delete ds.temp_user_account_list[account];
         temp_user = null;
+        global.log("clear temp user data!");
     }
 }
 exports.on_gs_user_login = on_gs_user_login;

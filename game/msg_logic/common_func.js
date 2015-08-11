@@ -6,9 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 var crypto = require("crypto");
-var define_code = require("./define_code");
-
-var const_value=define_code.const_value;
 
 var isEmpty = function(str)
 {
@@ -272,36 +269,7 @@ function help_judge_yesterday(comp_date)
 }
 exports.help_judge_yesterday = help_judge_yesterday;
 
-//根据登录类型处理账号
-function get_account_by_type(account,type)
-{
-    if(account==undefined || type==undefined)
-    {
-        global.log("account==undefined || type==undefined");
-        return;
-    }
 
-    switch (type)
-    {
-        case define_code.loginType.LT_FAST:
-            break;
-        case define_code.loginType.LT_DEFAULT:
-            account+=define_code.accountTag.WY;
-            break;
-        case define_code.loginType.LT_PP:
-            account+=define_code.accountTag.PP;
-            break;
-        case define_code.loginType.LT_FACEBOOK:
-            account+=define_code.accountTag.FB;
-            break;
-        default :
-            global.log("type is error,type :"+type);
-            break;
-    }
-
-    return account;
-}
-exports.get_account_by_type = get_account_by_type;
 
 
 

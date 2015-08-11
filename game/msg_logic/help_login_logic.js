@@ -99,7 +99,6 @@ function help_close_user_socket(s)
     }
 }
 
-
 //玩家socket断开连接,用户下线
 function on_user_socket_close(s)
 {
@@ -134,17 +133,6 @@ function on_user_socket_close(s)
             //保存用户数据入库
             tick_logic.auto_save_data(user);
         }
-        if(user.rand_name != null)
-        {
-            //该用户没有创建角色，名字返还
-            if(!common_func.isEmpty(user.rand_name.name))
-            {
-                if(play_name.play_name_data_list[user.rand_name.name])
-                {
-                    play_name.play_name_arr.push(user.rand_name.name);
-                }
-            }
-        }
 
         //注意并没有从内存中删除用户数据
         user.nNeedSave = 0;
@@ -176,7 +164,7 @@ function on_user_login(data,send,s)
 {
     global.log("on_user_login");
 
-    var account =common_func.get_account_by_type(data.ac,data.type) ;
+    var account =get_account_by_type(data.ac,data.type) ;
     var pwd = data.pwd;
     var md5_str = data.token;
     var login_type = data.type;
@@ -297,9 +285,14 @@ function on_create_role(data,send,s)
             if(arr.length == 0)
             {
                 //如果是随机生成的名字，则更改名字库状态
-                if(play_name.play_name_data_list[role_name])
+                if(user.rand_name==role_name)
                 {
                     g_server.db.update(make_db.t_rand_name_list,{name:role_name},{"$set":{"used":1}});
+                }
+                else
+                {
+                    //未使用随机名，放回名字库
+                    play_name.play_name_arr.push(user.rand_name);
                 }
 
                 var role_data = new ds.RoleDataDB();
@@ -346,6 +339,7 @@ function on_create_role(data,send,s)
 
                 //更新USER数据
                 user.role_data[role.grid] = role_data;
+                //服务器列表
                 s_data.r_ls[role.rid] = role.grid;
                 user.account_data.cur_sid = sid;
                 user.account_data.cur_rid = rid;
@@ -470,31 +464,16 @@ function on_random_name(data,send,s)
             "ret" : msg_code.RAN_NAME_NOT_ENOUGH //没有可用随机名
         };
         send(msg);
+        return;
     }
 
-    if(user.rand_name == null)
-    {
-        user.rand_name = new ds.RandName();
-    }
-    else if(play_name.play_name_data_list[user.rand_name.name])
+    if(user.rand_name)
     {
         //该名字未使用，放回名字库
-        play_name.play_name_arr.push(play_name.play_name_data_list[user.rand_name.name]);
+        play_name.play_name_arr.push(user.rand_name);
     }
 
-    var _name;
-    while(play_name.play_name_arr.length)
-    {
-        var r=common_func.help_make_one_random(0,play_name.play_name_arr.length-1);
-        _name = play_name.play_name_arr[r].name;
-        play_name.play_name_arr.splice(r,1);
-        if(key_words.reg.test(_name))
-        {
-            global.log("error name:"+_name);
-            continue;
-        }
-        break;
-    }
+    var _name=play_name.getUnUsedName();
 
     var msg ={
         "op":msg_id.NM_RANDOM_NAME,
@@ -503,7 +482,7 @@ function on_random_name(data,send,s)
     };
     send(msg);
 
-    user.rand_name.name = _name;
+    user.rand_name = _name;
 }
 exports.on_random_name = on_random_name;
 
@@ -527,7 +506,7 @@ function on_user_reconnect(data,send,s)
         return;
     }
 
-    account =common_func.get_account_by_type(account,type) ;
+    account =get_account_by_type(account,type) ;
     if(account == undefined)
     {
         global.log("account == undefined");
@@ -602,7 +581,7 @@ function on_account_rebind(data,send,s)
         return;
     }
 
-    var new_ac=common_func.get_account_by_type(data.ac,define_code.loginType.LT_DEFAULT);
+    var new_ac=get_account_by_type(data.ac,define_code.loginType.LT_DEFAULT);
 
     var new_pwd=data.pwd;
     if(new_ac == undefined || new_pwd==undefined)
@@ -680,7 +659,6 @@ function on_account_rebind(data,send,s)
 }
 exports.on_account_rebind = on_account_rebind;
 
-
 //重设用户状态
 function help_reset_user_state(user,send,s)
 {
@@ -697,4 +675,35 @@ function help_reset_user_state(user,send,s)
 
     user.send = send;
     user.socket = s;
+}
+
+
+//根据登录类型处理账号
+function get_account_by_type(account,type)
+{
+    if(account==undefined || type==undefined)
+    {
+        global.log("account==undefined || type==undefined");
+        return;
+    }
+
+    switch (type)
+    {
+        case define_code.loginType.LT_FAST:
+            break;
+        case define_code.loginType.LT_DEFAULT:
+            account+=define_code.accountTag.WY;
+            break;
+        case define_code.loginType.LT_PP:
+            account+=define_code.accountTag.PP;
+            break;
+        case define_code.loginType.LT_FACEBOOK:
+            account+=define_code.accountTag.FB;
+            break;
+        default :
+            global.log("type is error,type :"+type);
+            break;
+    }
+
+    return account;
 }
