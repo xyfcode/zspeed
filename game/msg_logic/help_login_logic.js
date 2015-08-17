@@ -237,27 +237,34 @@ function on_create_role(data,send,s)
     }
 
     var role_name = data.name;
-    //名字不能为空
-    if(common_func.isEmpty(role_name))
+    if(role_name==undefined)
     {
         global.log("role_name == undefined");
-        var msg = {
-            "op" : msg_id.NM_CREATE_ROLE,
-            "ret" : msg_code.NAME_TOO_ERROR
-        };
-        send(msg);
         return;
     }
-    //名字不能长于12个字符
-    if(common_func.get_str_length(role_name)>12||common_func.get_str_length(role_name)<6)
+
+    //名字不能少于两个字符
+    if(role_name.length<2)
     {
         var msg = {
             "op" : msg_id.NM_CREATE_ROLE,
-            "ret" : msg_code.NAME_TOO_ERROR
+            "ret" : msg_code.NAME_TOO_SHORT
         };
         send(msg);
         return;
     }
+
+    //名字不能多于12个字符
+    if(common_func.get_str_length(role_name)>12)
+    {
+        var msg = {
+            "op" : msg_id.NM_CREATE_ROLE,
+            "ret" : msg_code.NAME_TOO_LONG
+        };
+        send(msg);
+        return;
+    }
+
     //不能包含非法字符，不能包含任何空白字符，包括空格、制表符、换页符等
     var reg=/\s/;
     if(key_words.reg.test(role_name) || reg.test(role_name))

@@ -14,7 +14,6 @@ var handler = {
     "31" : new on_billing_reconnect_result(), //billing 返回用户断线重连结果
     "purchase_verify" : new on_billing_purchase_verify_result(),//用户支付(billing返回的验证结果)
     "100" : new on_user_notice(), //用户公告 (GM)
-    "102" : new on_gm_role_data(), //获取用户数据 (GM)
     "103" : new on_gm_edit_role_data(), //编辑用户数据 (GM)
     "104" : new on_gm_send_role_mail() //发送用户邮件 (GM)
 };
@@ -114,14 +113,6 @@ function on_user_notice()
     this.handle = function(data,send,s)
     {
         gm_billing_logic.on_user_notice(data,send,s);
-    }
-}
-
-function on_gm_role_data()
-{
-    this.handle = function(data,send,s)
-    {
-        gm_billing_logic.on_gm_role_data(data,send,s);
     }
 }
 

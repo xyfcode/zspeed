@@ -46,7 +46,8 @@ function MsgCode()
     this.RMB_NOT_ENOUGH = 2;  //人民币不足
     this.POINT_NOT_ENOUGH=3;//体力不足,请购买体力
     this.RAN_NAME_NOT_ENOUGH=4;//没有可用的随机名
-    this.NAME_TOO_ERROR=5;//名字长度需在4到10个字符之间
+    this.NAME_TOO_SHORT=5;//名字长度不能少于2个字符
+    this.NAME_TOO_LONG=6;//名字长度不能多于12个字符
     this.INVALID_CODE_EXIST=7;//非法字符存在
     this.NAME_IS_EXIST=8;//角色名已经存在
     this.SECOND_LOGIN_ERROR=9;//二次登录错误

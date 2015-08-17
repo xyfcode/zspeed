@@ -20,65 +20,6 @@ function init(s)
 }
 exports.init=init;
 
-//更改活动
-function on_change_activity(data,send,s)
-{
-    global.log("on_change_activity");
-
-    var actid=data.actid;
-    var beginTime=data.beginTime;
-    var endTime=data.endTime;
-    var type=data.type;
-
-    var path="./dynamic.ini";
-    var str=fs.readFileSync(path,'utf8');
-    var dynamic_txt;
-    if(str)
-    {
-        var sub_data=str.toString();
-        dynamic_txt=JSON.parse(sub_data);
-        global.log("dynamic_txt:"+JSON.stringify(dynamic_txt));
-    }
-
-    switch(Number(type))
-    {
-        case 1:
-            //添加
-            global.log("添加");
-            if(actid&& beginTime&& endTime)
-            {
-                var _activity={};
-                _activity.begin_time=beginTime;
-                _activity.end_time=endTime;
-                _activity.is_public=1;
-                dynamic_txt.activity[actid]=_activity;
-            }
-            break;
-        case 2:
-            //编辑
-            global.log("编辑");
-            if(actid&& beginTime&& endTime &&dynamic_txt.activity[actid])
-            {
-                dynamic_txt.activity[actid].begin_time=beginTime;
-                dynamic_txt.activity[actid].end_time=endTime;
-            }
-            break;
-        case 3:
-            //删除
-            global.log("删除");
-            if(actid &&dynamic_txt.activity[actid])
-            {
-                delete  dynamic_txt.activity[actid];
-            }
-            break;
-    }
-    fs.writeFile(path,JSON.stringify(dynamic_txt) , function (err) {
-        if (err) throw err;
-    });
-}
-exports.on_change_activity =on_change_activity;
-
-
 //发送用户公告
 function on_user_notice(data,send,s)
 {
@@ -125,46 +66,6 @@ function help_send_user_notice()
     }
 }
 exports.help_send_user_notice =help_send_user_notice;
-
-//获取用户数据on_gm_role_data
-function on_gm_role_data(data,send,s)
-{
-    global.log("on_gm_role_data");
-    var gm_data={};
-    gm_data.name=data.name;
-    if(gm_data.name==undefined)
-    {
-        global.log("gm_data.name==undefined");
-        return;
-    }
-
-    var gs = server_list[0];
-    if(gs != undefined)
-    {
-        gm_data.server_id=gs.server_id;
-    }
-    g_server.db.find(make_db.t_role,{"data.name" : gm_data.name},function(arr){
-        if(arr.length == 0)
-        {
-            gm_data.data=[];
-            var msg = {
-                "op" : 102,
-                "gm_data":gm_data
-            };
-            send(msg);
-        }
-        else
-        {
-            gm_data.data=arr;
-            var msg = {
-                "op" : 102,
-                "gm_data":gm_data
-            };
-            send(msg);
-        }
-    });
-}
-exports.on_gm_role_data =on_gm_role_data;
 
 
 //编辑用户数据on_gm_edit_role_data

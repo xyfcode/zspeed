@@ -57,7 +57,6 @@ function load_item_data()
         if(data["ITEM"][i].Unit)
         {
             item_data.unit=(data["ITEM"][i].Unit).split(',');
-            console.log(item_data.item_id);
             (data["ITEM"][i].UnitNum).split(',').forEach(function(e){
                 item_data.unit_num.push(Number(e));
             });

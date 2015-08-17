@@ -154,7 +154,7 @@ function heart_beat_timer()
         global.log('This process is pid ' + process.pid);
         global.log(require('util').inspect(process.memoryUsage()));
         global.log(process.memoryUsage().rss/require('os').totalmem());
-    },60*1000);
+    },10*60*1000);
 
 
 

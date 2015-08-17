@@ -82,6 +82,7 @@ function load_play_last_name_data()
 
 }
 
+
 function make_random_play_name()
 {
     global.log("make_random_play_name");
@@ -91,17 +92,39 @@ function make_random_play_name()
         if(count==0)
         {
             global.log("make_random_play_name start");
-            for(var i in play_first_name)
+
+            var f_len=play_first_name.length;
+            var l_len=play_last_name.length;
+
+            var n=Math.floor(f_len*l_len/3000);
+
+            for(var i=0;i<play_first_name.length;i++)
             {
-                for(var j in play_last_name)
+                for(var j=0;j<play_last_name.length;j++)
                 {
                     var insert_name=function(x,y)
                     {
-                        var play_name=new PlayNameData();
-                        play_name.name=play_first_name[x]+play_last_name[y].last_name;
-                        play_name.used=0;
-                        play_name_arr.push(play_name.name);
-                        make_db.insert_play_rand_name(play_name);
+                        var name=play_first_name[x]+play_last_name[y].last_name;
+                        if(key_words.reg.test(name))
+                        {
+                            global.log("error name:"+name);
+                        }
+                        else
+                        {
+                            var play_name=new PlayNameData();
+                            play_name.name=name;
+                            play_name.used=0;
+                            make_db.insert_play_rand_name(play_name);
+                            if((x*l_len+y)%n==0)
+                            {
+                                play_name_arr.push(play_name.name);
+                            }
+                        }
+                        if(x==f_len-1&&y==l_len-1)
+                        {
+                            global.log("play_name_arr count is :"+play_name_arr.length);
+                        }
+
                     };
                     insert_name(i,j);
                 }
@@ -115,10 +138,11 @@ function make_random_play_name()
                 }
                 else
                 {
+                    global.log("unused rand name count is :"+arr.length);
 
                     if(arr.length>3000)
                     {
-                        var nums=common_func.help_make_random(3000,0,arr.length);
+                        var nums=common_func.help_make_random(3000,0,arr.length-1);
 
                         for(var i=0;i<nums.length;i++)
                         {
@@ -132,14 +156,12 @@ function make_random_play_name()
                             play_name_arr.push(arr[i].name);
                         }
                     }
+                    arr=null;
 
+                    global.log("play_name_arr count is :"+play_name_arr.length);
                 }
             });
         }
-    });
-
-    g_server.db.getCount("t_rand_name_list",{"used":0},function(count){
-        global.log("unused rand name count is :"+count);
     });
 }
 
@@ -155,6 +177,7 @@ function getUnUsedName()
             }
             else
             {
+                global.log("unused rand name count is :"+arr.length);
                 if(arr.length>3000)
                 {
                     var nums=common_func.help_make_random(3000,0,arr.length-1);
@@ -171,24 +194,17 @@ function getUnUsedName()
                         play_name_arr.push(arr[i].name);
                     }
                 }
+                arr=null;
 
+                global.log("play_name_arr count is :"+play_name_arr.length);
             }
         });
     }
 
-    var rand_name;
-    while(play_name_arr.length)
-    {
-        var r=common_func.help_make_one_random(0,play_name_arr.length-1);
-        rand_name = play_name_arr[r];
-        play_name_arr.splice(r,1);
-        if(key_words.reg.test(rand_name))
-        {
-            global.log("error name:"+rand_name);
-            continue;
-        }
-        return rand_name;
-    }
+    var r=common_func.help_make_one_random(0,play_name_arr.length-1);
+    var rand_name = play_name_arr[r];
+    play_name_arr.splice(r,1);
+    return rand_name;
 }
 exports.getUnUsedName=getUnUsedName;
 
