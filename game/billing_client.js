@@ -44,7 +44,7 @@ function on_socket_connect()
 
 		s.setTimeout( 65 * 1000);
 		s.addListener('timeout',function(){
-			var msg = {op:"heartbeat",alived:1};
+			var msg = {op:"heartbeat","server":101001};
 			s.send(msg);
 		});
 
@@ -52,7 +52,7 @@ function on_socket_connect()
 		{
 			g_billing_timer = setInterval(function(){
                 billing_logic.on_tick_server_status(s.send);
-			},60*1000);
+			},8*60*1000);
 		}
 		billing_logic.on_update_server_status(s.send);
 	}

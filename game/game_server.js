@@ -11,6 +11,7 @@ var play_name=require("./msg_logic/play_name");
 var formation_data=require("./msg_logic/formation_data");
 var gate_data=require("./msg_logic/gate_data");
 var town_data=require("./msg_logic/town_data");
+var town_title_data=require("./msg_logic/town_title_data");
 var item_data=require("./msg_logic/item_data");
 var friend_data=require("./msg_logic/friend_data");
 var drop_data=require("./msg_logic/drop_data");
@@ -175,6 +176,7 @@ exports.server = function(server)
     friend_data.init(server);
     formation_data.init(server);
     town_data.init(server);
+    town_title_data.init(server);
     //数据
     arena_data.init();
     initialization_data.init();
