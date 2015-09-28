@@ -46,7 +46,33 @@ server.prototype.start_server = function(obj,cb)
     var self = this;
     var conf = config.conf;
 
-    if(conf.test == 1)
+    if(cluster.isMaster)
+    {
+        if(require("tty").isatty(1))
+        {
+            if(!conf.test)
+            {
+                console.log("must start server use this command : \n");
+                process.exit(1);
+            }
+        }
+
+        var worker=cluster.fork();
+        require("./master").init(worker);
+
+        cluster.on('disconnect',function(worker)
+        {
+            global.log("worker " + worker.process.pid  + " died, restart...");
+            global.log("totalmem:"+require('os').totalmem());
+            global.log("freemem:"+require('os').freemem());
+            global.log('This process is pid ' + process.pid);
+            global.log(require('util').inspect(process.memoryUsage()));
+            global.log(process.memoryUsage().rss/require('os').totalmem());
+            worker=cluster.fork();
+            require("./master").init();
+        });
+    }
+    else
     {
         log.init(conf.test);
         if(conf.dbip)
@@ -60,45 +86,6 @@ server.prototype.start_server = function(obj,cb)
             start(self);
         }
     }
-    else
-    {
-        if(cluster.isMaster)
-        {
-            if(require("tty").isatty(1))
-            {
-                console.log("must start server use this command : \n");
-                process.exit(1);
-            }
-
-            cluster.fork();
-
-            cluster.on('disconnect',function(worker)
-            {
-                global.log("worker " + worker.process.pid  + " died, restart...");
-                global.log("totalmem:"+require('os').totalmem());
-                global.log("freemem:"+require('os').freemem());
-                global.log('This process is pid ' + process.pid);
-                global.log(require('util').inspect(process.memoryUsage()));
-                global.log(process.memoryUsage().rss/require('os').totalmem());
-                cluster.fork();
-            });
-        }
-        else
-        {
-            log.init(conf.test);
-            if(conf.dbip)
-            {
-                new db(conf,self,function(s){
-                    start(s);
-                });
-            }
-            else
-            {
-                start(self);
-            }
-        }
-    }
-
 
     function start(s)
     {
@@ -151,7 +138,7 @@ server.prototype.start_server = function(obj,cb)
                     {
                         check_dynamic();
                     }
-                })
+                });
             }
             set_watch();
         }
@@ -384,7 +371,7 @@ server.prototype.start_server = function(obj,cb)
 
                             setInterval(function(){socket_server.getConnections(function(err,count){
                                 if(!err){global.log("server_count:"+count );}
-                            })},10*60*1000);
+                            })},21*60*1000);
 
                             socket_server.listen(serverinfo.serverport,function(){
                                 global.log("listen on port: " + serverinfo.serverport + " ok!");

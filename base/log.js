@@ -259,6 +259,7 @@ function check_log2(t_log)
     }
 }
 
+var wlog_buff={};
 function write_log(type,logData)
 {
     var now=new Date();
@@ -278,14 +279,20 @@ function write_log(type,logData)
     {
         if(log2_file[type]==undefined)
         {
+            wlog_buff[type]="";
             log2_file[type] = new log2_struct();
             log2_file[type].type=type;
             log2_file[type].path=util.format("/%s%d-%d:%d",type,now.getDate(),now.getHours(),now.getMinutes());
             create_stream(log_path+log2_file[type].path);
         }
-        log_stream[log_path+log2_file[type].path].write(str);
-        log2_file[type].len+=str.length;
-        check_log2(log2_file[type]);
+        wlog_buff[type]+=str;
+        if(wlog_buff[type].length>5000)
+        {
+            log_stream[log_path+log2_file[type].path].write(wlog_buff[type]);
+            log2_file[type].len+=wlog_buff[type].length;
+            wlog_buff[type]="";
+            check_log2(log2_file[type]);
+        }
     }
     else
     {
@@ -294,7 +301,7 @@ function write_log(type,logData)
 }
 global.log2=write_log;
 
-var log_ok=true;
+
 var log_buffer="";
 function console_log(txt)
 {
