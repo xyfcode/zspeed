@@ -63,7 +63,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"2500",
           "RewardType2":"1",
           "RewardId2":"2",
           "RewardNum2":"2"
@@ -80,7 +80,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"2500",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -97,7 +97,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"2500",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -114,7 +114,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"5000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -131,7 +131,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"5000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -148,7 +148,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"5000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -165,7 +165,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"10000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -182,7 +182,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"10000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -199,7 +199,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"10000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -216,7 +216,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"10000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -233,7 +233,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"10000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -250,7 +250,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"15000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -267,7 +267,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"15000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -284,7 +284,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"15000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -301,7 +301,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"15000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -318,7 +318,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"15000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -335,7 +335,7 @@
           "SParam2":"",
           "RewardType1":"5",
           "RewardId1":"",
-          "RewardNum1":"1000",
+          "RewardNum1":"20000",
           "RewardType2":"",
           "RewardId2":"",
           "RewardNum2":""
@@ -431,7 +431,7 @@
           "IsShow":"0",
           "PreAchievement":"25",
           "NextAchievement":"27",
-          "Times":"15",
+          "Times":"20",
           "IntParam":"",
           "SParam1":"",
           "SParam2":"",
@@ -448,7 +448,7 @@
           "IsShow":"0",
           "PreAchievement":"26",
           "NextAchievement":"28",
-          "Times":"20",
+          "Times":"30",
           "IntParam":"",
           "SParam1":"",
           "SParam2":"",
@@ -465,7 +465,7 @@
           "IsShow":"0",
           "PreAchievement":"27",
           "NextAchievement":"29",
-          "Times":"25",
+          "Times":"50",
           "IntParam":"",
           "SParam1":"",
           "SParam2":"",
@@ -482,7 +482,7 @@
           "IsShow":"0",
           "PreAchievement":"28",
           "NextAchievement":"30",
-          "Times":"30",
+          "Times":"70",
           "IntParam":"",
           "SParam1":"",
           "SParam2":"",
@@ -499,7 +499,7 @@
           "IsShow":"0",
           "PreAchievement":"29",
           "NextAchievement":"",
-          "Times":"40",
+          "Times":"100",
           "IntParam":"",
           "SParam1":"",
           "SParam2":"",
