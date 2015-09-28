@@ -41,7 +41,7 @@ function init(s)
 {
     g_server=s;
     load_town_data();
-    load_town_data_list();
+    load_town_db_data();
 }
 exports.init=init;
 
@@ -121,19 +121,18 @@ function GuardEquipData()
 }
 exports.GuardEquipData=GuardEquipData;
 
+function TownFightData()
+{
+    this.grid=0; //玩家grid
+    this.hurt=0; //伤害值
+}
+exports.TownFightData=TownFightData;
+
 var TownDbData=function()
 {
     this.tid=0; //城池ID
-    this.owner_gid=0;//城主gid
-    this.owner_grid=0; //城主grid
-    this.owner_hurt=0;//城主总伤害
-    this.guard_data=new Guard_Data();//守城武将数据
-    this.second_grid=0;//第二名grid
-    this.second_hurt=0;//第二名总伤害
-    this.third_grid=0;//第三名grid
-    this.third_hurt=0;//第三名总伤害
-    this.guard_time=0;//设置城守的时间
-    this.guard_t_time=0;//旧城守累计时间（更换城守时记录）
+    this.last_arr=[]; //上期城池排名 value:[TownFightData]
+    this.new_arr=[];//新的城池攻打数据 value:[TownFightData]
     this.pick_time=0;//领取奖励时间（初始化为0，表示可以领取最多24的城池单独收益）
 };
 exports.TownDbData=TownDbData;
@@ -141,13 +140,14 @@ exports.TownDbData=TownDbData;
 var town_db_data_list={};  //key tid value: TownDbData
 exports.town_db_data_list=town_db_data_list;
 
-//全局变量存放城池需要更新入库的邮件的用户tid
-var town_update_db_list=[]; //tid
-exports.town_update_db_list=town_update_db_list;
 
-var load_town_data_list=function()
+//全局变量存放城池需要更新入库的用户tid
+var town_update_db_arr=[]; //tid
+exports.town_update_db_arr=town_update_db_arr;
+
+var load_town_db_data=function()
 {
-    global.log("load_town_data_list");
+    global.log("load_town_db_data");
     g_server.db.find("t_town_list",{},function(arr){
         if(arr.length>0)
         {

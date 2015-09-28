@@ -1,12 +1,13 @@
 var wy_db=null;
 var t_user="t_user";
 var t_role = "t_role";
-var t_global_id="t_global_id";
+var t_global_var="t_global_var";
 var t_rand_name_list="t_rand_name_list";//只保存随机名
 var t_mail_list="t_mail_list";
 var t_formation_list="t_formation_list";
 var t_friend_list="t_friend_list";
 var t_town_list="t_town_list";
+var t_town_title_list="t_town_title_list";
 var t_code_list="t_code_list";
 var t_arena_list="t_arena_list";
 
@@ -44,11 +45,12 @@ function find_fid()
 
     var strCon={country_id:data_gid.country_id ,district_id:data_gid.district_id , server_id:data_gid.server_id };
 
-    var ret=wy_db.find(t_global_id,strCon,function(arr){
+    var ret=wy_db.find(t_global_var,strCon,function(arr){
         if(arr.length==0)
         {
             data_gid.global_id=100000000;
-            wy_db.insert(t_global_id,data_gid);
+            data_gid.town_period=0;
+            wy_db.insert(t_global_var,data_gid);
         }
         else
         {
@@ -60,7 +62,6 @@ function find_fid()
 
     });
 }
-exports.find_fid=find_fid;
 
 
 function get_global_unique_id()
@@ -69,12 +70,28 @@ function get_global_unique_id()
     data_gid.global_id++;
     var strCon={country_id:data_gid.country_id ,district_id:data_gid.district_id , server_id:data_gid.server_id };
 
-    wy_db.update(t_global_id,strCon,{$set:{global_id:data_gid.global_id}});
+    wy_db.update(t_global_var,strCon,{$set:{global_id:data_gid.global_id}});
 
     return  data_gid.global_id;
 
 }
 exports.get_global_unique_id=get_global_unique_id;
+
+//获取城池霸业周期数
+function get_global_town_period()
+{
+    global.log("get_global_town_period");
+
+    data_gid.town_period++;
+    var strCon={country_id:data_gid.country_id ,district_id:data_gid.district_id , server_id:data_gid.server_id };
+
+    wy_db.update(t_global_var,strCon,{$set:{town_period:data_gid.town_period}});
+
+    global.log(data_gid.town_period);
+    return  data_gid.town_period;
+
+}
+exports.get_global_town_period=get_global_town_period;
 
 
 exports.insert_mail_data=function(doc){
@@ -243,6 +260,29 @@ exports.update_town_data=function(town_data){
     var options={"tid":town_data.tid};
     var obj_new=town_data;
     wy_db.update(t_town_list,options,obj_new);
+};
+
+exports.insert_town_title_data=function(town_title_data){
+    global.log("insert_town_title_data");
+    if(town_title_data==undefined)
+    {
+        global.log("town_title_data==undefined");
+        return;
+    }
+    wy_db.insert(t_town_title_list,town_title_data);
+};
+
+exports.update_town_title_data=function(town_title_data){
+    global.log("update_town_title_data");
+
+    if(town_title_data==undefined)
+    {
+        global.log("town_title_data==undefined");
+        return;
+    }
+    var options={"tid":town_title_data.tid};
+    var obj_new=town_title_data;
+    wy_db.update(t_town_title_list,options,obj_new);
 };
 
 exports.insert_arena_data=function(arena_data){

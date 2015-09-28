@@ -1,8 +1,4 @@
-var num=10;
-var num2=15;
+var common_fun = require("./common_func");
 
-if(num-num2>-50)
-{
-    console.log(1);
-
-}
+var pwd=common_fun.get_md5_str("111111");
+console.log(pwd)

@@ -70,7 +70,7 @@ function on_arena_data(data,send,s)
             if(front_rank<=10)
             {
                 //如果是前十位，则不用添加了
-                break;
+                continue;
             }
             var obj=help_gain_client_data_by_rank(front_rank);
             if(obj)
@@ -94,7 +94,7 @@ function on_arena_data(data,send,s)
             if(after_rank<=10)
             {
                 //如果是前十位，则不用添加了
-                break;
+                continue;
             }
             var obj=help_gain_client_data_by_rank(after_rank);
             if(obj)
@@ -112,7 +112,7 @@ function on_arena_data(data,send,s)
             if(front_rank<=10)
             {
                 //如果是前十位，则不用添加了
-                break;
+                continue;
             }
             var obj=help_gain_client_data_by_rank(front_rank);
             if(obj)
@@ -136,7 +136,7 @@ function on_arena_data(data,send,s)
             if(after_rank<=10)
             {
                 //如果是前十位，则不用添加了
-                break;
+                continue;
             }
             var obj=help_gain_client_data_by_rank(after_rank);
             if(obj)
@@ -445,10 +445,11 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
     ret.exceed=0;//超越百分比
 
     var rank_arr=formation.top_hurt_rank;
+    global.log("rank_arr.length:"+rank_arr.length);
     if(old_hurt>=new_hurt)
     {
         //计算超越玩家百分比
-        ret.exceed=Math.ceil((rank_arr.length-help_get_new_hurt_rank(new_hurt)+1)/rank_arr.length*100);
+        ret.exceed=Math.floor((rank_arr.length-help_get_new_hurt_rank(new_hurt)+1)/rank_arr.length*100);
         return ret;
     }
     else
@@ -463,9 +464,30 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
         ret.old_rank=help_get_hurt_rank(role_grid,old_hurt);
         rank_arr.splice(ret.old_rank-1,1);
 
-        //二分查找 插入用户新伤害排行
-        if(rank_arr.length>0)
+        if(rank_arr.length<500)
         {
+            //普通查找 插入用户新伤害排行
+            var is_ok=0;
+            for(var i=0;i<rank_arr.length;i++)
+            {
+                if(new_hurt>rank_arr[i].hurt)
+                {
+                    rank_arr.splice(i,0,new_rank_data);
+                    ret.new_rank=i+1;
+                    is_ok=1;
+                    break;
+                }
+            }
+            //最后一名
+            if(!is_ok)
+            {
+                rank_arr.push(new_rank_data);
+                ret.new_rank=rank_arr.length;
+            }
+        }
+        else
+        {
+            //二分查找 插入用户新伤害排行
             var low=0,high=rank_arr.length-1;
             var mid=0;
             while(low<=high)
@@ -505,6 +527,7 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
                     //最后一名
                     if(mid==rank_arr.length-1)
                     {
+                        rank_arr.push(new_rank_data);
                         ret.new_rank=rank_arr.length;
                         break;
                     }
@@ -519,15 +542,9 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
                 }
             }
         }
-        else
-        {
-            //只有一个玩家
-            rank_arr.push(new_rank_data);
-            ret.new_rank=1;
-        }
 
         //计算超越玩家百分比
-        ret.exceed=Math.ceil((rank_arr.length-ret.new_rank+1)/rank_arr.length*100);
+        ret.exceed=Math.floor((rank_arr.length-ret.new_rank+1)/rank_arr.length*100);
         if(ret.exceed>100)
         {
             global.log("ret.exceed:"+ret.exceed);
@@ -538,11 +555,14 @@ var help_count_hurt_rank=function(role_gid,role_grid,old_hurt,new_hurt)
             ret.exceed=100;
         }
     }
+
+    global.log("rank_arr.length:"+rank_arr.length);
+
     return ret;
 };
 exports.help_count_hurt_rank=help_count_hurt_rank;
 
-//获取用户最高伤害排名 二分查找
+//获取用户旧最高伤害排名 二分查找
 var help_get_hurt_rank=function(role_grid,hurt)
 {
     global.log("help_get_hurt_rank");
@@ -556,10 +576,18 @@ var help_get_hurt_rank=function(role_grid,hurt)
     var rank_arr=formation.top_hurt_rank;
 
     //用户排名
-    var rank;
-    if(rank_arr.length<=0)
+    var rank=rank_arr.length+1;//默认最后一名;
+
+    if(rank_arr.length<=500)
     {
-        return rank=1;
+        for(var i=0;i<rank_arr.length;i++)
+        {
+            if(role_grid==rank_arr[i].grid)
+            {
+                return rank=i+1;
+            }
+        }
+        return rank;
     }
     else
     {
@@ -609,7 +637,6 @@ var help_get_hurt_rank=function(role_grid,hurt)
             }
         }
     }
-
 };
 exports.help_get_hurt_rank=help_get_hurt_rank;
 
@@ -626,14 +653,13 @@ var help_get_new_hurt_rank=function(new_hurt)
     var arr=formation.top_hurt_rank;
     var rank=arr.length+1;//默认最后一名
 
-    if(arr.length<=100)
+    if(arr.length<=500)
     {
         for(var i=0;i<arr.length;i++)
         {
             if(new_hurt>arr[i].hurt)
             {
                 return rank=i+1;
-                break;
             }
         }
         return rank;

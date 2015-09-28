@@ -8,6 +8,7 @@ var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
 var make_db = require("./make_db");
 var town_data=require("./town_data");
+var town_title_data=require("./town_title_data");
 var formation=require("./formation_data");
 var ds = require("./data_struct");
 var define_code=require("./define_code");
@@ -376,7 +377,7 @@ function on_gain_guard_town_reward(data,send,s)
         _town_db_data.pick_time=now;//领取奖励时间
         _town_db_data.guard_time=now;//设置城守的时间(领取完奖励相当于重新产生城守奖励)
         //放入更新列表中，定时入库
-        town_data.town_update_db_list.push(_town_db_data.tid);
+        town_data.town_update_db_arr.push(_town_db_data.tid);
 
 
         var total_gain_money=extra_money+base_money;
@@ -516,7 +517,7 @@ function on_set_town_guard(data,send,s)
         }
 
         //放入更新列表中，定时入库
-        town_data.town_update_db_list.push(_town_db_data.tid);
+        town_data.town_update_db_arr.push(_town_db_data.tid);
 
         var msg=
         {
@@ -587,6 +588,22 @@ function help_town_reward_data(data,send,s)
         send(msg);
         return;
     }
+
+    //是否是挑战时间
+    var now=new Date();
+    var hour=now.getHours();
+    var minute=now.getMinutes();
+    if((hour==5||hour==11||hour==17||hour==23)&&minute>=30)
+    {
+        var msg = {
+            "op" :msg_id.NM_WAR_REWARD_DATA,
+            "ret" : msg_code.TOWN_NOT_FIGHT
+        };
+        send(msg);
+        return;
+    }
+
+
 
     //挑战模式无掉落奖励(缓存数据)
     var fight_user_data=formation.fight_user_data_list[role.grid];
@@ -703,124 +720,58 @@ function help_town_fight_result(data,send,s)
     //战斗胜利
     if(win)
     {
+
         var old_hurt=fight_user_formation_data.top_hurt;
         fight_user_formation_data.top_hurt=old_hurt>single_hurt?old_hurt:single_hurt;
-        //计算排行榜
+        //计算单次伤害排行榜
         var ret_rank=arena_logic.help_count_hurt_rank(role.gid,role.grid,old_hurt,single_hurt);
-
-        var _town_data=role.town_bag[tid];
-        var _town_json_data=town_data.town_data_list[tid];
-        if(_town_data==undefined || _town_json_data==undefined)
-        {
-            global.log("_town_data==undefined || _town_json_data==undefined");
-            return;
-        }
-        _town_data.hurt=total_hurt;
 
         var _town_db_data=town_data.town_db_data_list[tid];
         if(_town_db_data==undefined)
         {
-            //第一个挑战成功的玩家
             _town_db_data=new town_data.TownDbData();
             _town_db_data.tid=tid;
-            _town_db_data.owner_gid=role.gid;
-            _town_db_data.owner_grid=role.grid;
-            _town_db_data.owner_hurt=total_hurt;
-            fight_user_formation_data.town_num++;
-            make_db.insert_town_data(_town_db_data);
             town_data.town_db_data_list[tid]=_town_db_data;
-            //第一名
-            total_lb=1;
 
-            //成就 占城数量
-            /*if(fight_user_formation_data.town_num>role.achievement[const_value.ACHI_TYPE_TOWNS].times)
-            {
-                //role.achievement[const_value.ACHI_TYPE_TOWNS].times=fight_user_formation_data.town_num;
-            }*/
+            var town_fight_data=new town_data.TownFightData();
+            town_fight_data.grid=role.grid;
+            town_fight_data.hurt=total_hurt;
+            _town_db_data.new_arr.push(town_fight_data);
 
-            //给新城主发送邮件
-            mail_logic.help_send_new_town_mail(_town_db_data.owner_gid,_town_db_data.owner_grid,_town_json_data.town_name,_town_db_data.tid,"",1);
-
+            make_db.insert_town_data(_town_db_data);
         }
         else
         {
-            //城主存在
-            if(total_hurt>_town_db_data.owner_hurt)
+            var is_exist=0;
+            for(var i=0;i<_town_db_data.new_arr.length;i++)
             {
-                //处理奖励，如果旧城主守城武将存在
-                if(_town_db_data.guard_data.unique_id)
+                if(_town_db_data.new_arr[i].grid==role.grid)
                 {
-                    var now=(new Date()).getTime();
-                    _town_db_data.guard_t_time=now-_town_db_data.guard_time;//旧城守累计时间
+                    is_exist=1;
+                    if(_town_db_data.new_arr[i].hurt>total_hurt)
+                    {
+                        _town_db_data.new_arr[i].hurt=total_hurt;
+                    }
                 }
-
-                //第一名
-                total_lb=1;
-                fight_user_formation_data.town_num++;
-
-                //成就 占城数量
-                /*if(fight_user_formation_data.town_num>role.achievement[const_value.ACHI_TYPE_TOWNS].times)
-                {
-                    //role.achievement[const_value.ACHI_TYPE_TOWNS].times=fight_user_formation_data.town_num;
-                }*/
-
-                //旧第二名排到第三名
-                _town_db_data.third_grid=_town_db_data.second_grid;
-                _town_db_data.third_hurt=_town_db_data.second_hurt;
-
-                //除去旧城守武将城守状态
-                 if(_town_db_data.guard_data.unique_id)
-                 {
-                     help_update_old_guard(_town_db_data.owner_gid,_town_db_data.owner_grid,_town_db_data.guard_data.unique_id);
-                 }
-                 //给旧城主发送邮件
-                mail_logic.help_send_old_town_mail(_town_db_data.owner_gid,_town_db_data.owner_grid,_town_json_data.town_name,tid,role.name);
-                //给新城主发送邮件
-                mail_logic.help_send_new_town_mail(role.gid,role.grid,_town_json_data.town_name,
-                    tid,formation.formation_list[_town_db_data.owner_grid].name);
-
-                //旧城主排到第二名
-                _town_db_data.second_grid=_town_db_data.owner_grid;
-                _town_db_data.second_hurt=_town_db_data.owner_hurt;
-                formation.formation_list[_town_db_data.owner_grid].town_num--;
-
-                //设置新城主
-                _town_db_data.tid=tid;
-                _town_db_data.owner_gid=role.gid;
-                _town_db_data.owner_grid=role.grid;
-                _town_db_data.owner_hurt=total_hurt;
-                _town_db_data.guard_data=new town_data.Guard_Data();
             }
-            else if(total_hurt>_town_db_data.second_hurt)
+
+            if(!is_exist)
             {
-                //第二名
-                total_lb=2;
-                //旧第二名排到第三名
-                _town_db_data.third_grid=_town_db_data.second_grid;
-                _town_db_data.third_hurt=_town_db_data.second_hurt;
-                //设置新第二名
-                _town_db_data.second_grid=role.grid;
-                _town_db_data.second_hurt=total_hurt;
+                var town_fight_data=new town_data.TownFightData();
+                town_fight_data.grid=role.grid;
+                town_fight_data.hurt=total_hurt;
+                _town_db_data.new_arr.push(town_fight_data);
             }
-            else if(total_hurt>_town_db_data.third_hurt)
-            {
-                //设置新第三名
-                _town_db_data.third_grid=role.grid;
-                _town_db_data.third_hurt=total_hurt;
-                //第三名
-                total_lb=3;
-            }
+
             //放入更新列表中，定时入库
-            town_data.town_update_db_list.push(tid);
+            town_data.town_update_db_arr.push(tid);
         }
-
 
         //积分值结算
         role.score+=Number(fight_user_data.score);
         var msg=
         {
             "op":msg_id.NM_GATE_FIGHT_RESULT,
-            "total_lb":total_lb,
             "single_lb":ret_rank.new_rank,
             "old_single_lb":ret_rank.old_rank,
             "exceed":ret_rank.exceed,
@@ -831,12 +782,10 @@ function help_town_fight_result(data,send,s)
     else
     {
         //失败不记录他的总伤害
-        //_town_data.hurt=_town_data.hurt>total_hurt?_town_data.hurt:total_hurt;
 
         var msg=
         {
             "op":msg_id.NM_GATE_FIGHT_RESULT,
-            "total_lb":total_lb,
             "ret" : msg_code.SUCC
         };
         send(msg);
@@ -954,21 +903,210 @@ function help_init_role_town(role,tid)
 }
 exports.help_init_role_town = help_init_role_town;
 
+//计算攻城战斗排行
+var help_town_fight_rank=function()
+{
+    global.log("help_town_fight_rank");
+
+    var town_period=make_db.get_global_town_period();
+
+    for(var tid in town_data.town_db_data_list)
+    {
+        var _town_db_data=town_data.town_db_data_list[tid];
+        if(_town_db_data==undefined)
+        {
+            continue;
+        }
+        //伤害排序
+        common_func.compare_sort_des(_town_db_data.new_arr,"hurt");
+        _town_db_data.last_arr=_town_db_data.new_arr;
+        _town_db_data.new_arr=[];
+
+        //记录城池数据
+        for(var tid in _town_db_data)
+        {
+            var first_gird=_town_db_data.last_arr[0].grid;
+
+            var _town_title_db_data=town_title_data.town_title_db_data_list[first_gird];
+            if(_town_title_db_data==undefined)
+            {
+                town_title_data.town_title_db_data_list[first_gird]=new town_title_data.TownTitleDbData();
+                _town_title_db_data=town_title_data.town_title_db_data_list[first_gird];
+
+                make_db.insert_town_title_data(_town_title_db_data);
+            }
+
+            var _town_fight_data=_town_title_db_data.town_fight[tid];
+            if(_town_fight_data==undefined)
+            {
+                _town_title_db_data.town_fight[tid]=new town_title_data.TownTitleFightData();
+                _town_fight_data=_town_fight_data.town_fight[tid];
+            }
+
+            _town_fight_data.t_times++;
+            if(_town_fight_data.period+1==town_period)
+            {
+                _town_fight_data.c_times++;
+            }
+            else
+            {
+                _town_fight_data.c_times=1;
+            }
+
+            //当累积的次数达到三次时，成为太守
+            if(_town_fight_data.c_times==3)
+            {
+                var _title_data=new town_title_data.TitleData();
+                _title_data.id=tid;
+                _title_data.date=new Date().getTime();
+                _town_title_db_data.satrap.push(_title_data);
+
+                help_get_town_title(_town_title_db_data,1);
+            }
+
+            town_title_data.town_title_update_db_arr.push(first_gird);
+        }
+    }
+
+};
+exports.help_town_fight_rank=help_town_fight_rank;
+
+//获取称号
+var help_get_town_title=function(_town_title_db_data,level)
+{
+    if(_town_title_db_data==undefined||level==undefined)
+    {
+        global.log("_town_title_db_data==undefined||level==undefined");
+        return;
+    }
+
+    var arr1;
+    var arr2;
+
+    if(level==1)
+    {
+        //太守数组
+        arr1=_town_title_db_data.satrap;
+        if(arr1.length<3)
+        {
+            return;
+        }
+        //都督数组
+        arr2=_town_title_db_data.governor;
+
+    }
+    else if(level==2)
+    {
+        //都督数组
+        arr1=_town_title_db_data.governor;
+        if(arr1.length<3)
+        {
+            return;
+        }
+        //将军数组
+        arr2=_town_title_db_data.general;
+    }
+    else if(level==3)
+    {
+        //将军数组
+        arr1=_town_title_db_data.governor;
+        if(arr1.length<3)
+        {
+            return;
+        }
+        //王数组
+        arr2=_town_title_db_data.king;
+    }
+    else if(level==4)
+    {
+        //王数组
+        arr1=_town_title_db_data.king;
+        if(arr1.length<3)
+        {
+            return;
+        }
+        //始皇帝数组
+        arr2=_town_title_db_data.first_king;
+    }
+
+
+    level++;
+
+
+    var is_add=0;
+    for(var key in town_title_data.town_title_data_list)
+    {
+        var _town_title_data=town_title_data.town_title_data_list[key];
+        if(_town_title_data.level==level)
+        {
+            var is_ok=1;
+            for(var i=0;i<_town_title_data.children.length;i++)
+            {
+                var title_id=_town_title_data.children[i];
+                var flag=0;
+                for(var j=0;j<arr1.length;j++)
+                {
+                    if(title_id==arr1[j].id)
+                    {
+                        flag=1;
+                        break;
+                    }
+                }
+                if(!flag)
+                {
+                    is_ok=0;
+                    break;
+                }
+            }
+
+            if(is_ok)
+            {
+                var is_exist=0;
+                for(var i=0;i<arr2.length;i++)
+                {
+                    if(arr2.id==key)
+                    {
+                        is_exist=1;
+                        break;
+                    }
+                }
+
+                if(!is_exist)
+                {
+                    var _title_data=new town_title_data.TitleData();
+                    _title_data.id=key;
+                    _title_data.date=new Date().getTime();
+                    //获取新称号
+                    arr2.push(_title_data);
+                    is_add=1;
+                }
+
+            }
+        }
+    }
+
+    if(is_add)
+    {
+        help_get_town_title(_town_title_db_data,level);
+        town_title_data.town_title_update_db_arr.push(_town_title_db_data.grid);
+    }
+};
+
 
 //更新入库占城信息
-var update_town_data_list=function()
+var update_town_data=function()
 {
     global.log("update_town_data_list");
 
-    if(town_data.town_update_db_list.length==0)
+    if(town_data.town_update_db_arr.length==0)
     {
         return;
     }
     else
     {
-        for(var key in town_data.town_update_db_list)
+        for(var i=0;i<town_data.town_update_db_arr.length;i++)
         {
-            var tid=town_data.town_update_db_list[key];
+            var tid=town_data.town_update_db_arr[i];
             var _town_data=town_data.town_db_data_list[tid];
             if(_town_data==undefined)
             {
@@ -978,8 +1116,37 @@ var update_town_data_list=function()
             make_db.update_town_data(_town_data);
         }
     }
-    town_data.town_update_db_list=[];
+    town_data.town_update_db_arr=[];
 };
-exports.update_town_data_list=update_town_data_list;
+exports.update_town_data=update_town_data;
+
+//更新入库称号信息
+var update_town_title_data=function()
+{
+    global.log("update_town_title_data");
+
+    if(town_title_data.town_title_update_db_arr.length==0)
+    {
+        return;
+    }
+    else
+    {
+        for(var i=0;i<town_title_data.town_title_update_db_arr.length;i++)
+        {
+            var grid=town_title_data.town_title_update_db_arr[i];
+
+            var _town_title_data=town_title_data.town_title_db_data_list[grid];
+            if(_town_title_data==undefined)
+            {
+                global.log("town_title_data.town_title_db_data_list:"+JSON.stringify(town_title_data.town_title_db_data_list));
+                continue;
+            }
+            make_db.update_town_title_data(_town_title_data);
+        }
+    }
+    town_title_data.town_title_db_data_list=[];
+};
+exports.update_town_title_data=update_town_title_data;
+
 
 

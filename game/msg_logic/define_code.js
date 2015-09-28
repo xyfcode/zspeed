@@ -118,6 +118,7 @@ function MsgCode()
     this.EMPTY_ERROR=76;//错误，但客户端不显示！
     this.VIP_BUY_ONLY=77;//VIP礼包只能购买一次！
     this.VIP_LEVEL_LOW=78;//VIP等级不够，请充值！
+    this.TOWN_NOT_FIGHT=79;//非挑战时间，不能挑战！
 
 }
 exports.msg_code = new MsgCode();

@@ -23,10 +23,7 @@ var const_value=define_code.const_value;
 var msg_id=define_code.msg_id;
 var msg_code=define_code.msg_code;
 
-var g_server = null,
-    auto_save_system_data_timer=null,
-    auto_clear_user_offline_timer=null,
-    auto_24_timer=null;
+var g_server = null;
 
 var init=function(s)
 {
@@ -48,157 +45,110 @@ var init=function(s)
         });*/
 
     }
-
-    heart_beat_timer();
-    heart_beat22();
-    heart_beat24();
+    process.on('message',child_process);
 };
 exports.init=init;
 
-//第二天凌晨定时开启的函数
-function heart_beat24()
-{
-    var now=new Date();
-    //开服时间
-    var server_time=now.getTime();
-    //24点字符串
-    var str24=(now.getFullYear())+"/"+(now.getMonth()+1)+"/"+(now.getDate())+" 23:59:59";
-    //获取24点时间戳
-    var time24=(new Date(str24)).getTime()+1000;
-    //到24点开启定时器
-    setTimeout(function(){
-        open_auto_24_timer();
-    },(time24-server_time));
-
-}
-
-//24点定时重置系统的一些数据
-function open_auto_24_timer()
-{
-    //发送月卡返还
-    purchase_shop_logic.auto_dispatch_cd_reward();
-    //只读邮件清空
-    mail_logic.auto_clear_user_mail();
-    //清除战斗好友缓存
-    friend_logic.auto_clear_fight_list();
-    //24小时执行一次
-    auto_24_timer=setInterval(function(){
-        purchase_shop_logic.auto_dispatch_cd_reward();
-        mail_logic.auto_clear_user_mail();
-        role_data_logic.auto_reset_online_user_data();
-    },24*60*60*1000);
-}
-
-//晚上22点定时执行的内容
-function heart_beat22()
-{
-    var now=new Date();
-    //开服时间
-    var server_time=now.getTime();
-    //今日未到下午22点
-    if(now.getHours()<22)
-    {
-        //22点字符串
-        var str22=(now.getFullYear())+"/"+(now.getMonth()+1)+"/"+(now.getDate())+" 22:00:00";
-        //获取22点时间戳
-        var time22=(new Date(str22)).getTime();
-        //到22点开启定时器
-        setTimeout(function(){
-            open_auto_22_timer();
-        },(time22-server_time));
-    }
-    else
-    {
-        //22点已过(3小时以后再执行该函数)
-        setTimeout(function(){
-            heart_beat22();
-        },3*60*60*1000);
-
-        /*
-        //22点字符串(如果到月底的话，now.getDate()+1有问题)
-        var str22=(now.getFullYear())+"/"+(now.getMonth()+1)+"/"+(now.getDate()+1)+" 22:00:00";
-        //获取22点时间戳
-        var time22=(new Date(str22)).getTime();
-        //到22点开启定时器
-        setTimeout(function(){
-            open_auto_22_timer();
-        },(time22-server_time));   */
-    }
-}
-
-//下午22点定时执行的内容
-function open_auto_22_timer()
-{
-    //发送排行榜奖励
-    arena_logic.auto_provide_rank_reward();
-    //24小时执行一次
-    setInterval(function(){
-        arena_logic.auto_provide_rank_reward();
-    },24*60*60*1000);
-}
-
-
-function heart_beat_timer()
-{
-   auto_clear_user_offline_timer=setInterval(function(){
-       help_tick_user_offline();
-   },10*60*1000);
-
-   auto_save_system_data_timer=setInterval(function(){
-       auto_save_system_data();
-   },15*60*1000);
-
-    setInterval(function(){
-        global.log("totalmem:"+require('os').totalmem());
-        global.log("freemem:"+require('os').freemem());
-        global.log('This process is pid ' + process.pid);
-        global.log(require('util').inspect(process.memoryUsage()));
-        global.log(process.memoryUsage().rss/require('os').totalmem());
-    },10*60*1000);
-
-
-
-}
-
-var auto_save_system_data=function()
-{
-    global.log("auto_save_system_data");
-    friend_logic.update_friend_data_list();
-    mail_logic.update_mail_data_list();
-    town_logic.update_town_data_list();
+var handler={
+    "tick" : new on_tick(),
+    "town_tick" : new on_town_tick(),
+    "tick_user_offline"  : new on_tick_user_offline(),
+    "save_system_data"  : new on_save_system_data(),
+    "get_system_info" : new on_get_system_info()
 };
 
-
-//定时删除离线用户信息
-function help_tick_user_offline()
+function child_process(msg)
 {
-    global.log("help_tick_user_offline");
-    global.log("ds.user_account_list:"+Object.keys(ds.user_account_list).length);
-    global.log("ds.user_list:"+Object.keys(ds.user_list).length);
-    for(var key in ds.user_account_list)
+    global.log("child receive data is :"+JSON.stringify(msg));
+    handler[msg.op].handle(msg);
+}
+
+function on_tick()
+{
+    this.handle = function(msg)
     {
-        var user =  ds.user_account_list[key];
-        //var role = ds.get_cur_role(user);没有创建角色之前undefined
-        var now = new Date();
-
-        global.log("user.online:"+user.online);
-        global.log("now.getTime()-user.offline_time:"+(now.getTime()-user.offline_time));
-
-        if(user.online == 0 && now.getTime()-user.offline_time >60*1000)
+        if(msg.param==0)
         {
-            global.log("account:[" + user.account_data.account +"] gid:[" + user.account_data.gid + "] offline!");
-            delete ds.user_list[user.account_data.gid];
-            delete ds.user_account_list[key];
-
-            if(user.socket != null && user.socket != undefined)
-            {
-                user.socket.end();
-                user.socket.destroy();
-                clearInterval(user.socket.interval);
-                user.socket = null;
-            }
-            user = null;
+            global.log("this time is 24");
+            //发送月卡返还
+            purchase_shop_logic.auto_dispatch_cd_reward();
+            //只读邮件清空
+            mail_logic.auto_clear_user_mail();
+            //清除战斗好友缓存
+            friend_logic.auto_clear_fight_list();
         }
+        else if(msg.param==22)
+        {
+            global.log("this time is 22");
+            //发送排行榜奖励
+            arena_logic.auto_provide_rank_reward();
+        }
+    }
+}
+
+function on_town_tick()
+{
+    this.handle = function(msg)
+    {
+        town_logic.help_town_fight_rank();
+    }
+}
+
+function on_save_system_data()
+{
+    this.handle = function(msg)
+    {
+        global.log("on_save_system_data");
+        friend_logic.update_friend_data_list();
+        mail_logic.update_mail_data_list();
+        town_logic.update_town_data();
+        town_logic.update_town_title_data();
+    }
+}
+
+function on_tick_user_offline()
+{
+    this.handle = function(msg)
+    {
+        global.log("on_tick_user_offline");
+        global.log("ds.user_account_list:" + Object.keys(ds.user_account_list).length);
+        global.log("ds.user_list:" + Object.keys(ds.user_list).length);
+        for (var key in ds.user_account_list) {
+            var user = ds.user_account_list[key];
+            //var role = ds.get_cur_role(user);没有创建角色之前undefined
+            var now = new Date();
+
+            global.log("user.online:" + user.online);
+            global.log("now.getTime()-user.offline_time:" + (now.getTime() - user.offline_time));
+
+            if (user.online == 0 && now.getTime() - user.offline_time > 60 * 1000) {
+                global.log("account:[" + user.account_data.account + "] gid:[" + user.account_data.gid + "] offline!");
+                delete ds.user_list[user.account_data.gid];
+                delete ds.user_account_list[key];
+
+                if (user.socket != null && user.socket != undefined) {
+                    user.socket.end();
+                    user.socket.destroy();
+                    clearInterval(user.socket.interval);
+                    user.socket = null;
+                }
+                user = null;
+            }
+        }
+    }
+}
+
+
+
+function on_get_system_info()
+{
+    this.handle = function(msg)
+    {
+        global.log("totalmem:" + require('os').totalmem());
+        global.log("freemem:" + require('os').freemem());
+        global.log('This process is pid ' + process.pid);
+        global.log(require('util').inspect(process.memoryUsage()));
+        global.log(process.memoryUsage().rss / require('os').totalmem());
     }
 }
 
@@ -229,7 +179,7 @@ function close_server()
             user.socket.emit("close");
         }
     }
-    auto_save_system_data();
+    on_save_system_data();
 }
 
 
