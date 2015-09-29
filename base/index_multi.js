@@ -69,7 +69,7 @@ server.prototype.start_server = function(obj,cb)
             global.log(require('util').inspect(process.memoryUsage()));
             global.log(process.memoryUsage().rss/require('os').totalmem());
             worker=cluster.fork();
-            require("./master").init();
+            require("./master").init(worker);
         });
     }
     else
