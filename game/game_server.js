@@ -156,6 +156,8 @@ var handler = {
     "215" : new on_money_tree(), //招财
     "214" : new on_card_forge(), //武将炼化
     "213" : new on_get_share_reward(), //分享facebook获取元宝
+    "212" : new on_get_one_town_data(), //获取单个城池信息
+
     "3000" : new on_test_town() //跳过关卡
 
 };
@@ -835,6 +837,14 @@ function on_get_challenge_town()
     this.handle = function(data,send,s)
     {
         town_logic.on_get_challenge_town(data,send,s);
+    }
+}
+
+function on_get_one_town_data()
+{
+    this.handle = function(data,send,s)
+    {
+        town_logic.on_get_one_town_data(data,send,s);
     }
 }
 

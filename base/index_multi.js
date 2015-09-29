@@ -14,8 +14,9 @@ config.init();
 
 exports.start_server = function(h)
 {
-    var cb = void 0;
-    var obj = void 0;
+    var cb;
+    var master_cb;
+    var obj;
 
     if(typeof h ==="function")
     {
@@ -32,16 +33,21 @@ exports.start_server = function(h)
         {
             cb = arguments[1];
         }
+
+        if(arguments.length >2 && typeof arguments[2] === "function")
+        {
+            master_cb = arguments[2];
+        }
     }
 
     var s = new server();
-    s.start_server(obj,cb);
+    s.start_server(obj,cb,master_cb);
     return s;
 };
 
 function server(){};
 
-server.prototype.start_server = function(obj,cb)
+server.prototype.start_server = function(obj,cb,master_cb)
 {
     var self = this;
     var conf = config.conf;
@@ -58,7 +64,7 @@ server.prototype.start_server = function(obj,cb)
         }
 
         var worker=cluster.fork();
-        require("./master").init(worker);
+        master_cb(worker);
 
         cluster.on('disconnect',function(worker)
         {
@@ -69,7 +75,7 @@ server.prototype.start_server = function(obj,cb)
             global.log(require('util').inspect(process.memoryUsage()));
             global.log(process.memoryUsage().rss/require('os').totalmem());
             worker=cluster.fork();
-            require("./master").init(worker);
+            master_cb(worker);
         });
     }
     else

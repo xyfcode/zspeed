@@ -131,9 +131,12 @@ exports.TownFightData=TownFightData;
 var TownDbData=function()
 {
     this.tid=0; //城池ID
+    this.guard_data=new Guard_Data();//守城武将数据
     this.last_arr=[]; //上期城池排名 value:[TownFightData]
     this.new_arr=[];//新的城池攻打数据 value:[TownFightData]
-    this.pick_time=0;//领取奖励时间（初始化为0，表示可以领取最多24的城池单独收益）
+    this.owner_reward=0; //城主奖励
+    this.reward=0; //本轮奖励
+    this.pick_time=0;//领取奖励时间
 };
 exports.TownDbData=TownDbData;
 

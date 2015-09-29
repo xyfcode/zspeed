@@ -2,6 +2,7 @@ var server = require("../base/index_multi");
 
 var billing_client = require("./billing_client");
 var game_server = require("./game_server");
+var master_server = require("./master_server");
 
 var obj = {
 	"billing_client" : {
@@ -16,7 +17,13 @@ var obj = {
 		"retry"   : 1
 	}
 };
-var app = server.start_server(obj,function(s){
-    billing_client.server(s);
-	game_server.server(s);
-});
+var app = server.start_server(obj,
+    function(s){
+        billing_client.server(s);
+	    game_server.server(s);
+    },
+    function(worker)
+    {
+        master_server.server(worker);
+    }
+);

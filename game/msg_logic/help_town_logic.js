@@ -191,96 +191,36 @@ function on_get_challenge_town(data,send,s)
             global.log("_town_data == undefined");
             return;
         }
-        var max_base_money=_town_data.basic_money*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_MONEY_MS;
+
 
         var _town_db_data=town_data.town_db_data_list[xids[i]];
-        var client_data=new Object();
 
+        var client_data=new Object();
 
         if(_town_db_data)
         {
-            var my_town_data=role.town_bag[_town_db_data.tid];
-            var my_hurt=my_town_data?my_town_data.hurt:0;
-            var owner_formation_data=formation.formation_list[_town_db_data.owner_grid];
-            var second_formation_data=formation.formation_list[_town_db_data.second_grid];
-            var third_formation_data=formation.formation_list[_town_db_data.third_grid];
-
-            if(owner_formation_data==undefined)
+            var owner_formation_data;
+            if(_town_db_data.last_arr[0])
             {
-                global.log("owner_formation_data==undefined");
-                return;
-            }
-
-            client_data.xid=_town_db_data.tid;
-            client_data.my_damage=my_hurt;
-            client_data.owner_uid=_town_db_data.owner_grid;
-            client_data.owner_name=owner_formation_data.name;
-            client_data.leader_xid=owner_formation_data.card_ls[0].card_id;
-            client_data.guard_uid=_town_db_data.guard_data.unique_id;
-            client_data.guard_xid=_town_db_data.guard_data.card_id;
-            client_data.guard_level=_town_db_data.guard_data.level;
-            client_data.guard_rlevel=_town_db_data.guard_data.b_level;
-            client_data.guard_equip=_town_db_data.guard_data.equips;
-            client_data.guard_equip =[];
-            for(var j=0;j<_town_db_data.guard_data.equips.length;j++)
-            {
-                var e_obj={};
-                if(_town_db_data.guard_data.equips[j])
+                owner_formation_data=formation.formation_list[_town_db_data.last_arr[0].grid];
+                if(owner_formation_data==undefined)
                 {
-                    e_obj.xid=_town_db_data.guard_data.equips[j].equip_id;
+                    global.log("owner_formation_data == undefined");
+                    return;
                 }
-                client_data.guard_equip.push(e_obj);
+                client_data.xid=_town_db_data.tid;
+                client_data.owner_name=owner_formation_data.name;
+                client_data.guard_xid=_town_db_data.guard_data.card_id;
             }
-            client_data.owner_damage=_town_db_data.owner_hurt;
-            if(second_formation_data)
+            else
             {
-                client_data.second_xid=second_formation_data.card_ls[0].card_id;
-                client_data.second_name=second_formation_data.name;
+                client_data.xid=_town_db_data.tid;
             }
-            if(third_formation_data)
-            {
-                client_data.third_xid=third_formation_data.card_ls[0].card_id;
-                client_data.third_name=third_formation_data.name;
-            }
-
-            var now=new Date();
-            var total_money=0;
-            var total_rmb=0;
-            var base_money=Math.floor((now-_town_db_data.pick_time)/const_value.TOWN_MONEY_MS)*_town_data.basic_money;
-            base_money=base_money>max_base_money?max_base_money:base_money;
-
-            var max_extra_money=_town_data.add_money*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_MONEY_MS;
-            var max_extra_rmb=_town_data.add_rmb*const_value.TOWN_EFFECTIVE_MS/const_value.TOWN_RMB_MS;
-
-            //上个城守获得的额外奖励
-            var extra_money=0;
-            var extra_rmb=0;
-            if(_town_db_data.guard_t_time)
-            {
-                extra_money+=Math.floor(_town_db_data.guard_t_time/const_value.TOWN_MONEY_MS)*_town_data.add_money;
-                extra_rmb+=Math.floor(_town_db_data.guard_t_time/const_value.TOWN_RMB_MS)*_town_data.add_rmb;
-            }
-
-            //城守获得的额外奖励
-            if(_town_db_data.guard_data.card_id)
-            {
-                extra_money+=Math.floor((now-_town_db_data.guard_time)/const_value.TOWN_MONEY_MS)*_town_data.add_money;
-                extra_rmb+=Math.floor((now-_town_db_data.guard_time)/const_value.TOWN_RMB_MS)*_town_data.add_rmb;
-            }
-
-            extra_money=extra_money>max_extra_money?max_extra_money:extra_money;
-            extra_rmb=extra_rmb>max_extra_rmb?max_extra_rmb:extra_rmb;
-
-
-            client_data.coin=extra_money+base_money;
-            client_data.ingot=extra_rmb;
         }
         else
         {
             //该城池无人占领,没有挑战记录
             client_data.xid=_town_data.tid;
-            client_data.coin=max_base_money;
-            client_data.ingot=0;
         }
         towns.push(client_data);
     }
@@ -297,6 +237,129 @@ function on_get_challenge_town(data,send,s)
     log_data_logic.log(logData);
 }
 exports.on_get_challenge_town = on_get_challenge_town;
+
+//获取单个挑战城池信息
+function on_get_one_town_data(data,send,s)
+{
+    global.log("on_get_one_town_data");
+
+    var gid = s.gid;
+    if(gid == undefined)
+    {
+        global.log("gid == undefined");
+        return;
+    }
+
+    var user = ds.user_list[gid];
+    if(user == undefined)
+    {
+        global.log("user == undefined");
+        return;
+    }
+
+    var role = ds.get_cur_role(user);
+    if(role == undefined)
+    {
+        global.log("role == undefined");
+        return;
+    }
+
+    var tid=data.tid;
+    if(tid==undefined)
+    {
+        global.log("tid == undefined");
+        return;
+    }
+
+    var _town_db_data=town_data.town_db_data_list[tid];
+    if(_town_db_data==undefined)
+    {
+        global.log("_town_db_data == undefined");
+        return;
+    }
+
+    var msg = {
+        "op" : msg_id.NM_ONE_TOWN_CHALLENGE,
+        "ret" : msg_code.SUCC
+    };
+
+    //城池产出
+    msg.reward=_town_db_data.reward;
+
+    //返回前十名排行版
+    msg.rank=[];
+    for(var i=0;i<_town_db_data.last_arr.length;i++)
+    {
+        if(i>9)
+        {
+            break;
+        }
+
+        var rank_obj = {};
+        rank_obj.rank = i + 1;
+        rank_obj.name = formation.formation_list[_town_db_data.last_arr[0].grid].name;
+
+        msg.rank.push(rank_obj);
+
+    }
+
+    //我的伤害
+    msg.my_damage=0;
+    msg.my_rank=0;
+    for(var i=0;i<_town_db_data.last_arr.length;i++)
+    {
+        if(_town_db_data.last_arr[i].grid==role.grid)
+        {
+            msg.my_damage=_town_db_data.last_arr[i].hurt;
+            msg.my_rank=i+1;
+            break;
+        }
+    }
+
+
+    var owner_formation_data=_town_db_data.last_arr[0]?formation.formation_list[_town_db_data.last_arr[0].grid]:null;
+    var second_formation_data=_town_db_data.last_arr[1]?formation.formation_list[_town_db_data.last_arr[1].grid]:null;
+    var third_formation_data=_town_db_data.last_arr[2]?formation.formation_list[_town_db_data.last_arr[2].grid]:null;
+
+    if(owner_formation_data)
+    {
+        msg.owner_name=owner_formation_data.name;
+        msg.leader_xid=owner_formation_data.card_ls[0].card_id;
+    }
+    if(second_formation_data)
+    {
+        msg.second_name=second_formation_data.name;
+        msg.second_xid=second_formation_data.card_ls[0].card_id;
+    }
+    if(third_formation_data)
+    {
+        msg.third_name=third_formation_data.name;
+        msg.third_xid=third_formation_data.card_ls[0].card_id;
+    }
+
+    //城守信息
+    msg.guard_uid=_town_db_data.guard_data.unique_id;
+    msg.guard_xid=_town_db_data.guard_data.card_id;
+    msg.guard_level=_town_db_data.guard_data.level;
+    msg.guard_rlevel=_town_db_data.guard_data.b_level;
+    msg.guard_equip =[];
+    for(var j=0;j<_town_db_data.guard_data.equips.length;j++)
+    {
+        var e_obj={};
+        if(_town_db_data.guard_data.equips[j])
+        {
+            e_obj.xid=_town_db_data.guard_data.equips[j].equip_id;
+        }
+        msg.guard_equip.push(e_obj);
+    }
+
+    send(msg);
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_get_one_town_data",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+}
+exports.on_get_one_town_data = on_get_one_town_data;
 
 //领取守城奖励
 function on_gain_guard_town_reward(data,send,s)

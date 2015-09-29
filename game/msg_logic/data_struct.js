@@ -211,7 +211,6 @@ function Role_Town_Data()
     this.tid=0;//城池ID
     this.passed=0;//是否通关 0:否，1是
     this.rewarded=0;//是否已经领取通关奖励 0:否，1是
-    this.hurt=0;//挑战模式下，该城的最高总伤害
     this.gate = [];//Role_Gate_Data
 }
 exports.Role_Town_Data = Role_Town_Data;
