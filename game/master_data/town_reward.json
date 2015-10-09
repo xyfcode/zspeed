@@ -1,0 +1,16 @@
+{
+   "TOWN_REWARD":{
+        "1":{
+          "Id":"1",
+          "TotalReward":"10000",
+          "RewardOne":"0.1",
+          "RewardTwo":"0.2",
+          "RewardThree":"0.25",
+          "RewardFour":"0.45",
+          "LuckyBase":"0.3",
+          "LuckFloat":"0.2",
+          "TownCycle":"360",
+          "RewardTime":"30"
+        }
+   }
+}
