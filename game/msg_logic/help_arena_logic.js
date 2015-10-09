@@ -413,7 +413,6 @@ var help_gain_client_data_by_rank=function(rank)
         obj.xid=_formation_data.card_ls[0].card_id;
         obj.name=_formation_data.name;
         obj.level=_formation_data.level;
-        obj.town_num=_formation_data.town_num;
     }
     return obj;
 };

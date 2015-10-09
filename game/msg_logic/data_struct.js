@@ -105,10 +105,10 @@ function RoleData()
     this.chick_time=0;//吃鸡时间
     this.sacrifice={}; //参拜  Sacrifice_Data
     this.exchange={};  //兑换列表  Exchange_Data
-
     this.shop_bag={};//商城数据 key:id,value:Role_Shop_Data
-
     this.rank_reward=[];//已经领取的排行榜奖励，value id
+    this.town_id=0;  //挑战城池ID
+    this.town_period=0;//挑战周期
 }
 exports.RoleData = RoleData;
 

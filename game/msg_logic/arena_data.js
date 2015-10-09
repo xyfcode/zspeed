@@ -1,9 +1,6 @@
 var json_config_file=require("./json_config_file");
 var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
-var define_code=require("./define_code");
-var const_value=define_code.const_value;
-
 
 var RewardData=function()
 {

@@ -24,7 +24,7 @@ function FormationData()
     this.name='';
     this.vip=0;
     this.top_hurt=0;//最高伤害
-    this.town_num=0;//拥有城池的数量
+    this.town_title=0;//霸业的称号
     this.card_ls=[]; //卡组编号，value：FormationCardBase
 }
 exports.FormationData=FormationData;

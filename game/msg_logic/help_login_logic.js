@@ -22,7 +22,7 @@ var log_data_logic=require("./help_log_data_logic");
 var card_logic = require("./help_card_logic");
 var formation_logic = require("./help_formation_logic");
 var town_logic = require("./help_town_logic");
-var tick_logic = require("./help_tick_logic");
+var child_logic = require("./help_child_logic");
 var role_data_logic = require("./help_role_data_logic");
 var friend_data_logic = require("./help_friend_logic");
 var activity_logic = require("./help_activity_logic");
@@ -63,7 +63,7 @@ function help_user_tick(s)
     if(user && user.nNeedSave == 1 && now_time-user.nSaveDBTime >5*1000)
     {
         global.log("account:[" + user.account_data.account +"] gid:[" + user.account_data.gid + "] upgraded!");
-        tick_logic.auto_save_data(user);
+        child_logic.auto_save_data(user);
 
         user.nNeedSave = 0;
         user.nSaveDBTime = now_time;
@@ -131,7 +131,7 @@ function on_user_socket_close(s)
                 role.online_time = 0;
             }
             //保存用户数据入库
-            tick_logic.auto_save_data(user);
+            child_logic.auto_save_data(user);
         }
 
         //注意并没有从内存中删除用户数据

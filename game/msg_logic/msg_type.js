@@ -115,6 +115,7 @@ function MsgID()
     this.NM_CARD_FORGE=214; //卡牌熔炼
     this.NM_GET_SHARE_REWARD=213; //获取分享奖励
     this.NM_ONE_TOWN_CHALLENGE=212; //单个挑战城池信息
+    this.NM_TOWN_RANk=211; //获取城池排行榜信息
     this.NM_TEST_TOWN=3000; //城池全部打开
 }
 exports.MsgID=MsgID;

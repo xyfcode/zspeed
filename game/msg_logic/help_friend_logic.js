@@ -1001,7 +1001,6 @@ function on_friend_detail(data,send,s)
         "op":msg_id.NM_FRIEND_DETAIL,
         "uid" : _formation_data.grid,
         "hurt":_formation_data.top_hurt,
-        "town_num":_formation_data.town_num,
         "rank":rank,
         "name" : _formation_data.name,
         "level" : _formation_data.level,

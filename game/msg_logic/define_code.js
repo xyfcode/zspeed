@@ -119,6 +119,8 @@ function MsgCode()
     this.VIP_BUY_ONLY=77;//VIP礼包只能购买一次！
     this.VIP_LEVEL_LOW=78;//VIP等级不够，请充值！
     this.TOWN_NOT_FIGHT=79;//非挑战时间，不能挑战！
+    this.TOWN_NOT_REWARD=80;//非奖励领取时间，不能领取！
+    this.TOWN_FIGHT_PERIOD=81;//一个挑战周期内只能挑战一个城池！
 
 }
 exports.msg_code = new MsgCode();

@@ -24,6 +24,7 @@ var DataGid=function()
     this.district_id=0;
     this.server_id=0;
     this.global_id=0;
+    this.town_period=0;
 
 };
 var data_gid=new DataGid();
@@ -58,6 +59,7 @@ function find_fid()
             data_gid.district_id=arr[0].district_id;
             data_gid.server_id=arr[0].server_id;
             data_gid.global_id=arr[0].global_id;
+            data_gid.town_period=arr[0].town_period;
         }
 
     });
@@ -77,16 +79,26 @@ function get_global_unique_id()
 }
 exports.get_global_unique_id=get_global_unique_id;
 
-//获取城池霸业周期数
-function get_global_town_period()
+//增加城池霸业周期数
+function add_global_town_period()
 {
-    global.log("get_global_town_period");
+    global.log("add_global_town_period");
 
     data_gid.town_period++;
     var strCon={country_id:data_gid.country_id ,district_id:data_gid.district_id , server_id:data_gid.server_id };
 
     wy_db.update(t_global_var,strCon,{$set:{town_period:data_gid.town_period}});
 
+    global.log(data_gid.town_period);
+    return  data_gid.town_period;
+
+}
+exports.add_global_town_period=add_global_town_period;
+
+//获取城池霸业周期数
+function get_global_town_period()
+{
+    global.log("get_global_town_period");
     global.log(data_gid.town_period);
     return  data_gid.town_period;
 

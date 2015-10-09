@@ -136,7 +136,6 @@ var TownDbData=function()
     this.new_arr=[];//新的城池攻打数据 value:[TownFightData]
     this.owner_reward=0; //城主奖励
     this.reward=0; //本轮奖励
-    this.pick_time=0;//领取奖励时间
 };
 exports.TownDbData=TownDbData;
 
