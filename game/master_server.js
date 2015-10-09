@@ -1,64 +1,34 @@
+var json_config_file=require("./master_logic/json_config_file");
+
+
+//数据
+var town_reward_data=require("./master_logic/town_reward_data");
+
+//逻辑
+var tick_logic=require("./master_logic/help_tick_logic");
+
+
 var child_worker;
 
 exports.server = function(worker)
 {
+    //初始化
     child_worker = worker;
-    setGlobalTick();
+    json_config_file.init();
+
+    //数据
+    town_reward_data.init();
+
+
+    //逻辑
+    tick_logic.init(worker);
+
+    //释放对象
+    json_config_file.json_config_file_list=null;
 };
 
-function setGlobalTick()
-{
-
-    setInterval(function(){
-        var now=new Date();
-
-        if((now.getHours()==5||now.getHours()==11||now.getHours()==17||now.getHours()==23)
-            &&now.getMinutes()==30&&now.getSeconds()==0)
-        {
-            var msg={
-                "op":"town_tick"
-            };
-            child_worker.send(msg);
-        }
-        else if(now.getHours()==0&&now.getMinutes()==0&&now.getSeconds()==0)
-        {
-            var msg={
-                "op":"tick",
-                "param":now.getHours()
-            };
-            //child_worker.send(msg);
-        }
-        else if(now.getHours()==22&&now.getMinutes()==0&&now.getSeconds()==0)
-        {
-            var msg={
-                "op":"tick",
-                "param":now.getHours()
-            };
-            //child_worker.send(msg);
-        }
-
-    },1000);
-
-    setInterval(function(){
-        var msg={
-            "op":"tick_user_offline"
-        };
-        child_worker.send(msg);
-    },16*60*1000);
-
-    setInterval(function(){
-        var msg={
-            "op":"save_system_data"
-        };
-        child_worker.send(msg);
-    },10*60*1000);
 
 
-    setInterval(function(){
-        var msg={
-            "op":"get_system_info"
-        };
-        child_worker.send(msg);
-    },27*60*1000);
 
-}
+
+
