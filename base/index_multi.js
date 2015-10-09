@@ -63,6 +63,7 @@ server.prototype.start_server = function(obj,cb,master_cb)
             }
         }
 
+        log.init(conf.test);
         var worker=cluster.fork();
         master_cb(worker);
 
