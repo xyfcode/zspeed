@@ -56,7 +56,7 @@ var chat_logic=require("./msg_logic/help_chat_logic");
 var login_logic = require("./msg_logic/help_login_logic");
 var share_logic = require("./msg_logic/help_share_logic");
 
-var tick_logic=require("./msg_logic/help_tick_logic");
+var child_logic=require("./msg_logic/help_child_logic");
 var gm_billing_logic=require("./msg_logic/help_gm_billing_logic");
 var client_error_logic=require("./msg_logic/help_client_error_logic");
 
@@ -157,6 +157,7 @@ var handler = {
     "214" : new on_card_forge(), //武将炼化
     "213" : new on_get_share_reward(), //分享facebook获取元宝
     "212" : new on_get_one_town_data(), //获取单个城池信息
+    "211" : new on_get_town_rank_data(), //获取城池排行榜信息
 
     "3000" : new on_test_town() //跳过关卡
 
@@ -211,7 +212,7 @@ exports.server = function(server)
     //逻辑
     billing_logic.init(server);
     login_logic.init(server);
-    tick_logic.init(server);
+    child_logic.init(server);
     gm_billing_logic.init(server);
     gift_logic.init(server);
     town_logic.init(server);
@@ -845,6 +846,14 @@ function on_get_one_town_data()
     this.handle = function(data,send,s)
     {
         town_logic.on_get_one_town_data(data,send,s);
+    }
+}
+
+function on_get_town_rank_data()
+{
+    this.handle = function(data,send,s)
+    {
+        town_logic.on_get_town_rank_data(data,send,s);
     }
 }
 
