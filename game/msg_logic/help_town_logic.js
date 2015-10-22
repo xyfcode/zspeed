@@ -7,7 +7,9 @@
 var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
 var make_db = require("./make_db");
+var card_data=require("./card_data");
 var town_data=require("./town_data");
+var pool_data=require("./pool_data");
 var town_title_data=require("./town_title_data");
 var formation=require("./formation_data");
 var ds = require("./data_struct");
@@ -16,9 +18,9 @@ var common_func = require("./common_func");
 var friend_data = require("./friend_data");
 
 var arena_logic=require("./help_arena_logic");
-var mail_logic=require("./help_mail_logic");
 var money_logic=require("./help_money_logic");
-
+var card_logic=require("./help_card_logic");
+var role_data_logic=require("./help_role_data_logic");
 var const_value=define_code.const_value;
 var msg_id=define_code.msg_id;
 var msg_code=define_code.msg_code;
@@ -63,7 +65,61 @@ function help_open_role_town(role,tid)
 
         role_town_data.tid=town_json_data.tid;
         town_bag_data[role_town_data.tid]=role_town_data;
+        role_town_data.status=const_value.TOWN_STATUS_INIT;
 
+        //随机获取守城武将
+        var _rand=common_func.help_make_one_random(1,100);
+        if(town_json_data.card_rate>=_rand)
+        {
+            var card_arr=pool_data.card_pool_data_list[town_json_data.card_star];
+            var c_arr=[];
+            for(var i=0;i<card_arr.length;i++)
+            {
+                for(var j=0;j<role.town_card.length;j++)
+                {
+                    var is_exist=0;
+                    if(card_arr[i]==role.town_card[j])
+                    {
+                        is_exist=1;
+                        break;
+                    }
+                }
+                if(!is_exist)
+                {
+                    c_arr.push(card_arr[i]);
+                }
+            }
+            var card_rand=common_func.help_make_one_random(0,c_arr.length-1);
+            role_town_data.card_id=c_arr[card_rand];
+            role.town_card.push(c_arr[card_rand]);
+        }
+
+        //随机获取守城美女
+        if(town_json_data.beauty_rate>=_rand)
+        {
+            var beauty_arr=pool_data.beauty_pool_data_list[town_json_data.beauty_star];
+            var b_arr=[];
+            for(var i=0;i<beauty_arr.length;i++)
+            {
+                for(var j=0;j<role.town_beauty.length;j++)
+                {
+                    var is_exist=0;
+                    if(beauty_arr[i]==role.town_beauty[j])
+                    {
+                        is_exist=1;
+                        break;
+                    }
+                }
+                if(!is_exist)
+                {
+                    b_arr.push(beauty_arr[i]);
+                }
+            }
+
+            var beauty_rand=common_func.help_make_one_random(0,b_arr.length-1);
+            role_town_data.beauty_id=b_arr[beauty_rand];
+            role.town_beauty.push(b_arr[beauty_rand]);
+        }
         var role_gate_data=new ds.Role_Gate_Data();
         role_gate_data.is_first=1;
         role_gate_data.gate_id=town_json_data.gate[0];
@@ -73,6 +129,7 @@ function help_open_role_town(role,tid)
     else
     {
         //todo::城池没有最新的了
+        global.log("城池没有最新的了");
     }
 
     var log_content={"role_town_data.tid":role_town_data.tid};
@@ -81,6 +138,116 @@ function help_open_role_town(role,tid)
 
 }
 exports.help_open_role_town = help_open_role_town;
+
+//城池全部打开
+function on_test_town(data,send,s)
+{
+    global.log("on_test_town");
+
+    var gid = s.gid;
+    if(gid == undefined)
+    {
+        global.log("gid == undefined");
+        return;
+    }
+
+    var user = ds.user_list[gid];
+    if(user == undefined)
+    {
+        global.log("user == undefined");
+        return;
+    }
+
+    var role = ds.get_cur_role(user);
+    if(role == undefined)
+    {
+        global.log("role == undefined");
+        return;
+    }
+
+    var town_bag_data=role.town_bag;
+
+    for(var key in town_data.town_data_list)
+    {
+        var town_json_data=town_data.town_data_list[key];
+
+        //开启新的城池
+        var role_town_data=new ds.Role_Town_Data();
+
+        role_town_data.tid=town_json_data.tid;
+        town_bag_data[role_town_data.tid]=role_town_data;
+        role_town_data.status=const_value.TOWN_STATUS_INIT;
+
+        //随机获取守城武将
+        var _rand=common_func.help_make_one_random(1,100);
+        if(town_json_data.card_rate>=_rand)
+        {
+            var card_arr=pool_data.card_pool_data_list[town_json_data.card_star];
+            var c_arr=[];
+            for(var i=0;i<card_arr.length;i++)
+            {
+                for(var j=0;j<role.town_card.length;j++)
+                {
+                    var is_exist=0;
+                    if(card_arr[i]==role.town_card[j])
+                    {
+                        is_exist=1;
+                        break;
+                    }
+                }
+                if(!is_exist)
+                {
+                    c_arr.push(card_arr[i]);
+                }
+            }
+            var card_rand=common_func.help_make_one_random(0,c_arr.length-1);
+            role_town_data.card_id=c_arr[card_rand];
+            role.town_card.push(c_arr[card_rand]);
+        }
+
+        //随机获取守城美女
+        if(town_json_data.beauty_rate>=_rand)
+        {
+            var beauty_arr=pool_data.beauty_pool_data_list[town_json_data.beauty_star];
+            var b_arr=[];
+            for(var i=0;i<beauty_arr.length;i++)
+            {
+                for(var j=0;j<role.town_beauty.length;j++)
+                {
+                    var is_exist=0;
+                    if(beauty_arr[i]==role.town_beauty[j])
+                    {
+                        is_exist=1;
+                        break;
+                    }
+                }
+                if(!is_exist)
+                {
+                    b_arr.push(beauty_arr[i]);
+                }
+            }
+
+            var beauty_rand=common_func.help_make_one_random(0,b_arr.length-1);
+            role_town_data.beauty_id=b_arr[beauty_rand];
+            role.town_beauty.push(b_arr[beauty_rand]);
+        }
+        var role_gate_data=new ds.Role_Gate_Data();
+        role_gate_data.is_first=1;
+        role_gate_data.gate_id=town_json_data.gate[0];
+        role_town_data.gate.push(role_gate_data);
+    }
+
+    var msg = {
+        "op" : msg_id.NM_TEST_TOWN,
+        "ret" : msg_code.SUCC
+    };
+    send(msg);
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_test_town",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+}
+exports.on_test_town = on_test_town;
 
 //获取城池信息
 function on_town_data_list(data,send,s)
@@ -125,7 +292,9 @@ function on_town_data_list(data,send,s)
             {
                 var client_tn_data={};
                 client_tn_data.id=tn_json_data.tid;
-                client_tn_data.finished=_tn_bag[key].passed;
+                client_tn_data.finished=_tn_bag[key].status;
+                client_tn_data.card_id=_tn_bag[key].card_id;
+                client_tn_data.beauty_id=_tn_bag[key].beauty_id;
                 client_tn_data.rewarded=_tn_bag[key].rewarded;
                 levels.push(client_tn_data);
             }
@@ -205,7 +374,6 @@ function on_get_challenge_town(data,send,s)
             town_data.town_db_data_list[tid]=_town_db_data;
 
             make_db.insert_town_data(_town_db_data);
-
         }
 
         var client_data=new Object();
@@ -298,35 +466,19 @@ function on_get_one_town_data(data,send,s)
         "ret" : msg_code.SUCC
     };
 
+    //服务器时间
+    msg.time=new Date().getTime();
+
     //城池产出
     msg.reward=_town_db_data.reward;
 
-    //返回前十名排行版
-    msg.rank=[];
-    for(var i=0;i<_town_db_data.last_arr.length;i++)
-    {
-        if(i>9)
-        {
-            break;
-        }
-
-        var rank_obj = {};
-        rank_obj.rank = i + 1;
-        rank_obj.name = formation.formation_list[_town_db_data.last_arr[0].grid].name;
-
-        msg.rank.push(rank_obj);
-
-    }
-
     //我的伤害
     msg.my_damage=0;
-    msg.my_rank=0;
     for(var i=0;i<_town_db_data.last_arr.length;i++)
     {
         if(_town_db_data.last_arr[i].grid==role.grid)
         {
             msg.my_damage=_town_db_data.last_arr[i].hurt;
-            msg.my_rank=i+1;
             break;
         }
     }
@@ -340,16 +492,21 @@ function on_get_one_town_data(data,send,s)
     {
         msg.owner_name=owner_formation_data.name;
         msg.leader_xid=owner_formation_data.card_ls[0].card_id;
+        msg.owner_title_id=owner_formation_data.town_title;
+        msg.owner_title_id="title102";
     }
     if(second_formation_data)
     {
         msg.second_name=second_formation_data.name;
         msg.second_xid=second_formation_data.card_ls[0].card_id;
+        msg.second_title_id=second_formation_data.town_title;
+        msg.second_title_id="title206";
     }
     if(third_formation_data)
     {
         msg.third_name=third_formation_data.name;
         msg.third_xid=third_formation_data.card_ls[0].card_id;
+        msg.third_title_id="title301";
     }
 
     //城守信息
@@ -444,6 +601,7 @@ function on_get_town_rank_data(data,send,s)
         rank_obj.name = _formation_data.name;
         rank_obj.level = _formation_data.level;
         rank_obj.title_id = _formation_data.town_title;
+        rank_obj.title_id = "title333";
         rank_obj.card_ls = _formation_data.card_ls;
 
         rank_arr.push(rank_obj);
@@ -452,6 +610,7 @@ function on_get_town_rank_data(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_TOWN_RANk,
+        "tid" : tid,
         "rank" : rank_arr,
         "ret" : msg_code.SUCC
     };
@@ -462,6 +621,363 @@ function on_get_town_rank_data(data,send,s)
     log_data_logic.log(logData);
 }
 exports.on_get_town_rank_data = on_get_town_rank_data;
+
+//获取城池称号信息
+function on_get_town_title_data(data,send,s)
+{
+    global.log("on_get_town_title_data");
+
+    var gid = s.gid;
+    if(gid == undefined)
+    {
+        global.log("gid == undefined");
+        return;
+    }
+
+    var user = ds.user_list[gid];
+    if(user == undefined)
+    {
+        global.log("user == undefined");
+        return;
+    }
+
+    var role = ds.get_cur_role(user);
+    if(role == undefined)
+    {
+        global.log("role == undefined");
+        return;
+    }
+
+    var title_arr=[];
+    for(var key in town_title_data.town_title_db_data_list)
+    {
+        var _title_data=town_title_data.town_title_db_data_list[key];
+        if(!_title_data.date)
+        {
+            //还未获取任何称号
+            continue;
+        }
+        else
+        {
+            var _formation_data=formation.formation_list[_title_data.grid];
+
+            var title_obj={};
+            title_obj.name=_formation_data.name;
+            title_obj.date=_title_data.date;
+            title_obj.title_id=_formation_data.town_title;
+
+            title_arr.push(title_obj);
+        }
+    }
+
+
+
+    for(var i=0;i<5;i++)
+    {
+        var title_obj={};
+        title_obj.name="测试始皇帝"+i;
+        title_obj.date=new Date().getTime();
+        title_obj.title_id="title001";
+
+        title_arr.push(title_obj);
+    }
+
+    for(var i=1;i<4;i++)
+    {
+        var title_obj={};
+        title_obj.name="测试王"+i;
+        title_obj.date=new Date().getTime();
+        title_obj.title_id="title10"+i;
+
+        title_arr.push(title_obj);
+    }
+
+    for(var i=1;i<7;i++)
+    {
+        var title_obj={};
+        title_obj.name="测试大将军"+i;
+        title_obj.date=new Date().getTime();
+        if(i*2>=10)
+        {
+            title_obj.title_id="title2"+i*2;
+        }
+        else
+        {
+            title_obj.title_id="title20"+i*2;
+        }
+
+
+        title_arr.push(title_obj);
+    }
+
+    for(var i=1;i<8;i++)
+    {
+        var title_obj={};
+        title_obj.name="测试都督"+i;
+        title_obj.date=new Date().getTime();
+
+        if(i*4>=10)
+        {
+            title_obj.title_id="title3"+i*4;
+        }
+        else
+        {
+            title_obj.title_id="title30"+i*4;
+        }
+
+        title_arr.push(title_obj);
+    }
+
+    var msg = {
+        "op" : msg_id.NM_TOWN_TITLE,
+        "title_arr" : title_arr,
+        "ret" : msg_code.SUCC
+    };
+    send(msg);
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_get_town_title_data",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+}
+exports.on_get_town_title_data = on_get_town_title_data;
+
+//招降武将
+function on_summon_card(data,send,s)
+{
+    global.log("on_summon_card");
+
+    var gid = s.gid;
+    if(gid == undefined)
+    {
+        global.log("gid == undefined");
+        return;
+    }
+
+    var user = ds.user_list[gid];
+    if(user == undefined)
+    {
+        global.log("user == undefined");
+        return;
+    }
+
+    var role = ds.get_cur_role(user);
+    if(role == undefined)
+    {
+        global.log("role == undefined");
+        return;
+    }
+
+    var tid=data.tid;
+    var select=data.select;
+    if(tid==undefined||select==undefined)
+    {
+        global.log("tid==undefined||select==undefined");
+        return;
+    }
+
+    var role_town_data=role.town_bag[tid];
+    var town_json_data=town_data.town_data_list[tid];
+    if(role_town_data==undefined || town_json_data==undefined)
+    {
+        global.log("role_town_data==undefined || town_json_data==undefined");
+        return;
+    }
+
+    if(!role_town_data.card_id)
+    {
+        var msg = {
+            "op" : msg_id.NM_SUMMON_CARD,
+            "ret" : msg_code.CARD_NOT_EXIST
+        };
+        send(msg);
+        return;
+    }
+
+    if(role_town_data.status>const_value.TOWN_STATUS_CARD)
+    {
+        var msg = {
+            "op" : msg_id.NM_SUMMON_CARD,
+            "ret" : msg_code.REWARD_IS_GAINED
+        };
+        send(msg);
+        return;
+    }
+
+    if(role_town_data.gate.length!=town_json_data.gate.length)
+    {
+        var msg = {
+            "op" : msg_id.NM_SUMMON_CARD,
+            "ret" : msg_code.TOWN_NOT_PASSED
+        };
+        send(msg);
+        return;
+    }
+
+
+    var msg = {
+        "op" : msg_id.NM_SUMMON_CARD,
+        "ret" : msg_code.SUCC
+    };
+    if(select)
+    {
+        var uid=card_logic.help_create_role_card(role,role_town_data.card_id);
+        role_town_data.status=const_value.TOWN_STATUS_BEAUTY;
+        msg.uid=uid;
+    }
+
+
+    if(!role_town_data.beauty_id)
+    {
+        //开启新城池
+        role_town_data.status=const_value.TOWN_STATUS_OK;
+        help_open_role_town(role,tid);
+    }
+
+    send(msg);
+
+    user.nNeedSave=1;
+
+    role_data_logic.help_notice_role_msg(role,send);
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_summon_card",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+}
+exports.on_summon_card = on_summon_card;
+
+//购买美女
+function on_buy_beauty(data,send,s)
+{
+    global.log("on_buy_beauty");
+
+    var gid = s.gid;
+    if(gid == undefined)
+    {
+        global.log("gid == undefined");
+        return;
+    }
+
+    var user = ds.user_list[gid];
+    if(user == undefined)
+    {
+        global.log("user == undefined");
+        return;
+    }
+
+    var role = ds.get_cur_role(user);
+    if(role == undefined)
+    {
+        global.log("role == undefined");
+        return;
+    }
+
+    var tid=data.tid;
+    var money=data.money;
+    if(tid==undefined||money==undefined)
+    {
+        global.log("tid==undefined||money==undefined");
+        return;
+    }
+
+    var role_town_data=role.town_bag[tid];
+    if(role_town_data==undefined)
+    {
+        global.log("role_town_data==undefined");
+        return;
+    }
+
+    if(!role_town_data.beauty_id)
+    {
+        var msg = {
+            "op" : msg_id.NM_BUY_BEAUTY,
+            "ret" : msg_code.BEAUTY_NOT_EXIST
+        };
+        send(msg);
+        return;
+    }
+
+    if(role_town_data.status==const_value.TOWN_STATUS_OK)
+    {
+        var msg = {
+            "op" : msg_id.NM_BUY_BEAUTY,
+            "ret" : msg_code.REWARD_IS_GAINED
+        };
+        send(msg);
+        return;
+    }
+
+    if(role_town_data.status<const_value.TOWN_STATUS_BEAUTY)
+    {
+        global.err("town status is err,status="+role_town_data.status);
+        return;
+    }
+
+    var beauty_json_data=card_data.beauty_data_list[role_town_data.beauty_id];
+    if(beauty_json_data==undefined)
+    {
+        global.log("beauty_json_data==undefined");
+        return;
+    }
+
+    var pay_ok=money_logic.help_pay_money(role,money);
+    var uid=0;
+    if(pay_ok)
+    {
+        role_town_data.beauty_money+=money;
+        if(role_town_data.beauty_money>=beauty_json_data.gift_gold)
+        {
+            //获得美女
+            uid=card_logic.help_create_role_beauty(role,beauty_json_data.beauty_id);
+            role_town_data.status=const_value.TOWN_STATUS_OK;
+
+            //开启新城池
+            help_open_role_town(role,tid);
+        }
+        else
+        {
+            var msg = {
+                "op" : msg_id.NM_BUY_BEAUTY,
+                "ret" : msg_code.BEAUTY_MONEY_FEW
+            };
+            send(msg);
+            return;
+        }
+    }
+    else
+    {
+        var msg = {
+            "op" : msg_id.NM_BUY_BEAUTY,
+            "ret" : msg_code.GOLD_NOT_ENOUGH
+        };
+        send(msg);
+        return;
+    }
+
+    var msg = {
+        "op" : msg_id.NM_BUY_BEAUTY,
+        "uid" :uid,
+        "ret" : msg_code.BEAUTY_MONEY_FEW
+    };
+    send(msg);
+
+    user.nNeedSave=1;
+
+    //推送客户端全局修改信息
+    var g_msg = {
+        "op" : msg_id.NM_USER_DATA,
+        "gold":role.gold,
+        "ret" :msg_code.SUCC
+    };
+    send(g_msg);
+    global.log(JSON.stringify(g_msg));
+
+    role_data_logic.help_notice_role_msg(role,send);
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_buy_beauty",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+}
+exports.on_buy_beauty = on_buy_beauty;
 
 //领取守城奖励
 function on_gain_guard_town_reward(data,send,s)
@@ -897,7 +1413,7 @@ function help_town_fight_result(data,send,s)
         fight_user_formation_data.top_hurt=old_hurt>single_hurt?old_hurt:single_hurt;
         //计算单次伤害排行榜
         var ret_rank=arena_logic.help_count_hurt_rank(role.gid,role.grid,old_hurt,single_hurt);
-
+        var gain_money=0;
         var _town_db_data=town_data.town_db_data_list[tid];
         if(_town_db_data==undefined)
         {
@@ -919,12 +1435,16 @@ function help_town_fight_result(data,send,s)
                 }
             }
 
+
             if(!is_exist)
             {
                 var town_fight_data=new town_data.TownFightData();
                 town_fight_data.grid=role.grid;
                 town_fight_data.hurt=total_hurt;
                 _town_db_data.new_arr.push(town_fight_data);
+                //首次获取铜钱奖励
+                gain_money=const_value.TOWN_COIN_REWARD;
+                money_logic.help_gain_money(role,gain_money);
             }
 
             //放入更新列表中，定时入库
@@ -939,6 +1459,7 @@ function help_town_fight_result(data,send,s)
             "single_lb":ret_rank.new_rank,
             "old_single_lb":ret_rank.old_rank,
             "exceed":ret_rank.exceed,
+            "gain_money":gain_money,
             "ret" : msg_code.SUCC
         };
         send(msg);
@@ -1046,14 +1567,28 @@ function help_init_role_town(role,tid)
 
     //首次初始化副本
     var role_town_data=new ds.Role_Town_Data();
+
+    var first_town_json_data;
     for(var key in town_data.town_data_list)
     {
-        var first_town_json_data=town_data.town_data_list[key];
+        first_town_json_data=town_data.town_data_list[key];
         break;
     }
 
     role_town_data.tid=first_town_json_data.tid;
     town_bag_data[role_town_data.tid]=role_town_data;
+    role_town_data.status=const_value.TOWN_STATUS_INIT;
+
+
+    var card_arr=pool_data.card_pool_data_list[first_town_json_data.card_star];
+    var beauty_arr=pool_data.beauty_pool_data_list[first_town_json_data.beauty_star];
+    var card_rand=common_func.help_make_one_random(0,card_arr.length-1);
+    var beauty_rand=common_func.help_make_one_random(0,beauty_arr.length-1);
+
+    role_town_data.card_id=card_arr[card_rand];
+    role_town_data.beauty_id=beauty_arr[beauty_rand];
+    role.town_card.push(card_arr[card_rand]);
+    role.town_beauty.push(beauty_arr[beauty_rand]);
 
     var role_gate_data=new ds.Role_Gate_Data();
     role_gate_data.is_first=1;
@@ -1151,6 +1686,8 @@ var help_town_fight_rank=function(data)
                     {
                         //称号替换
                         formation.formation_list[first_gird].town_title=tid;
+                        //时间更新
+                        _town_title_db_data.date=new Date().getTime();
                         help_get_town_title(_town_title_db_data,1);
                     }
                 }
@@ -1286,6 +1823,7 @@ var help_get_town_title=function(_town_title_db_data,level,role_grid)
                     {
                         //称号替换
                         formation.formation_list[role_grid].town_title=key;
+                        _town_title_db_data.date=new Date().getTime();
                     }
 
                     is_add=1;

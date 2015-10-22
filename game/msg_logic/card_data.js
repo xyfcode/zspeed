@@ -25,9 +25,22 @@ var card_data_list={};
 exports.card_data_list=card_data_list;
 
 
+var BeautyData=function()
+{
+    this.beauty_id=0;
+    this.star=0;
+    this.gift_gold=0;
+};
+
+
+var beauty_data_list={};
+exports.beauty_data_list=beauty_data_list;
+
+
 function init()
 {
     load_card_data();
+    load_beauty_data();
 }
 exports.init=init;
 
@@ -68,6 +81,34 @@ function load_card_data()
 
     var log_content={"count":count,"card_data_list":card_data_list};
     var logData=log_data_logic.help_create_log_data("sys","sys","sys","sys","sys","load_card_data",log_content,log_data.logType.LOG_CONFIG);
+    log_data_logic.log(logData);
+
+}
+
+
+function load_beauty_data()
+{
+    global.log("load_beauty_data");
+    var file="beauty.json";
+    var data=json_config_file.json_config_file_list[file];
+
+    var ks=Object.keys(data["BEAUTY"]);
+    var count=ks.length;
+
+    for(var i=1 ; i<=count ; i++)
+    {
+        var beauty_data=new BeautyData();
+
+        beauty_data.beauty_id=data["BEAUTY"][i].BeautyId;
+        beauty_data.star=Number(data["BEAUTY"][i].Star);
+        beauty_data.gift_gold=Number(data["BEAUTY"][i].GiftCoin);
+
+
+        beauty_data_list[beauty_data.beauty_id]=beauty_data;
+    }
+
+    var log_content={"count":count,"beauty_data_list":beauty_data_list};
+    var logData=log_data_logic.help_create_log_data("sys","sys","sys","sys","sys","load_beauty_data",log_content,log_data.logType.LOG_CONFIG);
     log_data_logic.log(logData);
 
 }

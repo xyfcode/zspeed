@@ -22,6 +22,8 @@ var TownData=function()
     this.type3=0;
     this.id3=0;
     this.num3=0;
+    this.card_star=0;
+    this.beauty_star=0;
 
 };
 
@@ -65,6 +67,10 @@ function load_town_data()
         tn_data.basic_money= Number(data["TOWN"][i].BasicMoney);
         tn_data.add_money= Number(data["TOWN"][i].ArithmeticProgression);
         tn_data.add_rmb= Number(data["TOWN"][i].Gold);
+        tn_data.card_star= data["TOWN"][i].CardStar;
+        tn_data.card_rate= Number(data["TOWN"][i].CardRate)*100;
+        tn_data.beauty_star= data["TOWN"][i].BeautyStar;
+        tn_data.beauty_rate= Number(data["TOWN"][i].BeautyRate)*100;
         tn_data.gate= (data["TOWN"][i].Gate).split(',');
 
         if(data["TOWN"][i].Num1>0)

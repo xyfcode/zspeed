@@ -89,6 +89,8 @@ function RoleData()
     this.recruit = {};//单抽招募数据 key: recruit_id, value:Role_Recruit_Data
     this.ten_recruit = {};//10连抽招募数据
     this.town_bag = {}; // 城池背包 key tid，value:Role_Town_Data
+    this.town_card = []; // 城池获取随机武将 value:card_id
+    this.town_beauty = []; // 城池获取随机美女 value:beauty_id
 
     this.offline_time = 0;//离线时间
     this.login_time = 0;//登录时间
@@ -97,6 +99,7 @@ function RoleData()
     this.cbag_limit = 0;//卡牌背包限制
     this.cbag_time =0; //卡牌背包打开时间
     this.card_piece = {};//卡牌碎片背包 key:card_id value:Role_Card_Piece_Data
+    this.beauty_bag = {};//美女背包 key:unique_id value:Role_Beauty_Data
 
     this.item_bag = {};//道具背包 key:item_id,value:Role_Item_Data
     this.ibag_time =0; //装备背包打开时间
@@ -179,6 +182,16 @@ function Role_Card_Data()
 }
 exports.Role_Card_Data = Role_Card_Data;
 
+//美女数据
+function Role_Beauty_Data()
+{
+    this.unique_id = 0;//唯一ID
+    this.beauty_id = 0;//卡牌唯一ID
+    this.used = 0;//是否在阵上
+    this.gain_time=0;//获取时间
+}
+exports.Role_Beauty_Data = Role_Beauty_Data;
+
 //武将身上的装备数据结构
 function Card_Equip_Data()
 {
@@ -209,8 +222,11 @@ exports.Role_Item_Data = Role_Item_Data;
 function Role_Town_Data()
 {
     this.tid=0;//城池ID
-    this.passed=0;//是否通关 0:否，1是
+    this.status=0;// 1:初始状态 2:关卡通关 武将未领取 3:美女未领取 4:通关
     this.rewarded=0;//是否已经领取通关奖励 0:否，1是
+    this.card_id=0; //守城武将
+    this.beauty_id=0;//美女
+    this.beauty_money=0;//见面礼
     this.gate = [];//Role_Gate_Data
 }
 exports.Role_Town_Data = Role_Town_Data;

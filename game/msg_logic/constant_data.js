@@ -17,14 +17,10 @@ var ConstValue=function()
     this.BAG_EXPEND_LIMIT=0;
     //扩充武将背包消耗元宝
     this.BAG_EXPAND_COST = 0;
-    //战斗复活消耗元宝
-    this.FIGHT_RELIVE_COST = 0;
     //体力恢复时间
     this.POINT_TICK = 0;
     //体力最大值
     this.STAMINA_MAX = 0;
-    //替代武将id
-    this.REPLACE_CARD = 0;
     //战前邀请好友数量
     this.FIGHT_FRIEND_NUM = 0;
     //邀请好友人获得积分
@@ -41,10 +37,8 @@ var ConstValue=function()
     this.RECRUIT_DISCOUNT=0;
     //月卡
     this.CD_REWARD_TIME=0;
-    //强化装备经验金钱参数
-    this.Up_EQUIP_COST_MONEY_RATIO=0;
-    //装备经验增幅比例
-    this.Up_EQUIP_EXP_RATIO=0;
+
+
     //强化武将经验金钱参数
     this.Up_CARD_COST_MONEY_RATIO=0;
     //聊天免费次数
@@ -57,44 +51,10 @@ var ConstValue=function()
     this.EXCHANGE_MS=0;
     //兑换店刷新花费
     this.EXCHANGE_COST=0;
-    //武将超出角色等级限制
-    this.CARD_EXCEED_ROLE_LIMIT=0;
     //转生等级限制
     this.REBORN_LEVEL=[];
-    //招募开启等级
-    this.RECRUIT_LEVEL=0;
-    //强化开启等级
-    this.STRENGTH_LEVEL=0;
-    //每日登陆开启等级
-    this.LOGIN_LEVEL=0;
-    //每日签到开启等级
-    this.SIGN_LEVEL=0;
-    //参拜开启等级
-    this.SACRIFICE_LEVEL=0;
-    //转生开启等级
-    this.EVOLVE_LEVEL=0;
-    //成就开启等级
-    this.ACHIEVE_LEVEL=0;
     //探索开启等级
     this.EXPLORE_LEVEL=0;
-    //邀请好友开启等级
-    this.FRIEND_LEVEL=0;
-    //兑换店开启等级
-    this.EXCHANGE_LEVEL=0;
-    //排行榜开启等级
-    this.RANK_LEVEL=0;
-    //兵器战场开启等级
-    this.EQUIP_BATTLE_LEVE=0;
-    //名将战场开启等级
-    this.WARR_BATTLE_LEVEL=0;
-    //霸业开启等级
-    this.CASTELLAN_LEVEL=0;
-    //霸业铜钱产出时间(毫秒值)
-    this.TOWN_MONEY_MS=0;
-    //霸业人民币产出时间(毫秒值)
-    this.TOWN_RMB_MS=0;
-    //城池收益持续时间24小时(毫秒值)
-    this.TOWN_EFFECTIVE_MS=0;
     //升级恢复体力
     this.UP_ADD_POWER=0;
     //摇钱树获取的铜钱
@@ -107,7 +67,8 @@ var ConstValue=function()
     this.MT_Crit_LOW=0;
     //摇钱树高级暴击概率
     this.MT_Crit_HIGH=0;
-
+    //霸业铜钱奖励
+    this.TOWN_COIN_REWARD=0;
     //熊猫卡包ID
     this.PANDA_ITEM_ID=0;
     //肥猪卡包ID
@@ -124,6 +85,8 @@ var ConstValue=function()
     this.REVIVE_COST=[];
     //战斗复活VIP次数
     this.REVIVE_TIMES=[];
+    //转生花费铜钱
+    this.REBORN_COST=[];
 
 
 
@@ -131,9 +94,6 @@ var ConstValue=function()
 
 
     /*程序自定义常量*/
-
-    //扫荡等待时间
-    this.CLEAN_WAIT_TIME=5*60*1000;
 
     //最大邮件数量
     this.MAIL_MAX=30;
@@ -165,27 +125,10 @@ var ConstValue=function()
     //卡牌装备上限
     this.CARD_EQUIP_LIMIT=3;
 
-    //活动时间模式
-    this.ACTIVITY_MODE_FIX=1; //固定周期
-    this.ACTIVITY_MODE_LOOP=2; //循环周期()
-    this.ACTIVITY_MODE_ALWAYS=3; //无限周期(一直开启)
-    //活动类型
-    this.ACTIVITY_TYPE_DUEL=1; //决战
-    this.ACTIVITY_TYPE_COMMON=2; //常规
-    this.ACTIVITY_TYPE_EQUIP=3; //装备
-    this.ACTIVITY_TYPE_MATERIAL=4; //材料
-    //活动次数类型
-    this.ACTIVITY_COUNT_INFINITY=1; //不限次数
-    this.ACTIVITY_COUNT_LIMITED=2; //有限次数
-
     //关卡战斗分类
     this.FIGHT_TYPE_GATE=1; //普通关卡战斗
     this.FIGHT_TYPE_TOWN=2; //城池战斗（挑战）
     this.FIGHT_TYPE_BATTLE=3; //战场战斗（活动）
-
-
-    //武将强化同职业倍率
-    this.CARD_RACE_ADD=2; //
 
     //卡牌背包最大限制
     this.CARD_BAG_MAX_LIMIT=200;
@@ -216,6 +159,12 @@ var ConstValue=function()
     this.MAIL_TYPE_REWARD=1;//可以领取奖励的邮件
     this.MAIL_TYPE_READ_SUCC=2;//我占领了城池,只读
     this.MAIL_TYPE_READ_FAIL=3;//我的城池被夺走，只读
+
+    //城池状态
+    this.TOWN_STATUS_INIT=1;//初始状态
+    this.TOWN_STATUS_CARD=2;//关卡通关 武将未领取
+    this.TOWN_STATUS_BEAUTY=3;//美女未领取
+    this.TOWN_STATUS_OK=4;//通关
 
     //摇钱树低级暴击触发获得倍率
     this.MT_LOW_GAIN=1.5;
@@ -257,14 +206,12 @@ function load_constant_data()
         const_value.CARD_BAG_LIMIT=Number(data["CONST"][i].CardBagLimit);
         const_value.BAG_EXPEND_LIMIT=Number(data["CONST"][i].BagExpandLimit);
         const_value.BAG_EXPAND_COST=Number(data["CONST"][i].BagExpandCost);
-        const_value.FIGHT_RELIVE_COST= Number(data["CONST"][i].FightReliveCost);
         const_value.POINT_TICK= Number(data["CONST"][i].Point_Tick);
         const_value.STAMINA_MAX= Number(data["CONST"][i].StaminaMax);
-        const_value.REPLACE_CARD= Number(data["CONST"][i].ReplaceCard);
         const_value.FIGHT_FRIEND_NUM= Number(data["CONST"][i].FightFriendNum);
         const_value.FRIEND_SCORE= Number(data["CONST"][i].FriendScore);
         const_value.USER_SCORE= Number(data["CONST"][i].UserScore);
-
+        const_value.TOWN_COIN_REWARD= Number(data["CONST"][i].TownRewardCoin);
         (data["CONST"][i].ExploreCost).split(',').forEach(function(e){
             const_value.EXPLORE_COST.push(Number(e));
         });
@@ -272,37 +219,18 @@ function load_constant_data()
         const_value.EXPLORE_TICK= Number(data["CONST"][i].ExploreTick);
         const_value.RECRUIT_DISCOUNT= Number(data["CONST"][i].RecruitDiscount);
         const_value.CD_REWARD_TIME= Number(data["CONST"][i].CdRewardTime);
-        const_value.Up_EQUIP_COST_MONEY_RATIO= Number(data["CONST"][i].UpEquipCostMoneyRatio);
-        const_value.Up_EQUIP_EXP_RATIO= Number(data["CONST"][i].UpEquipExpRatio);
         const_value.Up_CARD_COST_MONEY_RATIO= Number(data["CONST"][i].UpWarriorCostMoneyRatio);
         const_value.CHAT_FREE_TIMES= Number(data["CONST"][i].ChatFreeTimes);
         const_value.CHAT_COST= Number(data["CONST"][i].ChatCost);
         const_value.CHICK_ADD= Number(data["CONST"][i].ChickAdd);
         const_value.EXCHANGE_MS= Number(data["CONST"][i].ExchangeHour)*60*60*1000;
         const_value.EXCHANGE_COST= Number(data["CONST"][i].ExchangeCost);
-        const_value.CARD_EXCEED_ROLE_LIMIT= Number(data["CONST"][i].CardExceedRoleLimit);
+
 
         (data["CONST"][i].RebornLevel).split(',').forEach(function(e){
             const_value.REBORN_LEVEL.push(Number(e));
         });
-
-        const_value.RECRUIT_LEVEL= Number(data["CONST"][i].RecruitLv);
-        const_value.STRENGTH_LEVEL= Number(data["CONST"][i].StrengthenLv);
-        const_value.LOGIN_LEVEL= Number(data["CONST"][i].LoginLv);
-        const_value.SIGN_LEVEL= Number(data["CONST"][i].SignLv);
-        const_value.SACRIFICE_LEVEL= Number(data["CONST"][i].SacrificeLv);
-        const_value.EVOLVE_LEVEL= Number(data["CONST"][i].EvolveLv);
-        const_value.ACHIEVE_LEVEL= Number(data["CONST"][i].AchieveLv);
         const_value.EXPLORE_LEVEL= Number(data["CONST"][i].ExploreLv);
-        const_value.FRIEND_LEVEL= Number(data["CONST"][i].FriendLv);
-        const_value.EXCHANGE_LEVEL= Number(data["CONST"][i].ExchangeLv);
-        const_value.RANK_LEVEL= Number(data["CONST"][i].RankLv);
-        const_value.EQUIP_BATTLE_LEVE= Number(data["CONST"][i].EquipBattleLv);
-        const_value.WARR_BATTLE_LEVEL= Number(data["CONST"][i].WarrBattleLv);
-        const_value.CASTELLAN_LEVEL= Number(data["CONST"][i].CastellanLv);
-        const_value.TOWN_MONEY_MS= Number(data["CONST"][i].TownMoneyHour)*60*60*1000;
-        const_value.TOWN_RMB_MS= Number(data["CONST"][i].TownRmbHour)*60*60*1000;
-        const_value.TOWN_EFFECTIVE_MS= Number(data["CONST"][i].TownEffecHour)*60*60*1000;
         const_value.UP_ADD_POWER= Number(data["CONST"][i].UpGradePower);
         const_value.MT_GOLD= Number(data["CONST"][i].MTGold);
         (data["CONST"][i].MTCost).split(',').forEach(function(e){
@@ -333,6 +261,10 @@ function load_constant_data()
 
         (data["CONST"][i].ReviveTimes).split(',').forEach(function(e){
             const_value.REVIVE_TIMES.push(Number(e));
+        });
+
+        (data["CONST"][i].RebornCost).split(',').forEach(function(e){
+            const_value.REBORN_COST.push(Number(e));
         });
 
         break;

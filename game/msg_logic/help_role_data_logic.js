@@ -64,6 +64,7 @@ function make_role_level(role,exp)
     if(exp_json_data==undefined)
     {
         global.log("exp_json_data==undefined,level:"+role.level);
+        //目前只是经验累加 等级并不改变
         return;
     }
 
@@ -117,6 +118,17 @@ function help_notice_role_msg(role,send)
                 card_arr.push(role.card_bag[key].unique_id);
             }
         }
+
+        //获取美女背包提醒数量
+        var beauty_arr=[];
+        for(var key in role.beauty_bag)
+        {
+            if(role.beauty_bag[key].gain_time>role.cbag_time)
+            {
+                beauty_arr.push(role.beauty_bag[key].unique_id);
+            }
+        }
+
         //获取装备背包提醒数量
         var item_arr=[];
         for(var key in role.item_bag)
@@ -143,6 +155,7 @@ function help_notice_role_msg(role,send)
             "fRNum" : f_num,
             "iArr" : item_arr,
             "cArr":card_arr,
+            "bArr":beauty_arr,
             "rNum":rank_num-role.rank_reward.length,
             "ret" :msg_code.SUCC
         };

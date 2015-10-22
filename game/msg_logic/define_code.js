@@ -121,6 +121,9 @@ function MsgCode()
     this.TOWN_NOT_FIGHT=79;//非挑战时间，不能挑战！
     this.TOWN_NOT_REWARD=80;//非奖励领取时间，不能领取！
     this.TOWN_FIGHT_PERIOD=81;//一个挑战周期内只能挑战一个城池！
+    this.BEAUTY_MONEY_FEW=82;//钱不够，不能获得美女！
+    this.CARD_NOT_EXIST=83;//守将不存在，不能获取！
+    this.BEAUTY_NOT_EXIST=84;//美女不存在，不能获取！
 
 }
 exports.msg_code = new MsgCode();

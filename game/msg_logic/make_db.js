@@ -292,7 +292,7 @@ exports.update_town_title_data=function(town_title_data){
         global.log("town_title_data==undefined");
         return;
     }
-    var options={"tid":town_title_data.tid};
+    var options={"grid":town_title_data.grid};
     var obj_new=town_title_data;
     wy_db.update(t_town_title_list,options,obj_new);
 };

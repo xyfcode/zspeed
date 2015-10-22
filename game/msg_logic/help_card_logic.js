@@ -79,6 +79,40 @@ function help_create_role_card(role,card_id)
 }
 exports.help_create_role_card = help_create_role_card;
 
+//给角色创建一个美女，放入背包
+function help_create_role_beauty(role,beauty_id)
+{
+    global.log("help_create_role_beauty");
+    if(role == undefined || beauty_id == undefined)
+    {
+        global.log("role == undefined || beauty_id == undefined");
+        return;
+    }
+
+
+    var beauty_json_data = card_data.beauty_data_list[beauty_id];
+    if(beauty_json_data == undefined)
+    {
+        global.log("beauty_json_data == undefined");
+        return;
+    }
+
+    var _beauty = new ds.Role_Beauty_Data();
+    _beauty.unique_id = make_db.get_global_unique_id();
+    _beauty.card_id = beauty_json_data.card_id;
+    _beauty.gain_time = (new Date()).getTime();
+
+    //放入用户卡牌背包
+    role.beauty_bag[_beauty.unique_id] = _beauty;
+
+    var log_content={"_beauty" : _beauty};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"help_create_role_beauty",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+
+    return _beauty.unique_id;
+}
+exports.help_create_role_beauty = help_create_role_beauty;
+
 //给角色创建一个卡牌碎片，放入背包
 function help_create_card_piece(role,card_id,num)
 {
@@ -788,6 +822,18 @@ function on_card_reborn(data,send,s)
         }
     }
 
+    var cost_money=const_value.REBORN_COST[_card_data.b_level];
+    //升级
+    var pay_ok=money_logic.help_pay_money(role,cost_money);
+    if(!pay_ok)
+    {
+        var msg = {
+            "op" : msg_id.NM_CARD_REBORN,
+            "ret" : msg_code.GOLD_NOT_ENOUGH
+        };
+        send(msg);
+        return;
+    }
 
     //转生等级提升
     _card_data.b_level++;

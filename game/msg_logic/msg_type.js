@@ -116,6 +116,9 @@ function MsgID()
     this.NM_GET_SHARE_REWARD=213; //获取分享奖励
     this.NM_ONE_TOWN_CHALLENGE=212; //单个挑战城池信息
     this.NM_TOWN_RANk=211; //获取城池排行榜信息
+    this.NM_TOWN_TITLE=210; //获取城池称号信息
+    this.NM_SUMMON_CARD=209; //招降武将
+    this.NM_BUY_BEAUTY=208; //购买美女
     this.NM_TEST_TOWN=3000; //城池全部打开
 }
 exports.MsgID=MsgID;

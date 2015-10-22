@@ -24,7 +24,8 @@ function FormationData()
     this.name='';
     this.vip=0;
     this.top_hurt=0;//最高伤害
-    this.town_title=0;//霸业的称号
+    this.town_title=0;//玩家霸业的最高称号
+    this.beauty_id=0; //value FormationBeautyBase
     this.card_ls=[]; //卡组编号，value：FormationCardBase
 }
 exports.FormationData=FormationData;
@@ -49,6 +50,14 @@ function FormationEquipData()
     //this.gem=[];   //装备宝石
 }
 exports.FormationEquipData=FormationEquipData;
+
+//助阵美女数据
+function FormationBeautyBase()
+{
+    this.unique_id=0;
+    this.beauty_id=0;   //美女ID
+}
+exports.FormationBeautyBase=FormationBeautyBase;
 
 
 //战斗运行中用户数据

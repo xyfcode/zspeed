@@ -105,67 +105,6 @@ function on_gate_data(data,send,s)
 }
 exports.on_gate_data = on_gate_data;
 
-
-//城池全部打开
-function on_test_town(data,send,s)
-{
-    global.log("on_test_town");
-
-    var gid = s.gid;
-    if(gid == undefined)
-    {
-        global.log("gid == undefined");
-        return;
-    }
-
-    var user = ds.user_list[gid];
-    if(user == undefined)
-    {
-        global.log("user == undefined");
-        return;
-    }
-
-    var role = ds.get_cur_role(user);
-    if(role == undefined)
-    {
-        global.log("role == undefined");
-        return;
-    }
-
-    var town_bag_data=role.town_bag;
-
-    for(var key in tn_data.town_data_list)
-    {
-        var town_json_data=tn_data.town_data_list[key];
-
-        //开启新的城池
-        var role_town_data=new ds.Role_Town_Data();
-
-        role_town_data.tid=town_json_data.tid;
-        role_town_data.passed=1;
-        town_bag_data[role_town_data.tid]=role_town_data;
-
-        for(var i=0;i<town_json_data.gate.length;i++)
-        {
-            var role_gate_data=new ds.Role_Gate_Data();
-            role_gate_data.passed=1;
-            role_gate_data.gate_id=town_json_data.gate[i];
-            role_town_data.gate.push(role_gate_data);
-        }
-    }
-
-    var msg = {
-        "op" : msg_id.NM_TEST_TOWN,
-        "ret" : msg_code.SUCC
-    };
-    send(msg);
-
-    var log_content={"msg":msg};
-    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_test_town",log_content,log_data.logType.LOG_BEHAVIOR);
-    log_data_logic.log(logData);
-}
-exports.on_test_town = on_test_town;
-
 //领取城池奖励
 function on_gain_town_reward(data,send,s)
 {
@@ -753,9 +692,25 @@ function help_open_role_gate(role)
     }
     else
     {
-        role_tn_bag.passed=1;
-        //开启城池地图
-        town_logic.help_open_role_town(role,tid);
+        if(!role_tn_bag.card_id)
+        {
+            if(!role_tn_bag.beauty_id)
+            {
+                //直接开启新城池
+                role_tn_bag.status=const_value.TOWN_STATUS_OK;
+                town_logic.help_open_role_town(role,tid);
+            }
+            else
+            {
+                //关卡过完，领取美女开启
+                role_tn_bag.status=const_value.TOWN_STATUS_BEAUTY;
+            }
+        }
+        else
+        {
+            //关卡过完，领取武将开启
+            role_tn_bag.status=const_value.TOWN_STATUS_CARD;
+        }
     }
 
     var log_content={};

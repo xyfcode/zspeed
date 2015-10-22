@@ -44,6 +44,7 @@ exports.TitleData=TitleData;
 var TownTitleDbData=function()
 {
     this.grid=0; //玩家id
+    this.date=0;// 获取最高称号时间
     this.town_fight={};//单个城池数据 key tid value TownTitleFightData
     this.satrap=[]; //TitleData
     this.governor=[]; //TitleData
@@ -95,8 +96,8 @@ var load_town_title_db_data=function()
         {
             for(var i in arr)
             {
-                var tid=arr[i].tid;
-                town_title_db_data_list[tid]=arr[i];
+                var grid=arr[i].grid;
+                town_title_db_data_list[grid]=arr[i];
             }
         }
     });
