@@ -34,6 +34,7 @@ var battle_field_data=require("./msg_logic/battle_field_data");
 var arena_data=require("./msg_logic/arena_data");
 var shop_data=require("./msg_logic/shop_data");
 var share_data=require("./msg_logic/share_data");
+var pool_data=require("./msg_logic/pool_data");
 
 //逻辑
 var billing_logic = require("./msg_logic/help_billing_logic");
@@ -158,6 +159,9 @@ var handler = {
     "213" : new on_get_share_reward(), //分享facebook获取元宝
     "212" : new on_get_one_town_data(), //获取单个城池信息
     "211" : new on_get_town_rank_data(), //获取城池排行榜信息
+    "210" : new on_get_town_title_data(), //获取城池称号信息
+    "209" : new on_summon_card(), //招降武将
+    "208" : new on_buy_beauty(), //购买美女
 
     "3000" : new on_test_town() //跳过关卡
 
@@ -208,6 +212,7 @@ exports.server = function(server)
     battle_field_data.init();
     shop_data.init();
     share_data.init();
+    pool_data.init();
 
     //逻辑
     billing_logic.init(server);
@@ -340,7 +345,7 @@ function on_test_town()
 {
     this.handle = function(data,send,s)
     {
-        gate_logic.on_test_town(data,send,s);
+        town_logic.on_test_town(data,send,s);
     }
 }
 
@@ -854,6 +859,30 @@ function on_get_town_rank_data()
     this.handle = function(data,send,s)
     {
         town_logic.on_get_town_rank_data(data,send,s);
+    }
+}
+
+function on_get_town_title_data()
+{
+    this.handle = function(data,send,s)
+    {
+        town_logic.on_get_town_title_data(data,send,s);
+    }
+}
+
+function on_buy_beauty()
+{
+    this.handle = function(data,send,s)
+    {
+        town_logic.on_buy_beauty(data,send,s);
+    }
+}
+
+function on_summon_card()
+{
+    this.handle = function(data,send,s)
+    {
+        town_logic.on_summon_card(data,send,s);
     }
 }
 
