@@ -3,13 +3,13 @@
     {
         "1":
         {
-           "ID":1,
-           "NAME" : "桃园结义",
-            "IP" : "127.0.0.1",
-            "PORT" : 10211,
+           "ID":2,
+           "NAME" : "苹果测试",
+            "IP" : "111.111.11.1",
+            "PORT" : 10212,
             "IS_OPEN" :1,
-            "IS_NEW" : 1,
-            "IS_TEST" :0,
+            "IS_NEW" : 0,
+            "IS_TEST" :1,
             "MAX_ONLINE":3000,
             "MAX_REGISTER":120000,
             "PFT" :2,
