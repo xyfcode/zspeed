@@ -286,7 +286,7 @@ function write_log(type,logData)
             create_stream(log_path+log2_file[type].path);
         }
         wlog_buff[type]+=str;
-        if(wlog_buff[type].length>5000)
+        if(wlog_buff[type].length>100)
         {
             log_stream[log_path+log2_file[type].path].write(wlog_buff[type]);
             log2_file[type].len+=wlog_buff[type].length;
