@@ -166,7 +166,6 @@ var ExBuffer = function (bufferLength) {
 };
 
 util.inherits(ExBuffer, process.EventEmitter);//继承事件类
-
 module.exports = exports = ExBuffer;
 
 
