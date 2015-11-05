@@ -8,13 +8,13 @@ var log_data=require("./log_data");
 var log_data_logic=require("./help_log_data_logic");
 var gate_data=require("./gate_data");
 var formation_data=require("./formation_data");
-var card_data=require("./card_data");
 var tn_data=require("./town_data");
 var ds = require("./data_struct");
 var define_code=require("./define_code");
 var common_func = require("./common_func");
 var friend_data = require("./friend_data");
 
+var xxtea = require('xxtea-node');
 var town_logic=require("./help_town_logic");
 var arena_logic=require("./help_arena_logic");
 var activity_logic=require("./help_activity_logic");
@@ -152,7 +152,7 @@ function on_gain_town_reward(data,send,s)
 
 
     var u_ids=[];
-    if(town_bag_data.passed==1)
+    if(town_bag_data.status==const_value.TOWN_STATUS_OK)
     {
         var _tn_data=tn_data.town_data_list[town_bag_data.tid];
         if(_tn_data==undefined)
@@ -437,7 +437,7 @@ function help_gate_reward_data(data,send,s)
         drops.push(gold);
     }
 
-    fight_user_data.nonce=common_func.help_make_one_random(0,100);
+    fight_user_data.nonce=common_func.help_make_one_random(10000,20000);
     fight_user_data.parent_id=parent_id;
     fight_user_data.gate_id=gate_id;
     fight_user_data.drops=drops;

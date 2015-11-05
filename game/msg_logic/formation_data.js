@@ -25,7 +25,7 @@ function FormationData()
     this.vip=0;
     this.top_hurt=0;//最高伤害
     this.town_title=0;//玩家霸业的最高称号
-    this.beauty_id=0; //value FormationBeautyBase
+    this.beauty_uid=0; //value FormationBeautyBase
     this.card_ls=[]; //卡组编号，value：FormationCardBase
 }
 exports.FormationData=FormationData;

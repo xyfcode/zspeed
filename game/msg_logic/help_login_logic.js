@@ -399,6 +399,12 @@ function help_initialize_role_info(role)
        {
            card_logic.help_create_role_card(role,card_arr[i]);
        }
+
+       //初始化美女背包
+       var beauty_id=_data.init_beauty;
+       var uid=card_logic.help_create_role_beauty(role,beauty_id);
+       role.beauty_bag[uid].used=1;
+
    }
 }
 

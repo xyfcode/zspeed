@@ -413,28 +413,29 @@ var help_send_role_cd_reward_mail=function(gid,grid,num)
 };
 exports.help_send_role_cd_reward_mail=help_send_role_cd_reward_mail;
 
-//城池被占发送提醒邮件
-var help_send_old_town_mail=function(recev_gid,recev_grid,town_name,tid,user_name)
+//攻城邮件奖励，发送邮件
+var help_send_town_reward_mail=function(gid,grid,content,reward_type,num)
 {
-    global.log("help_send_old_town_mail");
+    global.log("help_send_town_reward_mail");
 
-    if(recev_gid == undefined||recev_grid==undefined)
+    if(gid == undefined || grid == undefined || content == undefined || reward_type == undefined || num == undefined)
     {
-        global.log("recev_gid == undefined||recev_grid==undefined");
+        global.log("gid == undefined || grid == undefined || content == undefined || reward_type == undefined || num == undefined");
         return;
     }
 
-    var recev_gid=recev_gid;
-    var recev_grid=recev_grid;
-    var content="妳的城池 "+town_name+" 被 "+user_name+" 奪走，快去搶回來吧！";
-    var attachment=tid;
-    help_create_mail_data(recev_gid, recev_grid,const_value.MAIL_TYPE_READ_FAIL, content,attachment);
+    var recev_gid=gid;
+    var recev_grid=grid;
 
-    var log_content={};
-    var logData=log_data_logic.help_create_log_data(recev_gid,0,recev_grid,0,0,"help_send_old_town_mail",log_content,log_data.logType.LOG_BEHAVIOR);
-    log_data_logic.log(logData);
+    var item=new Object();
+    item.type=reward_type;
+    item.id="";
+    item.num=num;
+
+    help_create_mail_data(recev_gid, recev_grid,const_value.MAIL_TYPE_REWARD,content,item);
 };
-exports.help_send_old_town_mail=help_send_old_town_mail;
+exports.help_send_town_reward_mail=help_send_town_reward_mail;
+
 
 //城池占领者发送提醒邮件
 /**

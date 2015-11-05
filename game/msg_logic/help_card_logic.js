@@ -99,7 +99,7 @@ function help_create_role_beauty(role,beauty_id)
 
     var _beauty = new ds.Role_Beauty_Data();
     _beauty.unique_id = make_db.get_global_unique_id();
-    _beauty.card_id = beauty_json_data.card_id;
+    _beauty.beauty_id = beauty_json_data.beauty_id;
     _beauty.gain_time = (new Date()).getTime();
 
     //放入用户卡牌背包
@@ -175,9 +175,10 @@ function on_card_bag_data(data,send,s)
 
     var role_card_bag=role.card_bag;
     var role_card_piece=role.card_piece;
-    if(role_card_bag==undefined || role_card_piece==undefined)
+    var role_beauty_bag=role.beauty_bag;
+    if(role_card_bag==undefined || role_card_piece==undefined || role_beauty_bag==undefined)
     {
-        global.log("role_card_bag==undefined || role_card_piece==undefined");
+        global.log("role_card_bag==undefined || role_card_piece==undefined || role_beauty_bag==undefined");
         return;
     }
 
@@ -264,17 +265,32 @@ function on_card_bag_data(data,send,s)
             pieces.push(obj);
         }
     }
+    //美女数据
+    var beauties=[];
+    for(var key in role_beauty_bag)
+    {
+        var beauty_bag_data=role_beauty_bag[key];
+        if(beauty_bag_data)
+        {
+            var obj=new Object();
+            obj.uid=beauty_bag_data.unique_id;
+            obj.xid=beauty_bag_data.beauty_id;
+            obj.used=beauty_bag_data.used;
+            beauties.push(obj);
+        }
+    }
 
     var msg = {
         "op" : msg_id.NM_CARD_BGA_DATA,
         "limit":role.cbag_limit,
         "warriors" : warriors,
         "pieces" : pieces,
+        "beauties" : beauties,
         "ret" : msg_code.SUCC
     };
     send(msg);
 
-    var log_content={"warriors":warriors};
+    var log_content={"msg":msg};
     var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_card_bag_data",log_content,log_data.logType.LOG_BEHAVIOR);
     log_data_logic.log(logData);
 }

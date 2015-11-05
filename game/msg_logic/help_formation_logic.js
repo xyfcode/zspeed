@@ -44,6 +44,13 @@ var help_init_formation_data=function(role)
         }
     }
 
+    for(var beauty_uid in role.beauty_bag)
+    {
+        global.log("beauty_uid:"+beauty_uid);
+        role_formation_data.beauty_uid=beauty_uid;//在阵型上
+        break;
+    }
+
     formation.formation_list[role_formation_data.grid]=role_formation_data;
     //保存到数据库
     make_db.insert_formation_data(role_formation_data);
@@ -214,6 +221,7 @@ var on_formation_data=function(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_FORMATION_DATA,
+        "beauty_uid":role_formation_data.beauty_uid,
         "formation":client_formation,
         "ret" : msg_code.SUCC
     };
@@ -225,6 +233,77 @@ var on_formation_data=function(data,send,s)
 
 };
 exports.on_formation_data=on_formation_data;
+
+
+//战前更换美女
+var on_select_beauty=function(data,send,s)
+{
+    global.log("on_select_beauty");
+    var gid = s.gid;
+    if(gid == undefined)
+    {
+        global.log("gid == undefined");
+        return;
+    }
+
+    var user = ds.user_list[gid];
+    if(user == undefined)
+    {
+        global.log("user == undefined");
+        return;
+    }
+
+    var role = ds.get_cur_role(user);
+    if(role == undefined)
+    {
+        global.log("role == undefined");
+        return;
+    }
+
+    var uid=data.uid;
+    if(uid==undefined)
+    {
+        global.log("uid==undefined");
+        return;
+    }
+
+    var _beauty_data=role.beauty_bag[uid];
+    if(_beauty_data==undefined)
+    {
+        var msg = {
+            "op" : msg_id.NM_SELECT_BEAUTY,
+            "ret" : msg_code.BEAUTY_NOT_EXIST
+        };
+        send(msg);
+        return;
+    }
+
+    var role_formation_data=formation.formation_list[role.grid];
+    if(role_formation_data==undefined)
+    {
+        global.log("role_formation_data == undefined");
+        return;
+    }
+    var old_beauty_data=role.beauty_bag[role_formation_data.beauty_uid];
+
+    role_formation_data.beauty_uid=uid;
+    old_beauty_data.used=0;
+    _beauty_data.used=1;
+
+    var msg = {
+        "op" : msg_id.NM_SELECT_BEAUTY,
+        "ret" : msg_code.SUCC
+    };
+    send(msg);
+
+    user.nNeedSave=1;
+
+    var log_content={"msg":msg};
+    var logData=log_data_logic.help_create_log_data(role.gid,role.account,role.grid,role.level,role.name,"on_select_beauty",log_content,log_data.logType.LOG_BEHAVIOR);
+    log_data_logic.log(logData);
+
+};
+exports.on_select_beauty=on_select_beauty;
 
 //自动保存用户阵型数据
 var sava_role_formation=function(role)
