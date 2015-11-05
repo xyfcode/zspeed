@@ -443,19 +443,6 @@
           "RebornLimit":"7"
         },
         "35":{
-          "CardId":"4104",
-          "Star":"4",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"1",
-          "LeaderSkill":"41041",
-          "EquipListReborn":"s1e11,s1e61,s1e71,s2e12,s2e62,s2e72,s3e13,s3e63,s3e73,s4e14,s4e64,s4e74,s5e15,s5e65,s5e75,s6e16,s6e66,s6e76,s7e17,s7e67,s7e77",
-          "Exp":"1000",
-          "ExpParameters":"1.4",
-          "WarriorScore":"500",
-          "RebornLimit":"7"
-        },
-        "36":{
           "CardId":"4105",
           "Star":"4",
           "Level":"1",
@@ -468,7 +455,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "37":{
+        "36":{
           "CardId":"4106",
           "Star":"4",
           "Level":"1",
@@ -481,20 +468,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "38":{
-          "CardId":"4107",
-          "Star":"4",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"1",
-          "LeaderSkill":"41071",
-          "EquipListReborn":"s1e11,s1e121,s1e71,s2e12,s2e122,s2e72,s3e13,s3e123,s3e73,s4e14,s4e124,s4e74,s5e15,s5e125,s5e75,s6e16,s6e126,s6e76,s7e17,s7e127,s7e77",
-          "Exp":"1000",
-          "ExpParameters":"1.5",
-          "WarriorScore":"500",
-          "RebornLimit":"7"
-        },
-        "39":{
+        "37":{
           "CardId":"4108",
           "Star":"4",
           "Level":"1",
@@ -507,7 +481,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "40":{
+        "38":{
           "CardId":"4201",
           "Star":"4",
           "Level":"1",
@@ -520,7 +494,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "41":{
+        "39":{
           "CardId":"4202",
           "Star":"4",
           "Level":"1",
@@ -533,7 +507,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "42":{
+        "40":{
           "CardId":"4203",
           "Star":"4",
           "Level":"1",
@@ -546,20 +520,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "43":{
-          "CardId":"4204",
-          "Star":"4",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"2",
-          "LeaderSkill":"42041",
-          "EquipListReborn":"s1e21,s1e111,s1e101,s2e22,s2e112,s2e102,s3e23,s3e113,s3e103,s4e24,s4e114,s4e104,s5e25,s5e115,s5e105,s6e26,s6e116,s6e106,s7e27,s7e117,s7e107",
-          "Exp":"1000",
-          "ExpParameters":"1.5",
-          "WarriorScore":"500",
-          "RebornLimit":"7"
-        },
-        "44":{
+        "41":{
           "CardId":"4205",
           "Star":"4",
           "Level":"1",
@@ -572,7 +533,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "45":{
+        "42":{
           "CardId":"4206",
           "Star":"4",
           "Level":"1",
@@ -585,7 +546,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "46":{
+        "43":{
           "CardId":"4207",
           "Star":"4",
           "Level":"1",
@@ -598,7 +559,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "47":{
+        "44":{
           "CardId":"4301",
           "Star":"4",
           "Level":"1",
@@ -611,7 +572,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "48":{
+        "45":{
           "CardId":"4302",
           "Star":"4",
           "Level":"1",
@@ -624,7 +585,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "49":{
+        "46":{
           "CardId":"4303",
           "Star":"4",
           "Level":"1",
@@ -637,20 +598,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "50":{
-          "CardId":"4304",
-          "Star":"4",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"3",
-          "LeaderSkill":"43041",
-          "EquipListReborn":"s1e31,s1e61,s1e101,s2e32,s2e62,s2e102,s3e33,s3e63,s3e103,s4e34,s4e64,s4e104,s5e35,s5e65,s5e105,s6e36,s6e66,s6e106,s7e37,s7e67,s7e107",
-          "Exp":"1000",
-          "ExpParameters":"1.5",
-          "WarriorScore":"500",
-          "RebornLimit":"7"
-        },
-        "51":{
+        "47":{
           "CardId":"4305",
           "Star":"4",
           "Level":"1",
@@ -663,7 +611,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "52":{
+        "48":{
           "CardId":"4306",
           "Star":"4",
           "Level":"1",
@@ -676,7 +624,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "53":{
+        "49":{
           "CardId":"4307",
           "Star":"4",
           "Level":"1",
@@ -689,20 +637,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "54":{
-          "CardId":"4401",
-          "Star":"4",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"4",
-          "LeaderSkill":"44011",
-          "EquipListReborn":"s1e41,s1e61,s1e101,s2e42,s2e62,s2e102,s3e43,s3e63,s3e103,s4e44,s4e64,s4e104,s5e45,s5e65,s5e105,s6e46,s6e66,s6e106,s7e47,s7e67,s7e107",
-          "Exp":"1000",
-          "ExpParameters":"1.5",
-          "WarriorScore":"500",
-          "RebornLimit":"7"
-        },
-        "55":{
+        "50":{
           "CardId":"4402",
           "Star":"4",
           "Level":"1",
@@ -715,7 +650,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "56":{
+        "51":{
           "CardId":"4403",
           "Star":"4",
           "Level":"1",
@@ -728,7 +663,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "57":{
+        "52":{
           "CardId":"4404",
           "Star":"4",
           "Level":"1",
@@ -741,7 +676,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "58":{
+        "53":{
           "CardId":"4405",
           "Star":"4",
           "Level":"1",
@@ -754,7 +689,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "59":{
+        "54":{
           "CardId":"4406",
           "Star":"4",
           "Level":"1",
@@ -767,7 +702,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "60":{
+        "55":{
           "CardId":"4407",
           "Star":"4",
           "Level":"1",
@@ -780,7 +715,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "61":{
+        "56":{
           "CardId":"4501",
           "Star":"4",
           "Level":"1",
@@ -793,7 +728,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "62":{
+        "57":{
           "CardId":"4502",
           "Star":"4",
           "Level":"1",
@@ -806,7 +741,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "63":{
+        "58":{
           "CardId":"4503",
           "Star":"4",
           "Level":"1",
@@ -819,7 +754,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "64":{
+        "59":{
           "CardId":"4504",
           "Star":"4",
           "Level":"1",
@@ -832,7 +767,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "65":{
+        "60":{
           "CardId":"4505",
           "Star":"4",
           "Level":"1",
@@ -845,7 +780,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "66":{
+        "61":{
           "CardId":"4506",
           "Star":"4",
           "Level":"1",
@@ -858,7 +793,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "67":{
+        "62":{
           "CardId":"4507",
           "Star":"4",
           "Level":"1",
@@ -871,7 +806,7 @@
           "WarriorScore":"500",
           "RebornLimit":"7"
         },
-        "68":{
+        "63":{
           "CardId":"5313",
           "Star":"5",
           "Level":"1",
@@ -884,7 +819,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "69":{
+        "64":{
           "CardId":"5102",
           "Star":"5",
           "Level":"1",
@@ -897,7 +832,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "70":{
+        "65":{
           "CardId":"5103",
           "Star":"5",
           "Level":"1",
@@ -910,7 +845,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "71":{
+        "66":{
           "CardId":"5104",
           "Star":"5",
           "Level":"1",
@@ -923,7 +858,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "72":{
+        "67":{
           "CardId":"5105",
           "Star":"5",
           "Level":"1",
@@ -936,20 +871,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "73":{
-          "CardId":"5106",
-          "Star":"5",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"1",
-          "LeaderSkill":"51061",
-          "EquipListReborn":"s1e11,s1e111,s1e71,s2e12,s2e112,s2e72,s3e13,s3e113,s3e73,s4e14,s4e114,s4e74,s5e15,s5e115,s5e75,s6e16,s6e116,s6e76,s7e17,s7e117,s7e77",
-          "Exp":"2000",
-          "ExpParameters":"2",
-          "WarriorScore":"1000",
-          "RebornLimit":"7"
-        },
-        "74":{
+        "68":{
           "CardId":"5107",
           "Star":"5",
           "Level":"1",
@@ -962,7 +884,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "75":{
+        "69":{
           "CardId":"5201",
           "Star":"5",
           "Level":"1",
@@ -975,7 +897,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "76":{
+        "70":{
           "CardId":"5202",
           "Star":"5",
           "Level":"1",
@@ -988,7 +910,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "77":{
+        "71":{
           "CardId":"5203",
           "Star":"5",
           "Level":"1",
@@ -1001,7 +923,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "78":{
+        "72":{
           "CardId":"5204",
           "Star":"5",
           "Level":"1",
@@ -1014,7 +936,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "79":{
+        "73":{
           "CardId":"5205",
           "Star":"5",
           "Level":"1",
@@ -1027,7 +949,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "80":{
+        "74":{
           "CardId":"5206",
           "Star":"5",
           "Level":"1",
@@ -1040,7 +962,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "81":{
+        "75":{
           "CardId":"5301",
           "Star":"5",
           "Level":"1",
@@ -1053,7 +975,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "82":{
+        "76":{
           "CardId":"5302",
           "Star":"5",
           "Level":"1",
@@ -1066,7 +988,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "83":{
+        "77":{
           "CardId":"5303",
           "Star":"5",
           "Level":"1",
@@ -1079,7 +1001,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "84":{
+        "78":{
           "CardId":"5304",
           "Star":"5",
           "Level":"1",
@@ -1092,7 +1014,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "85":{
+        "79":{
           "CardId":"5305",
           "Star":"5",
           "Level":"1",
@@ -1105,20 +1027,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "86":{
-          "CardId":"5306",
-          "Star":"5",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"3",
-          "LeaderSkill":"53061",
-          "EquipListReborn":"s1e31,s1e101,s1e101,s2e32,s2e102,s2e102,s3e33,s3e103,s3e103,s4e34,s4e104,s4e104,s5e35,s5e105,s5e105,s6e36,s6e106,s6e106,s7e37,s7e107,s7e107",
-          "Exp":"2000",
-          "ExpParameters":"2",
-          "WarriorScore":"1000",
-          "RebornLimit":"7"
-        },
-        "87":{
+        "80":{
           "CardId":"5307",
           "Star":"5",
           "Level":"1",
@@ -1131,7 +1040,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "88":{
+        "81":{
           "CardId":"5308",
           "Star":"5",
           "Level":"1",
@@ -1144,7 +1053,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "89":{
+        "82":{
           "CardId":"5309",
           "Star":"5",
           "Level":"1",
@@ -1157,7 +1066,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "90":{
+        "83":{
           "CardId":"5310",
           "Star":"5",
           "Level":"1",
@@ -1170,7 +1079,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "91":{
+        "84":{
           "CardId":"5311",
           "Star":"5",
           "Level":"1",
@@ -1183,7 +1092,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "92":{
+        "85":{
           "CardId":"5402",
           "Star":"5",
           "Level":"1",
@@ -1196,7 +1105,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "93":{
+        "86":{
           "CardId":"5312",
           "Star":"5",
           "Level":"1",
@@ -1209,7 +1118,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "94":{
+        "87":{
           "CardId":"5404",
           "Star":"5",
           "Level":"1",
@@ -1222,20 +1131,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "95":{
-          "CardId":"5405",
-          "Star":"5",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"4",
-          "LeaderSkill":"54051",
-          "EquipListReborn":"s1e41,s1e121,s1e101,s2e42,s2e122,s2e102,s3e43,s3e123,s3e103,s4e44,s4e124,s4e104,s5e45,s5e125,s5e105,s6e46,s6e126,s6e106,s7e47,s7e127,s7e107",
-          "Exp":"2000",
-          "ExpParameters":"2",
-          "WarriorScore":"1000",
-          "RebornLimit":"7"
-        },
-        "96":{
+        "88":{
           "CardId":"5406",
           "Star":"5",
           "Level":"1",
@@ -1248,7 +1144,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "97":{
+        "89":{
           "CardId":"5501",
           "Star":"5",
           "Level":"1",
@@ -1261,20 +1157,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "98":{
-          "CardId":"5502",
-          "Star":"5",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"5",
-          "LeaderSkill":"55021",
-          "EquipListReborn":"s1e51,s1e101,s1e81,s2e52,s2e102,s2e82,s3e53,s3e103,s3e83,s4e54,s4e104,s4e84,s5e55,s5e105,s5e85,s6e56,s6e106,s6e86,s7e57,s7e107,s7e87",
-          "Exp":"2000",
-          "ExpParameters":"2",
-          "WarriorScore":"1000",
-          "RebornLimit":"7"
-        },
-        "99":{
+        "90":{
           "CardId":"5503",
           "Star":"5",
           "Level":"1",
@@ -1287,20 +1170,7 @@
           "WarriorScore":"20000",
           "RebornLimit":"7"
         },
-        "100":{
-          "CardId":"5504",
-          "Star":"5",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"5",
-          "LeaderSkill":"55041",
-          "EquipListReborn":"s1e51,s1e111,s1e101,s2e52,s2e112,s2e102,s3e53,s3e113,s3e103,s4e54,s4e114,s4e104,s5e55,s5e115,s5e105,s6e56,s6e116,s6e106,s7e57,s7e117,s7e107",
-          "Exp":"2000",
-          "ExpParameters":"2",
-          "WarriorScore":"1000",
-          "RebornLimit":"7"
-        },
-        "101":{
+        "91":{
           "CardId":"5505",
           "Star":"5",
           "Level":"1",
@@ -1313,7 +1183,7 @@
           "WarriorScore":"20000",
           "RebornLimit":"7"
         },
-        "102":{
+        "92":{
           "CardId":"5506",
           "Star":"5",
           "Level":"1",
@@ -1326,33 +1196,7 @@
           "WarriorScore":"20000",
           "RebornLimit":"7"
         },
-        "103":{
-          "CardId":"5507",
-          "Star":"5",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"5",
-          "LeaderSkill":"55071",
-          "EquipListReborn":"s1e51,s1e91,s1e101,s2e52,s2e92,s2e102,s3e53,s3e93,s3e103,s4e54,s4e94,s4e104,s5e55,s5e95,s5e105,s6e56,s6e96,s6e106,s7e57,s7e97,s7e107",
-          "Exp":"2000",
-          "ExpParameters":"2",
-          "WarriorScore":"1000",
-          "RebornLimit":"7"
-        },
-        "104":{
-          "CardId":"5508",
-          "Star":"5",
-          "Level":"1",
-          "LevelLimit":"30",
-          "Race":"5",
-          "LeaderSkill":"55081",
-          "EquipListReborn":"s1e51,s1e81,s1e101,s2e52,s2e82,s2e102,s3e53,s3e83,s3e103,s4e54,s4e84,s4e104,s5e55,s5e85,s5e105,s6e56,s6e86,s6e106,s7e57,s7e87,s7e107",
-          "Exp":"2000",
-          "ExpParameters":"2",
-          "WarriorScore":"1000",
-          "RebornLimit":"7"
-        },
-        "105":{
+        "93":{
           "CardId":"5509",
           "Star":"5",
           "Level":"1",
@@ -1365,7 +1209,7 @@
           "WarriorScore":"1000",
           "RebornLimit":"7"
         },
-        "106":{
+        "94":{
           "CardId":"5510",
           "Star":"5",
           "Level":"1",
@@ -1378,7 +1222,7 @@
           "WarriorScore":"10000",
           "RebornLimit":"7"
         },
-        "107":{
+        "95":{
           "CardId":"2",
           "Star":"1",
           "Level":"1",
@@ -1391,7 +1235,7 @@
           "WarriorScore":"0",
           "RebornLimit":"0"
         },
-        "108":{
+        "96":{
           "CardId":"3",
           "Star":"2",
           "Level":"1",
