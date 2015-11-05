@@ -35,6 +35,7 @@ var arena_data=require("./msg_logic/arena_data");
 var shop_data=require("./msg_logic/shop_data");
 var share_data=require("./msg_logic/share_data");
 var pool_data=require("./msg_logic/pool_data");
+var t_reward_data=require("./msg_logic/t_reward_data");
 
 //逻辑
 var billing_logic = require("./msg_logic/help_billing_logic");
@@ -162,6 +163,7 @@ var handler = {
     "210" : new on_get_town_title_data(), //获取城池称号信息
     "209" : new on_summon_card(), //招降武将
     "208" : new on_buy_beauty(), //购买美女
+    "800" : new on_select_beauty(), //战前更换美女
 
     "3000" : new on_test_town() //跳过关卡
 
@@ -213,6 +215,7 @@ exports.server = function(server)
     shop_data.init();
     share_data.init();
     pool_data.init();
+    t_reward_data.init();
 
     //逻辑
     billing_logic.init(server);
@@ -979,6 +982,15 @@ function on_get_share_reward()
     this.handle = function(data,send,s)
     {
         share_logic.on_get_share_reward(data,send,s);
+    }
+}
+
+
+function on_select_beauty()
+{
+    this.handle = function(data,send,s)
+    {
+        formation_logic.on_select_beauty(data,send,s);
     }
 }
 
