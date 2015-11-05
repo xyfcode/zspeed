@@ -44,7 +44,7 @@
           "CardStar":"4",
           "CardRate":"0",
           "BeautyStar":"2",
-          "BeautyRate":"1"
+          "BeautyRate":"0"
         },
         "3":{
           "TId":"t03",
@@ -67,7 +67,7 @@
           "CardStar":"4",
           "CardRate":"0.8",
           "BeautyStar":"2",
-          "BeautyRate":"0"
+          "BeautyRate":"1"
         },
         "4":{
           "TId":"t04",

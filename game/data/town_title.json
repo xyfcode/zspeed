@@ -2,353 +2,451 @@
    "TOWN_TITLE":{
         "1":{
           "TitleID":"title001",
+          "TitleName":"始皇帝",
           "Level":"5",
-          "Children":"title101,title102,title103"
+          "Children":"title101,title102,title103",
+          "RewardFortitle":"1000"
         },
         "2":{
-          "TitleID":"title101",
+          "TitleID":"title102",
+          "TitleName":"魏王",
           "Level":"4",
-          "Children":"title206,title207,title208,title209,title210"
+          "Children":"title201,title202,title203,title204,title205",
+          "RewardFortitle":"500"
         },
         "3":{
-          "TitleID":"title102",
+          "TitleID":"title101",
+          "TitleName":"吴王",
           "Level":"4",
-          "Children":"title201,title202,title203,title204,title205"
+          "Children":"title206,title207,title208,title209,title210",
+          "RewardFortitle":"500"
         },
         "4":{
           "TitleID":"title103",
+          "TitleName":"蜀王",
           "Level":"4",
-          "Children":"title211,title212,title213,title214,title215"
+          "Children":"title211,title212,title213,title214,title215",
+          "RewardFortitle":"500"
         },
         "5":{
-          "TitleID":"title104",
-          "Level":"4",
-          "Children":"title201,title202,title203,title204,title205"
+          "TitleID":"title201",
+          "TitleName":"镇军将军",
+          "Level":"3",
+          "Children":"title301,title302,title303",
+          "RewardFortitle":"200"
         },
         "6":{
-          "TitleID":"title105",
-          "Level":"4",
-          "Children":"title206,title207,title208,title209,title210"
+          "TitleID":"title202",
+          "TitleName":"征东将军",
+          "Level":"3",
+          "Children":"title304,title305,title306",
+          "RewardFortitle":"200"
         },
         "7":{
-          "TitleID":"title106",
-          "Level":"4",
-          "Children":"title211,title212,le213,le214,le215"
+          "TitleID":"title203",
+          "TitleName":"征北将军",
+          "Level":"3",
+          "Children":"title307,title308,title309",
+          "RewardFortitle":"200"
         },
         "8":{
-          "TitleID":"title201",
+          "TitleID":"title204",
+          "TitleName":"征南将军",
           "Level":"3",
-          "Children":"title301,title302,title303"
+          "Children":"title310,title311,title312",
+          "RewardFortitle":"200"
         },
         "9":{
-          "TitleID":"title202",
+          "TitleID":"title205",
+          "TitleName":"征西将军",
           "Level":"3",
-          "Children":"title304,title305,title306"
+          "Children":"title313,title314,title315",
+          "RewardFortitle":"200"
         },
         "10":{
-          "TitleID":"title203",
+          "TitleID":"title206",
+          "TitleName":"镇东将军",
           "Level":"3",
-          "Children":"title307,title308,title309"
+          "Children":"title316,title317,title318",
+          "RewardFortitle":"200"
         },
         "11":{
-          "TitleID":"title204",
+          "TitleID":"title207",
+          "TitleName":"镇北将军",
           "Level":"3",
-          "Children":"title310,title311,title312"
+          "Children":"title319,title320,title321",
+          "RewardFortitle":"200"
         },
         "12":{
-          "TitleID":"title205",
+          "TitleID":"title208",
+          "TitleName":"镇南将军",
           "Level":"3",
-          "Children":"title313,title314,title315"
+          "Children":"title322,title323,title324",
+          "RewardFortitle":"200"
         },
         "13":{
-          "TitleID":"title206",
+          "TitleID":"title209",
+          "TitleName":"镇西将军",
           "Level":"3",
-          "Children":"title316,title317,title318"
+          "Children":"title325,title326,title327",
+          "RewardFortitle":"200"
         },
         "14":{
-          "TitleID":"title207",
+          "TitleID":"title210",
+          "TitleName":"吴中将军",
           "Level":"3",
-          "Children":"title319,title320,title321"
+          "Children":"title328,title329,title330",
+          "RewardFortitle":"200"
         },
         "15":{
-          "TitleID":"title208",
+          "TitleID":"title211",
+          "TitleName":"护军将军",
           "Level":"3",
-          "Children":"title322,title323,title324"
+          "Children":"title331,title332,title333",
+          "RewardFortitle":"200"
         },
         "16":{
-          "TitleID":"title209",
+          "TitleID":"title212",
+          "TitleName":"安南将军",
           "Level":"3",
-          "Children":"title325,title326,title327"
+          "Children":"title334,title335,title336",
+          "RewardFortitle":"200"
         },
         "17":{
-          "TitleID":"title210",
+          "TitleID":"title213",
+          "TitleName":"安东将军",
           "Level":"3",
-          "Children":"title328,title329,title330"
+          "Children":"title337,title338,title339",
+          "RewardFortitle":"200"
         },
         "18":{
-          "TitleID":"title211",
+          "TitleID":"title214",
+          "TitleName":"安北将军",
           "Level":"3",
-          "Children":"title331,title332,title333"
+          "Children":"title340,title341,title342",
+          "RewardFortitle":"200"
         },
         "19":{
-          "TitleID":"title212",
+          "TitleID":"title215",
+          "TitleName":"安西将军",
           "Level":"3",
-          "Children":"title334,title335,title336"
+          "Children":"title343,title344,title345",
+          "RewardFortitle":"200"
         },
         "20":{
-          "TitleID":"title213",
-          "Level":"3",
-          "Children":"title337,title338,title339"
+          "TitleID":"title301",
+          "TitleName":"武卫都督",
+          "Level":"2",
+          "Children":"t01,t02,t03",
+          "RewardFortitle":"100"
         },
         "21":{
-          "TitleID":"title214",
-          "Level":"3",
-          "Children":"title340,title341,title342"
+          "TitleID":"title302",
+          "TitleName":"奋武都督",
+          "Level":"2",
+          "Children":"t01,t02,t04",
+          "RewardFortitle":"100"
         },
         "22":{
-          "TitleID":"title215",
-          "Level":"3",
-          "Children":"title343,title344,title345"
+          "TitleID":"title303",
+          "TitleName":"奋威都督",
+          "Level":"2",
+          "Children":"t01,t02,t05",
+          "RewardFortitle":"100"
         },
         "23":{
-          "TitleID":"title216",
-          "Level":"3",
-          "Children":"title301,title302,title303,title304,title305,title306,title307,title308,title309,title310,title311,title312,title313,title314,title315"
+          "TitleID":"title304",
+          "TitleName":"建威都督",
+          "Level":"2",
+          "Children":"t01,t02,t06",
+          "RewardFortitle":"100"
         },
         "24":{
-          "TitleID":"title217",
-          "Level":"3",
-          "Children":"title316,title317,title318,title319,title320,title321,title322,title323,title324,title325,title326,title327,title328,title329,title330"
+          "TitleID":"title305",
+          "TitleName":"振威都督",
+          "Level":"2",
+          "Children":"t01,t02,t07",
+          "RewardFortitle":"100"
         },
         "25":{
-          "TitleID":"title218",
-          "Level":"3",
-          "Children":"title331,title332,title333,title334,title335,title336,title337,title338,title339,title340,title341,title342,title343,title344,title345"
+          "TitleID":"title306",
+          "TitleName":"祭酒都督",
+          "Level":"2",
+          "Children":"t01,t02,t08",
+          "RewardFortitle":"100"
         },
         "26":{
-          "TitleID":"title301",
+          "TitleID":"title307",
+          "TitleName":"昭德都督",
           "Level":"2",
-          "Children":"t01,t02,t03"
+          "Children":"t01,t02,t09",
+          "RewardFortitle":"100"
         },
         "27":{
-          "TitleID":"title302",
+          "TitleID":"title308",
+          "TitleName":"昭武都督",
           "Level":"2",
-          "Children":"t01,t02,t04"
+          "Children":"t01,t02,t10",
+          "RewardFortitle":"100"
         },
         "28":{
-          "TitleID":"title303",
+          "TitleID":"title309",
+          "TitleName":"扬武都督",
           "Level":"2",
-          "Children":"t01,t02,t05"
+          "Children":"t01,t02,t11",
+          "RewardFortitle":"100"
         },
         "29":{
-          "TitleID":"title304",
+          "TitleID":"title310",
+          "TitleName":"平戎都督",
           "Level":"2",
-          "Children":"t01,t02,t06"
+          "Children":"t01,t02,t12",
+          "RewardFortitle":"100"
         },
         "30":{
-          "TitleID":"title305",
+          "TitleID":"title311",
+          "TitleName":"虎威都督",
           "Level":"2",
-          "Children":"t01,t02,t07"
+          "Children":"t01,t02,t13",
+          "RewardFortitle":"100"
         },
         "31":{
-          "TitleID":"title306",
+          "TitleID":"title312",
+          "TitleName":"辅国都督",
           "Level":"2",
-          "Children":"t01,t02,t08"
+          "Children":"t02,t03,t08",
+          "RewardFortitle":"100"
         },
         "32":{
-          "TitleID":"title307",
+          "TitleID":"title313",
+          "TitleName":"安远都督",
           "Level":"2",
-          "Children":"t01,t02,t09"
+          "Children":"t02,t03,t09",
+          "RewardFortitle":"100"
         },
         "33":{
-          "TitleID":"title308",
+          "TitleID":"title314",
+          "TitleName":"折冲都督",
           "Level":"2",
-          "Children":"t01,t02,t10"
+          "Children":"t02,t03,t10",
+          "RewardFortitle":"100"
         },
         "34":{
-          "TitleID":"title309",
+          "TitleID":"title315",
+          "TitleName":"破虏都督",
           "Level":"2",
-          "Children":"t01,t02,t11"
+          "Children":"t02,t03,t11",
+          "RewardFortitle":"100"
         },
         "35":{
-          "TitleID":"title310",
+          "TitleID":"title316",
+          "TitleName":"讨逆都督",
           "Level":"2",
-          "Children":"t01,t02,t12"
+          "Children":"t14,t15,t16",
+          "RewardFortitle":"100"
         },
         "36":{
-          "TitleID":"title311",
+          "TitleID":"title317",
+          "TitleName":"讨虏都督",
           "Level":"2",
-          "Children":"t01,t02,t13"
+          "Children":"t14,t15,t17",
+          "RewardFortitle":"100"
         },
         "37":{
-          "TitleID":"title312",
+          "TitleID":"title318",
+          "TitleName":"讨寇都督",
           "Level":"2",
-          "Children":"t02,t03,t08"
+          "Children":"t14,t15,t18",
+          "RewardFortitle":"100"
         },
         "38":{
-          "TitleID":"title313",
+          "TitleID":"title319",
+          "TitleName":"荡寇都督",
           "Level":"2",
-          "Children":"t02,t03,t09"
+          "Children":"t14,t15,t19",
+          "RewardFortitle":"100"
         },
         "39":{
-          "TitleID":"title314",
+          "TitleID":"title320",
+          "TitleName":"牙门都督",
           "Level":"2",
-          "Children":"t02,t03,t10"
+          "Children":"t14,t15,t20",
+          "RewardFortitle":"100"
         },
         "40":{
-          "TitleID":"title315",
+          "TitleID":"title321",
+          "TitleName":"偏将都督",
           "Level":"2",
-          "Children":"t02,t03,t11"
+          "Children":"t14,t15,t21",
+          "RewardFortitle":"100"
         },
         "41":{
-          "TitleID":"title316",
+          "TitleID":"title322",
+          "TitleName":"平东都督",
           "Level":"2",
-          "Children":"t14,t15,t16"
+          "Children":"t14,t15,t22",
+          "RewardFortitle":"100"
         },
         "42":{
-          "TitleID":"title317",
+          "TitleID":"title323",
+          "TitleName":"平北都督",
           "Level":"2",
-          "Children":"t14,t15,t17"
+          "Children":"t14,t15,t23",
+          "RewardFortitle":"100"
         },
         "43":{
-          "TitleID":"title318",
+          "TitleID":"title324",
+          "TitleName":"奋威都督",
           "Level":"2",
-          "Children":"t14,t15,t18"
+          "Children":"t14,t15,t24",
+          "RewardFortitle":"100"
         },
         "44":{
-          "TitleID":"title319",
+          "TitleID":"title325",
+          "TitleName":"越骑都督",
           "Level":"2",
-          "Children":"t14,t15,t19"
+          "Children":"t14,t15,t25",
+          "RewardFortitle":"100"
         },
         "45":{
-          "TitleID":"title320",
+          "TitleID":"title326",
+          "TitleName":"督军都督",
           "Level":"2",
-          "Children":"t14,t15,t20"
+          "Children":"t18,t19,t20",
+          "RewardFortitle":"100"
         },
         "46":{
-          "TitleID":"title321",
+          "TitleID":"title327",
+          "TitleName":"赞军都督",
           "Level":"2",
-          "Children":"t14,t15,t21"
+          "Children":"t21,t22,t23",
+          "RewardFortitle":"100"
         },
         "47":{
-          "TitleID":"title322",
+          "TitleID":"title328",
+          "TitleName":"昭信都督",
           "Level":"2",
-          "Children":"t14,t15,t22"
+          "Children":"t18,t20,t24",
+          "RewardFortitle":"100"
         },
         "48":{
-          "TitleID":"title323",
+          "TitleID":"title329",
+          "TitleName":"儒林都督",
           "Level":"2",
-          "Children":"t14,t15,t23"
+          "Children":"t19,t23,t24",
+          "RewardFortitle":"100"
         },
         "49":{
-          "TitleID":"title324",
+          "TitleID":"title330",
+          "TitleName":"军议都督",
           "Level":"2",
-          "Children":"t14,t15,t24"
+          "Children":"t19,t20,t21",
+          "RewardFortitle":"100"
         },
         "50":{
-          "TitleID":"title325",
+          "TitleID":"title331",
+          "TitleName":"先登都督",
           "Level":"2",
-          "Children":"t14,t15,t25"
+          "Children":"t26,t27,t28",
+          "RewardFortitle":"100"
         },
         "51":{
-          "TitleID":"title326",
+          "TitleID":"title332",
+          "TitleName":"汉八都督",
           "Level":"2",
-          "Children":"t18,t19,t20"
+          "Children":"t27,t28,t29",
+          "RewardFortitle":"100"
         },
         "52":{
-          "TitleID":"title327",
+          "TitleID":"title333",
+          "TitleName":"长水都督",
           "Level":"2",
-          "Children":"t21,t22,t23"
+          "Children":"t29,t30,t31",
+          "RewardFortitle":"100"
         },
         "53":{
-          "TitleID":"title328",
+          "TitleID":"title334",
+          "TitleName":"胡骑都督",
           "Level":"2",
-          "Children":"t18,t20,t24"
+          "Children":"t30,t31,t32",
+          "RewardFortitle":"100"
         },
         "54":{
-          "TitleID":"title329",
+          "TitleID":"title335",
+          "TitleName":"射声都督",
           "Level":"2",
-          "Children":"t19,t23,t24"
+          "Children":"t31,t32,t33",
+          "RewardFortitle":"100"
         },
         "55":{
-          "TitleID":"title330",
+          "TitleID":"title336",
+          "TitleName":"虎贲都督",
           "Level":"2",
-          "Children":"t19,t20,t21"
+          "Children":"t32,t33,t34",
+          "RewardFortitle":"100"
         },
         "56":{
-          "TitleID":"title331",
+          "TitleID":"title337",
+          "TitleName":"中垒都督",
           "Level":"2",
-          "Children":"t26,t27,t28"
+          "Children":"t33,t34,t35",
+          "RewardFortitle":"100"
         },
         "57":{
-          "TitleID":"title332",
+          "TitleID":"title338",
+          "TitleName":"屯骑都督",
           "Level":"2",
-          "Children":"t27,t28,t29"
+          "Children":"t34,t35,t36",
+          "RewardFortitle":"100"
         },
         "58":{
-          "TitleID":"title333",
+          "TitleID":"title339",
+          "TitleName":"西园都督",
           "Level":"2",
-          "Children":"t29,t30,t31"
+          "Children":"t35,t36,t37",
+          "RewardFortitle":"100"
         },
         "59":{
-          "TitleID":"title334",
+          "TitleID":"title340",
+          "TitleName":"典军都督",
           "Level":"2",
-          "Children":"t30,t31,t32"
+          "Children":"t36,t37,t38",
+          "RewardFortitle":"100"
         },
         "60":{
-          "TitleID":"title335",
+          "TitleID":"title341",
+          "TitleName":"上军都督",
           "Level":"2",
-          "Children":"t31,t32,t33"
+          "Children":"t26,t27,t29",
+          "RewardFortitle":"100"
         },
         "61":{
-          "TitleID":"title336",
+          "TitleID":"title342",
+          "TitleName":"中军都督",
           "Level":"2",
-          "Children":"t32,t33,t34"
+          "Children":"t27,t28,t30",
+          "RewardFortitle":"100"
         },
         "62":{
-          "TitleID":"title337",
+          "TitleID":"title343",
+          "TitleName":"下军都督",
           "Level":"2",
-          "Children":"t33,t34,t35"
+          "Children":"t28,t29,t31",
+          "RewardFortitle":"100"
         },
         "63":{
-          "TitleID":"title338",
+          "TitleID":"title344",
+          "TitleName":"左军都督",
           "Level":"2",
-          "Children":"t34,t35,t36"
+          "Children":"t29,t30,t32",
+          "RewardFortitle":"100"
         },
         "64":{
-          "TitleID":"title339",
-          "Level":"2",
-          "Children":"t35,t36,t37"
-        },
-        "65":{
-          "TitleID":"title340",
-          "Level":"2",
-          "Children":"t36,t37,t38"
-        },
-        "66":{
-          "TitleID":"title341",
-          "Level":"2",
-          "Children":"t26,t27,t29"
-        },
-        "67":{
-          "TitleID":"title342",
-          "Level":"2",
-          "Children":"t27,t28,t30"
-        },
-        "68":{
-          "TitleID":"title343",
-          "Level":"2",
-          "Children":"t28,t29,t31"
-        },
-        "69":{
-          "TitleID":"title344",
-          "Level":"2",
-          "Children":"t29,t30,t32"
-        },
-        "70":{
           "TitleID":"title345",
+          "TitleName":"右军都督",
           "Level":"2",
-          "Children":"t31,t32,t34"
+          "Children":"t31,t32,t34",
+          "RewardFortitle":"100"
         }
    }
 }
