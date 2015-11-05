@@ -10,7 +10,7 @@ var InitData=function()
     this.rmb = 0;
     this.score = 0;   //人气
     this.init_card=[];
-    this.share_card=[];
+    this.init_beauty=0;
 };
 var initialization_data = new InitData();
 exports.initialization_data = initialization_data;
@@ -49,33 +49,12 @@ function load_initialization_data()
         {
             initialization_data.init_card.push(data["INITIALIZATION"][i].Card3);
         }
-        //测试 可删
-        if(data["INITIALIZATION"][i].Card4)
+
+        if(data["INITIALIZATION"][i].Beauty)
         {
-            initialization_data.init_card.push(data["INITIALIZATION"][i].Card4);
-        }
-        if(data["INITIALIZATION"][i].Card5)
-        {
-            initialization_data.init_card.push(data["INITIALIZATION"][i].Card5);
-        }
-        if(data["INITIALIZATION"][i].Card6)
-        {
-            initialization_data.init_card.push(data["INITIALIZATION"][i].Card6);
+            initialization_data.init_beauty=data["INITIALIZATION"][i].Beauty;
         }
 
-        if(data["INITIALIZATION"][i].Card7)
-        {
-            initialization_data.init_card.push(data["INITIALIZATION"][i].Card7);
-        }
-        if(data["INITIALIZATION"][i].Card8)
-        {
-            initialization_data.init_card.push(data["INITIALIZATION"][i].Card8);
-        }
-        if(data["INITIALIZATION"][i].Card9)
-        {
-            initialization_data.init_card.push(data["INITIALIZATION"][i].Card9);
-        }
-        //测试 可删
     }
 
     var log_content={"count":count,"initialization_data":initialization_data};

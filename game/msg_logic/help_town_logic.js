@@ -11,6 +11,7 @@ var card_data=require("./card_data");
 var town_data=require("./town_data");
 var pool_data=require("./pool_data");
 var town_title_data=require("./town_title_data");
+var t_reward_data=require("./t_reward_data");
 var formation=require("./formation_data");
 var ds = require("./data_struct");
 var define_code=require("./define_code");
@@ -19,6 +20,7 @@ var friend_data = require("./friend_data");
 
 var arena_logic=require("./help_arena_logic");
 var money_logic=require("./help_money_logic");
+var mail_logic=require("./help_mail_logic");
 var card_logic=require("./help_card_logic");
 var role_data_logic=require("./help_role_data_logic");
 var const_value=define_code.const_value;
@@ -176,7 +178,7 @@ function on_test_town(data,send,s)
 
         role_town_data.tid=town_json_data.tid;
         town_bag_data[role_town_data.tid]=role_town_data;
-        role_town_data.status=const_value.TOWN_STATUS_INIT;
+        role_town_data.status=const_value.TOWN_STATUS_OK;
 
         //随机获取守城武将
         var _rand=common_func.help_make_one_random(1,100);
@@ -472,14 +474,37 @@ function on_get_one_town_data(data,send,s)
     //城池产出
     msg.reward=_town_db_data.reward;
 
+    //是否可以挑战
+    msg.town_ok=1;
+    var town_period=make_db.get_global_town_period();
+    if(role.town_id&&role.town_period==town_period&&role.town_id!=tid)
+    {
+        msg.town_ok=0;
+    }
+
     //我的伤害
     msg.my_damage=0;
-    for(var i=0;i<_town_db_data.last_arr.length;i++)
+    if(_town_db_data.new_arr.length>0)
     {
-        if(_town_db_data.last_arr[i].grid==role.grid)
+        for(var i=0;i<_town_db_data.new_arr.length;i++)
         {
-            msg.my_damage=_town_db_data.last_arr[i].hurt;
-            break;
+            if(_town_db_data.new_arr[i].grid==role.grid)
+            {
+                msg.my_damage=_town_db_data.new_arr[i].hurt;
+                break;
+            }
+        }
+    }
+    else
+    {
+        //可能处于休战期
+        for(var i=0;i<_town_db_data.last_arr.length;i++)
+        {
+            if(_town_db_data.last_arr[i].grid==role.grid)
+            {
+                msg.my_damage=_town_db_data.last_arr[i].hurt;
+                break;
+            }
         }
     }
 
@@ -528,7 +553,7 @@ function on_get_one_town_data(data,send,s)
     //是否可以挑战
     msg.is_challage=1;
     var town_period=make_db.get_global_town_period();
-    if(role.town_period==town_period&&role.town_id!=tid)
+    if(role.town_id&&role.town_period==town_period&&role.town_id!=tid)
     {
         msg.is_challage=0;
     }
@@ -879,6 +904,12 @@ function on_buy_beauty(data,send,s)
         return;
     }
 
+    if(!Number(money))
+    {
+        global.log("money is error,money:"+money);
+        return;
+    }
+
     var role_town_data=role.town_bag[tid];
     if(role_town_data==undefined)
     {
@@ -923,7 +954,7 @@ function on_buy_beauty(data,send,s)
     var uid=0;
     if(pay_ok)
     {
-        role_town_data.beauty_money+=money;
+        role_town_data.beauty_money+=Number(money);
         if(role_town_data.beauty_money>=beauty_json_data.gift_gold)
         {
             //获得美女
@@ -937,7 +968,8 @@ function on_buy_beauty(data,send,s)
         {
             var msg = {
                 "op" : msg_id.NM_BUY_BEAUTY,
-                "ret" : msg_code.BEAUTY_MONEY_FEW
+                "status" :0,
+                "ret" : msg_code.SUCC
             };
             send(msg);
             return;
@@ -955,8 +987,9 @@ function on_buy_beauty(data,send,s)
 
     var msg = {
         "op" : msg_id.NM_BUY_BEAUTY,
+        "status" :1,
         "uid" :uid,
-        "ret" : msg_code.BEAUTY_MONEY_FEW
+        "ret" : msg_code.SUCC
     };
     send(msg);
 
@@ -1152,7 +1185,7 @@ function on_set_town_guard(data,send,s)
             return;
         }
 
-        if(_card_data.guard)
+        /*if(_card_data.guard)
         {
             var msg=
             {
@@ -1161,16 +1194,16 @@ function on_set_town_guard(data,send,s)
             };
             send(msg);
             return;
-        }
+        }*/
 
         //更换城守
         if(_town_db_data.guard_data.unique_id)
         {
             //不再是城守
             role.card_bag[_town_db_data.guard_data.unique_id].guard=0;
-
         }
-        _card_data.guard=1;
+
+        //_card_data.guard=1;
         _town_db_data.guard_data.unique_id=_card_data.unique_id;
         _town_db_data.guard_data.card_id=_card_data.card_id;
         _town_db_data.guard_data.level=_card_data.level;
@@ -1249,7 +1282,7 @@ function help_town_reward_data(data,send,s)
     }
 
     var _town_bag_data=role.town_bag[parent_id];
-    if(!_town_bag_data.passed)
+    if(_town_bag_data==undefined || _town_bag_data.status!=const_value.TOWN_STATUS_OK)
     {
         var msg = {
             "op" :msg_id.NM_WAR_REWARD_DATA,
@@ -1261,7 +1294,7 @@ function help_town_reward_data(data,send,s)
 
     //是否可以挑战
     var town_period=make_db.get_global_town_period();
-    if(role.town_period==town_period&&role.town_id!=parent_id)
+    if(role.town_id&&role.town_period==town_period&&role.town_id!=parent_id)
     {
         var msg = {
             "op" :msg_id.NM_WAR_REWARD_DATA,
@@ -1428,7 +1461,7 @@ function help_town_fight_result(data,send,s)
                 if(_town_db_data.new_arr[i].grid==role.grid)
                 {
                     is_exist=1;
-                    if(_town_db_data.new_arr[i].hurt>total_hurt)
+                    if(_town_db_data.new_arr[i].hurt<total_hurt)
                     {
                         _town_db_data.new_arr[i].hurt=total_hurt;
                     }
@@ -1439,12 +1472,13 @@ function help_town_fight_result(data,send,s)
             if(!is_exist)
             {
                 var town_fight_data=new town_data.TownFightData();
+                town_fight_data.gid=role.gid;
                 town_fight_data.grid=role.grid;
                 town_fight_data.hurt=total_hurt;
                 _town_db_data.new_arr.push(town_fight_data);
                 //首次获取铜钱奖励
-                gain_money=const_value.TOWN_COIN_REWARD;
-                money_logic.help_gain_money(role,gain_money);
+                mail_logic.help_send_town_reward_mail(role.gid,role.grid,"城池挑战成功奖励",const_value.REWARD_TYPE_MONEY,t_reward_data.t_reward_data_list["1"].reward_first);
+
             }
 
             //放入更新列表中，定时入库
@@ -1621,6 +1655,7 @@ var help_town_fight_rank=function(data)
         var tid=key;
         global.log("tid:"+tid);
         var _town_db_data=town_data.town_db_data_list[tid];
+        var _town_json_data=town_data.town_data_list[tid];
 
         _town_db_data.owner_reward=_town_db_data.reward;
         _town_db_data.reward=town_reward[tid];
@@ -1636,18 +1671,42 @@ var help_town_fight_rank=function(data)
 
         _town_db_data.new_arr=[];
 
+        //清除上次的城守
+        _town_db_data.guard_data.unique_id=0;
+        _town_db_data.guard_data.card_id=0;
+        _town_db_data.guard_data.level=0;
+        _town_db_data.guard_data.b_level=0;
+        _town_db_data.guard_data.equips=[];
+
+
         //记录城池数据
         if(_town_db_data.last_arr.length>0)
         {
-            var first_gird=_town_db_data.last_arr[0].grid;
-            var _town_title_db_data=town_title_data.town_title_db_data_list[first_gird];
+            var first_gid=_town_db_data.last_arr[0].gid;
+            var first_grid=_town_db_data.last_arr[0].grid;
+            var _town_title_db_data=town_title_data.town_title_db_data_list[first_grid];
             if(_town_title_db_data==undefined)
             {
-                town_title_data.town_title_db_data_list[first_gird]=new town_title_data.TownTitleDbData();
-                _town_title_db_data=town_title_data.town_title_db_data_list[first_gird];
-                _town_title_db_data.grid=first_gird;
+                town_title_data.town_title_db_data_list[first_grid]=new town_title_data.TownTitleDbData();
+                _town_title_db_data=town_title_data.town_title_db_data_list[first_grid];
+                _town_title_db_data.grid=first_grid;
 
                 make_db.insert_town_title_data(_town_title_db_data);
+            }
+
+            if(_town_db_data.last_arr[1])
+            {
+                //第二名邮件奖励
+                mail_logic.help_send_town_reward_mail(
+                    _town_db_data.last_arr[1].gid,_town_db_data.last_arr[1].grid,"霸业攻城战排名第二名",
+                    const_value.REWARD_TYPE_MONEY,t_reward_data.t_reward_data_list["1"].reward_second);
+
+            }
+
+            if(_town_db_data.last_arr[2])
+            {
+                //第三名邮件奖励
+                mail_logic.help_send_town_reward_mail(_town_db_data.last_arr[2].gid,_town_db_data.last_arr[2].grid,"霸业攻城战排名第三名",const_value.REWARD_TYPE_MONEY,t_reward_data.t_reward_data_list["1"].reward_third);
             }
 
             global.log("_town_title_db_data:"+JSON.stringify(_town_title_db_data));
@@ -1668,6 +1727,21 @@ var help_town_fight_rank=function(data)
             {
                 _town_fight_data.c_times=1;
             }
+            //周期修改为当前周期
+            _town_fight_data.period=town_period;
+
+            //当累积的次数达到两次时，成为守备
+            if(_town_fight_data.c_times==2)
+            {
+                var _title_data=new town_title_data.TitleData();
+                _title_data.id=tid;
+                _title_data.date=new Date().getTime();
+                _town_title_db_data.garrison.push(_title_data);
+
+                //守备邮件奖励
+                mail_logic.help_send_town_reward_mail(first_gid,first_grid,_town_json_data.town_name+"守备称号奖励",const_value.REWARD_TYPE_MONEY,t_reward_data["1"].t_reward_data_list.reward_shou_bei);
+
+            }
 
             //当累积的次数达到三次时，成为太守
             if(_town_fight_data.c_times==3)
@@ -1676,8 +1750,10 @@ var help_town_fight_rank=function(data)
                 _title_data.id=tid;
                 _title_data.date=new Date().getTime();
                 _town_title_db_data.satrap.push(_title_data);
+                //太守邮件奖励
+                mail_logic.help_send_town_reward_mail(first_gid,first_grid,_town_json_data.town_name+"太守称号奖励",const_value.REWARD_TYPE_MONEY,t_reward_data["1"].t_reward_data_list.reward_tai_shou);
 
-                var town_title=formation.formation_list[first_gird].town_title;
+                var town_title=formation.formation_list[first_grid].town_title;
                 if(town_title)
                 {
                     var last_level=town_title_data.town_title_data_list[town_title].level;
@@ -1685,20 +1761,20 @@ var help_town_fight_rank=function(data)
                     if(now_level>=last_level)
                     {
                         //称号替换
-                        formation.formation_list[first_gird].town_title=tid;
+                        formation.formation_list[first_grid].town_title=tid;
                         //时间更新
                         _town_title_db_data.date=new Date().getTime();
-                        help_get_town_title(_town_title_db_data,1);
+                        help_get_town_title(_town_title_db_data,1,first_gid,first_grid);
                     }
                 }
                 else
                 {
-                    help_get_town_title(_town_title_db_data,1);
+                    help_get_town_title(_town_title_db_data,1,first_gid,first_grid);
                 }
             }
 
             //放入更新列表中，定时入库
-            town_title_data.town_title_update_db_arr.push(first_gird);
+            town_title_data.town_title_update_db_arr.push(first_grid);
         }
         //放入更新列表中，定时入库
         town_data.town_update_db_arr.push(_town_db_data.tid);
@@ -1709,11 +1785,11 @@ var help_town_fight_rank=function(data)
 exports.help_town_fight_rank=help_town_fight_rank;
 
 //获取称号
-var help_get_town_title=function(_town_title_db_data,level,role_grid)
+var help_get_town_title=function(_town_title_db_data,level,role_gid,role_grid)
 {
-    if(_town_title_db_data==undefined||level==undefined||role_grid==undefined)
+    if(_town_title_db_data==undefined||level==undefined||role_gid==undefined||role_grid==undefined)
     {
-        global.log("_town_title_db_data==undefined||level==undefined||role_grid==undefined");
+        global.log("_town_title_db_data==undefined||level==undefined||role_gid==undefined||role_grid==undefined");
         return;
     }
 
@@ -1815,6 +1891,8 @@ var help_get_town_title=function(_town_title_db_data,level,role_grid)
                     _title_data.date=new Date().getTime();
                     //获取新称号
                     arr2.push(_title_data);
+                    //城池新称号邮件奖励
+                    mail_logic.help_send_town_reward_mail(role_gid,role_grid,_town_title_data.title_name+"称号奖励",const_value.REWARD_TYPE_RMB,_town_title_data.reward);
 
                     var town_title=formation.formation_list[role_grid].town_title;
                     var last_level=town_title_data.town_title_data_list[town_title].level;
@@ -1825,7 +1903,6 @@ var help_get_town_title=function(_town_title_db_data,level,role_grid)
                         formation.formation_list[role_grid].town_title=key;
                         _town_title_db_data.date=new Date().getTime();
                     }
-
                     is_add=1;
                 }
 
@@ -1835,7 +1912,8 @@ var help_get_town_title=function(_town_title_db_data,level,role_grid)
 
     if(is_add)
     {
-        help_get_town_title(_town_title_db_data,level);
+
+        help_get_town_title(_town_title_db_data,level,role_gid,role_grid);
         town_title_data.town_title_update_db_arr.push(_town_title_db_data.grid);
     }
 };

@@ -18,6 +18,8 @@ var TownTitleData=function()
     this.title_id=0;
     this.level=0;
     this.children=0;
+    this.title_name=0;
+    this.reward=0;
 };
 
 
@@ -46,11 +48,12 @@ var TownTitleDbData=function()
     this.grid=0; //玩家id
     this.date=0;// 获取最高称号时间
     this.town_fight={};//单个城池数据 key tid value TownTitleFightData
-    this.satrap=[]; //TitleData
-    this.governor=[]; //TitleData
-    this.general=[]; //TitleData
-    this.king=[]; //TitleData
-    this.first_king=[]; //TitleData
+    this.garrison=[]; //守备 2次 TitleData
+    this.satrap=[]; //太守 3次 TitleData
+    this.governor=[]; //都督 TitleData
+    this.general=[]; //将军 TitleData
+    this.king=[]; //王 TitleData
+    this.first_king=[]; // 秦始皇 TitleData
 };
 exports.TownTitleDbData=TownTitleDbData;
 
@@ -78,6 +81,8 @@ function load_town_title_data()
         town_title_data.title_id=data["TOWN_TITLE"][i].TitleID;
         town_title_data.level=Number(data["TOWN_TITLE"][i].Level);
         town_title_data.children=(data["TOWN_TITLE"][i].Children).split(',');
+        town_title_data.title_name=Number(data["TOWN_TITLE"][i].TitleName);
+        town_title_data.reward=Number(data["TOWN_TITLE"][i].RewardFortitle);
 
         town_title_data_list[town_title_data.title_id]=town_title_data;
     }

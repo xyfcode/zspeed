@@ -129,6 +129,7 @@ exports.GuardEquipData=GuardEquipData;
 
 function TownFightData()
 {
+    this.gid=0; //玩家gid
     this.grid=0; //玩家grid
     this.hurt=0; //伤害值
 }

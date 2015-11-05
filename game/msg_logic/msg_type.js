@@ -119,6 +119,7 @@ function MsgID()
     this.NM_TOWN_TITLE=210; //获取城池称号信息
     this.NM_SUMMON_CARD=209; //招降武将
     this.NM_BUY_BEAUTY=208; //购买美女
+    this.NM_SELECT_BEAUTY=800; //战前更换美女
     this.NM_TEST_TOWN=3000; //城池全部打开
 }
 exports.MsgID=MsgID;
