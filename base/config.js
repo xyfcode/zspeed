@@ -37,9 +37,7 @@ exports.initasync = function(file,cb)
 		{
 			try
 			{
-				//var newstr = str.replace(/\s+/g,"").replace(/((\{|,)(\w+)(:))/g,"$2\"$3\"$4");
-
-				var conf = JSON.parse(str);
+                var conf = JSON.parse(str);
                 cb(void 0,conf);
 			
 			}
