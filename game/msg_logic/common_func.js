@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 var crypto = require("crypto");
+var xxtea = require('xxtea-node');
+
 
 var isEmpty = function(str)
 {
@@ -269,7 +271,30 @@ function help_judge_yesterday(comp_date)
 }
 exports.help_judge_yesterday = help_judge_yesterday;
 
+function help_decode_xxtea_str(encrypt_data,key)
+{
+    if(encrypt_data&&key)
+    {
+        encrypt_data=new Buffer(encrypt_data,'base64');
+        var decrypt_data  = xxtea.toString(xxtea.decrypt(encrypt_data, xxtea.toBytes(key)));
+        return decrypt_data;
+    }
+}
+exports.help_decode_xxtea_str = help_decode_xxtea_str;
 
+function help_get_rand_str()
+{
+    var arr_str=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','2','3','9'];
+    var arr_rand=help_make_random(6,0,arr_str.length-1);
+
+    var rand_str="";
+    for(var i=0;i<arr_rand.length;i++)
+    {
+        rand_str+=arr_str[arr_rand[i]];
+    }
+    return rand_str;
+}
+exports.help_get_rand_str = help_get_rand_str;
 
 
 
